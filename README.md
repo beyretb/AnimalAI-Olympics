@@ -14,7 +14,7 @@ using the obejcts provided in the training environment. All cognitive skills can
 the challenge is to **design both a learning environment as well as an learning agent** in order to perform well on the 
 tests. You can train several agents in parallel.
 
-The goal of this first release is to get feedback from the community. The final design of the environment itself will be 
+The goal of this first release is to **seek feedback from the community**. The final design of the environment itself will be 
 very similar to this one, however we are open to suggestion and especially bugs report! Head over the the 
 [issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
 respectively.
@@ -72,11 +72,11 @@ The Animal-AI Olympics was built using [Unity's ML-Agents Toolkit.](https://gith
 
 The Python library located in [animalai](animalai) is almost identical to 
 [ml-agents v0.7](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). We only added the possibility 
-to change the configuration of arenas between episodes. For any issue not related to this feature please refer to the 
-documentation [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md)
+to change the configuration of arenas between episodes. For issues related to any other feature that this one, please 
+refer to the documentation [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md)
 
-Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). Unity: A General Platform for 
-Intelligent Agents. *arXiv preprint arXiv:1809.02627*
+Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
+Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
 
 ## Version History
 v0.1 - Initial Release
