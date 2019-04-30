@@ -80,11 +80,12 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 ## TODO
 
-Improve framerates for training and visualisation.
+- [ ] Improve framerates for training and visualisation.
+- [ ] Add moving food.
+- [ ] Add lights out configurations.
+- [ ] Add protobuf for arena spawning feedback
+- [ ] Improve the way the agent spawns
 
-Add moving food.
-
-Add lights out configurations.
 
 ## Version History
 v0.1 - Initial Release
