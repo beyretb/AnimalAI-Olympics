@@ -30,8 +30,9 @@ on windows:
 ```
 pip install -r requirementsWindows.txt
 ```
+**Note:** `python3.6` is required to install `tensorflow>=1.7,<1.8` which is only used for the training script we provide as an example. Should you wish to use another version of python you can remove the first line from the requirement files. You will still be able to use the `visualizeArena.py` script, but not the `train.py` one.  
 
-You will need to download the environment for your system:
+Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
