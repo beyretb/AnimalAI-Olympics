@@ -1,37 +1,33 @@
 from animalai.trainers.trainer_controller import TrainerController
 from animalai.envs import UnityEnvironment
 from animalai.envs.exception import UnityEnvironmentException
-import numpy as np
+from animalai.envs.ArenaConfig import ArenaConfig
 import random
 import yaml
-from animalai.envs.ArenaConfig import ArenaConfig
+import sys
 
+
+# ML-agents parameters for training
 env_path = './envs/AnimalAI'
-# env_path=None
-
-
-worker_id = random.randint(1,100)
-# worker_id=0
-seed=10
+worker_id = random.randint(1, 100)
+seed = 10
 base_port = 5005
-
 sub_id = 1
-run_id = 'aa'
-save_freq=5000000
-curriculum_file= None
-fast_simulation = True
+run_id = 'train_example'
+save_freq = 5000
+curriculum_file = None
 load_model = False
 train_model = True
-keep_checkpoints = 1000000
+keep_checkpoints = 5000
 lesson = 0
-run_seed =1
+run_seed = 1
 docker_target_name = None
 no_graphics = False
 trainer_config_path = './configs/trainer_config.yaml'
-
 model_path = './models/{run_id}'.format(run_id=run_id)
 summaries_dir = './summaries'
 maybe_meta_curriculum = None
+
 
 def load_config(trainer_config_path):
     try:
@@ -48,7 +44,7 @@ def load_config(trainer_config_path):
                                         .format(trainer_config_path))
 
 
-def init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_simulation, seed):
+def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed):
     if env_path is not None:
         # Strip out executable extensions if passed
         env_path = (env_path.strip()
@@ -68,17 +64,15 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_
         play=False
     )
 
-# arena_config_in = ArenaConfig('configs/configArenas.yaml')
-# arena_config_out = dict_to_arena_config(arena_config_;in)
-# arena_config_in = None
-arena_config_in = ArenaConfig('configs/configTraining1.yaml')
 
+# If no configuration file is provided we default to all objects placed randomly
+if len(sys.argv) > 1:
+    arena_config_in = ArenaConfig(sys.argv[1])
+else:
+    arena_config_in = ArenaConfig('./configs/allObjectsRandom.yaml')
 
 trainer_config = load_config(trainer_config_path)
-env = init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_simulation, run_seed)
-
-
-# env.communicator.exchange_arena_update(arena_config_out)
+env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
 
 external_brains = {}
 for brain_name in env.external_brain_names:

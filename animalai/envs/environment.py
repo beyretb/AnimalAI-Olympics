@@ -50,13 +50,6 @@ class UnityEnvironment(object):
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
 
-        # If the environment name is None, a new environment will not be launched
-        # and the communicator will directly try to connect to an existing unity environment.
-        # If the worker-id is not 0 and the environment name is None, an error is thrown
-        # if file_name is None and worker_id != 0:
-        #     raise UnityEnvironmentException(
-        #         "If the environment name is None, "
-        #         "the worker-id must be 0 in order to connect with the Editor.")
         if file_name is not None:
             self.executable_launcher(file_name, docker_training, no_graphics)
         else:
@@ -92,8 +85,6 @@ class UnityEnvironment(object):
                 self._external_brain_names += [brain_param.brain_name]
         self._num_brains = len(self._brain_names)
         self._num_external_brains = len(self._external_brain_names)
-        #self._resetParameters = dict(aca_params.environment_parameters.float_parameters)
-        # self._resetParameters = config
         logger.info("\n'{0}' started successfully!\n{1}".format(self._academy_name, str(self)))
         if self._num_external_brains == 0:
             logger.warning(" No Learning Brains set to train found in the Unity Environment. "
@@ -183,8 +174,6 @@ class UnityEnvironment(object):
                         [launch_string, '-nographics', '-batchmode',
                          '--port', str(self.port)])
                 else:
-                    # self.proc1 = subprocess.Popen(
-                    #     [launch_string, '--port', str(self.port)])
                     if not self.play:
                         self.proc1 = subprocess.Popen(
                             [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
@@ -238,21 +227,6 @@ class UnityEnvironment(object):
         Sends a signal to reset the unity environment.
         :return: AllBrainInfo  : A data structure corresponding to the initial reset state of the environment.
         """
-        # if config is None:
-        #     config = None
-        # elif config:
-        #     logger.info("Academy reset with parameters: {0}"
-        #                 .format(', '.join([str(x) + ' -> ' + str(config[x]) for x in config])))
-        # for k in config:
-        #     if (k in self._resetParameters) and (isinstance(config[k], (int, float))):
-        #         self._resetParameters[k] = config[k]
-        #     elif not isinstance(config[k], (int, float)):
-        #         raise UnityEnvironmentException(
-        #             "The value for parameter '{0}'' must be an Integer or a Float.".format(k))
-        #     else:
-        #         raise UnityEnvironmentException(
-        #             "The parameter '{0}' is not a valid parameter.".format(k))
-
         if self._loaded:
             outputs = self.communicator.exchange(
                 self._generate_reset_input(train_mode, config)
@@ -491,10 +465,6 @@ class UnityEnvironment(object):
     def _generate_reset_input(self, training, config: ArenaConfig) -> UnityRLInput:
         rl_in = UnityRLInput()
         rl_in.is_training = training
-        # rl_in.environment_parameters.CopyFrom(EnvironmentParametersProto())
-        # for key in config:
-        #     rl_in.environment_parameters.float_parameters[key] = config[key]
-        # rl_in.environment_parameters.CopyFrom(config)
         rl_in.command = 1
         rl_reset = UnityRLResetInput()
         if (config is not None):
@@ -519,7 +489,7 @@ class UnityEnvironment(object):
 
     # def send_update_arena_parameters(self, arena_parameters : ArenaConfigInput) -> None:
     #
-    #     # TODO: add return status?? ==> create new proto for ArenaParametersOutput
+    #     # TODO: add return status ==> create new proto for ArenaParametersOutput
     #
     #     self.communicator.exchange_arena_update(arena_parameters)
 

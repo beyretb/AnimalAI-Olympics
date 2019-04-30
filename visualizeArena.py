@@ -2,34 +2,19 @@ from animalai.envs.environment import UnityEnvironment
 from animalai.envs.ArenaConfig import ArenaConfig
 import sys
 import random
-import time
 
-env_path= './envs/AnimalAI'
-# env_path =None
-worker_id= random.randint(0,200)
-# worker_id=0
-seed=10
-base_port = 5005
-
+env_path = './envs/AnimalAI'
+worker_id = random.randint(0, 200)
+seed = 10
 sub_id = 1
-run_id = 'aa'
-save_freq=5000000
-curriculum_file= None
-fast_simulation = True
-load_model = False
-train_model = True
-keep_checkpoints = 1000000
-lesson = 0
-run_seed =1
+run_id = 'NA'
+run_seed = 1
 docker_target_name = None
 no_graphics = False
 trainer_config_path = './trainer_config.yaml'
 
-model_path = './models/{run_id}'.format(run_id=run_id)
-summaries_dir = './summaries'
-maybe_meta_curriculum = None
 
-def init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_simulation, seed):
+def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed):
     if env_path is not None:
         # Strip out executable extensions if passed
         env_path = (env_path.strip()
@@ -49,14 +34,20 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_
         play=True
     )
 
-if len(sys.argv)>1:
+
+# If no configuration file is provided we default to all objects placed randomly
+if len(sys.argv) > 1:
     arena_config_in = ArenaConfig(sys.argv[1])
 else:
     arena_config_in = ArenaConfig('./configs/ramp.yaml')
 
-env = init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_simulation, run_seed)
-env.reset(config= arena_config_in)
-env.reset()
+env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
+
+# We can pass a different configuration at each env.reset() call. You can therefore load different YAML files between
+# episodes or directly amend the arena_config_in which contains a dictionary of configurations for all arenas.
+# See animalai/envs/ArenaConfig.py for the syntax
+env.reset(config=arena_config_in)
+
 try:
     while True:
         continue
