@@ -2,6 +2,131 @@
 arenas:
   0: !Arena
     t: 0
+    rand_all_colors: true
+    rand_all_sizes: true
+    items:
+    - !Item
+      name: Beam1
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Beam2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTunnel
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cylinder
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Ramp
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Wall
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WallTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cube
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox1
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WoodLog
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: UObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: LObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: BadGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: DeathZone
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: MazeGenerator
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+  1: !Arena
+    t: 0
     rand_all_colors: false
     rand_all_sizes: true
     items:
@@ -24,19 +149,37 @@ arenas:
       rotations: []
       sizes: []
     - !Item
-      name: HalfCylinder
+      name: Cylinder
       positions: []
       rand_color: false
       rotations: []
       sizes: []
     - !Item
-      name: InnerWall
+      name: Ramp
       positions: []
       rand_color: false
       rotations: []
       sizes: []
     - !Item
-      name: TransparentWall
+      name: Wall
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WallTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cube
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTransparent
       positions: []
       rand_color: false
       rotations: []
@@ -54,25 +197,25 @@ arenas:
       rotations: []
       sizes: []
     - !Item
-      name: Cylinder
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: CubeTransparent
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: Tool
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: WoodLog
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: UObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: LObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoal
       positions: []
       rand_color: false
       rotations: []
@@ -90,12 +233,6 @@ arenas:
       rotations: []
       sizes: []
     - !Item
-      name: GoodGoal
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: GoodGoalMulti
       positions: []
       rand_color: false
@@ -108,13 +245,36 @@ arenas:
       rotations: []
       sizes: []
     - !Item
-      name: GoodGoalMulti
+      name: MazeGenerator
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+  2: !Arena
+    t: 0
+    rand_all_colors: false
+    rand_all_sizes: true
+    items:
+    - !Item
+      name: Beam1
       positions: []
       rand_color: false
       rotations: []
       sizes: []
     - !Item
-      name: Tool
+      name: Beam2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTunnel
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cylinder
       positions: []
       rand_color: false
       rotations: []
@@ -126,171 +286,218 @@ arenas:
       rotations: []
       sizes: []
     - !Item
+      name: Wall
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WallTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cube
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox1
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WoodLog
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: UObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: LObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: BadGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: DeathZone
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
       name: MazeGenerator
       positions: []
       rand_color: false
       rotations: []
       sizes: []
-  1: !Arena
-    t: 0
-    rand_all_colors: false
-    rand_all_sizes: true
-    items:
-      - !Item
-        name: Beam1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Beam2
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: CubeTunnel
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: HalfCylinder
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: InnerWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: TransparentWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Cardbox1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-  2: !Arena
-    t: 0
-    rand_all_colors: false
-    rand_all_sizes: true
-    items:
-      - !Item
-        name: Beam1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Beam2
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: CubeTunnel
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: HalfCylinder
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: InnerWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: TransparentWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Cardbox1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
   3: !Arena
     t: 0
     rand_all_colors: false
     rand_all_sizes: true
     items:
-      - !Item
-        name: Beam1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Beam2
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: CubeTunnel
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: HalfCylinder
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: InnerWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: TransparentWall
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
-      - !Item
-        name: Cardbox1
-        positions: []
-        rand_color: false
-        rand_size: false
-        rotations: []
-        sizes: []
+    - !Item
+      name: Beam1
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Beam2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTunnel
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cylinder
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Ramp
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Wall
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WallTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cube
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CubeTransparent
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox1
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: Cardbox2
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: WoodLog
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: UObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: LObject
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: BadGoal
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: DeathZone
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMulti
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: MazeGenerator
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
 

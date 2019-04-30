@@ -8,15 +8,9 @@ The competition itself goes live at the end of June and until then we will be up
 to environment. For more information on the competition itself, head to the 
 [Competition Website](http://www.animalaiolympics.com/).
 
-The environment is made of an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive and 
-negative rewards. The **main idea of this environment** is that all tests we will evaluate your agents on can be reproduced 
-using the obejcts provided in the training environment. All cognitive skills can be tested using this setup. Therefore, 
-the challenge is to **design both a learning environment as well as an learning agent** in order to perform well on the 
-tests. You can train several agents in parallel.
+The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive and negative rewards (green, yellow and red spheres). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training, but part of the challenge will be experimenting and designing new configurations.
 
-The goal of this first release is to **seek feedback from the community**. The final design of the environment itself will be 
-very similar to this one, however we are open to suggestion and especially bugs report! Head over the the 
-[issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
+The goal of this first release is to **seek feedback from the community** as well as to provide the environment for research prior to the launch of the competition itself. The competition version of the environment will be similar to this one, however we are open to suggestion (for minor changes) and especially bugs report! Head over the the [issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
 respectively.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
@@ -72,9 +66,7 @@ mode. Here you can control the agent with the following:
 The Animal-AI Olympics was built using [Unity's ML-Agents Toolkit.](https://github.com/Unity-Technologies/ml-agents)
 
 The Python library located in [animalai](animalai) is almost identical to 
-[ml-agents v0.7](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). We only added the possibility 
-to change the configuration of arenas between episodes. For issues related to any other feature that this one, please 
-refer to the documentation [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md)
+[ml-agents v0.7](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). We only added the possibility to change the configuration of arenas between episodes. The documentation for ML-Agents can be found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md).
 
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*

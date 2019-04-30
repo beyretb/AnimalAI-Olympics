@@ -17,7 +17,7 @@ To configure training arenas you can use a simple **YAML file** and/or the **Are
 We provide a few custom configurations, but we expect designing good environments will be an important component of doing well in the competition.
 
 We describe below the structure of the configuration file for an instance of the training environment, as well as all the 
-parameters and the values they can take. For how to change the configuration during training see the [ArenaConfig Structure](onTheFlyConfig.md)
+parameters and the values they can take. For how to change the configuration during training see `animalai/envs/ArenaConfig.py`.
 
 ## The Arenas
 

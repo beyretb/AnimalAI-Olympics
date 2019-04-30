@@ -61,7 +61,7 @@ These are objects that are fixed and will not be impacted by the agent or other 
 These are objects the agent can move and which will be affected by each other, fixed objects and rewards if they collide
      
 - <img align="left" height="100" src="PrefabsPictures/Movable/Cube.png"> a cube that can be pushed
-    - name: `CubeRigid`
+    - name: `Cube`
     - default size `(2,2,2)`
     - can rotate 360 degrees
     - size range `(1,1,1)-(10,10,10)`
@@ -91,13 +91,13 @@ These are objects the agent can move and which will be affected by each other, f
     - size range `(1,1,1)-(10,10,10)`
     - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Movable/UItem.png"> a U-shaped object
-    - name: `UItem`
+    - name: `UObject`
     - default size `(?,?,?)`
     - can rotate 360 degrees
     - size range `(?,?,?)-(?,?,?)`
     - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Movable/LItem.png"> a L-shaped object
-    - name: `LItem`
+    - name: `LObject`
     - default size `(?,?,?)`
     - can rotate 360 degrees
     - size range `(?,?,?)-(?,?,?)`
