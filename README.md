@@ -57,6 +57,10 @@ mode. Here you can control the agent with the following:
 | C   | switch camera       |
 | R   | reset environment   |
 
+## Competition Tests
+
+We will be releasing further details about the tests in the competition over the coming weeks. The tests will be split into multiple categories from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **working memory**, **spatial memory**, **object permanence**, and **object manipulation**). For now we have included multiple example config files that each relate to a different category. As we release further details we will also specify the rules for the type of tests that can appear in each category. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the categories but it would be off to a very good start.
+
 ## Unity ML-Agents
 
 The Animal-AI Olympics was built using [Unity's ML-Agents Toolkit.](https://github.com/Unity-Technologies/ml-agents)
