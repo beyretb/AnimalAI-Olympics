@@ -43,9 +43,9 @@ You will need to download the environment for your system:
 | MacOS |  [download here](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac.zip) |
 | Windows | [download here](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows.zip)  |
 
-You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the 
-`AnimalAI.exe/app/x_86_64` is in `env/`. Head over to [Quick Start Guide](documentation/quickstart.md) for a quick 
-overview of how the environment works.
+You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
+`AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
+Head over to [Quick Start Guide](documentation/quickstart.md) for a quick overview of how the environment works.
 
 ## Manual Control
 
@@ -70,6 +70,16 @@ The Python library located in [animalai](animalai) is almost identical to
 
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
+
+## Known Bugs
+
+Occasionally will spawn an empty arena in play mode. Temporary fix: just press R to respawn.
+
+Occasional slow frame rates in play mode. Temporary fix: reduce screen size. 
+
+## TODO
+
+Improve framerates for training and visualisation.
 
 ## Version History
 v0.1 - Initial Release
