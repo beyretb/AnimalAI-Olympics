@@ -1,0 +1,28 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    t: 0
+    rand_all_colors: false
+    rand_all_sizes: false
+    items:
+    - !Item
+      name: Cube
+      positions: 
+      - !Vector3 {x: 10, y: 0, z: 10}
+      - !Vector3 {x: -1, y: 0, z: 30}
+      rand_color: false
+      rotations: [45]
+      sizes: 
+      - !Vector3 {x: -1, y: 5, z: -1}
+    - !Item
+      name: Cylinder
+      positions: []
+      rand_color: true
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoal
+      positions: []
+      rand_color: true
+      rotations: []
+      sizes: []
