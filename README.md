@@ -46,11 +46,12 @@ You will need to download the environment for your system:
 | OS | Environment link |
 | --- | --- |
 | Linux |  [download here](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux.zip) |
-| MacOS |  coming soon |
+| MacOS |  [download here](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac.zip) |
 | Windows | [download here](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows.zip)  |
 
-You can now unzip the content of the archive to the `env` folder and you're ready to go! Head over to 
-[Quick Start Guide](documentation/quickstart.md) for a quick overview of how the environment works.
+You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the 
+`AnimalAI.exe/app/x_86_64` is in `env/`. Head over to [Quick Start Guide](documentation/quickstart.md) for a quick 
+overview of how the environment works.
 
 ## Manual Control
 
