@@ -3,11 +3,11 @@
 ## Overview
 
 Welcome to the repository for the Animal-AI Olympics competition where you will find all the code needed to compete in 
-this new challenge. Note that this is **only the training environment** (v0.1) that will be used for the competition and **does not contain any competition tests or information for entering**. If everything goes well the competition will be live on June 30th. Until then we will be continually updating with bug fixes and small changes to environment. However, the general structure will stay the same so it's not too early to start using the environment. For more information on the competition itself and to stay updated with any developments, head to the [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
+this new challenge. Note that for the moment this repo contains **only the training environment** (v0.1) that will be used for the competition and **does not contain any competition tests or information for entering**. If everything goes well the competition will be live on June 30th. Until then we will be continually updating with bug fixes and small changes to environment. However, the general structure will stay the same so it's not too early to start working with environment. For more information on the competition itself and to stay updated with any developments, head to the [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
 
 The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive and negative rewards (green, yellow and red spheres). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training, but part of the challenge will be experimenting and designing new configurations.
 
-The goal of this first release is to **seek feedback from the community** as well as to provide the environment for research prior to the launch of the competition itself. The competition version of the environment will be similar to this one, however we are open to suggestion (for minor changes) and especially bugs report! Head over the the [issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
+The goal of this first release is to **seek feedback from the community** as well as to provide the environment for research prior to the launch of the competition itself. The competition version of the environment will be similar to this one, however we are open to suggestion (for minor changes) and especially bug reports! Head over to the [issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
 respectively.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
@@ -16,8 +16,7 @@ A more in depth documentation <!--, including a primer on animal cognition,--> c
 
 ## Requirements
 
-The Animal-AI package works on most platforms. Below is the basic installation on Ubuntu. Description for 
-other platforms coming soon. <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
+The Animal-AI package works on most platforms. <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
 First of all your will need `python3.6` installed. You will find a list of requirements in the `requirements*.txt` files. 
 Using `pip` you can run:
@@ -77,6 +76,10 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 ## TODO
 
 Improve framerates for training and visualisation.
+
+Add moving food.
+
+Add lights out configurations.
 
 ## Version History
 v0.1 - Initial Release
