@@ -7,19 +7,20 @@ You can run the Animal AI environment in three different ways:
 
 ## Running the standalone arena
 
-Ruuning the executable `AnimalAI` in the `envs` folder starts a playable environment with a default configuration for a 
-single arena. You can toggle the camera between First Person and Bird's eye view using the `C` key on your keyboard. 
-The agent can then be controlled using `W,A,S,D` on your keyboard. The objects present in the configuration are 
-randomly sampled from the list of objects that can be spawned, their location is random too. Hitting `R` or collecting rewards 
-will reset the arena.
+Ruuning the executable `AnimalAI` that you should have separately downloaded and added to the `envs` folder starts a playable environment with default configurations in a single arena. You can toggle the camera between First Person and Bird's eye view using the `C` key on your keyboard. The agent can then be controlled using `W,A,S,D` on your keyboard. The objects present in the configuration are randomly sampled from the list of objects that can be spawned, their location is random too. Hitting `R` or collecting rewards will reset the arena.
 
 ## Running a specific configuration file
 
 The `visualizeArena.py` script found in the main folder allows you to visualize an arena configuration file. We provide 
-a sample of configuration files for you to experiment with, to make your own environment configuration file we advise to read 
-thoroughly the [configuration file documentation page](configFile.md). You will find a detailed list of objects you can 
-add to the configuration file on the [definitions of objects page](definitionsOfObjects.md). Running this script only allows
- for a single arena to be visualized at once, as there can only be a single agent you control.
+sample configuration files for you to experiment with. To make your own environment configuration file we advise to read 
+thoroughly the [configuration file documentation page](configFile.md). You will find a detailed list of all the objects on the [definitions of objects page](definitionsOfObjects.md). Running this script only allows for a single arena to be visualized at once, as there can only be a single agent you control.
+
+For example, to run an environment that contains the agent, a goal, and some randomly placed walls use:
+
+```
+python visualizeArena.py configs/obstacles.yaml
+```
+
 
 ## Start training your agent
 
