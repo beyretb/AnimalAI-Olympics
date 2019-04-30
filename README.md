@@ -71,6 +71,15 @@ The Python library located in [animalai](animalai) is almost identical to
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
 
+## Known Bugs
+
+Occasionally will spawn an empty arena in play mode. Temporary fix: just press R to respawn.
+Occasional slow frame rates in play mode. Temporary fix: reduce screen size. 
+
+## TODO
+
+Improve framerates for training and visualisation.
+
 ## Version History
 v0.1 - Initial Release
 
