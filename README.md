@@ -74,6 +74,7 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 ## Known Bugs
 
 Occasionally will spawn an empty arena in play mode. Temporary fix: just press R to respawn.
+
 Occasional slow frame rates in play mode. Temporary fix: reduce screen size. 
 
 ## TODO
