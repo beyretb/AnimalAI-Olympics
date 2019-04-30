@@ -3,15 +3,11 @@ from animalai.envs.ArenaConfig import ArenaConfig
 import sys
 import random
 
-env_path = './envs/AnimalAI'
+env_path = 'env/AnimalAI'
 worker_id = random.randint(0, 200)
-seed = 10
-sub_id = 1
-run_id = 'NA'
 run_seed = 1
 docker_target_name = None
 no_graphics = False
-trainer_config_path = './trainer_config.yaml'
 
 
 def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed):
@@ -39,7 +35,7 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed)
 if len(sys.argv) > 1:
     arena_config_in = ArenaConfig(sys.argv[1])
 else:
-    arena_config_in = ArenaConfig('./configs/ramp.yaml')
+    arena_config_in = ArenaConfig('configs/allObjectsRandom.yaml')
 
 env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
 

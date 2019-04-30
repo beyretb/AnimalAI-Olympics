@@ -8,7 +8,7 @@ import sys
 
 
 # ML-agents parameters for training
-env_path = './envs/AnimalAI'
+env_path = 'envs/AnimalAI'
 worker_id = random.randint(1, 100)
 seed = 10
 base_port = 5005
@@ -23,7 +23,7 @@ lesson = 0
 run_seed = 1
 docker_target_name = None
 no_graphics = False
-trainer_config_path = './configs/trainer_config.yaml'
+trainer_config_path = 'configs/trainer_config.yaml'
 model_path = './models/{run_id}'.format(run_id=run_id)
 summaries_dir = './summaries'
 maybe_meta_curriculum = None
@@ -55,7 +55,7 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed)
     docker_training = docker_target_name is not None
 
     return UnityEnvironment(
-        n_arenas=4,
+        n_arenas=4,             # Change this to train on more arenas
         file_name=env_path,
         worker_id=worker_id,
         seed=seed,
@@ -69,7 +69,7 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed)
 if len(sys.argv) > 1:
     arena_config_in = ArenaConfig(sys.argv[1])
 else:
-    arena_config_in = ArenaConfig('./configs/allObjectsRandom.yaml')
+    arena_config_in = ArenaConfig('configs/allObjectsRandom.yaml')
 
 trainer_config = load_config(trainer_config_path)
 env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
