@@ -8,6 +8,11 @@ The objects you can spawn in an arena are split among three categories:
 Below is a list of objects you can spawn. For each we describe the name you should use to refer to in your configuration files 
 or in Python directly, as well as their default characteristics and range of values you can assign to them.
 
+Each object has an orientation, we provide the three axes for all of those that are not symmetrical. The color code of the 
+axes is as depicted below:
+
+<img height="200" src="PrefabsPictures/Referential.png">
+
 #### Immovable
 
 These are objects that are fixed and will not be impacted by the agent or other objects:
