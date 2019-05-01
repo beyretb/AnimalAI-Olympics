@@ -7,7 +7,14 @@ You can run the Animal AI environment in three different ways:
 
 ## Running the standalone arena
 
-Ruuning the executable `AnimalAI` that you should have separately downloaded and added to the `envs` folder starts a playable environment with default configurations in a single arena. You can toggle the camera between First Person and Bird's eye view using the `C` key on your keyboard. The agent can then be controlled using `W,A,S,D` on your keyboard. The objects present in the configuration are randomly sampled from the list of objects that can be spawned, their location is random too. Hitting `R` or collecting rewards will reset the arena.
+Running the executable `AnimalAI` that you should have separately downloaded and added to the `envs` folder starts a 
+playable environment with default configurations in a single arena. You can toggle the camera between First Person and 
+Bird's eye view using the `C` key on your keyboard. The agent can then be controlled using `W,A,S,D` on your keyboard. 
+The objects present in the configuration are randomly sampled from the list of objects that can be spawned, their 
+location is random too. Hitting `R` or collecting rewards will reset the arena.
+
+**Note**: on some platforms, running the standalone arena in full screen makes the environment slow, keep the 
+environment in window mode for better performance.
 
 ## Running a specific configuration file
 

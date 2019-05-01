@@ -31,6 +31,12 @@ origin of the arena is `(0,0)`, therefore you can provide coordinates for object
 For visualization you can only configure a single arena, however during training you can configure as many as you want, 
 each will have its local set of coordinates as described above.
 
+For a single arena you can provide the following parameters:
+- `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
+not terminate unlti a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
+- `rand_all_colors` a `bool`, whether all objects should have a random color or not
+- `rand_all_sizes` a `bool`, whether all objects should have a random sizes or not
+
 <!-- TODO: show (x,y,z) referential -->
 
 ## Objects
