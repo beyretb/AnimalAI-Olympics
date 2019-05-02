@@ -12,7 +12,7 @@ respectively.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
 A more in depth documentation <!--, including a primer on animal cognition,--> can be found on the 
-[Documentation Page](documentation/documentation.md).
+[Documentation Page](documentation/README.md).
 
 ## Requirements
 
