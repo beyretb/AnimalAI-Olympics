@@ -11,7 +11,7 @@ using [ML-Agents' PPO](https://github.com/Unity-Technologies/ml-agents/blob/mast
 Before looking at the environment itself, we define here the actions the agent can take and the observations it collects:
 
 - **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. Therefore the 
-actions are discrete of dimension `2`, each component can take 3 values (`(noting, forward, backward)` and `(nothing, left,right)`).
+actions are discrete of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, left,right)`).
 - **Observations** are made of two components: visual observations which are pixel based and of dimension `84x84x3`, as 
 well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order).
 
