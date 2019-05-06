@@ -1,5 +1,8 @@
 # Animal-AI Olympics
 
+## This repository is...
+A working repo of Naoto Yoshida. 
+
 ## Overview
 
 Welcome to the repository for the Animal-AI Olympics competition where you will find all the code needed to compete in 
