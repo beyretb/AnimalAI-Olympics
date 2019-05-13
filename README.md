@@ -36,9 +36,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.1.zip) |
-| MacOS |  [download v0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.1.zip) |
-| Windows | [download v0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.1.zip)  |
+| Linux |  [download v0.2](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.2.zip) |
+| MacOS |  [download v0.2](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.2.zip) |
+| Windows | [download v0.2](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.2.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
@@ -83,13 +83,22 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 ## TODO
 
-- [ ] Improve framerates for training and visualisation.
-- [ ] Add moving food.
+- [x] Improve environment framerates
+- [x] Add moving food
+- [ ] Offer a gym wrapper for training
 - [ ] Add lights out configurations.
 - [ ] Add protobuf for arena spawning feedback
 - [ ] Improve the way the agent spawns
 
 
 ## Version History
-v0.1 - Initial Release
+
+- v0.2 - New moving food rewards, improved Unity performance, bug fixes 
+    - Moving rewards have been added, two for each type of rewards, see 
+    [the details here](documentation/definitionsOfObjects.md####Rewards)
+    - Details for the maze generator
+    - The compiled files performances have been improved
+    - [Issue #7](../../issues/7) (`-inf` rewards for `t: 0` configuration) is fixed
+
+- v0.1 - Initial Release
 

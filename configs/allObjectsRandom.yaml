@@ -114,13 +114,43 @@ arenas:
       rotations: []
       sizes: []
     - !Item
-      name: GoodGoalMulti
+      name: MazeGenerator
       positions: []
       rand_color: false
       rotations: []
       sizes: []
     - !Item
-      name: MazeGenerator
+      name: GoodGoalMove
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalBounce
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: BadGoalMove
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: BadGoalBounce
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMultiMove
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: GoodGoalMultiBounce
       positions: []
       rand_color: false
       rotations: []

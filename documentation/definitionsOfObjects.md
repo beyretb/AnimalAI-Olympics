@@ -13,6 +13,9 @@ axes is as depicted below:
 
 <img height="200" src="PrefabsPictures/Referential.png">
 
+**Note:** as depicted above the vertical axis is th **Y axis**, we will use Z as the forward axis (both conventions are 
+the ones used in Unity). 
+
 #### Immovable
 
 These are objects that are fixed and will not be impacted by the agent or other objects:
@@ -53,6 +56,12 @@ These are objects that are fixed and will not be impacted by the agent or other 
     - can rotate 360 degrees
     - size range `(1,1,1)-(40,10,40)`
     - cannot randomize color
+- <img align="left" height="100" src="PrefabsPictures/Immovable/MazeGenerator.png"> a randomly generated maze of size 
+`16x16` with two entrances. Note this takes quite some room and will be hard to generate last on an arena.
+    - name: `MazeGenerator`
+    - can rotate 360 degrees
+    - size range constant
+    - can randomize color
     
 #### Movable
 
@@ -98,18 +107,73 @@ These are objects the agent can move and which will be affected by each other, f
 
 Objects that may terminate the event if the agents collides with one:
 
-- <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png"> a good reward with reward 1
-    - name: `GoodGoal`
-    - can rotate 360 degrees
-    - size range `(0.5,0.5,0.5)-(10,10,10)`
-    - cannot randomize color
-    - terminates episode
-- <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> a bad reward with reward -1
-    - name: `BadGoal`
-    - can rotate 360 degrees
-    - size range `(0.5,0.5,0.5)-(10,10,10)`
-    - cannot randomize color
-    - terminates episode
+- Good goals: green spheres with a reward of 1
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png"> Fixed good reward
+        - name: `GoodGoal`
+        - can rotate 360 degrees
+        - size range `(0.5,0.5,0.5)-(10,10,10)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward moving in a straight line,
+     which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
+     parameter
+        - name: `GoodGoalMove`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png"> A good reward bouncing on objects. Will
+     start moving in the direction provided by the rotation parameter
+        - name: `GoodGoalBounce`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
+- Bad goals: red spheres with a reward of -1
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">  Fixed bad reward
+        - name: `BadGoal`
+        - can rotate 360 degrees
+        - size range `(0.5,0.5,0.5)-(10,10,10)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">  A bad reward moving in a straight line,
+     which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
+     parameter
+        - name: `BadGoalMove`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> A bad reward bouncing on objects. Will 
+    start moving in the direction provided by the rotation parameter
+        - name: `BadGoalBounce`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
+-  Good goals multi: golden spheres with a reward of 1 that will only terminate the episode once all of them are 
+retrieved (and a GoodGoal if present):
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> Fixed good reward multi
+        - name: `GoodGoalMulti`
+        - can rotate 360 degrees
+        - size range `(0.5,0.5,0.5)-(10,10,10)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> A good reward moving in a straight
+     line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
+     rotation parameter
+        - name: `GoodGoalMultiMove`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> A bad reward bouncing on objects. 
+    Will start moving in the direction provided by the rotation parameter
+        - name: `GoodGoalMultiBounce`
+        - can rotate 360 degrees
+        - size range fixed as `(1,1,1)`
+        - cannot randomize color
+        - terminates episode
 - <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png"> a deathzone with reward -1
     - name: `DeathZone`
     - can rotate 360 degrees
@@ -117,10 +181,4 @@ Objects that may terminate the event if the agents collides with one:
     - cannot randomize color
     - **the deathzone is always flat and located on the ground**
     - terminates episode
-- <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> a good goal with reward 1 that will only 
-terminate the episode once all of them are retrieved
-    - name: `GoodGoalMulti`
-    - can rotate 360 degrees
-    - size range `(0.5,0.5,0.5)-(5,5,5)`
-    - cannot randomize color
-    - terminates episode only when all GoodGoalsMulti (and a GoodGoal if present) are collected
+
