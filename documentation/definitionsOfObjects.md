@@ -92,15 +92,15 @@ These are objects the agent can move and which will be affected by each other, f
     - can rotate 360 degrees
     - size range `(1,1,1)-(10,10,10)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Movable/UItem.png"> a U-shaped object
+- <img align="left" height="100" src="PrefabsPictures/Movable/UObject.png"> a U-shaped object
     - name: `UObject`
     - can rotate 360 degrees
-    - size range `(3,3,3)-(20,4,10)`
+    - size range `(1,0.3,3)-(5,2,20)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Movable/LItem.png"> a L-shaped object
+- <img align="left" height="100" src="PrefabsPictures/Movable/LObject.png"> a L-shaped object
     - name: `LObject`
     - can rotate 360 degrees
-    - size range `(3,3,3)-(20,4,10)`
+    - size range `(1,0.3,3)-(5,2,20)`
     - cannot randomize color
     
 #### Rewards
@@ -158,7 +158,6 @@ retrieved (and a GoodGoal if present):
         - can rotate 360 degrees
         - size range `(0.5,0.5,0.5)-(10,10,10)`
         - cannot randomize color
-        - terminates episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> A good reward moving in a straight
      line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
      rotation parameter
@@ -166,14 +165,12 @@ retrieved (and a GoodGoal if present):
         - can rotate 360 degrees
         - size range fixed as `(1,1,1)`
         - cannot randomize color
-        - terminates episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> A bad reward bouncing on objects. 
     Will start moving in the direction provided by the rotation parameter
         - name: `GoodGoalMultiBounce`
         - can rotate 360 degrees
         - size range fixed as `(1,1,1)`
         - cannot randomize color
-        - terminates episode
 - <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png"> a deathzone with reward -1
     - name: `DeathZone`
     - can rotate 360 degrees
