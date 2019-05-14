@@ -14,6 +14,14 @@ To get started install the requirements below, and then follow the [Quick Start 
 A more in depth documentation <!--, including a primer on animal cognition,--> can be found on the 
 [Documentation Page](documentation/README.md).
 
+## Development Blog
+
+You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as well as part of the development process.
+
+1. [Why Animal-AI?](https://mdcrosby.com/blog/animalai1.html)
+
+2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
+
 ## Requirements
 
 The Animal-AI package works on most platforms. <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
@@ -65,6 +73,12 @@ mode for better performance.
 
 We will be releasing further details about the tests in the competition over the coming weeks. The tests will be split into multiple categories from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **working memory**, **spatial memory**, **object permanence**, and **object manipulation**). For now we have included multiple example config files that each relate to a different category. As we release further details we will also specify the rules for the type of tests that can appear in each category. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the categories but it would be off to a very good start.
 
+## Citing
+
+For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt): 
+
+Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature Machine Intelligence 1 (5) p257 2019.
+
 ## Unity ML-Agents
 
 The Animal-AI Olympics was built using [Unity's ML-Agents Toolkit.](https://github.com/Unity-Technologies/ml-agents)
@@ -83,22 +97,21 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 ## TODO
 
-- [x] Improve environment framerates
-- [x] Add moving food
 - [ ] Offer a gym wrapper for training
 - [ ] Add lights out configurations.
 - [ ] Add protobuf for arena spawning feedback
 - [ ] Improve the way the agent spawns
-
+- [x] Improve environment framerates
+- [x] Add moving food
 
 ## Version History
 
-- v0.2 - New moving food rewards, improved Unity performance, bug fixes 
-    - Moving rewards have been added, two for each type of rewards, see 
-    [the details here](documentation/definitionsOfObjects.md####Rewards)
-    - Details for the maze generator
-    - The compiled files performances have been improved
-    - [Issue #7](../../issues/7) (`-inf` rewards for `t: 0` configuration) is fixed
+- v0.2 - New moving food rewards, improved Unity performance and bug fixes 
+    - Moving rewards have been added, two for each type of reward, see 
+    [the details here](documentation/definitionsOfObjects.md####Rewards).
+    - Added details for the maze generator.
+    - Environment performance improved.
+    - [Issue #7](../../issues/7) (`-inf` rewards for `t: 0` configuration) is fixed.
 
 - v0.1 - Initial Release
 
