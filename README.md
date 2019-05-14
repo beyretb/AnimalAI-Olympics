@@ -7,7 +7,7 @@ this new challenge. Note that for the moment this repo contains **only the train
 
 The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive and negative rewards (green, yellow and red spheres). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training, but part of the challenge will be experimenting and designing new configurations.
 
-The goal of this first release is to **seek feedback from the community** as well as to provide the environment for research prior to the launch of the competition itself. The competition version of the environment will be similar to this one, however we are open to suggestion (for minor changes) and especially bug reports! Head over to the [issues page](https://github.com/beyretb/AnimalAI/issues) and open a ticket using the `suggestion` or `bug` labels 
+The goal of this first release is to **seek feedback from the community** as well as to provide the environment for research prior to the launch of the competition itself. The competition version of the environment will be similar to this one, however we are open to suggestion (for minor changes) and especially bug reports! Head over to the [issues page](https://github.com/beyretb/AnimalAI-Olympics/issues) and open a ticket using the `suggestion` or `bug` labels 
 respectively.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
