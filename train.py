@@ -69,7 +69,7 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed)
 if len(sys.argv) > 1:
     arena_config_in = ArenaConfig(sys.argv[1])
 else:
-    arena_config_in = ArenaConfig('configs/justFood.yaml')
+    arena_config_in = ArenaConfig('configs/exampleTraining.yaml')
 
 trainer_config = load_config(trainer_config_path)
 env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
