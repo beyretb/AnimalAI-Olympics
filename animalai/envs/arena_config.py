@@ -1,6 +1,7 @@
 import json
 import jsonpickle
 import yaml
+import copy
 
 from animalai.communicator_objects import UnityRLResetInput, ArenaParametersProto
 
@@ -38,11 +39,12 @@ class Item(yaml.YAMLObject):
 class Arena(yaml.YAMLObject):
     yaml_tag = u'!Arena'
 
-    def __init__(self, t=1000, rand_all_colors=False, rand_all_sizes=False, items=None):
+    def __init__(self, t=1000, rand_all_colors=False, rand_all_sizes=False, items=None, blackouts=None):
         self.t = t
         self.rand_all_colors = rand_all_colors
         self.rand_all_sizes = rand_all_sizes
         self.items = items if items is not None else {}
+        self.blackouts = blackouts if blackouts is not None else []
 
 
 class ArenaConfig(yaml.YAMLObject):
@@ -77,6 +79,12 @@ class ArenaConfig(yaml.YAMLObject):
                 to_spawn.sizes.extend([v.to_proto() for v in item.sizes])
 
         return config_out
+
+    def update(self, arenas_configurations_input):
+
+        if arenas_configurations_input is not None:
+            for arena_i in arenas_configurations_input.arenas:
+                self.arenas[arena_i] = copy.copy(arenas_configurations_input.arenas[arena_i])
 
 
 def constructor_arena(loader, node):

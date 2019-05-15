@@ -14,7 +14,7 @@ from animalai.communicator_objects import UnityRLInput, UnityRLOutput, AgentActi
 
 from .rpc_communicator import RpcCommunicator
 from sys import platform
-from .ArenaConfig import ArenaConfig
+from .arena_config import ArenaConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mlagents.envs")
@@ -25,9 +25,15 @@ class UnityEnvironment(object):
     SINGLE_BRAIN_ACTION_TYPES = SCALAR_ACTION_TYPES + (list, np.ndarray)
     SINGLE_BRAIN_TEXT_TYPES = (str, list, np.ndarray)
 
-    def __init__(self, file_name=None, worker_id=0,
-                 base_port=5005, seed=0,
-                 docker_training=False, no_graphics=False, n_arenas=1, play=False):
+    def __init__(self, file_name=None,
+                 worker_id=0,
+                 base_port=5005,
+                 seed=0,
+                 docker_training=False,
+                 no_graphics=False,
+                 n_arenas=1,
+                 play=False,
+                 arenas_configurations = None):
         """
         Starts a new unity environment and establishes a connection with the environment.
         Notice: Currently communication between Unity and Python takes place over an open socket without authentication.
@@ -49,6 +55,7 @@ class UnityEnvironment(object):
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
+        self.arenas_configurations = arenas_configurations
 
         if file_name is not None:
             self.executable_launcher(file_name, docker_training, no_graphics)
@@ -222,14 +229,16 @@ class UnityEnvironment(object):
         #                                            for k in self._resetParameters])) + '\n' + \
         #        '\n'.join([str(self._brains[b]) for b in self._brains])
 
-    def reset(self, config=None, train_mode=True) -> AllBrainInfo:
+    def reset(self, arenas_configurations_input=None, train_mode=True) -> AllBrainInfo:
         """
         Sends a signal to reset the unity environment.
         :return: AllBrainInfo  : A data structure corresponding to the initial reset state of the environment.
         """
         if self._loaded:
+            if self.arenas_configurations is not None:
+                self.arenas_configurations.update(arenas_configurations_input)
             outputs = self.communicator.exchange(
-                self._generate_reset_input(train_mode, config)
+                self._generate_reset_input(train_mode, arenas_configurations_input)
             )
             if outputs is None:
                 raise KeyboardInterrupt
