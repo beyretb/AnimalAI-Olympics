@@ -2,6 +2,7 @@ import json
 import jsonpickle
 import yaml
 import copy
+import numpy as np
 
 from animalai.communicator_objects import UnityRLResetInput, ArenaParametersProto
 
@@ -44,7 +45,17 @@ class Arena(yaml.YAMLObject):
         self.rand_all_colors = rand_all_colors
         self.rand_all_sizes = rand_all_sizes
         self.items = items if items is not None else {}
-        self.blackouts = blackouts if blackouts is not None else []
+        self.blackouts = blackouts
+
+    def generate_blackout_steps(self):
+        # Transform a list of steps at which we turn on/off the light into a list of 1/0 of size t for each step
+        self.blackouts_steps = np.ones(self.t)
+        if self.blackouts is not None and len(self.blackouts) > 0:
+            light = True
+            for i in range(len(self.blackouts) - 1):
+                self.blackouts_steps[self.blackouts[i]:self.blackouts[i + 1]] = not light
+                light = not light
+            self.blackouts_steps[self.blackouts[-1]:] = not light
 
 
 class ArenaConfig(yaml.YAMLObject):
@@ -54,6 +65,8 @@ class ArenaConfig(yaml.YAMLObject):
 
         if yaml_path is not None:
             self.arenas = yaml.load(open(yaml_path, 'r'), Loader=yaml.Loader).arenas
+            for arena in self.arenas.values():
+                arena.generate_blackout_steps()
         else:
             self.arenas = {}
 
@@ -85,6 +98,7 @@ class ArenaConfig(yaml.YAMLObject):
         if arenas_configurations_input is not None:
             for arena_i in arenas_configurations_input.arenas:
                 self.arenas[arena_i] = copy.copy(arenas_configurations_input.arenas[arena_i])
+                self.arenas[arena_i].generate_blackout_steps()
 
 
 def constructor_arena(loader, node):

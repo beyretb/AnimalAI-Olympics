@@ -9,8 +9,8 @@ from .brain import AllBrainInfo, BrainInfo, BrainParameters
 from .exception import UnityEnvironmentException, UnityActionException, UnityTimeOutException
 
 from animalai.communicator_objects import UnityRLInput, UnityRLOutput, AgentActionProto, \
-             UnityRLInitializationInput, UnityRLInitializationOutput, \
-            UnityRLResetInput, UnityInput, UnityOutput
+    UnityRLInitializationInput, UnityRLInitializationOutput, \
+    UnityRLResetInput, UnityInput, UnityOutput
 
 from .rpc_communicator import RpcCommunicator
 from sys import platform
@@ -33,7 +33,7 @@ class UnityEnvironment(object):
                  no_graphics=False,
                  n_arenas=1,
                  play=False,
-                 arenas_configurations = None):
+                 arenas_configurations=None):
         """
         Starts a new unity environment and establishes a connection with the environment.
         Notice: Currently communication between Unity and Python takes place over an open socket without authentication.
@@ -55,7 +55,8 @@ class UnityEnvironment(object):
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
-        self.arenas_configurations = arenas_configurations
+        self.arenas_configurations = arenas_configurations if arenas_configurations is not None else ArenaConfig()
+        self.check_lights = True
 
         if file_name is not None:
             self.executable_launcher(file_name, docker_training, no_graphics)
@@ -235,8 +236,9 @@ class UnityEnvironment(object):
         :return: AllBrainInfo  : A data structure corresponding to the initial reset state of the environment.
         """
         if self._loaded:
-            if self.arenas_configurations is not None:
-                self.arenas_configurations.update(arenas_configurations_input)
+            self.arenas_configurations.update(arenas_configurations_input)
+            self.check_lights = not np.all([e.blackouts for e in self.arenas_configurations.arenas.values()])
+
             outputs = self.communicator.exchange(
                 self._generate_reset_input(train_mode, arenas_configurations_input)
             )
@@ -251,7 +253,7 @@ class UnityEnvironment(object):
         else:
             raise UnityEnvironmentException("No Unity environment is loaded.")
 
-    def step(self, vector_action=None, memory=None, text_action=None, value=None) -> AllBrainInfo:
+    def step(self, vector_action=None, memory=None, text_action=None, value=None, step_number=0) -> AllBrainInfo:
         """
         Provides the environment with an action, moves the environment dynamics forward accordingly,
         and returns observation, state, and reward information to the agent.
@@ -391,6 +393,8 @@ class UnityEnvironment(object):
             self._global_done = state[1]
             for _b in self._external_brain_names:
                 self._n_agents[_b] = len(state[0][_b].agents)
+            if self.check_lights:
+                state = self._apply_lights(state, step_number)
             return state[0]
         elif not self._loaded:
             raise UnityEnvironmentException("No Unity environment is loaded.")
@@ -436,6 +440,16 @@ class UnityEnvironment(object):
             arr = [item for sublist in arr for item in sublist]
         arr = [float(x) for x in arr]
         return arr
+
+    def _apply_lights(self, state, step_number):
+        """
+        Sets visual observations to zero for Arenas where the light should be off.
+        :return: the modified state
+        """
+        if 'Learner' in state[0].keys():
+            mask = np.array([e.blackouts_steps[step_number] for e in self.arenas_configurations.arenas.values()])
+            state[0]['Learner'].visual_observations[0] = (state[0]['Learner'].visual_observations[0].T * mask).T
+        return state
 
     def _get_state(self, output: UnityRLOutput) -> (AllBrainInfo, bool):
         """
@@ -501,4 +515,3 @@ class UnityEnvironment(object):
     #     # TODO: add return status ==> create new proto for ArenaParametersOutput
     #
     #     self.communicator.exchange_arena_update(arena_parameters)
-
