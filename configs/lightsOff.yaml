@@ -3,10 +3,7 @@ arenas:
   0: !Arena
     t: 100
     rand_all_colors: true
-    blackouts:
-      - 10
-      - 20
-      - 30
+    blackouts: [10,20,30,40,50]
     items:
     - !Item
       name: GoodGoal
@@ -37,17 +34,7 @@ arenas:
   3: !Arena
     t: 100
     rand_all_colors: true
-    blackouts:
-      - 2
-      - 4
-      - 6
-      - 8
-      - 10
-      - 12
-      - 14
-      - 16
-      - 20
-      - 22
+    blackouts: [2,4,6,8,10,12,14,16,18,20]
     items:
     - !Item
       name: GoodGoal

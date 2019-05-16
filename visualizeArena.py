@@ -3,8 +3,10 @@ from animalai.envs.arena_config import ArenaConfig
 import sys
 import random
 
-env_path = 'env/AnimalAI'
-worker_id = random.randint(0, 200)
+# env_path = 'env/AnimalAI'
+# worker_id = random.randint(0, 200)
+env_path = None
+worker_id = 0
 run_seed = 1
 docker_target_name = None
 no_graphics = False

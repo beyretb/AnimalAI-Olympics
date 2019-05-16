@@ -3,7 +3,6 @@ arenas:
   0: !Arena
     t: 0
     rand_all_colors: true
-    rand_all_sizes: true
     items:
     - !Item
       name: GoodGoal

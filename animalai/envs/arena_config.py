@@ -40,10 +40,9 @@ class Item(yaml.YAMLObject):
 class Arena(yaml.YAMLObject):
     yaml_tag = u'!Arena'
 
-    def __init__(self, t=1000, rand_all_colors=False, rand_all_sizes=False, items=None, blackouts=None):
+    def __init__(self, t=1000, rand_all_colors=False, items=None, blackouts=None):
         self.t = t
         self.rand_all_colors = rand_all_colors
-        self.rand_all_sizes = rand_all_sizes
         self.items = items if items is not None else {}
         self.blackouts = blackouts
 
@@ -82,7 +81,6 @@ class ArenaConfig(yaml.YAMLObject):
             config_out.arenas[k].CopyFrom(ArenaParametersProto())
             config_out.arenas[k].t = self.arenas[k].t
             config_out.arenas[k].rand_all_colors = self.arenas[k].rand_all_colors
-            config_out.arenas[k].rand_all_sizes = self.arenas[k].rand_all_sizes
             for item in self.arenas[k].items:
                 to_spawn = config_out.arenas[k].items.add()
                 to_spawn.name = item.name

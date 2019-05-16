@@ -3,7 +3,6 @@ arenas:
   0: !Arena
     t: 1000
     rand_all_colors: true
-    rand_all_sizes: true
     items:
     - !Item
       name: Beam1
@@ -26,7 +25,6 @@ arenas:
   1: !Arena
     t: 1000
     rand_all_colors: false
-    rand_all_sizes: true
     items:
     - !Item
       name: TransparentWall
@@ -43,7 +41,6 @@ arenas:
   2: !Arena
     t: 1000
     rand_all_colors: false
-    rand_all_sizes: true
     items:
       - !Item
         name: Cardbox1
@@ -66,7 +63,6 @@ arenas:
   3: !Arena
     t: 1000
     rand_all_colors: false
-    rand_all_sizes: true
     items:
       - !Item
         name: DeathZone
