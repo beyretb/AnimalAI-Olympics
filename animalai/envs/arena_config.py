@@ -44,7 +44,8 @@ class Arena(yaml.YAMLObject):
         self.t = t
         self.rand_all_colors = rand_all_colors
         self.items = items if items is not None else {}
-        self.blackouts = blackouts
+        self.blackouts = blackouts if blackouts is not None else []
+        self.generate_blackout_steps()
 
     def generate_blackout_steps(self):
         # Transform a list of steps at which we turn on/off the light into a list of 1/0 of size t for each step

@@ -7,3 +7,4 @@ __pycache__/
 UnitySDK.log
 /venv
 testDevs.py
+testDevs.yaml

@@ -20,16 +20,6 @@ the ones used in Unity).
 
 These are objects that are fixed and will not be impacted by the agent or other objects:
 
-- <img align="left" height="100" src="PrefabsPictures/Immovable/Beam1.png"> a metal beam that sticks out of the ground
-    - name: `Beam1`
-    - can rotate 360 degrees
-    - size range `(0.1,0.1,1)-(5,5,15)`
-    - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Immovable/Beam2.png"> another metal beam that sticks out of the ground
-    - name: `Beam2`
-    - can rotate 360 degrees
-    - size range `(0.1,0.1,1)-(5,5,15)`
-    - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/CubeTunnel.png"> a rectangular tunnel
     - name: `CubeTunnel`
     - can rotate 360 degrees

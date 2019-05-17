@@ -5,19 +5,13 @@ arenas:
     rand_all_colors: true
     items:
     - !Item
-      name: Beam1
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: Beam2
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: CubeTunnel
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CylinderTunnel
       positions: []
       rand_color: false
       rotations: []
@@ -159,18 +153,6 @@ arenas:
     rand_all_colors: false
     items:
     - !Item
-      name: Beam1
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: Beam2
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: CubeTunnel
       positions: []
       rand_color: false
@@ -178,6 +160,12 @@ arenas:
       sizes: []
     - !Item
       name: Cylinder
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CylinderTunnel
       positions: []
       rand_color: false
       rotations: []
@@ -283,18 +271,6 @@ arenas:
     rand_all_colors: false
     items:
     - !Item
-      name: Beam1
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: Beam2
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: CubeTunnel
       positions: []
       rand_color: false
@@ -302,6 +278,12 @@ arenas:
       sizes: []
     - !Item
       name: Cylinder
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CylinderTunnel
       positions: []
       rand_color: false
       rotations: []
@@ -407,18 +389,6 @@ arenas:
     rand_all_colors: false
     items:
     - !Item
-      name: Beam1
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
-      name: Beam2
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
-    - !Item
       name: CubeTunnel
       positions: []
       rand_color: false
@@ -426,6 +396,12 @@ arenas:
       sizes: []
     - !Item
       name: Cylinder
+      positions: []
+      rand_color: false
+      rotations: []
+      sizes: []
+    - !Item
+      name: CylinderTunnel
       positions: []
       rand_color: false
       rotations: []
