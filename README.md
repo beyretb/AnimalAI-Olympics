@@ -107,7 +107,7 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 ## Version History
 
 - v0.3 - Lights off, remove Beams and add cylinder
-    - We added the possibility to switch the lights off at given intervals, see [here](documentation/configFile.md##Blackouts)
+    - We added the possibility to switch the lights off at given intervals, see [here](documentation/configFile.md##blackouts)
     - VisualLightsOff.py displays an example of lights off, from the agent's point of view
     - Beams objects have been removed
     - A `Cylinder` object has been added (similar behaviour to the `Woodlog`)
