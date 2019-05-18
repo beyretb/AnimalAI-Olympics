@@ -35,7 +35,7 @@ For a single arena you can provide the following parameters:
 - `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
 not terminate unlti a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
 - `rand_all_colors` a `bool`, whether all objects should have a random color or not
-- `blackouts` [see below](##blacktouts)
+- `blackouts` [see below](##blackouts)
 
 <!-- TODO: show (x,y,z) referential -->
 
