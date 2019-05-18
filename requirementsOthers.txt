@@ -7,5 +7,6 @@ pytest>=3.2.2,<4.0.0
 docopt
 pyyaml
 jsonpickle
+matplotlib
 protobuf>=3.6,<3.7
 grpcio>=1.11.0,<1.12.0
