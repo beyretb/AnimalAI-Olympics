@@ -50,8 +50,8 @@ class Arena(yaml.YAMLObject):
     def generate_blackout_steps(self):
         # Transform a list of steps at which we turn on/off the light into a list of 1/0 of size t for each step
 
-        if self.blackouts is not None and len(self.blackouts) > 0:
-            if self.blackouts[0]>0:
+        if self.blackouts is not None and len(self.blackouts) > 0 and self.t>0:
+            if self.blackouts[0] > 0:
                 self.blackouts_steps = np.ones(self.t)
                 light = True
                 for i in range(len(self.blackouts) - 1):
@@ -60,9 +60,10 @@ class Arena(yaml.YAMLObject):
                 self.blackouts_steps[self.blackouts[-1]:] = not light
             else:
                 flip_every = -self.blackouts[0]
-                self.blackouts_steps = np.array(([1]*flip_every + [0]*flip_every)*(self.t//(2*flip_every)+1))[:self.t]
+                self.blackouts_steps = np.array(
+                    ([1] * flip_every + [0] * flip_every) * (self.t // (2 * flip_every) + 1))[:self.t]
         else:
-            self.blackouts_steps = np.ones(self.t)
+            self.blackouts_steps = np.ones(max(self.t, 1))
 
 
 class ArenaConfig(yaml.YAMLObject):

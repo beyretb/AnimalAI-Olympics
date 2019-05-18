@@ -222,13 +222,8 @@ class UnityEnvironment(object):
     def __str__(self):
         return '''Unity Academy name: {0}
         Number of Brains: {1}
-        Number of Training Brains : {2}'''
-        # Reset Parameters :\n\t\t{3}'''.format(self._academy_name, str(self._num_brains),
-        #                                       str(self._num_external_brains),
-        #                                       "\n\t\t".join(
-        #                                           [str(k) + " -> " + str(self._resetParameters[k])
-        #                                            for k in self._resetParameters])) + '\n' + \
-        #        '\n'.join([str(self._brains[b]) for b in self._brains])
+        Number of Training Brains : {2}'''.format(self._academy_name, str(self._num_brains),
+                                              str(self._num_external_brains))
 
     def reset(self, arenas_configurations_input=None, train_mode=True) -> AllBrainInfo:
         """
@@ -447,7 +442,8 @@ class UnityEnvironment(object):
         :return: the modified state
         """
         if 'Learner' in state[0].keys():
-            mask = np.array([e.blackouts_steps[step_number] for e in self.arenas_configurations.arenas.values()])
+            mask = np.array([e.blackouts_steps[step_number % len(e.blackouts_steps)] \
+                             for e in self.arenas_configurations.arenas.values()])
             state[0]['Learner'].visual_observations[0] = (state[0]['Learner'].visual_observations[0].T * mask).T
         return state
 

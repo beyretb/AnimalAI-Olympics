@@ -1,7 +1,7 @@
 !ArenaConfig
 arenas:
   0: !Arena
-    t: 1000
+    t: 100
     rand_all_colors: true
     blackouts: [10,20,30,40,50]
     items:

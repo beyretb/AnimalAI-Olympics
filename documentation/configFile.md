@@ -64,8 +64,9 @@ pass two types of arguments for this parameter:
 then back on from 15 to 19 included etc...
 - passing a single negative argument `[-20]` will automatically switch lights on and off every 20 frames.
 
-**Note**: in case of an episode with no time limit (`T=0`), the first option above would leave the lights off after the 
-25th frame, the second one would indefinitely switch lights on and off.
+**Note**: at the moment this feature cannot be combined with an infinite episode (`T=0`)
+<!--**Note**: in case of an episode with no time limit (`T=0`), the first option above would leave the lights off after the 
+25th frame, the second one would indefinitely switch lights on and off.-->
 
 
 ## Rules and Notes

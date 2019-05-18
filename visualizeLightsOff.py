@@ -60,7 +60,7 @@ def run_step_imshow(step):
 
 
 try:
-    animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=500)
+    anim = animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=500)
     plt.show()
 except KeyboardInterrupt:
     env.close()
