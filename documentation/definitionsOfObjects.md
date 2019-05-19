@@ -25,7 +25,7 @@ These are objects that are fixed and will not be impacted by the agent or other 
     - can rotate 360 degrees
     - size range `(3,3,3)-(10,10,10)`
     - can randomize color
-- <img align="left" height="100" src="PrefabsPictures/Immovable/Cylinder.png"> a cylinder tunnel
+- <img align="left" height="100" src="PrefabsPictures/Immovable/CylinderTunnel.png"> a cylinder tunnel
     - name: `CylinderTunnel`
     - can rotate 360 degrees
     - size range `(0.5,2.5,2.5)-(5,5,5)`
