@@ -35,7 +35,7 @@ For a single arena you can provide the following parameters:
 - `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
 not terminate unlti a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
 - `rand_all_colors` a `bool`, whether all objects should have a random color or not
-- `rand_all_sizes` a `bool`, whether all objects should have a random sizes or not
+- `blackouts` [see below](#blackouts)
 
 <!-- TODO: show (x,y,z) referential -->
 
@@ -53,6 +53,21 @@ is empty the position will be sampled randomly in the arena
 accept random colors)
 
 **All values for the above fields can be found in [the definitions](definitionsOfObjects.md)**.
+
+## Blackouts
+
+Blackouts are parameters you can pass to each arena, which define between which frames of an episode should the lights 
+be on or off. If omitted, this parameter automatically sets to have lights on for the entire episode. You can otherwise 
+pass two types of arguments for this parameter:
+
+- passing a list of frames `[5,10,15,20,25]` will start with the lights on, switch them off from frames 5 to 9 included, 
+then back on from 15 to 19 included etc...
+- passing a single negative argument `[-20]` will automatically switch lights on and off every 20 frames.
+
+**Note**: at the moment this feature cannot be combined with an infinite episode (`T=0`)
+<!--**Note**: in case of an episode with no time limit (`T=0`), the first option above would leave the lights off after the 
+25th frame, the second one would indefinitely switch lights on and off.-->
+
 
 ## Rules and Notes
 There are certain rules to follow when configuring and arena as well as some designs you should be aware of. If a 
@@ -89,7 +104,6 @@ arenas:
   0: !Arena
     t: 0
     rand_all_colors: false
-    rand_all_sizes: false
     items:
     - !Item
       name: Cube
@@ -101,7 +115,7 @@ arenas:
       sizes: 
       - !Vector3 {x: -1, y: 5, z: -1}
     - !Item
-      name: Cylinder
+      name: CylinderTunnel
       positions: []
       rand_color: true
       rotations: []
@@ -115,7 +129,7 @@ Any parameter missing will be sampled randomly.
 In this case this will lead to:
 - a `Cube` spawned in `[10,10]` on the groundm with rotation `45` and a size randomized on both `x` and `z` and of `y=5`
 - a `Cube` spawnd on the ground, with a random `x` and `z=30`, both its rotation and size will be random
-- a `Cylinder` completely randomized, including its color
+- a `CylinderTunnel` completely randomized, including its color
 - the agent which position and rotation are randomized too
 
 The arena will spawn these objects in this order.

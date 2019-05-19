@@ -5,3 +5,6 @@ env/*
 /.idea
 __pycache__/
 UnitySDK.log
+/venv
+testDevs.py
+testDevs.yaml

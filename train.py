@@ -1,7 +1,7 @@
 from animalai.trainers.trainer_controller import TrainerController
 from animalai.envs import UnityEnvironment
 from animalai.envs.exception import UnityEnvironmentException
-from animalai.envs.ArenaConfig import ArenaConfig
+from animalai.envs.arena_config import ArenaConfig
 import random
 import yaml
 import sys

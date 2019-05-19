@@ -1,6 +1,8 @@
 import json
 import jsonpickle
 import yaml
+import copy
+import numpy as np
 
 from animalai.communicator_objects import UnityRLResetInput, ArenaParametersProto
 
@@ -38,11 +40,30 @@ class Item(yaml.YAMLObject):
 class Arena(yaml.YAMLObject):
     yaml_tag = u'!Arena'
 
-    def __init__(self, t=1000, rand_all_colors=False, rand_all_sizes=False, items=None):
+    def __init__(self, t=1000, rand_all_colors=False, items=None, blackouts=None):
         self.t = t
         self.rand_all_colors = rand_all_colors
-        self.rand_all_sizes = rand_all_sizes
         self.items = items if items is not None else {}
+        self.blackouts = blackouts if blackouts is not None else []
+        self.generate_blackout_steps()
+
+    def generate_blackout_steps(self):
+        # Transform a list of steps at which we turn on/off the light into a list of 1/0 of size t for each step
+
+        if self.blackouts is not None and len(self.blackouts) > 0 and self.t>0:
+            if self.blackouts[0] > 0:
+                self.blackouts_steps = np.ones(self.t)
+                light = True
+                for i in range(len(self.blackouts) - 1):
+                    self.blackouts_steps[self.blackouts[i]:self.blackouts[i + 1]] = not light
+                    light = not light
+                self.blackouts_steps[self.blackouts[-1]:] = not light
+            else:
+                flip_every = -self.blackouts[0]
+                self.blackouts_steps = np.array(
+                    ([1] * flip_every + [0] * flip_every) * (self.t // (2 * flip_every) + 1))[:self.t]
+        else:
+            self.blackouts_steps = np.ones(max(self.t, 1))
 
 
 class ArenaConfig(yaml.YAMLObject):
@@ -52,6 +73,8 @@ class ArenaConfig(yaml.YAMLObject):
 
         if yaml_path is not None:
             self.arenas = yaml.load(open(yaml_path, 'r'), Loader=yaml.Loader).arenas
+            for arena in self.arenas.values():
+                arena.generate_blackout_steps()
         else:
             self.arenas = {}
 
@@ -67,7 +90,6 @@ class ArenaConfig(yaml.YAMLObject):
             config_out.arenas[k].CopyFrom(ArenaParametersProto())
             config_out.arenas[k].t = self.arenas[k].t
             config_out.arenas[k].rand_all_colors = self.arenas[k].rand_all_colors
-            config_out.arenas[k].rand_all_sizes = self.arenas[k].rand_all_sizes
             for item in self.arenas[k].items:
                 to_spawn = config_out.arenas[k].items.add()
                 to_spawn.name = item.name
@@ -77,6 +99,13 @@ class ArenaConfig(yaml.YAMLObject):
                 to_spawn.sizes.extend([v.to_proto() for v in item.sizes])
 
         return config_out
+
+    def update(self, arenas_configurations_input):
+
+        if arenas_configurations_input is not None:
+            for arena_i in arenas_configurations_input.arenas:
+                self.arenas[arena_i] = copy.copy(arenas_configurations_input.arenas[arena_i])
+                self.arenas[arena_i].generate_blackout_steps()
 
 
 def constructor_arena(loader, node):

@@ -9,12 +9,12 @@ from .brain import AllBrainInfo, BrainInfo, BrainParameters
 from .exception import UnityEnvironmentException, UnityActionException, UnityTimeOutException
 
 from animalai.communicator_objects import UnityRLInput, UnityRLOutput, AgentActionProto, \
-             UnityRLInitializationInput, UnityRLInitializationOutput, \
-            UnityRLResetInput, UnityInput, UnityOutput
+    UnityRLInitializationInput, UnityRLInitializationOutput, \
+    UnityRLResetInput, UnityInput, UnityOutput
 
 from .rpc_communicator import RpcCommunicator
 from sys import platform
-from .ArenaConfig import ArenaConfig
+from .arena_config import ArenaConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("mlagents.envs")
@@ -25,9 +25,15 @@ class UnityEnvironment(object):
     SINGLE_BRAIN_ACTION_TYPES = SCALAR_ACTION_TYPES + (list, np.ndarray)
     SINGLE_BRAIN_TEXT_TYPES = (str, list, np.ndarray)
 
-    def __init__(self, file_name=None, worker_id=0,
-                 base_port=5005, seed=0,
-                 docker_training=False, no_graphics=False, n_arenas=1, play=False):
+    def __init__(self, file_name=None,
+                 worker_id=0,
+                 base_port=5005,
+                 seed=0,
+                 docker_training=False,
+                 no_graphics=False,
+                 n_arenas=1,
+                 play=False,
+                 arenas_configurations=None):
         """
         Starts a new unity environment and establishes a connection with the environment.
         Notice: Currently communication between Unity and Python takes place over an open socket without authentication.
@@ -49,6 +55,8 @@ class UnityEnvironment(object):
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
+        self.arenas_configurations = arenas_configurations if arenas_configurations is not None else ArenaConfig()
+        self.check_lights = True
 
         if file_name is not None:
             self.executable_launcher(file_name, docker_training, no_graphics)
@@ -214,22 +222,20 @@ class UnityEnvironment(object):
     def __str__(self):
         return '''Unity Academy name: {0}
         Number of Brains: {1}
-        Number of Training Brains : {2}'''
-        # Reset Parameters :\n\t\t{3}'''.format(self._academy_name, str(self._num_brains),
-        #                                       str(self._num_external_brains),
-        #                                       "\n\t\t".join(
-        #                                           [str(k) + " -> " + str(self._resetParameters[k])
-        #                                            for k in self._resetParameters])) + '\n' + \
-        #        '\n'.join([str(self._brains[b]) for b in self._brains])
+        Number of Training Brains : {2}'''.format(self._academy_name, str(self._num_brains),
+                                              str(self._num_external_brains))
 
-    def reset(self, config=None, train_mode=True) -> AllBrainInfo:
+    def reset(self, arenas_configurations_input=None, train_mode=True) -> AllBrainInfo:
         """
         Sends a signal to reset the unity environment.
         :return: AllBrainInfo  : A data structure corresponding to the initial reset state of the environment.
         """
         if self._loaded:
+            self.arenas_configurations.update(arenas_configurations_input)
+            self.check_lights = not np.all([e.blackouts for e in self.arenas_configurations.arenas.values()])
+
             outputs = self.communicator.exchange(
-                self._generate_reset_input(train_mode, config)
+                self._generate_reset_input(train_mode, arenas_configurations_input)
             )
             if outputs is None:
                 raise KeyboardInterrupt
@@ -242,7 +248,7 @@ class UnityEnvironment(object):
         else:
             raise UnityEnvironmentException("No Unity environment is loaded.")
 
-    def step(self, vector_action=None, memory=None, text_action=None, value=None) -> AllBrainInfo:
+    def step(self, vector_action=None, memory=None, text_action=None, value=None, step_number=0) -> AllBrainInfo:
         """
         Provides the environment with an action, moves the environment dynamics forward accordingly,
         and returns observation, state, and reward information to the agent.
@@ -382,6 +388,8 @@ class UnityEnvironment(object):
             self._global_done = state[1]
             for _b in self._external_brain_names:
                 self._n_agents[_b] = len(state[0][_b].agents)
+            if self.check_lights:
+                state = self._apply_lights(state, step_number)
             return state[0]
         elif not self._loaded:
             raise UnityEnvironmentException("No Unity environment is loaded.")
@@ -427,6 +435,17 @@ class UnityEnvironment(object):
             arr = [item for sublist in arr for item in sublist]
         arr = [float(x) for x in arr]
         return arr
+
+    def _apply_lights(self, state, step_number):
+        """
+        Sets visual observations to zero for Arenas where the light should be off.
+        :return: the modified state
+        """
+        if 'Learner' in state[0].keys():
+            mask = np.array([e.blackouts_steps[step_number % len(e.blackouts_steps)] \
+                             for e in self.arenas_configurations.arenas.values()])
+            state[0]['Learner'].visual_observations[0] = (state[0]['Learner'].visual_observations[0].T * mask).T
+        return state
 
     def _get_state(self, output: UnityRLOutput) -> (AllBrainInfo, bool):
         """
@@ -492,4 +511,3 @@ class UnityEnvironment(object):
     #     # TODO: add return status ==> create new proto for ArenaParametersOutput
     #
     #     self.communicator.exchange_arena_update(arena_parameters)
-

@@ -14,6 +14,9 @@ Before looking at the environment itself, we define here the actions the agent c
 actions are discrete of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, left,right)`).
 - **Observations** are made of two components: visual observations which are pixel based and of dimension `84x84x3`, as 
 well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order).
+- **Rewards**: in case of an episode of finite length `T`, each step carries a small negative reward `-1/T`. In case of 
+an episode with no time limite (`T=0`), no reward is returned for each step. Other rewards come from the rewards objects 
+(see details [here](definitionsOfObjects.md)).
 
 ## The Unity Environment
 

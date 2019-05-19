@@ -20,23 +20,13 @@ the ones used in Unity).
 
 These are objects that are fixed and will not be impacted by the agent or other objects:
 
-- <img align="left" height="100" src="PrefabsPictures/Immovable/Beam1.png"> a metal beam that sticks out of the ground
-    - name: `Beam1`
-    - can rotate 360 degrees
-    - size range `(0.1,0.1,1)-(5,5,15)`
-    - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Immovable/Beam2.png"> another metal beam that sticks out of the ground
-    - name: `Beam2`
-    - can rotate 360 degrees
-    - size range `(0.1,0.1,1)-(5,5,15)`
-    - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/CubeTunnel.png"> a rectangular tunnel
     - name: `CubeTunnel`
     - can rotate 360 degrees
     - size range `(3,3,3)-(10,10,10)`
     - can randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/Cylinder.png"> a cylinder tunnel
-    - name: `Cylinder`
+    - name: `CylinderTunnel`
     - can rotate 360 degrees
     - size range `(0.5,2.5,2.5)-(5,5,5)`
     - can randomize color
@@ -77,16 +67,21 @@ These are objects the agent can move and which will be affected by each other, f
     - can rotate 360 degrees
     - size range `(1,1,1)-(10,10,10)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Movable/Cardbox1.png"> a carbox that can be pushed
+- <img align="left" height="100" src="PrefabsPictures/Movable/Cardbox1.png"> a cardbox that can be pushed
     - name: `Cardbox1`
     - can rotate 360 degrees
     - size range `(1,1,1)-(10,10,10)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Movable/Cardbox2.png"> a carbox that can be pushed
+- <img align="left" height="100" src="PrefabsPictures/Movable/Cardbox2.png"> a cardbox that can be pushed
     - name: `Cardbox2`
     - can rotate 360 degrees
     - size range `(1,1,1)-(10,10,10)`
     - cannot randomize color
+- <img align="left" height="100" src="PrefabsPictures/Movable/Cylinder.png"> a cylinder
+    - name: `Cylinder`
+    - can rotate 360 degrees
+    - size range `(1,1,1)-(10,10,10)`
+    - can randomize color
 - <img align="left" height="100" src="PrefabsPictures/Movable/WoodLog.png"> a wood log
     - name: `WoodLog`
     - can rotate 360 degrees
