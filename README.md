@@ -108,10 +108,10 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 - v0.3 - Lights off, remove Beams and add cylinder
     - We added the possibility to switch the lights off at given intervals, see [here](documentation/configFile.md#blackouts)
-    - VisualLightsOff.py displays an example of lights off, from the agent's point of view
+    - visualizeLightsOff.py displays an example of lights off, from the agent's point of view
     - Beams objects have been removed
     - A `Cylinder` object has been added (similar behaviour to the `Woodlog`)
-    - The immoveable `Cylinder` tunnel has been renamed `CylinderTunnel`
+    - The immovable `Cylinder` tunnel has been renamed `CylinderTunnel`
     
 - v0.2 - New moving food rewards, improved Unity performance and bug fixes 
     - Moving rewards have been added, two for each type of reward, see 
