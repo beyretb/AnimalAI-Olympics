@@ -5,13 +5,13 @@ arenas:
     rand_all_colors: true
     items:
     - !Item
-      name: Beam1
+      name: Wall
       positions: []
       rand_color: false
       rotations: []
       sizes: []
     - !Item
-      name: Cylinder
+      name: CylinderTunnel
       positions: []
       rand_color: false
       rotations: []

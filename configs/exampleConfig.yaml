@@ -14,7 +14,7 @@ arenas:
       sizes: 
       - !Vector3 {x: -1, y: 5, z: -1}
     - !Item
-      name: Cylinder
+      name: CylinderTunnel
       positions: []
       rand_color: true
       rotations: []

@@ -8,3 +8,4 @@ UnitySDK.log
 /venv
 testDevs.py
 testDevs.yaml
+.DS_Store
