@@ -2,41 +2,37 @@
 arenas:
   0: !Arena
     t: 1000
-    rand_all_colors: true
     items:
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
   1: !Arena
     t: 1000
-    rand_all_colors: true
     items:
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
   2: !Arena
     t: 1000
-    rand_all_colors: true
     items:
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
   3: !Arena
     t: 1000
-    rand_all_colors: true
     items:
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []

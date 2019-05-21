@@ -2,23 +2,22 @@
 arenas:
   0: !Arena
     t: 0
-    rand_all_colors: true
     items:
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
     - !Item
       name: GoodGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
     - !Item
       name: BadGoal
       positions: []
-      rand_color: false
+      colors: []
       rotations: []
       sizes: []
