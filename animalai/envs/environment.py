@@ -30,7 +30,6 @@ class UnityEnvironment(object):
                  base_port=5005,
                  seed=0,
                  docker_training=False,
-                 no_graphics=False,
                  n_arenas=1,
                  play=False,
                  arenas_configurations=None):
@@ -43,7 +42,6 @@ class UnityEnvironment(object):
         :int base_port: Baseline port number to connect to Unity environment over. worker_id increments over this.
         :int worker_id: Number to add to communication port (5005) [0]. Used for asynchronous agent scenarios.
         :param docker_training: Informs this class whether the process is being run within a container.
-        :param no_graphics: Whether to run the Unity simulator in no-graphics mode
         """
 
         atexit.register(self._close)
@@ -59,7 +57,7 @@ class UnityEnvironment(object):
         self.check_lights = True
 
         if file_name is not None:
-            self.executable_launcher(file_name, docker_training, no_graphics)
+            self.executable_launcher(file_name, docker_training)
         else:
             logger.info("Start training by pressing the Play button in the Unity Editor.")
         self._loaded = True
@@ -130,7 +128,7 @@ class UnityEnvironment(object):
     def external_brain_names(self):
         return self._external_brain_names
 
-    def executable_launcher(self, file_name, docker_training, no_graphics):
+    def executable_launcher(self, file_name, docker_training):
         cwd = os.getcwd()
         file_name = (file_name.strip()
                      .replace('.app', '').replace('.exe', '').replace('.x86_64', '').replace('.x86',
@@ -177,17 +175,12 @@ class UnityEnvironment(object):
             logger.debug("This is the launch string {}".format(launch_string))
             # Launch Unity environment
             if not docker_training:
-                if no_graphics:
+                if not self.play:
                     self.proc1 = subprocess.Popen(
-                        [launch_string, '-nographics', '-batchmode',
-                         '--port', str(self.port)])
+                        [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
                 else:
-                    if not self.play:
-                        self.proc1 = subprocess.Popen(
-                            [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
-                    else:
-                        self.proc1 = subprocess.Popen(
-                            [launch_string, '--port', str(self.port)])
+                    self.proc1 = subprocess.Popen(
+                        [launch_string, '--port', str(self.port)])
 
             else:
                 """
@@ -209,7 +202,7 @@ class UnityEnvironment(object):
                 """
                 docker_ls = ("exec xvfb-run --auto-servernum"
                              " --server-args='-screen 0 640x480x24'"
-                             " {0} --port {1}").format(launch_string, str(self.port))
+                             " {0} --port {1} --nArenas {2}").format(launch_string, str(self.port), str(self.n_arenas))
                 self.proc1 = subprocess.Popen(docker_ls,
                                               stdout=subprocess.PIPE,
                                               stderr=subprocess.PIPE,

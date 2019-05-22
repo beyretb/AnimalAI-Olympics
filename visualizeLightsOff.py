@@ -31,7 +31,6 @@ env = UnityEnvironment(
     worker_id=worker_id,
     seed=seed,
     docker_training=docker_training,
-    no_graphics=no_graphics,
     play=False
 )
 

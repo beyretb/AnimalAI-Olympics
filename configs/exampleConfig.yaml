@@ -8,14 +8,18 @@ arenas:
       positions:
       - !Vector3 {x: 10, y: 0, z: 10}
       - !Vector3 {x: -1, y: 0, z: 30}
-      colors: []
+      colors:
+      - !RGB {r: 204, g: 0, b: 204 }
       rotations: [45]
       sizes:
       - !Vector3 {x: -1, y: 5, z: -1}
     - !Item
       name: Cylinder
       positions: []
-      colors: []
+      colors:
+      - !RGB {r: 204, g: 0, b: 204 }
+      - !RGB {r: 204, g: 0, b: 204 }
+      - !RGB {r: 204, g: 0, b: 204 }
       rotations: []
       sizes: []
     - !Item

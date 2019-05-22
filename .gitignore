@@ -4,8 +4,5 @@ env/*
 /summaries
 /.idea
 __pycache__/
-UnitySDK.log
 /venv
-testDevs.py
-testDevs.yaml
-.DS_Store
+/dev
