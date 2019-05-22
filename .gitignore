@@ -4,5 +4,6 @@ env/*
 /summaries
 /.idea
 __pycache__/
+UnitySDK.log
 /venv
 /dev

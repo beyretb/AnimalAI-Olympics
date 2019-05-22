@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='communicator_objects',
   syntax='proto3',
   serialized_options=_b('\252\002\034MLAgents.CommunicatorObjects'),
-  serialized_pb=_b('\n:animalai/communicator_objects/arena_parameters_proto.proto\x12\x14\x63ommunicator_objects\"\xbc\x03\n\x14\x41renaParametersProto\x12\t\n\x01t\x18\x01 \x01(\x05\x12\x46\n\x05items\x18\x02 \x03(\x0b\x32\x37.communicator_objects.ArenaParametersProto.ItemsToSpawn\x1a\xd0\x02\n\x0cItemsToSpawn\x12\x0c\n\x04name\x18\x01 \x01(\t\x12R\n\tpositions\x18\x03 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x12\x11\n\trotations\x18\x04 \x03(\x02\x12N\n\x05sizes\x18\x05 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x12O\n\x06\x63olors\x18\x06 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x1a*\n\x07Vector3\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x42\x1f\xaa\x02\x1cMLAgents.CommunicatorObjectsb\x06proto3')
+  serialized_pb=_b('\n:animalai/communicator_objects/arena_parameters_proto.proto\x12\x14\x63ommunicator_objects\"\xcf\x03\n\x14\x41renaParametersProto\x12\t\n\x01t\x18\x01 \x01(\x05\x12\x46\n\x05items\x18\x02 \x03(\x0b\x32\x37.communicator_objects.ArenaParametersProto.ItemsToSpawn\x12\x11\n\tblackouts\x18\x03 \x03(\x05\x1a\xd0\x02\n\x0cItemsToSpawn\x12\x0c\n\x04name\x18\x01 \x01(\t\x12R\n\tpositions\x18\x03 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x12\x11\n\trotations\x18\x04 \x03(\x02\x12N\n\x05sizes\x18\x05 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x12O\n\x06\x63olors\x18\x06 \x03(\x0b\x32?.communicator_objects.ArenaParametersProto.ItemsToSpawn.Vector3\x1a*\n\x07Vector3\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x42\x1f\xaa\x02\x1cMLAgents.CommunicatorObjectsb\x06proto3')
 )
 
 
@@ -66,8 +66,8 @@ _ARENAPARAMETERSPROTO_ITEMSTOSPAWN_VECTOR3 = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=487,
-  serialized_end=529,
+  serialized_start=506,
+  serialized_end=548,
 )
 
 _ARENAPARAMETERSPROTO_ITEMSTOSPAWN = _descriptor.Descriptor(
@@ -124,8 +124,8 @@ _ARENAPARAMETERSPROTO_ITEMSTOSPAWN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=193,
-  serialized_end=529,
+  serialized_start=212,
+  serialized_end=548,
 )
 
 _ARENAPARAMETERSPROTO = _descriptor.Descriptor(
@@ -149,6 +149,13 @@ _ARENAPARAMETERSPROTO = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='blackouts', full_name='communicator_objects.ArenaParametersProto.blackouts', index=2,
+      number=3, type=5, cpp_type=1, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
   ],
   extensions=[
   ],
@@ -162,7 +169,7 @@ _ARENAPARAMETERSPROTO = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=85,
-  serialized_end=529,
+  serialized_end=548,
 )
 
 _ARENAPARAMETERSPROTO_ITEMSTOSPAWN_VECTOR3.containing_type = _ARENAPARAMETERSPROTO_ITEMSTOSPAWN

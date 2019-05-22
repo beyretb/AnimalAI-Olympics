@@ -54,7 +54,6 @@ class UnityEnvironment(object):
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
         self.arenas_configurations = arenas_configurations if arenas_configurations is not None else ArenaConfig()
-        self.check_lights = True
 
         if file_name is not None:
             self.executable_launcher(file_name, docker_training)
@@ -225,7 +224,6 @@ class UnityEnvironment(object):
         """
         if self._loaded:
             self.arenas_configurations.update(arenas_configurations_input)
-            self.check_lights = not np.all([e.blackouts for e in self.arenas_configurations.arenas.values()])
 
             outputs = self.communicator.exchange(
                 self._generate_reset_input(train_mode, arenas_configurations_input)
@@ -381,8 +379,6 @@ class UnityEnvironment(object):
             self._global_done = state[1]
             for _b in self._external_brain_names:
                 self._n_agents[_b] = len(state[0][_b].agents)
-            if self.check_lights:
-                state = self._apply_lights(state, step_number)
             return state[0]
         elif not self._loaded:
             raise UnityEnvironmentException("No Unity environment is loaded.")
@@ -428,17 +424,6 @@ class UnityEnvironment(object):
             arr = [item for sublist in arr for item in sublist]
         arr = [float(x) for x in arr]
         return arr
-
-    def _apply_lights(self, state, step_number):
-        """
-        Sets visual observations to zero for Arenas where the light should be off.
-        :return: the modified state
-        """
-        if 'Learner' in state[0].keys():
-            mask = np.array([e.blackouts_steps[step_number % len(e.blackouts_steps)] \
-                             for e in self.arenas_configurations.arenas.values()])
-            state[0]['Learner'].visual_observations[0] = (state[0]['Learner'].visual_observations[0].T * mask).T
-        return state
 
     def _get_state(self, output: UnityRLOutput) -> (AllBrainInfo, bool):
         """
