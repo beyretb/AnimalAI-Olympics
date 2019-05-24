@@ -5,8 +5,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
-env_path = 'env/AnimalAI'
-worker_id = random.randint(1, 100)
+# env_path = 'env/AnimalAI'
+# worker_id = random.randint(1, 100)
+env_path = None
+worker_id = 0
 
 seed = 10
 base_port = 5005
@@ -59,7 +61,7 @@ def run_step_imshow(step):
 
 
 try:
-    anim = animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=500)
+    anim = animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=50)
     plt.show()
 except KeyboardInterrupt:
     env.close()

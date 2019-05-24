@@ -5,497 +5,173 @@ arenas:
     items:
     - !Item
       name: CubeTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cylinder
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Ramp
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Wall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WallTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cube
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CubeTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox1
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox2
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WoodLog
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: UObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: LObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: DeathZone
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: MazeGenerator
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMove
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalBounce
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoalMove
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoalBounce
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMultiMove
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMultiBounce
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   1: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cylinder
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Ramp
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Wall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WallTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cube
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CubeTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox1
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox2
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WoodLog
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: UObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: LObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: DeathZone
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: MazeGenerator
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   2: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cylinder
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Ramp
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Wall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WallTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cube
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CubeTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox1
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox2
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WoodLog
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: UObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: LObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: DeathZone
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: MazeGenerator
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   3: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cylinder
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Ramp
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Wall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WallTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cube
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CubeTransparent
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox1
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: Cardbox2
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: WoodLog
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: UObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: LObject
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: DeathZone
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoalMulti
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: MazeGenerator
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
 

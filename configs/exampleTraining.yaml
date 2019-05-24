@@ -5,70 +5,30 @@ arenas:
     items:
     - !Item
       name: Wall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   1: !Arena
     t: 1000
     items:
     - !Item
       name: TransparentWall
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   2: !Arena
     t: 1000
     items:
       - !Item
         name: Cardbox1
-        positions: []
-        colors: []
-        rotations: []
-        sizes: []
       - !Item
         name: BadGoal
-        positions: []
-        colors: []
-        rotations: []
-        sizes: []
       - !Item
         name: GoodGoal
-        positions: []
-        colors: []
-        rotations: []
-        sizes: []
   3: !Arena
     t: 1000
     items:
       - !Item
         name: DeathZone
-        positions: []
-        colors: []
-        rotations: []
-        sizes: []
       - !Item
         name: GoodGoal
-        positions: []
-        colors: []
-        rotations: []
-        sizes: []

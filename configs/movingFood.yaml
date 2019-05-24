@@ -5,13 +5,5 @@ arenas:
     items:
     - !Item
       name: GoodGoalBounce
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoalBounce
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []

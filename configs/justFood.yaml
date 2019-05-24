@@ -5,34 +5,18 @@ arenas:
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   1: !Arena
     t: 1000
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   2: !Arena
     t: 1000
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   3: !Arena
     t: 1000
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []

@@ -1,41 +1,25 @@
 !ArenaConfig
 arenas:
   0: !Arena
-    t: 100
-    blackouts: [10,20,30,40,50]
+    t: 0
+    blackouts: [-10]
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   1: !Arena
     t: 100
     blackouts: [-5]
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   2: !Arena
     t: 100
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
   3: !Arena
     t: 100
     blackouts: [2,4,6,8,10,12,14,16,18,20,30,40,50,60,70,80]
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []

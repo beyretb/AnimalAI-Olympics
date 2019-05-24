@@ -5,19 +5,7 @@ arenas:
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
     - !Item
       name: BadGoal
-      positions: []
-      colors: []
-      rotations: []
-      sizes: []
