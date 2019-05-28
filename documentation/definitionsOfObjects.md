@@ -132,6 +132,7 @@ retrieved (and a GoodGoal if present):
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> Fixed good reward multi
         - name: `GoodGoalMulti`
         - size range `(0.5,0.5,0.5)-(10,10,10)`
+        <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> A good reward moving in a straight
      line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
      rotation parameter
@@ -141,9 +142,10 @@ retrieved (and a GoodGoal if present):
     Will start moving in the direction provided by the rotation parameter
         - name: `GoodGoalMultiBounce`
         - size range `1-3`
-- <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png"> a deathzone with reward -1
-    - name: `DeathZone`
-    - size range `(1,0,1)-(40,0,40)`
-    - **the deathzone is always flat and located on the ground**
-    - terminates episode
+- Deathzone: 
+    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png"> a deathzone with reward -1
+        - name: `DeathZone`
+        - size range `(1,0,1)-(40,0,40)`
+        - **the deathzone is always flat and located on the ground**
+        - terminates episode
 

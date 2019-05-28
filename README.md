@@ -99,7 +99,7 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 - [ ] Offer a gym wrapper for training
 - [ ] Add protobuf for arena spawning feedback
-- [ ] Improve the way the agent spawns
+- [x] Improve the way the agent spawns
 - [x] Add lights out configurations.
 - [x] Improve environment framerates
 - [x] Add moving food
@@ -112,6 +112,7 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
     - The `rand_colors` configurations have been removed and the user can now pass `RGB` values, see [here](documentation/configFile.md#objects)
     - Rewards for goals are now proportional to their size (except for the `DeathZone`), see [here](documentation/definitionsOfObjects.md#rewards)
     - The agent is now a ball rather than a cube
+    - Increased safety for spawning the agent to avoid infinite loops
     - Bugs fixes
     
 - v0.3 - Lights off, remove Beams and add cylinder
