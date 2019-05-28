@@ -110,7 +110,7 @@ components of the provided sizes are ignored and only the `x` one counts
 - Bad goals: red spheres with a negative reward equal to their size, terminate an episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> Fixed bad reward
         - name: `BadGoal`
-        - size range `(0.5,0.5,0.5)-(5,5,5)`
+        - size range `0.5-5`
         <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> A bad reward moving in a straight line,
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
@@ -127,7 +127,7 @@ components of the provided sizes are ignored and only the `x` one counts
  all of them are retrieved (and a GoodGoal if present):
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">Fixed good reward multi
         - name: `GoodGoalMulti`
-        - size range `(0.5,0.5,0.5)-(10,10,10)`
+        - size range `0.5-10`
         <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A good reward moving in a straight
      line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
