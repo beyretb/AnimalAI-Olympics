@@ -44,9 +44,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.3](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.3.zip) |
-| MacOS |  [download v0.3](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.3.zip) |
-| Windows | [download v0.3](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.3.zip)  |
+| Linux |  [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.4.zip) |
+| MacOS |  [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.4.zip) |
+| Windows | [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.4.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
@@ -106,12 +106,21 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 ## Version History
 
+- v0.4 - Lights off moved to Unity, colors configurations, proportional goals, bugs fixes
+    - The light is now directly switched on/off within Unity, configuration files stay the same
+    - Blackouts now work with infinite episodes (`t=0`)
+    - The `rand_colors` configurations have been removed and the user can now pass `RGB` values, see [here](documentation/configFile.md#objects)
+    - Rewards for goals are now proportional to their size (except for the `DeathZone`), see [here](documentation/definitionsOfObjects.md#rewards)
+    - The agent is now a ball rather than a cube
+    - Bugs fixes
+    
 - v0.3 - Lights off, remove Beams and add cylinder
     - We added the possibility to switch the lights off at given intervals, see [here](documentation/configFile.md#blackouts)
     - visualizeLightsOff.py displays an example of lights off, from the agent's point of view
     - Beams objects have been removed
     - A `Cylinder` object has been added (similar behaviour to the `Woodlog`)
     - The immovable `Cylinder` tunnel has been renamed `CylinderTunnel`
+    - `UnityEnvironment.reset()` parameter `config` renamed to `arenas_configurations_input`
     
 - v0.2 - New moving food rewards, improved Unity performance and bug fixes 
     - Moving rewards have been added, two for each type of reward, see 

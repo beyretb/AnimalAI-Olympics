@@ -34,7 +34,6 @@ each will have its local set of coordinates as described above.
 For a single arena you can provide the following parameters:
 - `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
 not terminate unlti a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
-- `rand_all_colors` a `bool`, whether all objects should have a random color or not
 - `blackouts` [see below](#blackouts)
 
 <!-- TODO: show (x,y,z) referential -->
@@ -49,8 +48,9 @@ same manner, using a set of parameters for each item:
 is empty the position will be sampled randomly in the arena
 - `sizes`: a list of `Vector3` sizes, if the list is empty the size will be sampled randomly
 - `rotations`: a list of `float` in the range `[0,360]`, if the list is empty the rotation is sampled randomly
-- `rand_color` a `bool` setting whether or not the color(s) of the objects should be randomized (some objects will not 
-accept random colors)
+- `colors`: a list of `RGB` values (integers in the range `[0,255]`), if the list is empty the color is sampled randomly
+
+Any of these fields can be omitted in the configuration files, in which case the omitted fields are automatically randomized.
 
 **All values for the above fields can be found in [the definitions](definitionsOfObjects.md)**.
 
@@ -64,9 +64,8 @@ pass two types of arguments for this parameter:
 then back on from 15 to 19 included etc...
 - passing a single negative argument `[-20]` will automatically switch lights on and off every 20 frames.
 
-**Note**: at the moment this feature cannot be combined with an infinite episode (`T=0`)
-<!--**Note**: in case of an episode with no time limit (`T=0`), the first option above would leave the lights off after the 
-25th frame, the second one would indefinitely switch lights on and off.-->
+**Note**: for infinite episodes (where `t=0`), the first point above would leave the light off after frame `25` while the 
+second point would keep switching the lights every `20` frame indefinitely.
 
 
 ## Rules and Notes
@@ -103,23 +102,25 @@ Let's take a look at an example:
 arenas:
   0: !Arena
     t: 0
-    rand_all_colors: false
     items:
     - !Item
       name: Cube
-      positions: 
+      positions:
       - !Vector3 {x: 10, y: 0, z: 10}
       - !Vector3 {x: -1, y: 0, z: 30}
-      rand_color: false
+      colors:
+      - !RGB {r: 204, g: 0, b: 204 }
       rotations: [45]
-      sizes: 
+      sizes:
       - !Vector3 {x: -1, y: 5, z: -1}
     - !Item
-      name: CylinderTunnel
-      positions: []
-      rand_color: true
-      rotations: []
-      sizes: []
+      name: Cylinder
+      colors:
+      - !RGB {r: 204, g: 0, b: 204 }
+      - !RGB {r: 204, g: 0, b: 204 }
+      - !RGB {r: 204, g: 0, b: 204 }
+    - !Item
+      name: GoodGoal
 ```
 
 First of all, we can see that the number of parameters for `positions`, `rotations` and `sizes` do not need to match. The 
@@ -127,9 +128,10 @@ environment will spawn `max( len(positions), len(rotations), len(sizes) )` objec
 Any parameter missing will be sampled randomly.
 
 In this case this will lead to:
-- a `Cube` spawned in `[10,10]` on the groundm with rotation `45` and a size randomized on both `x` and `z` and of `y=5`
-- a `Cube` spawnd on the ground, with a random `x` and `z=30`, both its rotation and size will be random
-- a `CylinderTunnel` completely randomized, including its color
+- a pink `Cube` spawned in `[10,10]` on the ground with rotation `45` and a size randomized on both `x` and `z` and of `y=5`
+- a `Cube` spawned on the ground, with a random `x` and `z=30`, its rotation, size  and color will be random
+- three pink `CylinderTunnel` completely randomized
+- a `GoodGoal` randomized
 - the agent which position and rotation are randomized too
 
 The arena will spawn these objects in this order.
