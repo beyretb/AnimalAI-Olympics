@@ -5,10 +5,8 @@ import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
-# env_path = 'env/AnimalAI'
-# worker_id = random.randint(1, 100)
-env_path = None
-worker_id = 0
+env_path = 'env/AnimalAI'
+worker_id = random.randint(1, 100)
 
 seed = 10
 base_port = 5005
