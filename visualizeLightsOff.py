@@ -31,7 +31,6 @@ env = UnityEnvironment(
     worker_id=worker_id,
     seed=seed,
     docker_training=docker_training,
-    no_graphics=no_graphics,
     play=False
 )
 
@@ -60,7 +59,7 @@ def run_step_imshow(step):
 
 
 try:
-    anim = animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=500)
+    anim = animation.FuncAnimation(fig, run_step_imshow, init_func=initialize_animation, frames=100, interval=50)
     plt.show()
 except KeyboardInterrupt:
     env.close()

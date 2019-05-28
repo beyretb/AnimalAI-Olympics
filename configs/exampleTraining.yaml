@@ -2,77 +2,33 @@
 arenas:
   0: !Arena
     t: 1000
-    rand_all_colors: true
     items:
     - !Item
       name: Wall
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
     - !Item
       name: CylinderTunnel
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
   1: !Arena
     t: 1000
-    rand_all_colors: false
     items:
     - !Item
       name: TransparentWall
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
     - !Item
       name: GoodGoal
-      positions: []
-      rand_color: false
-      rotations: []
-      sizes: []
   2: !Arena
     t: 1000
-    rand_all_colors: false
     items:
       - !Item
         name: Cardbox1
-        positions: []
-        rand_color: false
-        rotations: []
-        sizes: []
       - !Item
         name: BadGoal
-        positions: []
-        rand_color: false
-        rotations: []
-        sizes: []
       - !Item
         name: GoodGoal
-        positions: []
-        rand_color: false
-        rotations: []
-        sizes: []
   3: !Arena
     t: 1000
-    rand_all_colors: false
     items:
       - !Item
         name: DeathZone
-        positions: []
-        rand_color: false
-        rotations: []
-        sizes: []
       - !Item
         name: GoodGoal
-        positions: []
-        rand_color: false
-        rotations: []
-        sizes: []
