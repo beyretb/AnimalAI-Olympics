@@ -87,48 +87,44 @@ These are objects the agent can move and which will be affected by each other, f
     
 #### Rewards
 
-Objects that may terminate the event if the agents collides with one. 
-
-**Important notes:** 
-- for sphere goals the `y` and `z` components of the provided sizes are ignored and only the `x` one counts
-- For sphere goals, the reward is equal to `x` (bigger goals carry bigger rewards)
-- For the `DeathZone` the reward is always `-1`
+Objects that may terminate the event if the agents collides with one. **Important note:** for sphere goals the `y` and `z` 
+components of the provided sizes are ignored and only the `x` one counts
 
 
-- Good goals: green spheres with a reward of 1
+- Good goals: green spheres with a positive reward equal to their size, terminate an episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png"> Fixed good reward
         - name: `GoodGoal`
         - size range `0.5-5`
-        - terminates episode
+        <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward moving in a straight line,
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `GoodGoalMove`
         - size range `1-3`
-        - terminates episode
+        <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png"> A good reward bouncing on objects. Will
      start moving in the direction provided by the rotation parameter
         - name: `GoodGoalBounce`
         - size range `1-3`
-        - terminates episode
-- Bad goals: red spheres with a reward of -1
+        <br>
+- Bad goals: red spheres with a negative reward equal to their size, terminate an episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">  Fixed bad reward
         - name: `BadGoal`
         - size range `(0.5,0.5,0.5)-(5,5,5)`
-        - terminates episode
+        <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">  A bad reward moving in a straight line,
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `BadGoalMove`
         - size range `1-3`
-        - terminates episode
+        <br>
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> A bad reward bouncing on objects. Will 
     start moving in the direction provided by the rotation parameter
         - name: `BadGoalBounce`
         - size range `1-3`
-        - terminates episode
--  Good goals multi: golden spheres with a reward of 1 that will only terminate the episode once all of them are 
-retrieved (and a GoodGoal if present):
+        <br>
+-  Good goals multi: golden spheres with a positive reward equal to their size, that will only terminate the episode once
+ all of them are retrieved (and a GoodGoal if present):
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png"> Fixed good reward multi
         - name: `GoodGoalMulti`
         - size range `(0.5,0.5,0.5)-(10,10,10)`
