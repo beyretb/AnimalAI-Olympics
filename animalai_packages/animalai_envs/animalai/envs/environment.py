@@ -168,7 +168,9 @@ class UnityEnvironment(object):
         if launch_string is None:
             self._close()
             raise UnityEnvironmentException("Couldn't launch the {0} environment. "
-                                            "Provided filename does not match any environments."
+                                            "Provided filename does not match any environments.\n"
+                                            "If you haven't done so already, follow the instructions at: "
+                                            "https://github.com/beyretb/AnimalAI-Olympics "
                                             .format(true_filename))
         else:
             logger.debug("This is the launch string {}".format(launch_string))
