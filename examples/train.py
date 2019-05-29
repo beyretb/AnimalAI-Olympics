@@ -8,7 +8,7 @@ import sys
 
 
 # ML-agents parameters for training
-env_path = 'env/AnimalAI'
+env_path = '../env/AnimalAI'
 worker_id = random.randint(1, 100)
 seed = 10
 base_port = 5005
