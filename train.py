@@ -1,4 +1,4 @@
-from animalai.trainers.trainer_controller import TrainerController
+from animalai_train.trainers.trainer_controller import TrainerController
 from animalai.envs import UnityEnvironment
 from animalai.envs.exception import UnityEnvironmentException
 from animalai.envs.arena_config import ArenaConfig

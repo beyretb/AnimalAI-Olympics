@@ -5,5 +5,10 @@ env/*
 /.idea
 __pycache__/
 UnitySDK.log
-/venv
+venv/
+*/venv
 /dev
+build/
+dist/
+*.egg-info*
+*.eggs*
