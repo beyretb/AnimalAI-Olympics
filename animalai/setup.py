@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='animalai',
-    version='0.4.0',
+    version='0.4.2',
     description='Animal AI competition interface',
     url='https://github.com/beyretb/AnimalAI-Olympics',
     author='Benjamin Beyret',
@@ -15,7 +15,7 @@ setup(
         'Programming Language :: Python :: 3.6'
     ],
 
-    packages=['animalai.envs', 'animalai.communicator_objects'],  # Required
+    packages=['animalai.envs', 'animalai.envs.gym', 'animalai.communicator_objects'],  # Required
     zip_safe=False,
 
     install_requires=[

@@ -1,11 +1,11 @@
-from animalai.envs import UnityEnvironment
+from animalai.envs.environment import UnityEnvironment
 from animalai.envs.arena_config import ArenaConfig
 import random
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import animation
 
-env_path = 'env/AnimalAI'
+env_path = '../env/AnimalAI'
 worker_id = random.randint(1, 100)
 
 seed = 10
@@ -34,7 +34,7 @@ env = UnityEnvironment(
     play=False
 )
 
-arena_config_in = ArenaConfig('examples/configs/lightsOff.yaml')
+arena_config_in = ArenaConfig('configs/lightsOff.yaml')
 env.reset(arenas_configurations=arena_config_in)
 fig, axes = plt.subplots(2, 2)
 imshows = []
