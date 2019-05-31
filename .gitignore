@@ -12,3 +12,4 @@ build/
 dist/
 *.egg-info*
 *.eggs*
+animalai_bkp/
