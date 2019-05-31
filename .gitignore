@@ -1,7 +1,7 @@
 env/*
 !env/README.md
-/models
-/summaries
+models/
+summaries/
 /.idea
 __pycache__/
 UnitySDK.log

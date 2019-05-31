@@ -183,7 +183,7 @@ class TrainerController(object):
             return env.reset(config=self.meta_curriculum.get_config())
         else:
             if self.update_config:
-                return env.reset(arenas_configurations_input=self.config)
+                return env.reset(arenas_configurations=self.config)
                 self.update_config = False
             else:
                 return env.reset()

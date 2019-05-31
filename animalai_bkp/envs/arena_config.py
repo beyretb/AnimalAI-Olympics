@@ -94,11 +94,11 @@ class ArenaConfig(yaml.YAMLObject):
 
         return config_out
 
-    def update(self, arenas_configurations_input):
+    def update(self, arenas_configurations):
 
-        if arenas_configurations_input is not None:
-            for arena_i in arenas_configurations_input.arenas:
-                self.arenas[arena_i] = copy.copy(arenas_configurations_input.arenas[arena_i])
+        if arenas_configurations is not None:
+            for arena_i in arenas_configurations.arenas:
+                self.arenas[arena_i] = copy.copy(arenas_configurations.arenas[arena_i])
 
 
 def constructor_arena(loader, node):

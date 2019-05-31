@@ -1,7 +1,7 @@
 # Quick Start Guide
 
 You can run the Animal AI environment in three different ways:
-- running the the standalone `AnimalAI` executable
+- running the standalone `AnimalAI` executable
 - running a configuration file via `visualizeArena.py`
 - start training using `train.py`
 

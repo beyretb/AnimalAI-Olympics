@@ -41,7 +41,7 @@ env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run
 # We can pass a different configuration at each env.reset() call. You can therefore load different YAML files between
 # episodes or directly amend the arena_config_in which contains a dictionary of configurations for all arenas.
 # See animalai/envs/arena_config.py for the syntax
-env.reset(arenas_configurations_input =arena_config_in)
+env.reset(arenas_configurations =arena_config_in)
 
 try:
     while True:

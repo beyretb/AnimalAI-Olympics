@@ -50,7 +50,7 @@ as an argument to reset the environment. The environment will use the new config
 following ones until a new configuration is passed. The syntax is:
 
 ```
-env.reset(arenas_configurations_input=arena_config,     # A new ArenaConfig to use for reset, leave empty to use the last one provided
+env.reset(arenas_configurations=arena_config,     # A new ArenaConfig to use for reset, leave empty to use the last one provided
         train_mode=True                                 # True for training
         )
 ```

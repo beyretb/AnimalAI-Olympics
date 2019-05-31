@@ -74,7 +74,7 @@ class RpcCommunicator(Communicator):
             s.close()
 
     def initialize(self, inputs: UnityInput) -> UnityOutput:
-        if not self.unity_to_external.parent_conn.poll(3000):
+        if not self.unity_to_external.parent_conn.poll(90):
             raise UnityTimeOutException(
                 "The Unity environment took too long to respond. Make sure that :\n"
                 "\t The environment does not need user interaction to launch\n"

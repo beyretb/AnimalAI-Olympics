@@ -53,7 +53,8 @@ class UnityEnvironment(object):
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
-        self.arenas_configurations = arenas_configurations if arenas_configurations is not None else ArenaConfig()
+        self.arenas_configurations = arenas_configurations if arenas_configurations is not None \
+            else ArenaConfig()
 
         if file_name is not None:
             self.executable_launcher(file_name, docker_training)
@@ -217,18 +218,18 @@ class UnityEnvironment(object):
         return '''Unity Academy name: {0}
         Number of Brains: {1}
         Number of Training Brains : {2}'''.format(self._academy_name, str(self._num_brains),
-                                              str(self._num_external_brains))
+                                                  str(self._num_external_brains))
 
-    def reset(self, arenas_configurations_input=None, train_mode=True) -> AllBrainInfo:
+    def reset(self, arenas_configurations=None, train_mode=True) -> AllBrainInfo:
         """
         Sends a signal to reset the unity environment.
         :return: AllBrainInfo  : A data structure corresponding to the initial reset state of the environment.
         """
         if self._loaded:
-            self.arenas_configurations.update(arenas_configurations_input)
+            self.arenas_configurations.update(arenas_configurations)
 
             outputs = self.communicator.exchange(
-                self._generate_reset_input(train_mode, arenas_configurations_input)
+                self._generate_reset_input(train_mode, arenas_configurations)
             )
             if outputs is None:
                 raise KeyboardInterrupt
