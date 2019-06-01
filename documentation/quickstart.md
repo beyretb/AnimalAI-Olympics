@@ -1,38 +1,60 @@
 # Quick Start Guide
 
-You can run the Animal AI environment in three different ways:
-- running the standalone `AnimalAI` executable
-- running a configuration file via `visualizeArena.py`
-- start training using `train.py`
+The format of this competition is rather different to what you might be used to. We do provide a single training set that 
+you can train on out of the box, instead you are invited to include the design of a training environment as part of the 
+whole training process. To make this new step as smooth as possible, we created tools you can use to easily setup your 
+training environment and visualize what these configurations look like.
 
 ## Running the standalone arena
 
-Running the executable `AnimalAI` that you should have separately downloaded and added to the `envs` folder starts a 
-playable environment with default configurations in a single arena. You can toggle the camera between First Person and 
-Bird's eye view using the `C` key on your keyboard. The agent can then be controlled using `W,A,S,D` on your keyboard. 
-The objects present in the configuration are randomly sampled from the list of objects that can be spawned, their 
-location is random too. Hitting `R` or collecting rewards will reset the arena.
+The basic environment is made of a single agent in an enclosed arena, that resembles the environment we would use for 
+experimenting with animals. In this environment you can add objects the agents can interact with, as well as goals or 
+rewards the agent must collect or avoid. To see what this looks like, run the executable environment you downloaded, you 
+will spawn in an arena with lots of objects randomly spawned.
+
+You can toggle the camera between First Person and Bird's eye view using the `C` key on your keyboard. The agent can 
+then be controlled using `W,A,S,D` on your keyboard. Hitting `R` or collecting rewards will reset the arena.
 
 **Note**: on some platforms, running the standalone arena in full screen makes the environment slow, keep the 
 environment in window mode for better performance.
 
 ## Running a specific configuration file
 
-The `visualizeArena.py` script found in the main folder allows you to visualize an arena configuration file. We provide 
-sample configuration files for you to experiment with. To make your own environment configuration file we advise to read 
-thoroughly the [configuration file documentation page](configFile.md). You will find a detailed list of all the objects on the [definitions of objects page](definitionsOfObjects.md). Running this script only allows for a single arena to be visualized at once, as there can only be a single agent you control.
+Once you are familiarized with the environment and its physics, you can start building and visualizing your own. Assuming 
+you followed the [installation instruction](../README.md#requirements), go to the `examples/` folder and run 
+`python visualizeArena.py configs/exampleConfig.yaml`. This loads the `configs/exampleConfig.yaml` configuration for the 
+arena and lets you play as the agent. 
 
-For example, to run an environment that contains the agent, a goal, and some randomly placed walls use:
-
-```
-python visualizeArena.py configs/obstacles.yaml
-```
+Have a look at the [configuration file](configs/exampleConfig.yaml) for a first look behind the scene. You can select 
+objects, their size, location, rotation and color, randomizing any of these parameters as you like. We provide 
+documentation section that we recommend you read thoroughly:
+ - The [configuration file documentation page](configFile.md) which explains how to write these configuration files.
+ - The [definitions of objects page](definitionsOfObjects.md) which contains a detailed list of all the objects and their 
+ characteristics.
 
 
 ## Start training your agent
 
-Once you're happy with your arena configuration you can start training your agent. This can be done in a way very similar 
-to a regular [gym](https://github.com/openai/gym) environment. We provide a template training file `train.py` you can run 
-out of the box, it uses the [ML agents' PPO](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-PPO.md) 
-for training. We added the ability for participants to **change the environment configuration between episodes**. You can 
-find more details about that in the [training documentation](training.md).
+Once you're happy with your arena configurations you can start training your agent. The `animalai` presents several features 
+that we think will improve training speed and performance:
+
+- Participants can **change the environment configuration between episodes** (allowing for techniques such as curriculum
+ learning)
+- You can choose the length of length of each episode as part of the configuration files, even having infinite episodes
+- You can have several arenas in a single environment instance, each with an agent you control independently from the other,
+ and each with its own configuration allowing for collecting observations faster
+
+We provide examples of training using the `animalai-train` package, you can of course start from scratch and submit agents 
+that do not rely on this library. To understand how training an `animalai` environment we provide scripts in the 
+`examples/` folder:
+
+- `trainDopamine.py` uses the `dopamine` implementation of Rainbow to train a single agent using the gym interface. This 
+is a good starting point if you want to try another training algorithm that works as a plug-and-play with Gym. **Note that 
+as such it only allows for training on environment with a single agent.** We do offer to train with several agents in a 
+gym environment but this will require modifying your code to accept more than one observation at a time.
+- `trainMLAgents.py` uses the `ml-agents` implementation of PPO to train one or more agents at a time, using the 
+`UnityEnvironment`. This is a great starting point if you don't mind reading some code as it directly allows to use the 
+functionalities described above, out of the box.
+
+
+You can find more details about this in the [training documentation](training.md).

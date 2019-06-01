@@ -37,7 +37,7 @@ well as part of the development process.
 
 ## Requirements
 
-The Animal-AI package works on most platforms. 
+The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. 
 <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
 First of all your will need `python3.6` installed, we recommend using virtual environments. We provide two packages for 
@@ -47,10 +47,10 @@ this competition:
 [gym environment](https://github.com/openai/gym) as well as an extension of Unity's 
 [ml-agents environments](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). You can install it
  via pip:
-```
-pip install animalai
-```
-Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`.
+    ```
+    pip install animalai
+    ```
+    Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
 example scripts found in the `examples/` folder. It contains an extension of 
@@ -59,10 +59,10 @@ example scripts found in the `examples/` folder. It contains an extension of
 [Google's dopamine](https://github.com/google/dopamine) which implements 
 [Rainbow](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17204/16680) (among others). You can also install 
 this package using pip:
-```
-pip install animalai-train
-```
-Or you can install it from source, head to `examples/animalai_train` and run `pip install -e .`.
+    ```
+    pip install animalai-train
+    ```
+    Or you can install it from source, head to `examples/animalai_train` and run `pip install -e .`
 
 Finally download the environment for your system:
 
