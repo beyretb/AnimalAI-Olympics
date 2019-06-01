@@ -40,8 +40,8 @@ that we think will improve training speed and performance:
 
 - Participants can **change the environment configuration between episodes** (allowing for techniques such as curriculum
  learning)
-- You can choose the length of length of each episode as part of the configuration files, even having infinite episodes
-- You can have several arenas in a single environment instance, each with an agent you control independently from the other,
+- You can **choose the length of length of each episode** as part of the configuration files, even having infinite episodes
+- You can **have several arenas in a single environment instance**, each with an agent you control independently from the other,
  and each with its own configuration allowing for collecting observations faster
 
 We provide examples of training using the `animalai-train` package, you can of course start from scratch and submit agents 

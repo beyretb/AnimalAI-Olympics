@@ -139,7 +139,7 @@ Occasional slow frame rates in play mode. Temporary fix: reduce screen size.
 
 ## Version History
 
-- v0.5 
+- v0.5 Package `animalai`, gym compatible, dopamine example, bug fixes
     - Separate environment API and training API in Python
     - Release both as `animalai` and `animalai-train` PyPI packages (for `pip` installs)
     - Agent speed in play-mode constant across various platforms

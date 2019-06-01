@@ -14,7 +14,8 @@ To configure training arenas you can use a simple **YAML file** and/or the **Are
 - on the fly changes of configuration of one or more arenas between episodes, allowing for easy curriculum learning for example
 - share configurations between participants
 
-We provide a few custom configurations, but we expect designing good environments will be an important component of doing well in the competition.
+We provide a few custom configurations, but we expect designing good environments will be an important component of doing
+ well in the competition.
 
 We describe below the structure of the configuration file for an instance of the training environment, as well as all the 
 parameters and the values they can take. For how to change the configuration during training see `animalai/envs/ArenaConfig.py`.
@@ -25,15 +26,16 @@ parameters and the values they can take. For how to change the configuration dur
   <img height="400" src="PrefabsPictures/Arena.png">
 </p>
 
-A single arena is as shown above, it comes with a single agent (blue cube, black dot showing the front), a floor and four walls. It is a square of size 40x40, the 
-origin of the arena is `(0,0)`, therefore you can provide coordinates for objects in the range `[0,40]x[0,40]` as floats.
+A single arena is as shown above, it comes with a single agent (blue sphere, black dot showing the front), a floor and 
+four walls. It is a square of size 40x40, the origin of the arena is `(0,0)`, therefore you can provide coordinates for 
+objects in the range `[0,40]x[0,40]` as floats.
 
 For visualization you can only configure a single arena, however during training you can configure as many as you want, 
 each will have its local set of coordinates as described above.
 
 For a single arena you can provide the following parameters:
 - `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
-not terminate unlti a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
+not terminate until a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
 - `blackouts` [see below](#blackouts)
 
 <!-- TODO: show (x,y,z) referential -->
