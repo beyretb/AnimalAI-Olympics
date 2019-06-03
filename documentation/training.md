@@ -2,33 +2,43 @@
 
 ## Overview
 
-Training happens very much like with a regular gym environment. We provide you with both the compiled 
-environment and the Python libraries needed for training. You will also find an example of training agent 
-using [ML-Agents' PPO](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-PPO.md).
+The `animalai` packages offers two kind of interfaces to use for training: a gym environment and an ml-agents one. We 
+also provide the `animalai-train` package to showcase how training and submissions work. This can serve as a starting 
+ point for your own code, however, you are not required to use this package at all for submissions.
+
+If you are not familiar with these algorithms, have a look at 
+[ML-Agents' PPO](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-PPO.md), as well as 
+[dopamine's Rainbow](https://google.github.io/dopamine/).
 
 ## Observations and actions
 
 Before looking at the environment itself, we define here the actions the agent can take and the observations it collects:
 
-- **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. Therefore the 
-actions are discrete of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, left,right)`).
+- **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. The 
+actions are discrete and of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, 
+left,right)`).
 - **Observations** are made of two components: visual observations which are pixel based and of dimension `84x84x3`, as 
-well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order).
+well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order). Of course, you may want to process and/or scale down the input before use with your approach.
 - **Rewards**: in case of an episode of finite length `T`, each step carries a small negative reward `-1/T`. In case of 
-an episode with no time limite (`T=0`), no reward is returned for each step. Other rewards come from the rewards objects 
+an episode with no time limit (`T=0`), no reward is returned for each step. Other rewards come from the rewards objects 
 (see details [here](definitionsOfObjects.md)).
 
 ## The Unity Environment
 
 Much like a gym environment, you can create a `UnityEnvironment` that manages all communications with 
-the environment. You will first need to instantiate the environement, you can then reset it, take steps and collect 
-observations. All the codebase for this is in `animalai/envs/environment.py`. Below is a quick description of these components.
+the environment. You will first need to instantiate the environment, you can then reset it, take steps and collect 
+observations. All the codebase for this is in `animalai/envs/environment.py`. Below is a quick description of these 
+components.
+
+We provide an example of training using `UnityEnvironment` in `examples/trainMLAgents.py`.
 
 ### Instantiation
 
 For example, you can call::
 
 ```
+from animalai.envs import UnityEnvironment
+
 env= UnityEnvironment(
         file_name='env/AnimalAI',   # Path to the environment
         worker_id=1,                # Unique ID for running the environment (used for connection)
@@ -41,17 +51,17 @@ env= UnityEnvironment(
 ```
 
 Note that the path to the executable file should be stripped of its extension. The `no_graphics` parameter should always 
-be set to `False` as it impacts the collection of visual obeservations, which we rely on.
+be set to `False` as it impacts the collection of visual observations, which we rely on.
 
 ### Reset
 
-We have modified this functionality compared to the mlagents codebase. Here we add the possibility to pass a new `ArenaConfiguration` 
-as an argument to reset the environment. The environment will use the new configuration for this reset, as well as all the 
-following ones until a new configuration is passed. The syntax is:
+We have modified this functionality compared to the mlagents codebase. Here we add the possibility to pass a new 
+`ArenaConfiguration` as an argument to reset the environment. The environment will use the new configuration for this 
+reset, as well as all the following ones until a new configuration is passed. The syntax is:
 
 ```
-env.reset(arenas_configurations_input=arena_config,     # A new ArenaConfig to use for reset, leave empty to use the last one provided
-        train_mode=True                                 # True for training
+env.reset(arenas_configurations=arena_config,     # A new ArenaConfig to use for reset, leave empty to use the last one provided
+        train_mode=True                           # True for training
         )
 ```
 
@@ -65,8 +75,6 @@ For example, if you only want to modify arena number 3, you could create an `Are
 arenas:
   3: !Arena
     t: 0
-    rand_all_colors: true
-    rand_all_sizes: true
     items:
     - !Item
         (...)
@@ -74,24 +82,42 @@ arenas:
 
 ### Step
 
-Taking a step returns a data structure named `BrainInfo` which is defined in `animalai/envs/brain` and basically contains 
-all the information returned by the environment after taking a step, including the observations. For example:
+Taking a step returns a data structure named `BrainInfo` which is defined in `animalai/envs/brain` and basically contains all the information returned by the environment including the observations. For example:
  
 ```
 info = env.step(vector_action=take_action_vector)
 ```
 
-You can pass more parameters to the environment depending on what you need for training, to learn about this and the 
+This line will return all the data needed for training, in our case where `n_arenas=4` you will get:
+
+```
+brain = info['Learner']
+
+brain.visual_observations   # list of 4 pixel observations, each of size (84x84x3)
+brain.vector_observation    # list of 4 speeds, each of size 3
+brain.reward                # list of 4 float rewards
+brain.local_done            # list of 4 booleans to flag if each agent is done or not
+```
+
+You can pass more parameters to the environment depending on what you need for training. To learn about this and the 
 format of the `BrainInfo`, see the [official mal-agents' documentation](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md#interacting-with-a-unity-environment).
 
 ### Close
 
-Don't forget to close the environment once training is done so that all communications are closed properly and ports 
+Don't forget to close the environment once training is done so that all communications are terminated properly and ports 
 are not left open (which can prevent future connections).
 
 ```
 env.close()
 ```
+
+## Gym wrapper
+
+We also provide a gym wrapper to implement the OpenAI interface in order to directly plug baselines and start training. 
+One limitation of this implementation is the use of a single agent per environment. This will let you collect less 
+observations per episode and therefore make training slower. A later release might fix this and allow for multiple agents.
+
+We provide an example of training using gym in `examples/trainDopamine.py`.
 
 ## Notes
 
