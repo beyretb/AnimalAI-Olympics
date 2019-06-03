@@ -5,9 +5,8 @@
 Welcome to the repository for the Animal-AI Olympics competition where you will find all the code needed to compete in 
 this new challenge. Note that for the moment this repo contains **only the training environment** (v0.5) that will be 
 used for the competition and **does not contain any competition tests or information for entering**. If everything goes 
-well the competition will be live on June 30th. Until then we will be continually updating with bug fixes and small 
-changes to the environment. However, the general structure will stay the same so it's not too early to start working with 
-the environment. For more information on the competition itself and to stay updated with any developments, head to the 
+well the competition will be live on July 1st. Until then we will be continually updating with bug fixes and small 
+changes to the environment. However, the general structure will stay the same so it's not too early to start working with the environment. For more information on the competition itself and to stay updated with any developments, head to the 
 [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) 
 and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
 
@@ -35,12 +34,14 @@ well as part of the development process.
 
 2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
 
+3. [The Syllabus (Part 2): Lights Out](https://mdcrosby.com/blog/animalai3.html)
+
 ## Requirements
 
 The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. 
 <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
-First of all your will need `python3.6` installed, we recommend using virtual environments. We provide two packages for 
+First of all your will need `python3.6` installed. We recommend using a virtual environment specifically for the competition. We provide two packages for 
 this competition:
 
 - The main one is an API for interfacing with the Unity environment. It contains both a 
@@ -90,9 +91,6 @@ mode. Here you can control the agent with the following:
 | C   | switch camera       |
 | R   | reset environment   |
 
-**Note**: on some platforms, playing manually in full screen makes the environment slow, keep the environment in window 
-mode for better performance.
-
 ## Competition Tests
 
 We will be releasing further details about the tests in the competition over the coming weeks. The tests will be split 
@@ -105,7 +103,7 @@ not be able to solve all the tests in the categories but it would be off to a ve
 
 ## Citing
 
-For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt): 
+For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment: 
 
 Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature 
 Machine Intelligence 1 (5) p257 2019.
@@ -124,9 +122,7 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 ## Known Bugs
 
-Occasionally will spawn an empty arena in play mode. Temporary fix: just press R to respawn.
-
-Occasional slow frame rates in play mode. Temporary fix: reduce screen size. 
+...
 
 ## TODO
 
