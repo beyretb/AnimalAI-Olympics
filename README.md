@@ -68,9 +68,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.4.zip) |
-| MacOS |  [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.4.zip) |
-| Windows | [download v0.4](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.4.zip)  |
+| Linux |  [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.5.zip) |
+| MacOS |  [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.5.zip) |
+| Windows | [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.5.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
