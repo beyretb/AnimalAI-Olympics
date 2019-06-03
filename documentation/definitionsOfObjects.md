@@ -139,9 +139,16 @@ components of the provided sizes are ignored and only the `x` one counts
         - name: `GoodGoalMultiBounce`
         - size range `1-3`
 - Deathzone: 
-    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a deathzone with reward -1
+    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that end an
+    episode
         - name: `DeathZone`
         - size range `(1,0,1)-(40,0,40)`
         - **the deathzone is always flat and located on the ground**
-        - terminates episode
-
+        - terminates an episode
+- HotZone: 
+    - a <img align="left" height="100" src="PrefabsPictures/Rewards/HotZone.png">an orange zone with reward 
+    `min(-3/T,-1e-5)` that **does not** end an episode
+        - name: `HotZone`
+        - size range `(1,0,1)-(40,0,40)`
+        - **the hotzone is always flat and located on the ground**
+        - does not terminate and episode
