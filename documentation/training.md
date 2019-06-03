@@ -3,7 +3,7 @@
 ## Overview
 
 The `animalai` packages offers two kind of interfaces to use for training: a gym environment and an ml-agents one. We 
-also provide the `animalai-train` package to showcase how training and submissions work. It can also serve as a starting 
+also provide the `animalai-train` package to showcase how training and submissions work. This can serve as a starting 
  point for your own code, however, you are not required to use this package at all for submissions.
 
 If you are not familiar with these algorithms, have a look at 
@@ -14,11 +14,11 @@ If you are not familiar with these algorithms, have a look at
 
 Before looking at the environment itself, we define here the actions the agent can take and the observations it collects:
 
-- **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. Therefore the 
-actions are discrete of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, 
+- **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. The 
+actions are discrete and of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, 
 left,right)`).
 - **Observations** are made of two components: visual observations which are pixel based and of dimension `84x84x3`, as 
-well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order).
+well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order). Of course, you may want to process and/or scale down the input before use with your approach.
 - **Rewards**: in case of an episode of finite length `T`, each step carries a small negative reward `-1/T`. In case of 
 an episode with no time limit (`T=0`), no reward is returned for each step. Other rewards come from the rewards objects 
 (see details [here](definitionsOfObjects.md)).
@@ -82,14 +82,13 @@ arenas:
 
 ### Step
 
-Taking a step returns a data structure named `BrainInfo` which is defined in `animalai/envs/brain` and basically contains 
-all the information returned by the environment after taking a step, including the observations. For example:
+Taking a step returns a data structure named `BrainInfo` which is defined in `animalai/envs/brain` and basically contains all the information returned by the environment including the observations. For example:
  
 ```
 info = env.step(vector_action=take_action_vector)
 ```
 
-In a nutshell, this line will return all the data needed for training, in our case where `n_arenas=4` you will get:
+This line will return all the data needed for training, in our case where `n_arenas=4` you will get:
 
 ```
 brain = info['Learner']
@@ -100,12 +99,12 @@ brain.reward                # list of 4 float rewards
 brain.local_done            # list of 4 booleans to flag if each agent is done or not
 ```
 
-You can pass more parameters to the environment depending on what you need for training, to learn about this and the 
+You can pass more parameters to the environment depending on what you need for training. To learn about this and the 
 format of the `BrainInfo`, see the [official mal-agents' documentation](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md#interacting-with-a-unity-environment).
 
 ### Close
 
-Don't forget to close the environment once training is done so that all communications are closed properly and ports 
+Don't forget to close the environment once training is done so that all communications are terminated properly and ports 
 are not left open (which can prevent future connections).
 
 ```
