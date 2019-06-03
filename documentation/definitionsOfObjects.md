@@ -5,21 +5,18 @@ The objects you can spawn in an arena are split among three categories:
 - immovable
 - rewards
 
-Below is a list of objects you can spawn. For each we describe the name you should use to refer to in your configuration files 
-or in Python directly, as well as their default characteristics and range of values you can assign to them. **All objects can 
-be rotated `360` degrees.**
+Below is a list of objects you can spawn. For each we describe the name you should use in your configuration files 
+or in Python directly, as well as their default characteristics and the range of values you can assign to them. **All objects can be rotated `360` degrees.**
 
-Each object has an orientation, we provide the three axes for all of those that are not symmetrical. The color code of the 
-axes is as depicted below:
+Each object has an orientation, we provide the three axes for all of those that are not symmetrical. The color code of the axes is as depicted below:
 
 <img height="200" src="PrefabsPictures/Referential.png">
 
-**Note:** as depicted above the vertical axis is th **Y axis**, we will use Z as the forward axis (both conventions are 
-the ones used in Unity). 
+**Note:** the **Y axis** is the vertical axis and **Z** is the forward axis (following conventions used in Unity). 
 
 #### Immovable
 
-These are objects that are fixed and will not be impacted by the agent or other objects:
+These objects are fixed and cannot be moved:
 
 - <img align="left" height="100" src="PrefabsPictures/Immovable/CubeTunnel.png">a rectangular tunnel
     - name: `CubeTunnel`
@@ -50,7 +47,7 @@ These are objects that are fixed and will not be impacted by the agent or other 
     
 #### Movable
 
-These are objects the agent can move and which will be affected by each other, fixed objects and rewards if they collide
+These are objects the agent can move and which will be affected by each other, fixed objects and rewards if they collide. Note that different object types weight different amounts. It is easier to push a cardboard box than a cube that's like a wall. 
      
 - <img align="left" height="100" src="PrefabsPictures/Movable/Cube.png">a cube that can be pushed
     - name: `Cube`
@@ -87,8 +84,7 @@ These are objects the agent can move and which will be affected by each other, f
     
 #### Rewards
 
-Objects that may terminate the event if the agents collides with one. **Important note:** for sphere goals the `y` and `z` 
-components of the provided sizes are ignored and only the `x` one counts
+Objects that give a reward and may terminate the event if the agents collides with one. **Important note:** for sphere goals the `y` and `z` components of the provided sizes are ignored and only the `x` one counts
 
 
 - Good goals: green spheres with a positive reward equal to their size, terminate an episode
