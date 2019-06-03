@@ -1,13 +1,13 @@
 # Visualization and Training
 
-We provide in this folder a few examples for competing in the AnimalAI Olympics. You will first of all need to setup 
+We provide in this folder a few examples for competing in the AnimalAI Olympics. You will first of all need to set up 
 a training environment with a specific configuration. For this part we provide a script to visualize your configurations. 
 You will then need to train an agent on this configuration, which can be done however you prefer, we provide here two 
-examples, one for each interface provided.
+examples, one for each interface.
 
 ## Visualizing configurations
 
-Once you have [created a configuration file](../documentation/configFile.md), you may want to see what it actually look 
+Once you have [created a configuration file](../documentation/configFile.md), you may want to see what it actually looks 
 like. To do so you can simply run:
 
 ```
@@ -34,6 +34,4 @@ observations at once and speeding up training.
 
 ### Using the Gym interface
 
-Run `python trainDopamine.py` to run Rainbow a single agent using the Gym interface and Dopamine. The default Gym 
-implementation does not support multiple agents and it might therefore be much slower to train on. We plan on adapting 
-our library to allow for this feature while still being compatible with baselines.
+Run `python trainDopamine.py` to run Rainbow, a single agent using the Gym interface and Dopamine.
