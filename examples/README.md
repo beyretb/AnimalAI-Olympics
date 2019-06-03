@@ -11,7 +11,7 @@ Once you have [created a configuration file](../documentation/configFile.md), yo
 like. To do so you can simply run:
 
 ```
-python visualizeArena.py configs/exampleCondig.yaml
+python visualizeArena.py configs/exampleConfig.yaml
 ```
 
 replacing `exampleConfig.yaml` with the name of your file(s). Once this is launched, you can control the agent using the 
