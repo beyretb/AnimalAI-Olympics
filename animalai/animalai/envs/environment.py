@@ -242,7 +242,7 @@ class UnityEnvironment(object):
         else:
             raise UnityEnvironmentException("No Unity environment is loaded.")
 
-    def step(self, vector_action=None, memory=None, text_action=None, value=None, step_number=0) -> AllBrainInfo:
+    def step(self, vector_action=None, memory=None, text_action=None, value=None) -> AllBrainInfo:
         """
         Provides the environment with an action, moves the environment dynamics forward accordingly,
         and returns observation, state, and reward information to the agent.
