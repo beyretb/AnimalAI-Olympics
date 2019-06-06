@@ -41,7 +41,7 @@ well as part of the development process.
 The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. 
 <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
-First of all your will need `python3.6` installed. We recommend using a virtual environment specifically for the competition. We provide two packages for 
+First of all your will need `python3.6` installed. We recommend using a virtual environment specifically for the competition. Clone this repository to run the examples we provide you with. We offer two packages for 
 this competition:
 
 - The main one is an API for interfacing with the Unity environment. It contains both a 
