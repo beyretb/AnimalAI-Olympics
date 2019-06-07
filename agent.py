@@ -6,7 +6,7 @@ class Agent(object):
 
         """
          Load your agent here and initialize anything needed
-        :param configuration_to_load: path to your model to lead
+        :param configuration_to_load: path to your model to load
         """
         pass
 

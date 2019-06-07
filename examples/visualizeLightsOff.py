@@ -51,7 +51,7 @@ def initialize_animation():
 
 
 def run_step_imshow(step):
-    res = env.step(np.random.randint(0, 3, size=2 * n_arenas), step_number=step)
+    res = env.step(np.random.randint(0, 3, size=2 * n_arenas))
     for i in range(4):
         imshows[i].set_data(res['Learner'].visual_observations[0][i, :, :, :])
     fig.suptitle('Step = ' + str(step))
