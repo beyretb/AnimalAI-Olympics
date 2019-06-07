@@ -122,7 +122,7 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 ## Known Bugs
 
-...
+On virtual machines the Unity window stays black, observations do get sent to Python however (training is therefore still possible).
 
 ## TODO
 
