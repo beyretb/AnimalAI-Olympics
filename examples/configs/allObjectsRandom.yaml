@@ -8,13 +8,13 @@ arenas:
     - !Item
       name: CylinderTunnel
     - !Item
-      name: Cylinder
-    - !Item
       name: Ramp
     - !Item
       name: Wall
     - !Item
       name: WallTransparent
+    - !Item
+      name: MazeGenerator
     - !Item
       name: Cube
     - !Item
@@ -24,6 +24,8 @@ arenas:
     - !Item
       name: Cardbox2
     - !Item
+      name: Cylinder
+    - !Item
       name: WoodLog
     - !Item
       name: UObject
@@ -32,33 +34,31 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
-      name: BadGoal
-    - !Item
-      name: DeathZone
-    - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: MazeGenerator
-    - !Item
       name: GoodGoalMove
     - !Item
       name: GoodGoalBounce
+    - !Item
+      name: BadGoal
     - !Item
       name: BadGoalMove
     - !Item
       name: BadGoalBounce
     - !Item
+      name: GoodGoalMulti
+    - !Item
       name: GoodGoalMultiMove
     - !Item
       name: GoodGoalMultiBounce
+    - !Item
+      name: DeathZone
+    - !Item
+      name: HotZone
   1: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
     - !Item
-      name: Cylinder
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -66,6 +66,8 @@ arenas:
       name: Wall
     - !Item
       name: WallTransparent
+    - !Item
+      name: MazeGenerator
     - !Item
       name: Cube
     - !Item
@@ -75,6 +77,8 @@ arenas:
     - !Item
       name: Cardbox2
     - !Item
+      name: Cylinder
+    - !Item
       name: WoodLog
     - !Item
       name: UObject
@@ -83,23 +87,31 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
+      name: GoodGoalMove
+    - !Item
+      name: GoodGoalBounce
+    - !Item
       name: BadGoal
+    - !Item
+      name: BadGoalMove
+    - !Item
+      name: BadGoalBounce
+    - !Item
+      name: GoodGoalMulti
+    - !Item
+      name: GoodGoalMultiMove
+    - !Item
+      name: GoodGoalMultiBounce
     - !Item
       name: DeathZone
     - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: MazeGenerator
+      name: HotZone
   2: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
     - !Item
-      name: Cylinder
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -107,6 +119,8 @@ arenas:
       name: Wall
     - !Item
       name: WallTransparent
+    - !Item
+      name: MazeGenerator
     - !Item
       name: Cube
     - !Item
@@ -116,6 +130,8 @@ arenas:
     - !Item
       name: Cardbox2
     - !Item
+      name: Cylinder
+    - !Item
       name: WoodLog
     - !Item
       name: UObject
@@ -124,23 +140,31 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
+      name: GoodGoalMove
+    - !Item
+      name: GoodGoalBounce
+    - !Item
       name: BadGoal
+    - !Item
+      name: BadGoalMove
+    - !Item
+      name: BadGoalBounce
+    - !Item
+      name: GoodGoalMulti
+    - !Item
+      name: GoodGoalMultiMove
+    - !Item
+      name: GoodGoalMultiBounce
     - !Item
       name: DeathZone
     - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: MazeGenerator
+      name: HotZone
   3: !Arena
     t: 0
     items:
     - !Item
       name: CubeTunnel
     - !Item
-      name: Cylinder
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -148,6 +172,8 @@ arenas:
       name: Wall
     - !Item
       name: WallTransparent
+    - !Item
+      name: MazeGenerator
     - !Item
       name: Cube
     - !Item
@@ -157,6 +183,8 @@ arenas:
     - !Item
       name: Cardbox2
     - !Item
+      name: Cylinder
+    - !Item
       name: WoodLog
     - !Item
       name: UObject
@@ -165,13 +193,22 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
+      name: GoodGoalMove
+    - !Item
+      name: GoodGoalBounce
+    - !Item
       name: BadGoal
+    - !Item
+      name: BadGoalMove
+    - !Item
+      name: BadGoalBounce
+    - !Item
+      name: GoodGoalMulti
+    - !Item
+      name: GoodGoalMultiMove
+    - !Item
+      name: GoodGoalMultiBounce
     - !Item
       name: DeathZone
     - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMulti
-    - !Item
-      name: MazeGenerator
-
+      name: HotZone

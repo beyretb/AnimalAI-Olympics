@@ -28,12 +28,11 @@ These objects are fixed and cannot be moved:
     - can randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/Ramp.png">a ramp the agent can climb on
     - name: `Ramp`
-    - size range `(0.5,0.5,3)-(10,3,10)`
+    - size range `(0.5,0.5,0.5)-(40,10,40)`
     - can randomize color
-    - **can only spawn on the ground**
 - <img align="left" height="100" src="PrefabsPictures/Immovable/Wall.png">a wall
     - name: `Wall`
-    - size range `(0.1,1,1)-(40,10,40)`
+    - size range `(0.1,0.1,0.1)-(40,10,40)`
     - can randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/WallTransparent.png">a transparent wall
     - name: `WallTransparent`
