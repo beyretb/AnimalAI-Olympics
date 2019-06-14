@@ -136,6 +136,7 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 ## Version History
 
 - v0.6 
+    - **Several objects properties have been changed** [see here](documentation/definitionsOfObjects.md)
     - remove `step_number` argument from `animalai.environment.step`
 
 - v0.5 Package `animalai`, gym compatible, dopamine example, bug fixes
