@@ -38,11 +38,11 @@ These objects are fixed and cannot be moved:
     - name: `WallTransparent`
     - size range `(0.1,0.1,0.1)-(40,10,40)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Immovable/MazeGenerator.png">a randomly generated maze of size 
+<!-- - <img align="left" height="100" src="PrefabsPictures/Immovable/MazeGenerator.png">a randomly generated maze of size 
 `16x16` with two entrances. Note this takes quite some room and will be hard to generate last on an arena.
     - name: `MazeGenerator`
     - size range constant
-    - can randomize color
+    - can randomize color -->
     
 #### Movable
 
