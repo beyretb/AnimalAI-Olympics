@@ -22,6 +22,13 @@ class Agent(object):
 
         return self.action
 
+    def reset(self):
+        """
+        Reset is called after each episode ends
+        Leave blank if nothing needs to happen there
+        :return:
+        """
+
     def destroy(self):
 
         pass
