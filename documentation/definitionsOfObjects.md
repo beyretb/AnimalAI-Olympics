@@ -51,10 +51,6 @@ Note that different object types weight different amounts. Also note that since 
 texture in order to make them easier to differentiate from non movable objects.
      
 
-- <img align="left" height="100" src="PrefabsPictures/Movable/CubeTransparent.png">a transparent cube that can be pushed
-    - name: `CubeTransparent`
-    - size range `(0.5,0.5,0.5)-(10,10,10)`
-    - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Movable/Cardbox1.png">a light cardbox that can be pushed
     - name: `Cardbox1`
     - size range `(0.5,0.5,0.5)-(10,10,10)`
