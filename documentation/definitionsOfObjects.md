@@ -86,12 +86,12 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `GoodGoal`
         - size range `0.5-5`
         <br>
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward moving in a straight line,
+    <!-- - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward moving in a straight line,
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `GoodGoalMove`
         - size range `1-3`
-        <br>
+        <br> -->
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward bouncing on objects. Will
      start moving in the direction provided by the rotation parameter
         - name: `GoodGoalBounce`
@@ -102,12 +102,12 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `BadGoal`
         - size range `0.5-5`
         <br>
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> A bad reward moving in a straight line,
+    <!-- - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> A bad reward moving in a straight line,
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `BadGoalMove`
         - size range `1-1`
-        <br>
+        <br> -->
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">A bad reward bouncing on objects. Will 
     start moving in the direction provided by the rotation parameter
         - name: `BadGoalBounce`
@@ -119,11 +119,11 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `GoodGoalMulti`
         - size range `0.5-10`
         <br>
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A good reward moving in a straight
+    <!-- - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A good reward moving in a straight
      line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
      rotation parameter
         - name: `GoodGoalMultiMove`
-        - size range `1-3`
+        - size range `1-3` -->
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A bad reward bouncing on objects. 
     Will start moving in the direction provided by the rotation parameter
         - name: `GoodGoalMultiBounce`

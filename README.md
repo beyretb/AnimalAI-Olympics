@@ -137,7 +137,10 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 - v0.6 
     - **Several objects properties have been changed** [see here](documentation/definitionsOfObjects.md)
-    - remove `step_number` argument from `animalai.environment.step`
+    - Frames per action reduced from 5 to 3 (i.e.: for each action you send we repeat it for a certain number of frames 
+    to ensure smooth physics)
+    - Add versions compatibility check between the environment and API
+    - Remove `step_number` argument from `animalai.environment.step`
 
 - v0.5 Package `animalai`, gym compatible, dopamine example, bug fixes
     - Separate environment API and training API in Python

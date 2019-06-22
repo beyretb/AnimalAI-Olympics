@@ -32,19 +32,13 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
-      name: GoodGoalMove
-    - !Item
       name: GoodGoalBounce
     - !Item
       name: BadGoal
     - !Item
-      name: BadGoalMove
-    - !Item
       name: BadGoalBounce
     - !Item
       name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMultiMove
     - !Item
       name: GoodGoalMultiBounce
     - !Item
@@ -83,19 +77,13 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
-      name: GoodGoalMove
-    - !Item
       name: GoodGoalBounce
     - !Item
       name: BadGoal
     - !Item
-      name: BadGoalMove
-    - !Item
       name: BadGoalBounce
     - !Item
       name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMultiMove
     - !Item
       name: GoodGoalMultiBounce
     - !Item
@@ -134,19 +122,13 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
-      name: GoodGoalMove
-    - !Item
       name: GoodGoalBounce
     - !Item
       name: BadGoal
     - !Item
-      name: BadGoalMove
-    - !Item
       name: BadGoalBounce
     - !Item
       name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMultiMove
     - !Item
       name: GoodGoalMultiBounce
     - !Item
@@ -185,19 +167,13 @@ arenas:
     - !Item
       name: GoodGoal
     - !Item
-      name: GoodGoalMove
-    - !Item
       name: GoodGoalBounce
     - !Item
       name: BadGoal
     - !Item
-      name: BadGoalMove
-    - !Item
       name: BadGoalBounce
     - !Item
       name: GoodGoalMulti
-    - !Item
-      name: GoodGoalMultiMove
     - !Item
       name: GoodGoalMultiBounce
     - !Item
