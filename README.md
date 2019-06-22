@@ -136,6 +136,8 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 ## Version History
 
 - v0.6 
+    - Adds score in playmode (current and previous scores)
+    - Playmode now incorporates lights off directly 
     - **Several objects properties have been changed** [see here](documentation/definitionsOfObjects.md)
     - Frames per action reduced from 5 to 3 (i.e.: for each action you send we repeat it for a certain number of frames 
     to ensure smooth physics)
