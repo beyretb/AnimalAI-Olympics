@@ -49,7 +49,7 @@ class UnityEnvironment(object):
         self.play = play
         self.port = base_port + worker_id
         self._buffer_size = 12000
-        self._version_ = "API-7"
+        self._version_ = "0.6"
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
@@ -59,7 +59,7 @@ class UnityEnvironment(object):
         if file_name is not None:
             self.executable_launcher(file_name, docker_training)
         else:
-            logger.info("Start training by pressing the Play button in the Unity Editor.")
+            logger.info("Launch the environment container (or Play button in the Unity Editor).")
         self._loaded = True
 
         rl_init_parameters_in = UnityRLInitializationInput(
@@ -74,9 +74,10 @@ class UnityEnvironment(object):
         self._unity_version = aca_params.version
         if self._unity_version != self._version_:
             raise UnityEnvironmentException(
-                "The API number is not compatible between Unity and python. Python API : {0}, Unity API : "
-                "{1}.\nPlease go to https://github.com/Unity-Technologies/ml-agents to download the latest version "
-                "of ML-Agents.".format(self._version_, self._unity_version))
+                "There is a version mismatch between the Python API and Unity executable.\n"
+                "Python API : {0}, Unity executable : {1}.\n"
+                "Please go to https://github.com/beyretb/AnimalAI-Olympics to download the latest version "
+                .format(self._version_, self._unity_version))
         self._n_agents = {}
         self._global_done = None
         self._academy_name = aca_params.name
@@ -242,7 +243,7 @@ class UnityEnvironment(object):
         else:
             raise UnityEnvironmentException("No Unity environment is loaded.")
 
-    def step(self, vector_action=None, memory=None, text_action=None, value=None, step_number=0) -> AllBrainInfo:
+    def step(self, vector_action=None, memory=None, text_action=None, value=None) -> AllBrainInfo:
         """
         Provides the environment with an action, moves the environment dynamics forward accordingly,
         and returns observation, state, and reward information to the agent.

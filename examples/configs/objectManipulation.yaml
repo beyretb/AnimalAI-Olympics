@@ -13,8 +13,6 @@ arenas:
     - !Item
       name: Cube
     - !Item
-      name: CubeTransparent
-    - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2

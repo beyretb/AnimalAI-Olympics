@@ -69,9 +69,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.5.zip) |
-| MacOS |  [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.5.zip) |
-| Windows | [download v0.5](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.5.zip)  |
+| Linux |  [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.6.0.zip) |
+| MacOS |  [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.6.0.zip) |
+| Windows | [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.6.0.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
@@ -120,13 +120,18 @@ possibility to change the configuration of arenas between episodes. The document
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
 
-## Known Bugs
+## Known Issues
 
-On virtual machines the Unity window stays black, observations do get sent to Python however (training is therefore still possible).
+In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact that we have synchronized these 
+features with the agent's frames in order to have frames in line with the configuration files for events such as lights 
+off. **Solution**: press the key again, several times if needed.
+
+When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.
 
 ## TODO
 
-- [ ] Add protobuf for arena spawning feedback
+- [ ] Add inference viewer to the environment
+- [ ] ~~Add protobuf for arena spawning feedback~~
 - [x] Offer a gym wrapper for training
 - [x] Improve the way the agent spawns
 - [x] Add lights out configurations.
@@ -134,6 +139,16 @@ On virtual machines the Unity window stays black, observations do get sent to Py
 - [x] Add moving food
 
 ## Version History
+
+- v0.6 
+    - Adds score in playmode (current and previous scores)
+    - Playmode now incorporates lights off directly (in `examples` try: `python visualizeArena.py configs/lightsOff.yaml`)
+    - To simplify the environment several unnecessary objects have been removed [see here](documentation/definitionsOfObjects.md)
+    - **Several object properties have been changed** [also here](documentation/definitionsOfObjects.md)
+    - Frames per action reduced from 5 to 3 (*i.e.*: for each action you send we repeat it for a certain number of frames 
+    to ensure smooth physics)
+    - Add versions compatibility check between the environment and API
+    - Remove `step_number` argument from `animalai.environment.step`
 
 - v0.5 Package `animalai`, gym compatible, dopamine example, bug fixes
     - Separate environment API and training API in Python
