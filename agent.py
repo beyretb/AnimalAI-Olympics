@@ -23,7 +23,7 @@ class Agent(object):
         :return:            a list of actions to execute (of size 2)
         """
 
-        self.action = []
+        self.action = [0, 0]
 
         return self.action
 
