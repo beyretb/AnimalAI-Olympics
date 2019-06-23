@@ -20,11 +20,11 @@ These objects are fixed and cannot be moved:
 
 - <img align="left" height="100" src="PrefabsPictures/Immovable/CylinderTunnel.png">a cylinder tunnel
     - name: `CylinderTunnel`
-    - size range `(2.5,2.5,2.5)-(5,5,5)`
+    - size range `(2.5,2.5,2.5)-(10,10,10)`
     - can randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/CylinderTunnelTransparent.png">a transparent cylinder tunnel
     - name: `CylinderTunnelTransparent`
-    - size range `(2.5,2.5,2.5)-(5,5,5)`
+    - size range `(2.5,2.5,2.5)-(10,10,10)`
     - cannot randomize color
 - <img align="left" height="100" src="PrefabsPictures/Immovable/Ramp.png">a ramp the agent can climb on
     - name: `Ramp`
@@ -90,12 +90,12 @@ Objects that give a reward and may terminate the event if the agents collides wi
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `GoodGoalMove`
-        - size range `1-3`
+        - size range `0.5-5`
         <br> -->
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward bouncing on objects. Will
      start moving in the direction provided by the rotation parameter
         - name: `GoodGoalBounce`
-        - size range `1-3`
+        - size range `0.5-5`
         <br>
 - Bad goals: red spheres with a negative reward equal to their size, terminate an episode
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> Fixed bad reward
@@ -106,18 +106,18 @@ Objects that give a reward and may terminate the event if the agents collides wi
      which stops moving as soon as it hits another object. Will start moving in the direction provided by the rotation 
      parameter
         - name: `BadGoalMove`
-        - size range `1-1`
+        - size range `0.5-5`
         <br> -->
     - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">A bad reward bouncing on objects. Will 
     start moving in the direction provided by the rotation parameter
         - name: `BadGoalBounce`
-        - size range `1-1`
+        - size range `0.5-5`
         <br>
 -  Good goals multi: golden spheres with a positive reward equal to their size, that will only terminate the episode once
  all of them are retrieved (and a GoodGoal if present):
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">Fixed good reward multi
         - name: `GoodGoalMulti`
-        - size range `0.5-10`
+        - size range `0.5-5`
         <br>
     <!-- - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A good reward moving in a straight
      line, which stops moving as soon as it hits another object. Will start moving in the direction provided by the 
@@ -127,7 +127,7 @@ Objects that give a reward and may terminate the event if the agents collides wi
     - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A bad reward bouncing on objects. 
     Will start moving in the direction provided by the rotation parameter
         - name: `GoodGoalMultiBounce`
-        - size range `1-3`
+        - size range `0.5-5`
 - Deathzone: 
     - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that end an
     episode
@@ -137,7 +137,7 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - terminates an episode
 - HotZone: 
     - a <img align="left" height="100" src="PrefabsPictures/Rewards/HotZone.png">an orange zone with reward 
-    `min(-3/T,-1e-5)` that **does not** end an episode
+    `min(-10/T,-1e-5)` (or `-1e-5` if `T=0`) that **does not** end an episode
         - name: `HotZone`
         - size range `(1,0,1)-(40,0,40)`
         - **the hotzone is always flat and located on the ground**

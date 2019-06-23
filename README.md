@@ -126,7 +126,8 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 ## TODO
 
-- [ ] Add protobuf for arena spawning feedback
+- [ ] Add inference viewer to the environment
+- [ ] ~~Add protobuf for arena spawning feedback~~
 - [x] Offer a gym wrapper for training
 - [x] Improve the way the agent spawns
 - [x] Add lights out configurations.
@@ -137,9 +138,10 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 - v0.6 
     - Adds score in playmode (current and previous scores)
-    - Playmode now incorporates lights off directly 
-    - **Several objects properties have been changed** [see here](documentation/definitionsOfObjects.md)
-    - Frames per action reduced from 5 to 3 (i.e.: for each action you send we repeat it for a certain number of frames 
+    - Playmode now incorporates lights off directly (in examples try: `python visualizeArena.py configs/lightsOff.yaml`)
+    - To simplify the environment several unnecessary objects have been removed [see here](documentation/definitionsOfObjects.md)
+    - **Several object properties have been changed** [also here](documentation/definitionsOfObjects.md)
+    - Frames per action reduced from 5 to 3 (*i.e.*: for each action you send we repeat it for a certain number of frames 
     to ensure smooth physics)
     - Add versions compatibility check between the environment and API
     - Remove `step_number` argument from `animalai.environment.step`
