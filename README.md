@@ -120,9 +120,11 @@ possibility to change the configuration of arenas between episodes. The document
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
 
-## Known Bugs
+## Known Issues
 
-...
+In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact that we have synchronized these 
+features with the agent's frames in order to have frames in line with the configuration files for events such as lights 
+off. **Solution**: press the key again, several times if needed.
 
 ## TODO
 
