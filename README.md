@@ -126,6 +126,8 @@ In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact
 features with the agent's frames in order to have frames in line with the configuration files for events such as lights 
 off. **Solution**: press the key again, several times if needed.
 
+When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.
+
 ## TODO
 
 - [ ] Add inference viewer to the environment
