@@ -67,7 +67,7 @@ texture in order to make them easier to differentiate from non movable objects.
     - name: `LObject`
     - size range `(1,0.3,3)-(5,2,20)`
     - cannot randomize color
-- <img align="left" height="100" src="PrefabsPictures/Movable/LObject2.png">symmetric of the U-shaped object
+- <img align="left" height="100" src="PrefabsPictures/Movable/LObject2.png">symmetric of the L-shaped object
     - name: `LObject2`
     - size range `(1,0.3,3)-(5,2,20)`
     - cannot randomize color
