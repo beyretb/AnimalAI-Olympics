@@ -142,7 +142,7 @@ When a lot of objects are spawned randomly, extremely rarely, the agent will fal
 
 - v0.6 
     - Adds score in playmode (current and previous scores)
-    - Playmode now incorporates lights off directly (in examples try: `python visualizeArena.py configs/lightsOff.yaml`)
+    - Playmode now incorporates lights off directly (in `examples` try: `python visualizeArena.py configs/lightsOff.yaml`)
     - To simplify the environment several unnecessary objects have been removed [see here](documentation/definitionsOfObjects.md)
     - **Several object properties have been changed** [also here](documentation/definitionsOfObjects.md)
     - Frames per action reduced from 5 to 3 (*i.e.*: for each action you send we repeat it for a certain number of frames 
