@@ -125,15 +125,16 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `GoodGoalMultiBounce`
         - size range `0.5-5`
 - Deathzone: 
-    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that terminates the episode on contact:
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that terminates the episode on contact:
         - name: `DeathZone`
         - size range `(1,0,1)-(40,0,40)`
         - **the deathzone is always flat and located on the ground**
         - terminates an episode
 - HotZone: 
-    - a <img align="left" height="100" src="PrefabsPictures/Rewards/HotZone.png">an orange zone with reward 
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/HotZone.png">an orange zone with reward 
     `min(-10/T,-1e-5)` (or `-1e-5` if `T=0`) that **does not** end an episode
         - name: `HotZone`
         - size range `(1,0,1)-(40,0,40)`
         - **the hotzone is always flat and located on the ground**
         - does not terminate and episode
+        -if a `DeathZone` and a `HotZone` overlap the `DeathZone` prevails

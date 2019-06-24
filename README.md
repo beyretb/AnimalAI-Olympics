@@ -69,9 +69,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.6.0.zip) |
-| MacOS |  [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.6.0.zip) |
-| Windows | [download v0.6.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.6.0.zip)  |
+| Linux |  [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.6.1.zip) |
+| MacOS |  [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.6.1.zip) |
+| Windows | [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.6.1.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
@@ -126,7 +126,8 @@ In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact
 features with the agent's frames in order to have frames in line with the configuration files for events such as lights 
 off. **Solution**: press the key again, several times if needed.
 
-When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.
+~~When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.~~ (fixed in 
+v0.6.1)
 
 ## TODO
 
@@ -140,7 +141,11 @@ When a lot of objects are spawned randomly, extremely rarely, the agent will fal
 
 ## Version History
 
-- v0.6 
+
+- v0.6.1 (Environment only) 
+    - Fix rare events of agent falling through the floor or objects flying in the air when resetting an arena
+
+- v0.6.0 
     - Adds score in playmode (current and previous scores)
     - Playmode now incorporates lights off directly (in `examples` try: `python visualizeArena.py configs/lightsOff.yaml`)
     - To simplify the environment several unnecessary objects have been removed [see here](documentation/definitionsOfObjects.md)
