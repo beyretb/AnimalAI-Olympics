@@ -78,11 +78,11 @@ texture in order to make them easier to differentiate from non movable objects.
     
 #### Rewards
 
-Objects that give a reward and may terminate the event if the agents collides with one. **Important note:** for sphere goals the `y` and `z` components of the provided sizes are ignored and only the `x` one counts
+Objects that give a reward and may terminate the event if the agents collides with one. **Important note:** for sphere goals the `y` and `z` components of the provided sizes are ignored and only `x` is used.
 
 
-- Good goals: green spheres with a positive reward equal to their size, terminate an episode
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">Fixed good reward
+- Good goals: green spheres with a positive reward equal to their size. Ends the episode on collection.
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">Stationary positive food item (reward)
         - name: `GoodGoal`
         - size range `0.5-5`
         <br>
@@ -92,13 +92,12 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `GoodGoalMove`
         - size range `0.5-5`
         <br> -->
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A good reward bouncing on objects. Will
-     start moving in the direction provided by the rotation parameter
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoal.png">A positive food item that bounces off objects. Starts by moving in the direction provided by the rotation parameter.
         - name: `GoodGoalBounce`
         - size range `0.5-5`
         <br>
-- Bad goals: red spheres with a negative reward equal to their size, terminate an episode
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> Fixed bad reward
+- Bad goals: red spheres with a negative reward equal to their size. Ends the episode on collection.
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png"> Stationary negative food item (reward)
         - name: `BadGoal`
         - size range `0.5-5`
         <br>
@@ -108,14 +107,12 @@ Objects that give a reward and may terminate the event if the agents collides wi
         - name: `BadGoalMove`
         - size range `0.5-5`
         <br> -->
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">A bad reward bouncing on objects. Will 
-    start moving in the direction provided by the rotation parameter
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/BadGoal.png">A negative food item that bounces off objects. Starts by moving in the direction provided by the rotation parameter.
         - name: `BadGoalBounce`
         - size range `0.5-5`
         <br>
--  Good goals multi: golden spheres with a positive reward equal to their size, that will only terminate the episode once
- all of them are retrieved (and a GoodGoal if present):
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">Fixed good reward multi
+-  Good goals multi: golden spheres with a positive reward equal to their size. Does **not** terminate the episode. The episode is terminated if all goals are collected. So, in an episode with only these rewards the episode will terminate when the last one is obtained:
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">Stationary positive reward multi
         - name: `GoodGoalMulti`
         - size range `0.5-5`
         <br>
@@ -124,13 +121,11 @@ Objects that give a reward and may terminate the event if the agents collides wi
      rotation parameter
         - name: `GoodGoalMultiMove`
         - size range `1-3` -->
-    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A bad reward bouncing on objects. 
-    Will start moving in the direction provided by the rotation parameter
+    - <img align="left" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">A positve reward that bounces off objects. Starts by moving in the direction provided by the rotation parameter:
         - name: `GoodGoalMultiBounce`
         - size range `0.5-5`
 - Deathzone: 
-    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that end an
-    episode
+    - a <img align="left" height="100" src="PrefabsPictures/Rewards/DeathZone.png">a red zone with reward -1 that terminates the episode on contact:
         - name: `DeathZone`
         - size range `(1,0,1)-(40,0,40)`
         - **the deathzone is always flat and located on the ground**
