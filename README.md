@@ -144,7 +144,7 @@ v0.6.1)
 
 ## TODO
 
-- [ ] Add custom resolutions
+- [x] Add custom resolutions
 - [x] Add inference viewer to the environment
 - [x] Offer a gym wrapper for training
 - [x] Improve the way the agent spawns
@@ -155,7 +155,10 @@ v0.6.1)
 ## Version History
 
 - v1.0
+    - Adds custom resolution to both Unity and Gym environments
     - Adds inference mode to the environment to visualize trained agents
+    - Prizes announced
+    - More details about the competition
 
 - v0.6.1 (Environment only) 
     - Fix rare events of agent falling through the floor or objects flying in the air when resetting an arena

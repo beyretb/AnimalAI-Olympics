@@ -16,7 +16,7 @@ run_seed = 1
 docker_target_name = None
 no_graphics = False
 n_arenas = 4
-resolution = 32
+resolution = 128
 
 if env_path is not None:
     env_path = (env_path.strip()

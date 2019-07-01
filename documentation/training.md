@@ -46,7 +46,9 @@ env= UnityEnvironment(
         docker_training=False,      # Whether or not you are training inside a docker
         no_graphics=False,          # Always set to False
         n_arenas=4,                 # Number of arenas in your environment
-        play=False                  # Set to False for training                
+        play=False,                 # Set to False for training
+        inference=False,            # Set to true to watch your agent in action
+        resolution=None             # Int: resolution of the agent's square camera (in [4,512], default 84)
     )
 ```
 
