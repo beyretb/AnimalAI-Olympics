@@ -32,7 +32,8 @@ class UnityEnvironment(object):
                  docker_training=False,
                  n_arenas=1,
                  play=False,
-                 arenas_configurations=None):
+                 arenas_configurations=None,
+                 inference=False):
         """
         Starts a new unity environment and establishes a connection with the environment.
         Notice: Currently communication between Unity and Python takes place over an open socket without authentication.
@@ -47,6 +48,7 @@ class UnityEnvironment(object):
         atexit.register(self._close)
         self.n_arenas = n_arenas
         self.play = play
+        self.inference = inference
         self.port = base_port + worker_id
         self._buffer_size = 12000
         self._version_ = "0.6"
@@ -178,12 +180,15 @@ class UnityEnvironment(object):
             logger.debug("This is the launch string {}".format(launch_string))
             # Launch Unity environment
             if not docker_training:
-                if not self.play:
-                    self.proc1 = subprocess.Popen(
-                        [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
-                else:
+                if self.play:
                     self.proc1 = subprocess.Popen(
                         [launch_string, '--port', str(self.port)])
+                elif self.inference:
+                    self.proc1 = subprocess.Popen(
+                        [launch_string, '--port', str(self.port), '--inference'])
+                else:
+                    self.proc1 = subprocess.Popen(
+                        [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
 
             else:
                 """

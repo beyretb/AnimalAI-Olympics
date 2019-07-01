@@ -69,9 +69,9 @@ Finally download the environment for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v0.6.1.zip) |
-| MacOS |  [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v0.6.1.zip) |
-| Windows | [download v0.6.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v0.6.1.zip)  |
+| Linux |  [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v1.0.0.zip) |
+| MacOS |  [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v1.0.0.zip) |
+| Windows | [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v1.0.0.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
@@ -131,8 +131,7 @@ v0.6.1)
 
 ## TODO
 
-- [ ] Add inference viewer to the environment
-- [ ] ~~Add protobuf for arena spawning feedback~~
+- [x] Add inference viewer to the environment
 - [x] Offer a gym wrapper for training
 - [x] Improve the way the agent spawns
 - [x] Add lights out configurations.
@@ -141,6 +140,8 @@ v0.6.1)
 
 ## Version History
 
+- v1.0
+    - Adds inference mode to the environment to visualize trained agents
 
 - v0.6.1 (Environment only) 
     - Fix rare events of agent falling through the floor or objects flying in the air when resetting an arena
