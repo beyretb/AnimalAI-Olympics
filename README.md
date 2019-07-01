@@ -1,31 +1,28 @@
 # Animal-AI Olympics
 
+The Animal-AI Olympics is an AI competition with tests inspired by animal cognition. Participants are given a small environment with just seven different classes of objects that can be placed inside. In each test, the agent needs to retrieve the food in the environment, but to do so there are obstacles to overcome, ramps to climb, boxes to push, and areas that must be avoided. The real challenge is that we don't provide the tests in advance. It's up to you to play with the environment and build interesting setups that can help create an agent that understands how the environment's physics work and the affordances that it has. The final submission should be an agent capable of robust food retrieval behaviour similar to that of many kinds of animals. We know the animals can pass these tests, it's time to see if AI can too.
+
+**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). Entry to the competition (via EvalAI) constitutes agreement with all competition rules.
+
 ## Overview
 
-Welcome to the repository for the Animal-AI Olympics competition where you will find all the code needed to compete in 
-this new challenge. Note that for the moment this repo contains **only the training environment** (v0.5) that will be 
-used for the competition and **does not contain any competition tests or information for entering**. If everything goes 
-well the competition will be live on July 1st. Until then we will be continually updating with bug fixes and small 
-changes to the environment. However, the general structure will stay the same so it's not too early to start working with the environment. For more information on the competition itself and to stay updated with any developments, head to the 
+Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place. **Information for entering** will be added leading up to July 8th when the feedback will be available via the EvalAI website for the compeition.
+
+For more information on the competition itself and to stay updated with any developments, head to the 
 [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) 
 and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
 
 The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
-and negative rewards (green, yellow and red spheres). All of the hidden tests that will appear in the competition are 
-made using the objects in the training environment. We have provided some sample environment configurations that should 
-be useful for training, but part of the challenge will be experimenting and designing new configurations.
-
-The goal of this first release is to **seek feedback from the community** as well as to provide the environment for 
-research prior to the launch of the competition itself. The competition version of the environment will be similar to 
-this one, however we are open to suggestion (for minor changes) and especially bug reports! Head over to the 
-[issues page](https://github.com/beyretb/AnimalAI-Olympics/issues) and open a ticket using the `suggestion` or `bug` 
-labels respectively.
+and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training, but part of the challenge will be experimenting and designing new configurations.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
-A more in depth documentation <!--, including a primer on animal cognition,--> can be found on the 
-[Documentation Page](documentation/README.md).
+More in depth documentation can be found on the [Documentation Page](documentation/README.md).
 
 ## Development Blog
+
+You can read the launch post - with information about prizes and the categories in the competition here:
+
+0. [Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html)
 
 You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
 well as part of the development process.
@@ -41,8 +38,7 @@ well as part of the development process.
 The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. 
 <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
-First of all your will need `python3.6` installed. We recommend using a virtual environment specifically for the competition. Clone this repository to run the examples we provide you with. We offer two packages for 
-this competition:
+First of all your will need `python3.6` installed (we currently only support **python3.6**). We recommend using a virtual environment specifically for the competition. Clone this repository to run the examples we provide you with. We offer two packages for this competition:
 
 - The main one is an API for interfacing with the Unity environment. It contains both a 
 [gym environment](https://github.com/openai/gym) as well as an extension of Unity's 
@@ -103,7 +99,7 @@ not be able to solve all the tests in the categories but it would be off to a ve
 
 ## Citing
 
-For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment: 
+For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment. Official Animal-AI Papers to follow:
 
 Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature 
 Machine Intelligence 1 (5) p257 2019.
@@ -123,14 +119,14 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 ## Known Issues
 
 In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact that we have synchronized these 
-features with the agent's frames in order to have frames in line with the configuration files for events such as lights 
-off. **Solution**: press the key again, several times if needed.
+features with the agent's frames in order to have frames in line with the configuration files for elements such as blackouts. **Solution**: press the key again, several times if needed.
 
 ~~When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.~~ (fixed in 
 v0.6.1)
 
 ## TODO
 
+- [ ] Add custom resolutions
 - [x] Add inference viewer to the environment
 - [x] Offer a gym wrapper for training
 - [x] Improve the way the agent spawns
