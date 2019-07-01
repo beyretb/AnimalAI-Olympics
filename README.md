@@ -24,7 +24,7 @@ See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and
 
 ## Overview
 
-Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place. **Information for entering** will be added leading up to July 8th when the feedback will be available via the EvalAI website for the compeition.
+Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place. **Information for entering** will be added by July 8th when the submission will be available via the EvalAI website for the compeition.
 
 For more information on the competition itself and to stay updated with any developments, head to the 
 [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) 
@@ -40,7 +40,7 @@ More in depth documentation can be found on the [Documentation Page](documentati
 
 You can read the launch post - with information about prizes and the categories in the competition here:
 
-0. [Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html)
+0. [Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  about all 10 categories.
 
 You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
 well as part of the development process.
