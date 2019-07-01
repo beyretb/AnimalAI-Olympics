@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='animalai_train',
-    version='0.6.1',
+    version='1.0.0',
     description='Animal AI competition training library',
     url='https://github.com/beyretb/AnimalAI-Olympics',
     author='Benjamin Beyret',
@@ -20,7 +20,7 @@ setup(
     zip_safe=False,
 
     install_requires=[
-        'animalai>=0.6.0',
+        'animalai>=1.0.0',
         'dopamine-rl',
         'tensorflow==1.12.2',
         'matplotlib',

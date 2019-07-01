@@ -32,7 +32,8 @@ class AnimalAIEnv(gym.Env):
                  n_arenas=1,
                  arenas_configurations=None,
                  greyscale=False,
-                 retro=True):
+                 retro=True,
+                 resolution=None):
         """
         Environment initialization
         :param environment_filename: The UnityEnvironment path or file to be wrapped in the gym.
@@ -49,9 +50,11 @@ class AnimalAIEnv(gym.Env):
                                      worker_id=worker_id,
                                      docker_training=docker_training,
                                      n_arenas=n_arenas,
-                                     arenas_configurations=arenas_configurations)
+                                     arenas_configurations=arenas_configurations,
+                                     resolution=resolution)
         # self.name = self._env.academy_name
         self.vector_obs = None
+        self.resolution = resolution
         self._current_state = None
         self._n_agents = None
         self._flattener = None
