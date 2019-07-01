@@ -1,5 +1,9 @@
 # Animal-AI Olympics
 
+<p align="center">
+  <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
+</p>
+
 The Animal-AI Olympics is an AI competition with tests inspired by animal cognition. Participants are given a small environment with just seven different classes of objects that can be placed inside. In each test, the agent needs to retrieve the food in the environment, but to do so there are obstacles to overcome, ramps to climb, boxes to push, and areas that must be avoided. The real challenge is that we don't provide the tests in advance. It's up to you to play with the environment and build interesting setups that can help create an agent that understands how the environment's physics work and the affordances that it has. The final submission should be an agent capable of robust food retrieval behaviour similar to that of many kinds of animals. We know the animals can pass these tests, it's time to see if AI can too.
 
 **Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). Entry to the competition (via EvalAI) constitutes agreement with all competition rules.
