@@ -149,7 +149,7 @@ Golden spheres with a positive reward equal to their size. Does **not** terminat
 * cannot change color
 
 #### Moving Positive Reward
-<mg align="right" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">
+<img align="right" height="100" src="PrefabsPictures/Rewards/GoodGoalMulti.png">
 Moving food with positive reward (non-terminating). Starts by moving in the direction provided by the rotation parameter.
    
 * name: `GoodGoalMultiBounce`
