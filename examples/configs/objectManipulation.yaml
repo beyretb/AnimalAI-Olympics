@@ -5,19 +5,12 @@ arenas:
     items:
     - !Item
       name: GoodGoal
-      positions: []
-      colors: []
-      rotations: []
       sizes:
       - !Vector3 {x: 1, y: 1, z: 1}
-    - !Item
-      name: Cube
     - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2
-    - !Item
-      name: WoodLog
     - !Item
       name: UObject
     - !Item
