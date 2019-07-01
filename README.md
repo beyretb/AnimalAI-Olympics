@@ -4,7 +4,21 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
+**July 1st - November 1st**
+
 The Animal-AI Olympics is an AI competition with tests inspired by animal cognition. Participants are given a small environment with just seven different classes of objects that can be placed inside. In each test, the agent needs to retrieve the food in the environment, but to do so there are obstacles to overcome, ramps to climb, boxes to push, and areas that must be avoided. The real challenge is that we don't provide the tests in advance. It's up to you to play with the environment and build interesting setups that can help create an agent that understands how the environment's physics work and the affordances that it has. The final submission should be an agent capable of robust food retrieval behaviour similar to that of many kinds of animals. We know the animals can pass these tests, it's time to see if AI can too.
+
+## Prizes $32,000 (equivalent value)
+
+* Overall Prizes
+  * 1st place overall: **$7,500 total value** - $6,500 with up to $1,000 travel to speak at NeurIPS 2019.
+  * 2nd place overall: **$6,000 total value** - $5,000 with up to $1,000 travel to speak at NeurIPS 2019.
+  * 3rd place overall: **$1,500**.
+* WBA-Prize: **$5,000 total value** - $4,000 with up to $1,000 travel to speak at NeurIPS 2019
+* Category Prizes: **$200** For best performance in each category (cannot combine with other prizes - max 1 per team).
+* **Mid-way AWS Research Credits**: The top 20 entries as of **September 1st** will be awarded **$500** of AWS credits.
+
+See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
 
 **Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). Entry to the competition (via EvalAI) constitutes agreement with all competition rules.
 
