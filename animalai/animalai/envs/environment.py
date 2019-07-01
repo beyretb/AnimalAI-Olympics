@@ -32,7 +32,9 @@ class UnityEnvironment(object):
                  docker_training=False,
                  n_arenas=1,
                  play=False,
-                 arenas_configurations=None):
+                 arenas_configurations=None,
+                 inference=False,
+                 resolution=None):
         """
         Starts a new unity environment and establishes a connection with the environment.
         Notice: Currently communication between Unity and Python takes place over an open socket without authentication.
@@ -47,6 +49,8 @@ class UnityEnvironment(object):
         atexit.register(self._close)
         self.n_arenas = n_arenas
         self.play = play
+        self.inference = inference
+        self.resolution = resolution
         self.port = base_port + worker_id
         self._buffer_size = 12000
         self._version_ = "0.6"
@@ -77,7 +81,7 @@ class UnityEnvironment(object):
                 "There is a version mismatch between the Python API and Unity executable.\n"
                 "Python API : {0}, Unity executable : {1}.\n"
                 "Please go to https://github.com/beyretb/AnimalAI-Olympics to download the latest version "
-                .format(self._version_, self._unity_version))
+                    .format(self._version_, self._unity_version))
         self._n_agents = {}
         self._global_done = None
         self._academy_name = aca_params.name
@@ -178,12 +182,20 @@ class UnityEnvironment(object):
             logger.debug("This is the launch string {}".format(launch_string))
             # Launch Unity environment
             if not docker_training:
-                if not self.play:
-                    self.proc1 = subprocess.Popen(
-                        [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
-                else:
+                if self.play:
                     self.proc1 = subprocess.Popen(
                         [launch_string, '--port', str(self.port)])
+                elif self.inference:
+                    self.proc1 = subprocess.Popen(
+                        [launch_string, '--port', str(self.port), '--inference'])
+                else:
+                    if self.resolution:
+                        self.proc1 = subprocess.Popen(
+                            [launch_string, '--port', str(self.port), '--resolution', str(self.resolution), '--nArenas',
+                             str(self.n_arenas)])
+                    else:
+                        self.proc1 = subprocess.Popen(
+                            [launch_string, '--port', str(self.port), '--nArenas', str(self.n_arenas)])
 
             else:
                 """

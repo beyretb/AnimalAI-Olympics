@@ -4,8 +4,6 @@ arenas:
     t: 0
     items:
     - !Item
-      name: CubeTunnel
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -14,17 +12,11 @@ arenas:
     - !Item
       name: WallTransparent
     - !Item
-      name: MazeGenerator
-    - !Item
-      name: Cube
-    - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2
     - !Item
       name: Cylinder
-    - !Item
-      name: WoodLog
     - !Item
       name: UObject
     - !Item
@@ -49,8 +41,6 @@ arenas:
     t: 0
     items:
     - !Item
-      name: CubeTunnel
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -59,17 +49,11 @@ arenas:
     - !Item
       name: WallTransparent
     - !Item
-      name: MazeGenerator
-    - !Item
-      name: Cube
-    - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2
     - !Item
       name: Cylinder
-    - !Item
-      name: WoodLog
     - !Item
       name: UObject
     - !Item
@@ -94,8 +78,6 @@ arenas:
     t: 0
     items:
     - !Item
-      name: CubeTunnel
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -104,17 +86,11 @@ arenas:
     - !Item
       name: WallTransparent
     - !Item
-      name: MazeGenerator
-    - !Item
-      name: Cube
-    - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2
     - !Item
       name: Cylinder
-    - !Item
-      name: WoodLog
     - !Item
       name: UObject
     - !Item
@@ -139,8 +115,6 @@ arenas:
     t: 0
     items:
     - !Item
-      name: CubeTunnel
-    - !Item
       name: CylinderTunnel
     - !Item
       name: Ramp
@@ -149,17 +123,11 @@ arenas:
     - !Item
       name: WallTransparent
     - !Item
-      name: MazeGenerator
-    - !Item
-      name: Cube
-    - !Item
       name: Cardbox1
     - !Item
       name: Cardbox2
     - !Item
       name: Cylinder
-    - !Item
-      name: WoodLog
     - !Item
       name: UObject
     - !Item

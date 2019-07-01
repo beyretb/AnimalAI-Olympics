@@ -8,7 +8,7 @@ import random
 
 env_path = '../env/AnimalAI'
 worker_id = random.randint(1, 100)
-arena_config_in = ArenaConfig('configs/justFood.yaml')
+arena_config_in = ArenaConfig('configs/1-Food.yaml')
 base_dir = 'models/dopamine'
 gin_files = ['configs/rainbow.gin']
 
