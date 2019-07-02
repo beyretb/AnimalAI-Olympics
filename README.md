@@ -154,7 +154,11 @@ v0.6.1)
 
 ## Version History
 
-- v1.0
+- v1.0.2
+    - Adds custom resolution for docker training as well
+    - fix version checker
+
+- v1.0.0
     - Adds custom resolution to both Unity and Gym environments
     - Adds inference mode to the environment to visualize trained agents
     - Prizes announced

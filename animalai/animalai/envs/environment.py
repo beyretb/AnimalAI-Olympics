@@ -53,7 +53,7 @@ class UnityEnvironment(object):
         self.resolution = resolution
         self.port = base_port + worker_id
         self._buffer_size = 12000
-        self._version_ = "0.6"
+        self._version_ = "1.0"
         self._loaded = False  # If true, this means the environment was successfully loaded
         self.proc1 = None  # The process that is started. If None, no process was started
         self.communicator = self.get_communicator(worker_id, base_port)
@@ -215,9 +215,17 @@ class UnityEnvironment(object):
                     launched, the arguments are passed to `xvfb-run`. `exec` replaces the shell
                     we created with `xvfb`.
                 """
-                docker_ls = ("exec xvfb-run --auto-servernum"
-                             " --server-args='-screen 0 640x480x24'"
-                             " {0} --port {1} --nArenas {2}").format(launch_string, str(self.port), str(self.n_arenas))
+                if self.resolution:
+                    docker_ls = ("exec xvfb-run --auto-servernum"
+                                 " --server-args='-screen 0 640x480x24'"
+                                 " {0} --port {1} --nArenas {2} --resolution {3}").format(launch_string, str(self.port),
+                                                                                          str(self.n_arenas),
+                                                                                          str(self.resolution))
+                else:
+                    docker_ls = ("exec xvfb-run --auto-servernum"
+                                 " --server-args='-screen 0 640x480x24'"
+                                 " {0} --port {1} --nArenas {2}").format(launch_string, str(self.port),
+                                                                         str(self.n_arenas))
                 self.proc1 = subprocess.Popen(docker_ls,
                                               stdout=subprocess.PIPE,
                                               stderr=subprocess.PIPE,
