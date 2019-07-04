@@ -154,6 +154,9 @@ v0.6.1)
 
 ## Version History
 
+- v1.0.3
+    - Adds inference mode to Gym environment
+
 - v1.0.2
     - Adds custom resolution for docker training as well
     - fix version checker

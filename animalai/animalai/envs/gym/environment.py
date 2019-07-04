@@ -33,6 +33,7 @@ class AnimalAIEnv(gym.Env):
                  arenas_configurations=None,
                  greyscale=False,
                  retro=True,
+                 inference=False,
                  resolution=None):
         """
         Environment initialization
@@ -51,9 +52,11 @@ class AnimalAIEnv(gym.Env):
                                      docker_training=docker_training,
                                      n_arenas=n_arenas,
                                      arenas_configurations=arenas_configurations,
+                                     inference=inference,
                                      resolution=resolution)
         # self.name = self._env.academy_name
         self.vector_obs = None
+        self.inference = inference
         self.resolution = resolution
         self._current_state = None
         self._n_agents = None
