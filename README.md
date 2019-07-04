@@ -68,7 +68,7 @@ First of all your will need `python3.6` installed (we currently only support **p
     Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
-example scripts found in the `examples/` folder. It contains an extension of 
+example scripts found in the `examples/` folder. At the moment **we only support Linux and Max** for the training examples. It contains an extension of 
 [ml-agents' training environment](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents) that relies on 
 [OpenAI's PPO](https://openai.com/blog/openai-baselines-ppo/), as well as 
 [Google's dopamine](https://github.com/google/dopamine) which implements 
@@ -154,7 +154,11 @@ v0.6.1)
 
 ## Version History
 
-- v1.0
+- v1.0.2
+    - Adds custom resolution for docker training as well
+    - fix version checker
+
+- v1.0.0
     - Adds custom resolution to both Unity and Gym environments
     - Adds inference mode to the environment to visualize trained agents
     - Prizes announced
