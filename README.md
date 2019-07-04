@@ -156,6 +156,7 @@ v0.6.1)
 
 - v1.0.3
     - Adds inference mode to Gym environment
+    - Adds seed to Gym Environment
 
 - v1.0.2
     - Adds custom resolution for docker training as well
