@@ -30,6 +30,7 @@ class AnimalAIEnv(gym.Env):
                  worker_id=0,
                  docker_training=False,
                  n_arenas=1,
+                 seed=0,
                  arenas_configurations=None,
                  greyscale=False,
                  retro=True,
@@ -49,6 +50,7 @@ class AnimalAIEnv(gym.Env):
         """
         self._env = UnityEnvironment(file_name=environment_filename,
                                      worker_id=worker_id,
+                                     seed=seed,
                                      docker_training=docker_training,
                                      n_arenas=n_arenas,
                                      arenas_configurations=arenas_configurations,
