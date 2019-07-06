@@ -4,7 +4,7 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
-**July 1st - November 1st:** Entries will be available on EvalAI from July 8th (please be patient while we make sure everything is running smoothly).
+**July 1st - November 1st**
 
 The Animal-AI Olympics is an AI competition with tests inspired by animal cognition. Participants are given a small environment with just seven different classes of objects that can be placed inside. In each test, the agent needs to retrieve the food in the environment, but to do so there are obstacles to overcome, ramps to climb, boxes to push, and areas that must be avoided. The real challenge is that we don't provide the tests in advance. It's up to you to explore the possibilities with the environment and build interesting configurations that can help create an agent that understands how the environment's physics work and the affordances that it has. The final submission should be an agent capable of robust food retrieval behaviour similar to that of many kinds of animals. We know the animals can pass these tests, it's time to see if AI can too.
 
@@ -24,14 +24,13 @@ See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and
 
 ## Overview
 
-Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place. **Information for entering** will be added by July 8th when the submission will be available via the EvalAI website for the compeition.
+Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Information for entering can be found in the [submission documentation](documentation/submission.md). Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place.
 
 For more information on the competition itself and to stay updated with any developments, head to the 
-[Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) 
-and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
+[Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
 
 The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
-and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training, but part of the challenge will be experimenting and designing new configurations.
+and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training (see examples/configs), but part of the challenge is to experiment and design new configurations.
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
 More in depth documentation can be found on the [Documentation Page](documentation/README.md).
@@ -53,12 +52,14 @@ well as part of the development process.
 
 ## Requirements
 
-The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. 
+The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. Note that for submission to the competition we only support linux-based Docker files.  
 <!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
 
-First of all your will need `python3.6` installed (we currently only support **python3.6**). We recommend using a virtual environment specifically for the competition. Clone this repository to run the examples we provide you with. We offer two packages for this competition:
+We recommend using a virtual environment specifically for the competition. You will need `python3.6` installed (we currently only support **python3.6**). Clone this repository to run the examples we provide.
 
-- The main one is an API for interfacing with the Unity environment. It contains both a 
+We offer two packages for this competition:
+
+- The main package is an API for interfacing with the Unity environment. It contains both a 
 [gym environment](https://github.com/openai/gym) as well as an extension of Unity's 
 [ml-agents environments](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). You can install it
  via pip:
@@ -107,17 +108,11 @@ mode. Here you can control the agent with the following:
 
 ## Competition Tests
 
-We will be releasing further details about the tests in the competition over the coming weeks. The tests will be split 
-into multiple categories from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to 
-the more complex (e.g. **working memory**, **spatial memory**, **object permanence**, and **object manipulation**). For 
-now we have included multiple example config files that each relate to a different category. As we release further 
-details we will also specify the rules for the type of tests that can appear in each category. Note that the example 
-config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still 
-not be able to solve all the tests in the categories but it would be off to a very good start.
+The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a very good start.
 
 ## Citing
 
-For now please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment. Official Animal-AI Papers to follow:
+**Official Animal-AI Papers Coming Soon**. In the meantime please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment. 
 
 Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature 
 Machine Intelligence 1 (5) p257 2019.
@@ -133,6 +128,12 @@ possibility to change the configuration of arenas between episodes. The document
 
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
+
+## EvalAI
+
+The competition is hosted on [EvalAI](https://github.com/Cloud-CV/EvalAI), an open source web application for AI competitions.
+
+Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet Singh, Akash Jain, Shiv Baran Singh, Stefan Lee and Dhruv Batra (2019) [EvalAI: Towards Better Evaluation Systems for AI Agents](https://arxiv.org/abs/1902.03570)
 
 ## Known Issues
 
