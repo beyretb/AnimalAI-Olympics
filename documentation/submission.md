@@ -36,7 +36,7 @@ To overcome this issue, NVIDIA provides a specific version of docker. We can rec
 
 Once you have docker up and running, you can start building your submission. Head over to the examples provided _add link_ and have a look at the `Dockerfile`. Our script installs all the requirements for the environment to run on the docker, we do not recommend editing anything outside of the commented block saying `YOUR COMMANDS GO HERE`.
 
-For example, if your submission requires the `animalai-train` library to run, you can build the docker by running:
+For example, if your submission requires the `animalai-train` library to run, you can build the dockerfile provided. While in `example/submission` run:
 
 ```
 docker build --tag=submission .
