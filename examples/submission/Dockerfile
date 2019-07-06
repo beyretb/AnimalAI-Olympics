@@ -24,10 +24,23 @@ ENV PATH /opt/conda/envs/python36/bin:/opt/conda/envs/bin:$PATH
 
 RUN pip install animalai
 
+COPY agent.py /aaio/agent.py
+COPY data /aaio/data
+
 ENV HTTP_PROXY ""
 ENV HTTPS_PROXY ""
 ENV http_proxy ""
 ENV https_proxy ""
+
+########################################################################################################################
+# YOUR COMMANDS GO HERE
+
+# For example, if your agent requires the animalai-train library
+# you can add the following (remove if not needed):
+RUN pip install animalai-train
+
+
+########################################################################################################################
 
 CMD ["/bin/bash"]
 

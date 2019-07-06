@@ -1,0 +1,23 @@
+Learner:
+    trainer: ppo
+    epsilon: 0.2
+    gamma: 0.99
+    lambd: 0.95
+    learning_rate: 3.0e-4
+    memory_size: 256
+    normalize: false
+    sequence_length: 64
+    summary_freq: 1000
+    use_recurrent: false
+    use_curiosity: true
+    curiosity_strength: 0.01
+    curiosity_enc_size: 256
+    time_horizon: 128
+    batch_size: 64
+    buffer_size: 2024
+    hidden_units: 256
+    num_layers: 1
+    beta: 1.0e-2
+    max_steps: 5.0e6
+    num_epoch: 3
+
