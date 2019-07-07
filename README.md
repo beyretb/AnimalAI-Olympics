@@ -20,7 +20,7 @@ The Animal-AI Olympics is an AI competition with tests inspired by animal cognit
 
 See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
 
-**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). Entry to the competition (via EvalAI) constitutes agreement with all competition rules.
+**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). **To submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. Entry to the competition (via EvalAI) constitutes agreement with all competition rules. 
 
 ## Overview
 
@@ -34,6 +34,12 @@ and negative rewards (green, yellow and red spheres) that the agent must obtain 
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
 More in depth documentation can be found on the [Documentation Page](documentation/README.md).
+
+## Evaluation
+
+The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a good start.
+
+The submission website allows you to submit an agent that will be run on all 300 tests and it returns the overall score (number of tests passed) and score per category. For the mid-way and final evaluation we will (resources permitting) run more extensive testing with 3 variations per test (so 900 tests total). The variations will include minor perturbations to the configurations. The agent will have to pass all 3 variations to pass each individual test, giving a total score out of 300. This means that **your final test score might be lower than the score achieved during the competition** and that **the competition leaderboard may not exactly match the final results**. 
 
 ## Development Blog
 
@@ -105,12 +111,6 @@ mode. Here you can control the agent with the following:
 | D   | turn agent right    |
 | C   | switch camera       |
 | R   | reset environment   |
-
-## Evaluation
-
-The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a good start.
-
-The submission website allows you to submit an agent that will be run on all 300 tests and it returns the overall score (number of tests passed) and score per category. For the mid-way and final evaluation we will (resources permitting) run more extensive testing with 3 variations per test (so 900 tests total). The variations will include minor perturbations to the configurations. The agent will have to pass all 3 variations to pass each individual test, giving a total score out of 300. This means that **your final test score might be lower than the score achieved during the competition** and that **the competition leaderboard may not exactly match the final results**. 
 
 ## Citing
 
