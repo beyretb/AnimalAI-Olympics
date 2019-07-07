@@ -4,12 +4,27 @@ In order to participate in the competition you will need to upload a [docker con
 containing your trained agent that interfaces with the `animalai` library. We detail the steps for participating 
 below.
 
+## Python agent and associated data
+
+Submissions need to implement the [agent script provided](https://github.com/beyretb/AnimalAI-Olympics/blob/master/agent.py). 
+This script must implement the methods present in the base script and keep the same class name. The methods are:
+- `__init__`: this will only be called once when the agent is loaded first. It can contain loading of the model and other 
+related parameters.
+- `reset(t)`: will be called each time the arena resets. At test time the length of episodes will vary across the 300 
+experiments we will run, therefore we provide the agent with the length of the episode to come.
+- `step(obs, reward, done, info)`: the method we will call each time the agent will have to take a step. The arguments 
+are the ones returned by the Gym environment `AnimalAIEnv` from `animalai.envs.environment`. If you wish to directly 
+work on the ML Agents `BrainInfo` you can access them via `info['brain_info']`
+
+Make sure any data loaded in there is referred to using **absolute paths** in the container or the form `/aaio/data/...` 
+(see below). An example of the code is provided [here](https://github.com/beyretb/AnimalAI-Olympics/blob/master/examples/submission/agent.py)
+
 ## Create an EvalAI account and add submission details
 
-The competition is kindly hosted by EvalAI. Head over to [the website](https://evalai.cloudcv.org/), create an account, 
-and enroll your team in the AnimalAI challenge _add link_. To be able to submit and be eligible for prizes you will also need to register your personal details using _add link_.
+The competition is kindly hosted by EvalAI. Head over to [their website](https://evalai.cloudcv.org/), create an account, 
+and enroll your team in the AnimalAI challenge _add link_. To be able to submit and be eligible for prizes you will also need to register your personal details using the form provided.
 
-**Any question related solely to the submission process should be posted to the EvalAI forum** _add link_
+**Any question related solely to the submission process should be posted to the** [EvalAI forum](https://evalai-forum.cloudcv.org/c/animal-ai-olympics-2019)
 
 ## Docker
 
@@ -61,4 +76,26 @@ If your container and agent are set properly, you should not get any error, and 
 
 ## Submit your docker
 
-You can now submit your container to EvalAI for evaluation as explained at _add link_
+You can now submit your container to EvalAI for evaluation as explained on the [EvalAI submission page](https://evalai.cloudcv.org/web/challenges/challenge-page/396/submission).
+
+
+## Docker evaluation and results
+
+On the EvalAI page you will see that the number of valid submissions is limited to one a day. A submission is valid if it fulfils the following requirements:
+
+- it does not crash at any point before the first two experiments are complete (this include loading the agent, resetting it and completing the two experiments)
+- loading the agent takes less than 5 minutes
+- running the first two experiments takes less than 10 minutes
+
+If your submission meets these requirements it will be flagged as valid and will void prevent you from submitting again that day. Otherwise, you will be allowed 
+to submit again.
+
+Completing the other 298 experiments cannot take longer than 70 minutes plus the remaining of the 10 minutes from the first two configurations. If your submission 
+goes over the limit it will stop. You will however get partial results for the experiments that were completed.
+
+Example scenarios:
+
+- FAIL: agent loads in 2 minutes, crashes during test number 2
+- FAIL: agent loads in 1 minute, takes more than 10 minutes to complete tests 1 and 2
+- SUCCESS: your agent loads in 3 minutes, takes 30 seconds for test 1, takes 1 minute for test two, it therefore has 78.5 minutes to complete the remaining 298 experiments
+- SUCCESS: agent loads in 4 minute, completes test 1 and 2 in 1 minute, uses all the 79 minutes remaining to complete only 100 tests, you will get results based on the 102 experiments ran

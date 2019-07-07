@@ -51,6 +51,3 @@ class Agent(object):
         action = self.policy.evaluate(brain_info=brain_info)['action']
 
         return action
-
-    def destroy(self):
-        pass

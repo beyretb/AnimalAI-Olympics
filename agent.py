@@ -32,6 +32,3 @@ class Agent(object):
         action = [0, 0]
 
         return action
-
-    def destroy(self):
-        pass
