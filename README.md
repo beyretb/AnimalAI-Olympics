@@ -106,9 +106,11 @@ mode. Here you can control the agent with the following:
 | C   | switch camera       |
 | R   | reset environment   |
 
-## Competition Tests
+## Evaluation
 
-The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a very good start.
+The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a good start.
+
+The submission website allows you to submit an agent that will be run on all 300 tests and it returns the overall score (number of tests passed) and score per category. For the mid-way and final evaluation we will (resources permitting) run more extensive testing with 3 variations per test (so 900 tests total). The variations will include minor perturbations to the configurations. The agent will have to pass all 3 variations to pass each individual test, giving a total score out of 300. This means that **your final test score might be lower than the score achieved during the competition** and that **the competition leaderboard may not exactly match the final results**. 
 
 ## Citing
 
