@@ -30,9 +30,11 @@ class AnimalAIEnv(gym.Env):
                  worker_id=0,
                  docker_training=False,
                  n_arenas=1,
+                 seed=0,
                  arenas_configurations=None,
                  greyscale=False,
                  retro=True,
+                 inference=False,
                  resolution=None):
         """
         Environment initialization
@@ -48,12 +50,15 @@ class AnimalAIEnv(gym.Env):
         """
         self._env = UnityEnvironment(file_name=environment_filename,
                                      worker_id=worker_id,
+                                     seed=seed,
                                      docker_training=docker_training,
                                      n_arenas=n_arenas,
                                      arenas_configurations=arenas_configurations,
+                                     inference=inference,
                                      resolution=resolution)
         # self.name = self._env.academy_name
         self.vector_obs = None
+        self.inference = inference
         self.resolution = resolution
         self._current_state = None
         self._n_agents = None

@@ -15,8 +15,8 @@ If you are not familiar with these algorithms, have a look at
 Before looking at the environment itself, we define here the actions the agent can take and the observations it collects:
 
 - **Actions**: the agent can move forward/backward and rotate left/right, just like in play mode. The 
-actions are discrete and of dimension `2`, each component can take 3 values (`(nothing, forward, backward)` and `(nothing, 
-left,right)`).
+actions are discrete and of dimension `2`, each component can take values `0`,`1` or `2` (`(0: nothing, 1: forward, 2: 
+backward)` and `(0: nothing, 1: right, 2: left)`).
 - **Observations** are made of two components: visual observations which are pixel based and of dimension `84x84x3`, as 
 well as the speed of the agent which is continuous of dimension `3` (speed along axes `(x,y,z)` in this order). Of course, you may want to process and/or scale down the input before use with your approach.
 - **Rewards**: in case of an episode of finite length `T`, each step carries a small negative reward `-1/T`. In case of 
