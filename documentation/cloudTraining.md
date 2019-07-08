@@ -40,8 +40,13 @@ Click review and launch, and then launch. You will then be asked to create or se
 Once your instances is started, it will appear on the EC2 console. To ssh into your instance, right click the line, select connect and follow the instructions. 
 We can now configure our instance for training. **Don't forget to shutdown your instance once you're done using it as you get charged as long as it runs**.
 
+## Simulating a screen
 
-## The easy way: docker
+As cloud engines do not have screens attached, rendering the environment window is impossible. We use a virtual screen instead, in the form of [xvfb](https://en.wikipedia.org/wiki/Xvfb). 
+You can follow either one of the following methods to use this, in both **remember** to select `docker_training=True` in your environment configuration.
+
+
+## Method 1: train using docker
 
 Basic Deep Learning Ubuntu images provide [NVIDIA docker](https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/) 
 pre-installed, which allows to use CUDA within a container. SSH into your AWS instance, clone this repo and follow the instructions below.
@@ -62,7 +67,7 @@ RUN wget https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v1.0.0.zip
 RUN mv env_linux_v1.0.0.zip AnimalAI-Olympics/env/
 RUN unzip AnimalAI-Olympics/env/env_linux_v1.0.0.zip -d AnimalAI-Olympics/env/
 WORKDIR /aaio/AnimalAI-Olympics/examples
-sed -i 's/docker_training=False/docker_training=True/g' trainDopamine.py
+RUN sed -i 's/docker_training=False/docker_training=True/g' trainDopamine.py
 ```
 
 Build your docker, from the `examples/submission` folder run:
@@ -74,11 +79,23 @@ docker buil --tag=test-training .
 Once built, you can start training straight away by running:
 
 ```
-docker run test-training python /aaio/AnimalAI-Olympics/examples/trainDopamine.py
+docker run --runtime=nvidia test-training python /aaio/AnimalAI-Olympics/examples/trainDopamine.py
 ```
 
-You should see the following tensorflow line in the output which confirms you are training using the GPU:
+Notice the use of `--runtime=nvidia` which activates CUDA capabilities. You should see the following tensorflow line in the output 
+which confirms you are training using the GPU:
 
 ```
-
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:1432] Found device 0 with properties: 
+name: Tesla K80 major: 3 minor: 7 memoryClockRate(GHz): 0.823
 ```
+
+You're now ready to start training on AWS using docker!
+
+## Method 2: install xvfb on the instance
+
+An alternative to docker is to install `xvfb` directly on your AWS instance and use it in the same way you would when training on your home computer. 
+
+To do so you can follow the original ML Agents description for `p2.xlarge` found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md#setting-up-x-server-optional). From our 
+experience, these step do not work as well on other types of instances.
+
