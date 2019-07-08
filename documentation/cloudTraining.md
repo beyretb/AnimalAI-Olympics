@@ -71,13 +71,13 @@ RUN sed -i 's/docker_training=False/docker_training=True/g' trainDopamine.py
 Build your docker, from the `examples/submission` folder run:
 
 ```
-docker buil --tag=test-training .
+docker build --tag=test-training .
 ```
 
 Once built, you can start training straight away by running:
 
 ```
-docker run --runtime=nvidia test-training python /aaio/AnimalAI-Olympics/examples/trainDopamine.py
+docker run --runtime=nvidia test-training python trainDopamine.py
 ```
 
 Notice the use of `--runtime=nvidia` which activates CUDA capabilities. You should see the following tensorflow line in the output 
