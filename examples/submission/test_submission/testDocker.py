@@ -1,8 +1,4 @@
-import sys
 import importlib.util
-import signal
-import traceback
-from os import listdir
 
 from animalai.envs.gym.environment import AnimalAIEnv
 from animalai.envs.arena_config import ArenaConfig
