@@ -56,7 +56,7 @@ For example, should you wish to train a standard Dopamine agent provided in `ani
 lines to your docker in the `YOUR COMMANDS GO HERE` part, below the line installing `animalai-train`:
 
 ```
-RUN git clone --single-branch --branch submission https://github.com/beyretb/AnimalAI-Olympics.git
+RUN git clone https://github.com/beyretb/AnimalAI-Olympics.git
 RUN pip uninstall --yes tensorflow
 RUN pip install tensorflow-gpu==1.12.2
 RUN apt-get install unzip wget

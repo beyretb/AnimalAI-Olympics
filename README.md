@@ -162,10 +162,13 @@ v0.6.1)
 - v1.0.3
     - Adds inference mode to Gym environment
     - Adds seed to Gym Environment
+    - Submission example folder containing a trained agent
+    - Provide submission details for the competition
+    - Documentation for training on AWS
 
 - v1.0.2
     - Adds custom resolution for docker training as well
-    - fix version checker
+    - Fix version checker
 
 - v1.0.0
     - Adds custom resolution to both Unity and Gym environments
