@@ -46,7 +46,7 @@ You can follow either one of the following methods to use this. In both, **remem
 ## Method 1: train using docker
 
 Basic Deep Learning Ubuntu images provide [NVIDIA docker](https://devblogs.nvidia.com/nvidia-docker-gpu-server-application-deployment-made-easy/) 
-pre-installed, which allows to use CUDA within a container. SSH into your AWS instance, clone this repo and follow the instructions below.
+pre-installed, which allows the use of CUDA within a container. SSH into your AWS instance, clone this repo and follow the instructions below.
 
 In the [submission guide](submission.md) we describe how to build a docker container for submission. The same process 
 can be used to create a docker for training an agent. The [dockerfile provided](../examples/submission/Dockerfile) can 
