@@ -94,6 +94,6 @@ You're now ready to start training on AWS using docker!
 
 An alternative to docker is to install `xvfb` directly on your AWS instance and use it in the same way you would when training on your home computer. 
 
-To do so you can follow the original ML Agents description for `p2.xlarge` found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md#setting-up-x-server-optional). From our 
-experience, these step do not work as well on other types of instances.
+To do so, you can follow the original ML Agents description for `p2.xlarge` found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md#setting-up-x-server-optional). From our 
+experience, these steps do not work as well on other types of instances.
 
