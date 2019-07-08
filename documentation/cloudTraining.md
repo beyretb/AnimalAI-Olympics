@@ -33,7 +33,7 @@ require deep learning libraries installed as well (tensorflow, pytorch...). On t
 
 ![EC2](AWS/p2.png)
 
-Click review and launch, and then launch. You will then be asked to create or select existing key pairs which will be used to ssh to your instance.
+Click `Next` twice and add at least 15 Gb of storage to the current size. Click `review and launch`, and then `launch`. You will then be asked to create or select existing key pairs which will be used to ssh to your instance.
 
 Once your instances is started, it will appear on the EC2 console. To ssh into your instance, right click the line, select connect and follow the instructions. 
 We can now configure our instance for training. **Don't forget to shutdown your instance once you're done using it as you get charged as long as it runs**.
