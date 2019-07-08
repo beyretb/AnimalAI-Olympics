@@ -28,12 +28,11 @@ You can then select various images, type in `Deep learning` to see what is on of
 
 ![EC2](AWS/marketplace.png)
 
-and select either `Deep Learning Base AMI (Ubuntu)` if you want a basic Ubuntu install with CUDA capabilities, or `Deep Learning AMI (Ubuntu)` if you 
-require deep learning libraries installed as well (tensorflow, pytorch...). On the next page select `p2.xlarge`:
+and select either `Deep Learning Base AMI (Ubuntu)` if you want a basic Ubuntu install with CUDA capabilities. On the next page select `p2.xlarge` (this will not be selected by default):
 
 ![EC2](AWS/p2.png)
 
-Click `Next` twice and add at least 15 Gb of storage to the current size. Click `review and launch`, and then `launch`. You will then be asked to create or select existing key pairs which will be used to ssh to your instance.
+Click `Next` twice (first Next: Configure Instance Deatils, then Next: Add Storage) and add at least 15 Gb of storage to the current size (so at least 65 total with a default of 50). Click `review and launch`, and then `launch`. You will then be asked to create or select existing key pairs which will be used to ssh to your instance.
 
 Once your instances is started, it will appear on the EC2 console. To ssh into your instance, right click the line, select connect and follow the instructions. 
 We can now configure our instance for training. **Don't forget to shutdown your instance once you're done using it as you get charged as long as it runs**.
@@ -92,7 +91,7 @@ You're now ready to start training on AWS using docker!
 
 ## Method 2: install xvfb on the instance
 
-An alternative to docker is to install `xvfb` directly on your AWS instance and use it in the same way you would when training on your home computer. 
+An alternative to docker is to install `xvfb` directly on your AWS instance and use it in the same way you would when training on your home computer. For this you will want to install an Ubuntu image with some deep learning libraries installed. From the AWS Marketplace page you can for example install `Deep Learning AMI (Ubuntu)` which contains tensorflow and pytorch.
 
 To do so, you can follow the original ML Agents description for `p2.xlarge` found [here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md#setting-up-x-server-optional). From our 
 experience, these steps do not work as well on other types of instances.
