@@ -18,6 +18,7 @@ def create_env_fn():
                       worker_id=worker_id,
                       n_arenas=1,
                       arenas_configurations=arena_config_in,
+                      docker_training=False,
                       retro=True)
     return env
 
