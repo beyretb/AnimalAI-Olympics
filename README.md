@@ -20,7 +20,7 @@ The Animal-AI Olympics is an AI competition with tests inspired by animal cognit
 
 See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
 
-**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). **To submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. Entry to the competition (via EvalAI) constitutes agreement with all competition rules. 
+**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). **To submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. Entry to the competition ([via EvalAI](https://evalai.cloudcv.org/web/challenges/challenge-page/396/overview)) constitutes agreement with all competition rules. 
 
 ## Overview
 
