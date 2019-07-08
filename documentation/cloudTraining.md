@@ -1,10 +1,8 @@
 # Training on AWS
 
-Training an agent requires rendering the environment on a screen, which prevents training on out of the box cloud compute 
-instances. You will need to follow either one of the methods provided below in order to perform training on the cloud. 
-Both methods were tested on [AWS p2.xlarge](https://aws.amazon.com/ec2/instance-types/p2/) using a standard 
-[Deep Learning Base AMI](https://aws.amazon.com/marketplace/pp/B077GCZ4GR). We leave to participants the task of adapting 
-the information found here to different cloud providers and/or instance type.
+Training an agent requires rendering the environment on a screen, which means that you may have to follow a few steps (detailed below) before you can use standard cloud compute instances. We detail two possibilities. Both methods were tested on [AWS p2.xlarge](https://aws.amazon.com/ec2/instance-types/p2/) using a standard [Deep Learning Base AMI](https://aws.amazon.com/marketplace/pp/B077GCZ4GR). 
+
+We leave participants the task of adapting the information found here to different cloud providers and/or instance types or for their specific use-case. We do not have the resources to fully support this capability. We are providing the following purely in the hopes it serves as a useful guide for some.
 
 **WARNING: using cloud services will incur costs, carefully read your provider terms of service**
 
@@ -43,7 +41,7 @@ We can now configure our instance for training. **Don't forget to shutdown your 
 ## Simulating a screen
 
 As cloud engines do not have screens attached, rendering the environment window is impossible. We use a virtual screen instead, in the form of [xvfb](https://en.wikipedia.org/wiki/Xvfb). 
-You can follow either one of the following methods to use this, in both **remember** to select `docker_training=True` in your environment configuration.
+You can follow either one of the following methods to use this. In both, **remember** to select `docker_training=True` in your environment configuration.
 
 
 ## Method 1: train using docker
