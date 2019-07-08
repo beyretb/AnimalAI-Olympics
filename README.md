@@ -45,9 +45,11 @@ For the mid-way and final evaluation we will (resources permitting) run more ext
 
 ## Development Blog
 
-You can read the launch post - with information about prizes and the categories in the competition here:
+You can read the launch posts - with information about prizes and the categories in the competition here:
 
-0. [Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  about all 10 categories.
+[Animal-AI Evaluation: July 1st](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
+
+[Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
 
 You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
 well as part of the development process.
