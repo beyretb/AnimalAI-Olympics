@@ -72,6 +72,7 @@ If your container and agent are set properly, you should not get any error, and 
 
 You can now submit your container to EvalAI for evaluation as explained on the [EvalAI submission page](https://evalai.cloudcv.org/web/challenges/challenge-page/396/submission).
 
+**Note**: the phase name to use when pushing is: `animalai-main-396`. To push your container use `evalai push <image>:<tag> --phase animalai-main-396` (details are at the bottom of the EvalAI page linked above).
 
 ## Docker evaluation and results
 
