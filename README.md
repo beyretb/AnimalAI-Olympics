@@ -137,7 +137,7 @@ Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:180
 
 ## EvalAI
 
-The competition is kindly hosted on [EvalAI](https://github.com/Cloud-CV/EvalAI), an open source web application for AI competitions. Special thanks to Rishabh Jain for his help in settting this up.
+The competition is kindly hosted on [EvalAI](https://github.com/Cloud-CV/EvalAI), an open source web application for AI competitions. Special thanks to [Rishabh Jain](https://github.com/RishabhJain2018) for his help in settting this up.
 
 Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet Singh, Akash Jain, Shiv Baran Singh, Stefan Lee and Dhruv Batra (2019) [EvalAI: Towards Better Evaluation Systems for AI Agents](https://arxiv.org/abs/1902.03570)
 
