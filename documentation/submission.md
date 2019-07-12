@@ -1,6 +1,6 @@
 # Submission
 
-In order to participate in the competition you will need to upload a [docker container](https://docs.docker.com/get-started/) 
+In order to participate in the competition you will need to upload a [docker image](https://docs.docker.com/get-started/) 
 containing your trained agent that interfaces with the `animalai` library. We detail the steps for participating 
 below.
 
@@ -26,7 +26,7 @@ The competition is kindly hosted by EvalAI. Head over to [their website](https:/
 
 ## Docker
 
-Docker offers a containerized platform for running applications in a closed environment. You can install all the libraries your agent will require and we will this use to run the tests as they would run on your local machine. The hardware we're using to run the tests is an AWS [p2.xlarge instance](https://aws.amazon.com/ec2/instance-types/p2/).
+Docker offers a containerized platform for running applications in a closed environment. You can install all the libraries your agent will require and we will use this to run the tests as they would run on your local machine. The hardware we're using to run the tests is an AWS [p2.xlarge instance](https://aws.amazon.com/ec2/instance-types/p2/).
 
 Take the time to read the [Docker documentation](https://docs.docker.com/get-started/) and follow the install process.
 
@@ -38,7 +38,7 @@ As part of the evaluation we offer GPU compute on an AWS
 
 The native docker engine does not provide a pass-through to these libraries, rendering any use of GPU capable libraries (such as `tensorflow-gpu`) impossible. To overcome this issue, NVIDIA provides a specific version of docker. We can recommend [this tutorial](https://marmelab.com/blog/2018/03/21/using-nvidia-gpu-within-docker-container.html#installing-nvidia-docker) for installing this version. Note we cannot provide help with installing these.
 
-## Creating the docker for submission
+## Creating the docker image for submission
 
 Once you have docker up and running, you can start building your submission. Head over to `examples/sumission` and have a look at the `Dockerfile`. This script installs all the requirements for the environment, we do not recommend editing anything outside of the commented block saying `YOUR COMMANDS GO HERE`.
 
@@ -49,30 +49,30 @@ docker build --tag=submission .
 ```
 
 You can give your docker the name you want, it does not have to be `submission`. Note that the Dockerfile creates two 
-folders `/aaio` and `/aaio/data` at the root of the container, and copies the `agent.py` file and `data` folder from your local machine into the container. Your submission must keep this architecture. References to these folders in 
+folders `/aaio` and `/aaio/data` at the root of the image, and copies the `agent.py` file and `data` folder from your local machine into the image. Your submission must keep this architecture. References to these folders in 
 your code **should use absolute paths** (see the example agent provided in `examples/submission`).
 
-## Test your docker
+## Test your docker image
 
-As uploading and evaluating containers takes a while, and you are only allowed a maximum of one submission per day, it is recommended to ensure your docker runs properly before submitting. If there is a failure during testing **you will only have access to abridged outputs** which may not be enough to debug on your own. If you cannot find a solution using the provided submission testing volume you will need to raise a question on the forum and we will investigate for you (which might take time).
+As uploading and evaluating images takes a while, and you are only allowed a maximum of one submission per day, it is recommended to ensure your docker runs properly before submitting. If there is a failure during testing **you will only have access to abridged outputs** which may not be enough to debug on your own. If you cannot find a solution using the provided submission testing volume you will need to raise a question on [the forum](https://evalai-forum.cloudcv.org/c/animal-ai-olympics-2019) and we will investigate for you (which might take time).
 
 Bottom line: be sure to test your submission prior to uploading!
 
 First, copy the AnimalAI linux environment (and AnimalAI_Data folder) to `examples/submission/test_submission/env`. 
 
-Next, you need to  run the container by mounting the `test_submission` folder and its content as a volume, and execute the `testDocker.py` script. To do so, from the `submission` folder, run:
+Next, you need to  run the image by mounting the `test_submission` folder and its content as a volume, and execute the `testDocker.py` script. To do so, from the `submission` folder, run:
 
 ```
 docker run -v "$PWD"/test_submission:/aaio/test submission python /aaio/test/testDocker.py 
 ```
 
-If your container and agent are set properly, you should not get any error, and the script should output the rewards for 5 simple tests and conclude with `SUCCESS`
+If your image and agent are set properly, you should not get any error, and the script should output the rewards for 5 simple tests and conclude with `SUCCESS`
 
-## Submit your docker
+## Submit your docker image
 
-You can now submit your container to EvalAI for evaluation as explained on the [EvalAI submission page](https://evalai.cloudcv.org/web/challenges/challenge-page/396/submission).
+You can now submit your image to EvalAI for evaluation as explained on the [EvalAI submission page](https://evalai.cloudcv.org/web/challenges/challenge-page/396/submission).
 
-**Note**: the phase name to use when pushing is: `animalai-main-396`. To push your container use `evalai push <image>:<tag> --phase animalai-main-396` (details are at the bottom of the EvalAI page linked above).
+**Note**: the phase name to use when pushing is: `animalai-main-396`. To push your image use `evalai push <image>:<tag> --phase animalai-main-396` (details are at the bottom of the EvalAI page linked above).
 
 ## Docker evaluation and results
 
