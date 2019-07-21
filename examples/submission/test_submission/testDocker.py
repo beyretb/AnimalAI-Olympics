@@ -44,7 +44,7 @@ def main():
         print('Episode {} starting'.format(k))
         try:
             obs, reward, done, info = env.step([0, 0])
-            for i in range(arena_config_in.arenas[0].t + 1):
+            for i in range(arena_config_in.arenas[0].t):
                 
                 action = submitted_agent.step(obs, reward, done, info)
                 obs, reward, done, info = env.step(action)
