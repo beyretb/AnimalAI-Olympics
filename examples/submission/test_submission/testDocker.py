@@ -28,7 +28,7 @@ def main():
 
     env = AnimalAIEnv(
         environment_filename='/aaio/test/env/AnimalAI',
-        # seed=0,
+        seed=0,
         retro=False,
         n_arenas=1,
         worker_id=1,
@@ -36,7 +36,6 @@ def main():
     )
 
     env.reset(arenas_configurations=arena_config_in)
-    obs, reward, done, info = env.step([0, 0])
 
     print('Running 5 episodes')
 
@@ -44,8 +43,9 @@ def main():
         cumulated_reward = 0
         print('Episode {} starting'.format(k))
         try:
-            for i in range(arena_config_in.arenas[0].t):
-
+            obs, reward, done, info = env.step([0, 0])
+            for i in range(arena_config_in.arenas[0].t + 1):
+                
                 action = submitted_agent.step(obs, reward, done, info)
                 obs, reward, done, info = env.step(action)
                 cumulated_reward += reward
