@@ -17,7 +17,7 @@ Once you are familiarized with the environment and its physics, you can start bu
 `python visualizeArena.py configs/exampleConfig.yaml`. This loads the `configs/exampleConfig.yaml` configuration for the 
 arena and lets you play as the agent. 
 
-Have a look at the [configuration file](configs/exampleConfig.yaml) which specifies the objects to place. You can select 
+Have a look at the [configuration file](../examples/configs/exampleConfig.yaml) which specifies the objects to place. You can select 
 objects, their size, location, rotation and color, randomizing any of these parameters as you like. For more details on the configuration options and syntax please read the relevant documentation:
  - The [configuration file documentation page](configFile.md) which explains how to write the configuration files.
  - The [definitions of objects page](definitionsOfObjects.md) which contains a detailed list of all the objects and their 
