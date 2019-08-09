@@ -11,8 +11,8 @@ class Agent(object):
         """
         # You can specify the resolution your agent takes as input, for example set resolution=128 to
         # have visual inputs of size 128*128*3 (if this attribute is omitted it defaults to 84)
+        self.resolution = 84
         
-        print('Resoluton {}'.format(self.resolution))
         # Load the configuration and model using ABSOLUTE PATHS
         self.configuration_file = '/aaio/data/trainer_config.yaml'
         self.model_path = '/aaio/data/1-Food/Learner'
