@@ -9,13 +9,17 @@ class Agent(object):
         """
          Load your agent here and initialize anything needed
         """
-
+        # You can specify the resolution your agent takes as input, for example set resolution=128 to
+        # have visual inputs of size 128*128*3 (if this attribute is omitted it defaults to 84)
+        
+        print('Resoluton {}'.format(self.resolution))
         # Load the configuration and model using ABSOLUTE PATHS
         self.configuration_file = '/aaio/data/trainer_config.yaml'
         self.model_path = '/aaio/data/1-Food/Learner'
 
         self.brain = BrainParameters(brain_name='Learner',
-                                     camera_resolutions=[{'height': 84, 'width': 84, 'blackAndWhite': False}],
+                                     camera_resolutions=[
+                                         {'height': self.resolution, 'width': self.resolution, 'blackAndWhite': False}],
                                      num_stacked_vector_observations=1,
                                      vector_action_descriptions=['', ''],
                                      vector_action_space_size=[3, 3],

@@ -26,6 +26,15 @@ def main():
         print('Your agent could not be reset:')
         raise e
 
+    try:
+        resolution = submitted_agent.resolution
+        assert isinstance(resolution, int)
+    except AttributeError:
+        resolution = 84
+    except AssertionError:
+        print('Resolution must be an integer')
+        return
+
     env = AnimalAIEnv(
         environment_filename='/aaio/test/env/AnimalAI',
         seed=0,
@@ -33,6 +42,7 @@ def main():
         n_arenas=1,
         worker_id=1,
         docker_training=True,
+        resolution=resolution
     )
 
     env.reset(arenas_configurations=arena_config_in)
