@@ -67,6 +67,11 @@ First of all your will need `python3.6` installed (we currently only support **p
     ```
     Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`
 
+    We also provide an `env.yml` by which you can install it via conda:
+    ```
+    conda env create -f env.yml
+    ```
+
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
 example scripts found in the `examples/` folder. At the moment **we only support Linux and Max** for the training examples. It contains an extension of 
 [ml-agents' training environment](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents) that relies on 
