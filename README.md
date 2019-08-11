@@ -78,9 +78,9 @@ We offer two packages for this competition:
     ```
     Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`
 
-    We also provide an `env.yml` by which you can install it via conda:
+    In case you wish to create a conda environment you can do so by running the below command from the `animalai` folder:
     ```
-    conda env create -f env.yml
+    conda env create -f conda_isntall.yaml
     ```
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
