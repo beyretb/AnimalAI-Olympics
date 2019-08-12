@@ -107,6 +107,10 @@ You can now unzip the content of the archive to the `env` folder and you're read
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
 Head over to [Quick Start Guide](documentation/quickstart.md) for a quick overview of how the environment works.
 
+The Unity source files for the environment can be find on the [AnimalAI-Environment repository](https://github.com/beyretb/AnimalAI-Environment). 
+Due to a lack of resources we cannot provide support on this part of the project at the moment. We recommend reading the documentation on the 
+[ML-Agents repo](https://github.com/Unity-Technologies/ml-agents) too.
+
 ## Manual Control
 
 If you launch the environment directly from the executable or through the VisualizeArena script it will launch in player 
@@ -151,9 +155,6 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
 In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact that we have synchronized these 
 features with the agent's frames in order to have frames in line with the configuration files for elements such as blackouts. **Solution**: press the key again, several times if needed.
 
-~~When a lot of objects are spawned randomly, extremely rarely, the agent will fall through the floor.~~ (fixed in 
-v0.6.1)
-
 ## TODO
 
 - [x] Add custom resolutions
@@ -165,6 +166,11 @@ v0.6.1)
 - [x] Add moving food
 
 ## Version History
+
+- v1.0.4
+    - Adds customisable resolution during evaluation
+    - Update `animalai-train` to tf 1.14 to fix `gin` broken dependency
+    - Release source code for the environment (no support to be provided on this for now)
 
 - v1.0.3
     - Adds inference mode to Gym environment
