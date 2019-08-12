@@ -28,11 +28,11 @@ def main():
 
     try:
         resolution = submitted_agent.resolution
-        assert isinstance(resolution, int)
+        assert 4 <= resolution <= 256
     except AttributeError:
         resolution = 84
     except AssertionError:
-        print('Resolution must be an integer')
+        print('Resolution must be between 4 and 256')
         return
 
     env = AnimalAIEnv(
@@ -55,7 +55,7 @@ def main():
         try:
             obs, reward, done, info = env.step([0, 0])
             for i in range(arena_config_in.arenas[0].t):
-                
+
                 action = submitted_agent.step(obs, reward, done, info)
                 obs, reward, done, info = env.step(action)
                 cumulated_reward += reward
