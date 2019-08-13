@@ -92,7 +92,7 @@ def try_create_meta_curriculum(curriculum_folder: Optional[str], env: UnityEnvir
     if curriculum_folder is None:
         return None
     else:
-        meta_curriculum = MetaCurriculum(curriculum_folder, env._resetParameters)
+        meta_curriculum = MetaCurriculum(curriculum_folder)
         if meta_curriculum:
             for brain_name in meta_curriculum.brains_to_curriculums.keys():
                 if brain_name not in env.external_brain_names:
@@ -167,8 +167,7 @@ def init_environment(env_path, docker_target_name, no_graphics, worker_id, fast_
         file_name=env_path,
         worker_id=worker_id,
         seed=seed,
-        docker_training=docker_training,
-        no_graphics=no_graphics
+        docker_training=docker_training
     )
 
 

@@ -47,7 +47,7 @@ class Agent(object):
     def step(self, obs, reward, done, info):
         """
         A single step the agent should take based on the current
-        :param brain_info:  a single BrainInfo containing the observations and reward for a single step for one agent
+        :param obs, reward, done, info:  the output from a Gym step
         :return:            a list of actions to execute (of size 2)
         """
 

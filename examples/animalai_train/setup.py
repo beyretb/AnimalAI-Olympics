@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='animalai_train',
-    version='1.0.4',
+    version='1.0.5',
     description='Animal AI competition training library',
     url='https://github.com/beyretb/AnimalAI-Olympics',
     author='Benjamin Beyret',
@@ -31,6 +31,7 @@ setup(
         'pyyaml>=5.1',
         'atari-py',
         'jsonpickle>=1.2',
+        'docopt',
         'pypiwin32==223;platform_system=="Windows"'],
     python_requires=">=3.5,<3.8",
 )
