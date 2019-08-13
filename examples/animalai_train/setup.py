@@ -20,7 +20,7 @@ setup(
     zip_safe=False,
 
     install_requires=[
-        'animalai>=1.0.3',
+        'animalai>=1.0.5',
         'dopamine-rl',
         'tensorflow==1.14',
         'matplotlib',
