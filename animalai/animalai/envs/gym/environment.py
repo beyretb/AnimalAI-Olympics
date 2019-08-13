@@ -56,7 +56,7 @@ class AnimalAIEnv(gym.Env):
                                      arenas_configurations=arenas_configurations,
                                      inference=inference,
                                      resolution=resolution)
-        # self.name = self._env.academy_name
+        self.name = 'aaio'
         self.vector_obs = None
         self.inference = inference
         self.resolution = resolution

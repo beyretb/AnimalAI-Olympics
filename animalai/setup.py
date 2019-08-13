@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='animalai',
-    version='1.0.3',
+    version='1.0.5',
     description='Animal AI competition interface',
     url='https://github.com/beyretb/AnimalAI-Olympics',
     author='Benjamin Beyret',

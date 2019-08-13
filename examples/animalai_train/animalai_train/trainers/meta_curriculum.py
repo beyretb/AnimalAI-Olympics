@@ -14,7 +14,7 @@ class MetaCurriculum(object):
     particular brain in the environment.
     """
 
-    def __init__(self, curriculum_folder, default_reset_parameters):
+    def __init__(self, curriculum_folder):
         """Initializes a MetaCurriculum object.
 
         Args:
@@ -22,8 +22,6 @@ class MetaCurriculum(object):
                 folder which holds the curriculums for this environment.
                 The folder should contain JSON files whose names are the
                 brains that the curriculums belong to.
-            default_reset_parameters (dict): The default reset parameters
-                of the environment.
         """
         used_reset_parameters = set()
         self._brains_to_curriculums = {}
@@ -33,8 +31,7 @@ class MetaCurriculum(object):
                 brain_name = curriculum_filename.split('.')[0]
                 curriculum_filepath = \
                     os.path.join(curriculum_folder, curriculum_filename)
-                curriculum = Curriculum(curriculum_filepath,
-                                        default_reset_parameters)
+                curriculum = Curriculum(curriculum_filepath)
 
                 # Check if any two curriculums use the same reset params.
                 if any([(parameter in curriculum.get_config().keys())

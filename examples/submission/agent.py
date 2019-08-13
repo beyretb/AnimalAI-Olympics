@@ -46,9 +46,11 @@ class Agent(object):
 
     def step(self, obs, reward, done, info):
         """
-        A single step the agent should take based on the current
-        :param brain_info:  a single BrainInfo containing the observations and reward for a single step for one agent
-        :return:            a list of actions to execute (of size 2)
+        :param obs: agent's observation of the current environment
+        :param reward: amount of reward returned after previous action
+        :param done: whether the episode has ended.
+        :param info: contains auxiliary diagnostic information, including BrainInfo.
+        :return: the action to take, a list or size 2
         """
 
         brain_info = info['brain_info']
