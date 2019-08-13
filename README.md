@@ -47,6 +47,8 @@ For the mid-way and final evaluation we will (resources permitting) run more ext
 
 You can read the launch posts - with information about prizes and the categories in the competition here:
 
+[Animal-AI: AWS Prizes and Evaluation: Aug 12th](https://www.mdcrosby.com/blog/animalaiprizes1.html) - with updated submission and test information.
+
 [Animal-AI Evaluation: July 8th](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
 
 [Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
