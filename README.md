@@ -167,11 +167,12 @@ features with the agent's frames in order to have frames in line with the config
 
 ## Version History
 
-- v1.0.4
+- v1.0.5
     - Adds customisable resolution during evaluation
     - Update `animalai-train` to tf 1.14 to fix `gin` broken dependency
     - Release source code for the environment (no support to be provided on this for now)
-
+    - Fixes some legacy dependencies and typos in both libraries
+    
 - v1.0.3
     - Adds inference mode to Gym environment
     - Adds seed to Gym Environment
