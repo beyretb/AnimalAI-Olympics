@@ -11,7 +11,7 @@ We leave participants the task of adapting the information found here to differe
 Start by creating an account on [AWS](https://aws.amazon.com/), and then open the [console](https://console.aws.amazon.com/console/home?). 
 Compute engines on AWS are called `EC2` and offer a vast range of configurations in terms of number and type of CPUs, GPUs, 
 memory and storage. You can find more details about the different types and prices [here](https://aws.amazon.com/ec2/pricing/on-demand/). 
-In our case, we will use a `p2.xlarge instance`, in the console select `EC2`:
+In our case, we will use a `p2.xlarge` instance, in the console select `EC2`:
 
 ![EC2](AWS/EC2.png)
 
@@ -34,7 +34,7 @@ and select either `Deep Learning Base AMI (Ubuntu)` if you want a basic Ubuntu i
 
 Click `Next` twice (first Next: Configure Instance Deatils, then Next: Add Storage) and add at least 15 Gb of storage to the current size (so at least 65 total with a default of 50). Click `review and launch`, and then `launch`. You will then be asked to create or select existing key pairs which will be used to ssh to your instance.
 
-Once your instances is started, it will appear on the EC2 console. To ssh into your instance, right click the line, select connect and follow the instructions. 
+Once your instance is started, it will appear on the EC2 console. To ssh into your instance, right click the line, select connect and follow the instructions. 
 We can now configure our instance for training. **Don't forget to shutdown your instance once you're done using it as you get charged as long as it runs**.
 
 ## Simulating a screen
@@ -58,7 +58,7 @@ lines to your docker in the `YOUR COMMANDS GO HERE` part, below the line install
 ```
 RUN git clone https://github.com/beyretb/AnimalAI-Olympics.git
 RUN pip uninstall --yes tensorflow
-RUN pip install tensorflow-gpu==1.12.2
+RUN pip install tensorflow-gpu==1.14
 RUN apt-get install unzip wget
 RUN wget https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v1.0.0.zip
 RUN mv env_linux_v1.0.0.zip AnimalAI-Olympics/env/
