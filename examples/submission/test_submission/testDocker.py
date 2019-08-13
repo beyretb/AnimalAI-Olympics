@@ -35,11 +35,11 @@ def main():
         docker_training=True,
     )
 
-    env.reset(arenas_configurations=arena_config_in)
-
     print('Running 5 episodes')
 
     for k in range(5):
+
+        env.reset(arenas_configurations=arena_config_in)
         cumulated_reward = 0
         print('Episode {} starting'.format(k))
         try:
