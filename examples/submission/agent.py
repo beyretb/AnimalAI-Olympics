@@ -9,14 +9,13 @@ class Agent(object):
         """
          Load your agent here and initialize anything needed
         """
-        
+
         # Load the configuration and model using ABSOLUTE PATHS
         self.configuration_file = '/aaio/data/trainer_config.yaml'
         self.model_path = '/aaio/data/1-Food/Learner'
 
         self.brain = BrainParameters(brain_name='Learner',
-                                     camera_resolutions=[
-                                         {'height': self.resolution, 'width': self.resolution, 'blackAndWhite': False}],
+                                     camera_resolutions=[{'height': 84, 'width': 84, 'blackAndWhite': False}],
                                      num_stacked_vector_observations=1,
                                      vector_action_descriptions=['', ''],
                                      vector_action_space_size=[3, 3],
