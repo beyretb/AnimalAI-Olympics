@@ -16,11 +16,7 @@ experiments we will run, therefore we provide the agent with the length of the e
 are the ones returned by the Gym environment `AnimalAIEnv` from `animalai.envs.environment`. If you wish to directly 
 work on the ML Agents `BrainInfo` you can access them via `info['brain_info']`
 
-**NEW (v1.0.4)**: you can now select the resolution of the observation your agent takes as input, this argument will be passed to the environment directly (must be between 4 and 256). To do so add the line below to the `__init__` constructor of your agent:
-```
-self.resolution = 84  # can be between 4 and 256
-```
-
+~~**NEW (v1.0.4)**: you can now select the resolution of the observation your agent takes as input, this argument will be passed to the environment directly (must be between 4 and 256)~~ (this option was removed, for evaluation inputs are 84x84, [see discussion](https://github.com/beyretb/AnimalAI-Olympics/issues/61#issuecomment-521933419))
 
 Make sure any data loaded in the docker is referred to using **absolute paths** in the container or the form `/aaio/data/...` (see below). An example that you can modify is provided [here](https://github.com/beyretb/AnimalAI-Olympics/blob/master/examples/submission/agent.py)
 

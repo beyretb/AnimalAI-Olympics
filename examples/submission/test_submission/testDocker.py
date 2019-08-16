@@ -28,11 +28,11 @@ def main():
 
     try:
         resolution = submitted_agent.resolution
-        assert 4 <= resolution <= 256
+        assert resolution == 84
     except AttributeError:
         resolution = 84
     except AssertionError:
-        print('Resolution must be between 4 and 256')
+        print('Resolution must be between 84 for testing')
         return
 
     env = AnimalAIEnv(
