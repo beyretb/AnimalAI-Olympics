@@ -60,7 +60,7 @@ As uploading and evaluating images takes a while, and you are only allowed a max
 
 Bottom line: be sure to test your submission prior to uploading!
 
-First, copy the AnimalAI linux environment (and AnimalAI_Data folder) to `examples/submission/test_submission/env`. 
+First, copy the AnimalAI **linux** environment (and AnimalAI_Data folder) to `examples/submission/test_submission/env`. 
 
 Next, you need to  run the image by mounting the `test_submission` folder and its content as a volume, and execute the `testDocker.py` script. To do so, from the `submission` folder, run:
 
