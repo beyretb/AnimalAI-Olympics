@@ -32,7 +32,7 @@ def main():
     except AttributeError:
         resolution = 84
     except AssertionError:
-        print('Resolution must be between 84 for testing')
+        print('Resolution must be 84 for testing')
         return
 
     env = AnimalAIEnv(
