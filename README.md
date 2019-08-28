@@ -1,5 +1,8 @@
 # Animal-AI Olympics
 
+## IMPORTANT NOTICE ABOUT PRIZES
+Please remember **to submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. You must do so before the end of September 1st to be considered for the AWS prizes!
+
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
