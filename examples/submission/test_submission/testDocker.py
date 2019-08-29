@@ -52,6 +52,12 @@ def main():
         env.reset(arenas_configurations=arena_config_in)
         cumulated_reward = 0
         print('Episode {} starting'.format(k))
+
+        try:
+            submitted_agent.reset(t=arena_config_in.arenas[0].t)
+        except Exception as e:
+            print('Agent reset failed during episode {}'.format(k))
+            raise e
         try:
             obs, reward, done, info = env.step([0, 0])
             for i in range(arena_config_in.arenas[0].t):
