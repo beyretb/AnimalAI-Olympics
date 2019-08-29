@@ -50,6 +50,7 @@ def main():
     for k in range(5):
 
         env.reset(arenas_configurations=arena_config_in)
+        submitted_agent.reset(t=arena_config_in.arenas[0].t)
         cumulated_reward = 0
         print('Episode {} starting'.format(k))
         try:
