@@ -110,7 +110,7 @@ arenas:
       sizes:
       - !Vector3 {x: -1, y: 5, z: -1}
     - !Item
-      name: Cylinder
+      name: CylinderTunnel
       colors:
       - !RGB {r: 204, g: 0, b: 204 }
       - !RGB {r: 204, g: 0, b: 204 }
