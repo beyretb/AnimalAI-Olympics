@@ -13,7 +13,7 @@ arenas:
     t: 1000
     items:
     - !Item
-      name: TransparentWall
+      name: WallTransparent
     - !Item
       name: GoodGoal
   2: !Arena
