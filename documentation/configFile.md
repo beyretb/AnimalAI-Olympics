@@ -100,7 +100,7 @@ arenas:
     t: 0
     items:
     - !Item
-      name: Cube
+      name: Wall
       positions:
       - !Vector3 {x: 10, y: 0, z: 10}
       - !Vector3 {x: -1, y: 0, z: 30}
