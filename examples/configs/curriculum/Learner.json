@@ -1,0 +1,17 @@
+{
+  "measure": "progress",
+  "thresholds": [
+    0.1,
+    0.3,
+    0.5
+  ],
+  "min_lesson_length": 100,
+  "signal_smoothing": true,
+  "configuration_files": [
+    "1.yaml",
+    "2.yaml",
+    "3.yaml",
+    "4.yaml",
+    "5.yaml"
+  ]
+}
