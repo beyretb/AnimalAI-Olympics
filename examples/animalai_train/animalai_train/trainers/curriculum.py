@@ -57,12 +57,13 @@ class Curriculum(object):
                 'but {3} were found'.format(key, location,
                                             self.max_lesson_num + 1,
                                             len(configuration_files)))
-        folder_yaml_files = os.listdir(location)
+        folder = os.path.dirname(location)
+        folder_yaml_files = os.listdir(folder)
         if not all([file in folder_yaml_files for file in configuration_files]):
             raise Curriculum(
                 'One or more configuration file(s) in curriculum {0} could not be found'.format(location)
             )
-        self.configurations = [ArenaConfig(os.path.join(location, file) for file in yaml_files)]
+        self.configurations = [ArenaConfig(os.path.join(folder, file)) for file in yaml_files]
 
     @property
     def lesson_num(self):

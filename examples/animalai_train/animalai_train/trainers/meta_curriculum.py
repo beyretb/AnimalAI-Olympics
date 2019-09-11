@@ -34,7 +34,7 @@ class MetaCurriculum(object):
             yaml_files = [file for file in os.listdir(curriculum_folder) if
                           ('.yaml' in file.lower() or '.yml' in file.lower())]
             for curriculum_filename in json_files:
-                brain_name= curriculum_filename.split('.')[0]
+                brain_name = curriculum_filename.split('.')[0]
                 curriculum_filepath = \
                     os.path.join(curriculum_folder, curriculum_filename)
                 curriculum = Curriculum(curriculum_filepath, yaml_files)
