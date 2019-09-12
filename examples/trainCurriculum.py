@@ -1,7 +1,6 @@
 from animalai_train.trainers.trainer_controller import TrainerController
 from animalai.envs import UnityEnvironment
-from animalai.envs.exception import UnityEnvironmentException
-from animalai.envs.arena_config import ArenaConfig
+from animalai_train.trainers.meta_curriculum import MetaCurriculum
 import random
 import yaml
 import sys
@@ -23,7 +22,7 @@ run_seed = 1
 trainer_config_path = 'configs/trainer_config.yaml'
 model_path = './models/{run_id}'.format(run_id=run_id)
 summaries_dir = './summaries'
-maybe_meta_curriculum = None
+maybe_meta_curriculum = MetaCurriculum(curriculum_file)
 
 
 def init_environment(env_path, docker_target_name, worker_id, seed):
@@ -48,9 +47,7 @@ env = UnityEnvironment(
     play=False
 )
 
-external_brains = {}
-for brain_name in env.external_brain_names:
-    external_brains[brain_name] = env.brains[brain_name]
+external_brains = {brain: env.brains[brain] for brain in env.external_brain_names}
 
 # Create controller and begin training.
 tc = TrainerController(model_path, summaries_dir, run_id + '-' + str(sub_id),

@@ -140,10 +140,10 @@ class MetaCurriculum(object):
         Returns:
             A dict from parameter to value.
         """
-        config = {}
+        # config = {}
 
         for _, curriculum in self.brains_to_curriculums.items():
             curr_config = curriculum.get_config()
-            config.update(curr_config)
+            # config.update(curr_config)
 
-        return config
+        return curr_config
