@@ -24,19 +24,6 @@ model_path = './models/{run_id}'.format(run_id=run_id)
 summaries_dir = './summaries'
 maybe_meta_curriculum = MetaCurriculum(curriculum_file)
 
-
-def init_environment(env_path, docker_target_name, worker_id, seed):
-    if env_path is not None:
-        # Strip out executable extensions if passed
-        env_path = (env_path.strip()
-                    .replace('.app', '')
-                    .replace('.exe', '')
-                    .replace('.x86_64', '')
-                    .replace('.x86', ''))
-    docker_training = docker_target_name is not None
-
-    return
-
 trainer_config = yaml.load(open(trainer_config_path))
 env = UnityEnvironment(
     n_arenas=1,  # Change this to train on more arenas
@@ -49,7 +36,6 @@ env = UnityEnvironment(
 
 external_brains = {brain: env.brains[brain] for brain in env.external_brain_names}
 
-# Create controller and begin training.
 tc = TrainerController(model_path, summaries_dir, run_id + '-' + str(sub_id),
                        save_freq, maybe_meta_curriculum,
                        load_model, train_model,
