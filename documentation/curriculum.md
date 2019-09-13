@@ -3,20 +3,20 @@
 The `animalai-train` package contains a curriculum learning feature where you can specify a set of configuration files 
 which constitute lessons as part of the curriculum. See the 
 [ml-agents documentation](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-Curriculum-Learning.md) 
-on curriculum learning for an overview of the technique. Our implementation is adapted from the ml-agents one to use 
+on curriculum learning for an overview of the technique. Our implementation is adapted from the ml-agents one, to use 
 configuration files rather than environment parameters (which don't exist in `animalai`).
 
 ## Meta Curriculum
 
-To define a curriculum you will need to define the following:
+To define a curriculum you will need to provide the following:
 
 - lessons (or levels), generally of increasing difficulty, that your agent will learn on, switching from easy to more difficult 
 - a metric you want to monitor to switch from one level to the next
 - the value for each of these thresholds
 
 In practice, you will place these parameters in a `json` file named after the brain in the environment (`Learner.json` in 
-our case), and place this file in a folder with all the configuration files you wish to use. If you have `n` lessons, you 
-need to define `n+1` thresholds. 
+our case), and place this file in a folder with all the configuration files you wish to use. This constitutes what we call 
+a meta-curriculum.
 
 ## Example
 
@@ -70,7 +70,7 @@ except for the `configuration_files`. From the ml-agents documentation:
   * If `true`, weighting will be 0.75 (new) 0.25 (old).
   
  The `configuration_files` parameter is simply a list of files names which contain the lessons in the order they should be loaded.
- 
+ Note that if you have `n` lessons, you need to define `n-1` thresholds. 
  ## Training
  
  Once the folder created, training is done in the same way as before but now we pass a `MetaCurriculum` object to the 
