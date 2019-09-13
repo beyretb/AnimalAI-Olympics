@@ -20,7 +20,17 @@ a meta-curriculum.
 
 ## Example
 
-An example is provided in [the example folder](../examples/configs/curriculum). The `json` file contains:
+An example is provided in [the example folder](../examples/configs/curriculum). The idea of this curriculum is to train 
+an agent to navigate a maze by creating maze like structures of perpendicular walls, starting with a single wall and food, 
+adding one more wall at each level. Below are samples from the 6 different levels.
+
+
+:--------------------:|:-------------------:|:-------------------:
+![](Curriculum/0.png) |![](Curriculum/1.png)|![](Curriculum/2.png)|
+:--------------------:|:-------------------:|:-------------------:
+![](Curriculum/3.png) |![](Curriculum/4.png)|![](Curriculum/5.png)|
+
+To produce such a curriculum, we define the meta-curriculum as the following `json` file:
 
 ```
 {
@@ -71,9 +81,15 @@ except for the `configuration_files`. From the ml-agents documentation:
   
  The `configuration_files` parameter is simply a list of files names which contain the lessons in the order they should be loaded.
  Note that if you have `n` lessons, you need to define `n-1` thresholds. 
+ 
+
  ## Training
  
  Once the folder created, training is done in the same way as before but now we pass a `MetaCurriculum` object to the 
  `meta_curriculum` argument of a `TrainerController`.
  
  We provide an example using the above curriculum in [examples/trainCurriculum.py](../examples/trainCurriculum.py).
+ Training this agent, you can see the lessons switch using tensorboard:
+ 
+ ![](Curriculum/learning.png)
+ ![](Curriculum/lessons.png)
