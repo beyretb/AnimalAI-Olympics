@@ -30,7 +30,7 @@ adding one more wall at each level. Below are samples from the 6 different level
 :--------------------:|:-------------------:|:-------------------:
 ![](Curriculum/3.png) |![](Curriculum/4.png)|![](Curriculum/5.png)|
 
-To produce such a curriculum, we define the meta-curriculum as the following `json` file:
+To produce such a curriculum, we define the meta-curriculum in the following `json` format:
 
 ```
 {
@@ -74,7 +74,7 @@ except for the `configuration_files`. From the ml-agents documentation:
   cumulative reward of the last `100` episodes exceeds the current threshold.
   The mean reward logged to the console is dictated by the `summary_freq`
   parameter in the
-  [trainer configuration file](Training-ML-Agents.md#training-config-file).
+  [trainer configuration file](../examples/configs/trainer_config.yaml).
 * `signal_smoothing` (true/false) - Whether to weight the current progress
   measure by previous values.
   * If `true`, weighting will be 0.75 (new) 0.25 (old).
