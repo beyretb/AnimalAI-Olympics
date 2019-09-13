@@ -25,7 +25,7 @@ an agent to navigate a maze by creating maze like structures of perpendicular wa
 adding one more wall at each level. Below are samples from the 6 different levels.
 
 
-:--------------------:|:-------------------:|:-------------------:
+
 ![](Curriculum/0.png) |![](Curriculum/1.png)|![](Curriculum/2.png)|
 :--------------------:|:-------------------:|:-------------------:
 ![](Curriculum/3.png) |![](Curriculum/4.png)|![](Curriculum/5.png)|
