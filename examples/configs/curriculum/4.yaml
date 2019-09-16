@@ -1,0 +1,31 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    t: 500
+    items:
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: -1, y: 0, z: 10}
+      - !Vector3 {x: -1, y: 0, z: 20}
+      - !Vector3 {x: -1, y: 0, z: 30}
+      - !Vector3 {x: 10, y: 0, z: -1}
+      - !Vector3 {x: 20, y: 0, z: -1}
+      colors:
+      rotations: [90,90,90,0,0]
+      sizes:
+      - !Vector3 {x: 1, y: 5, z: 9}
+      - !Vector3 {x: 1, y: 5, z: 9}
+      - !Vector3 {x: 1, y: 5, z: 9}
+      - !Vector3 {x: 1, y: 5, z: 9}
+      - !Vector3 {x: 1, y: 5, z: 9}
+    - !Item
+      name: GoodGoal
+      positions:
+        - !Vector3 {x: -1, y: 0, z: 35}
+      sizes:
+        - !Vector3 {x: 2, y: 2, z: 2}
+    - !Item
+      name: Agent
+      positions:
+        - !Vector3 {x: -1, y: 1, z: 5}

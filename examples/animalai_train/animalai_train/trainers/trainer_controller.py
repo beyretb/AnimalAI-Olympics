@@ -180,11 +180,11 @@ class TrainerController(object):
             environment.
         """
         if self.meta_curriculum is not None:
-            return env.reset(config=self.meta_curriculum.get_config())
+            return env.reset(arenas_configurations=self.meta_curriculum.get_config())
         else:
             if self.update_config:
-                return env.reset(arenas_configurations=self.config)
                 self.update_config = False
+                return env.reset(arenas_configurations=self.config)
             else:
                 return env.reset()
 

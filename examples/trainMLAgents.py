@@ -22,7 +22,6 @@ keep_checkpoints = 5000
 lesson = 0
 run_seed = 1
 docker_target_name = None
-no_graphics = False
 trainer_config_path = 'configs/trainer_config.yaml'
 model_path = './models/{run_id}'.format(run_id=run_id)
 summaries_dir = './summaries'
@@ -44,7 +43,7 @@ def load_config(trainer_config_path):
                                         .format(trainer_config_path))
 
 
-def init_environment(env_path, docker_target_name, no_graphics, worker_id, seed):
+def init_environment(env_path, docker_target_name, worker_id, seed):
     if env_path is not None:
         # Strip out executable extensions if passed
         env_path = (env_path.strip()
@@ -71,7 +70,7 @@ else:
     arena_config_in = ArenaConfig('configs/exampleTraining.yaml')
 
 trainer_config = load_config(trainer_config_path)
-env = init_environment(env_path, docker_target_name, no_graphics, worker_id, run_seed)
+env = init_environment(env_path, docker_target_name, worker_id, run_seed)
 
 external_brains = {}
 for brain_name in env.external_brain_names:
