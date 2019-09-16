@@ -1,7 +1,7 @@
 # Animal-AI Olympics
 
 ## IMPORTANT NOTICE ABOUT PRIZES
-Please remember **to submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. You must do so before the end of September 1st to be considered for the AWS prizes!
+Please remember **to submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. You must do so before the end of November 1st!
 
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
@@ -19,7 +19,7 @@ The Animal-AI Olympics is an AI competition with tests inspired by animal cognit
   * 3rd place overall: **$1,500**.
 * WBA-Prize: **$5,000 total value** - $4,000 with up to $1,000 travel to speak at NeurIPS 2019
 * Category Prizes: **$200** For best performance in each category (cannot combine with other prizes - max 1 per team).
-* **Mid-way AWS Research Credits**: The top 20 entries as of **September 1st** will be awarded **$500** of AWS credits.
+* ~~**Mid-way AWS Research Credits**: The top 20 entries as of **September 1st** will be awarded **$500** of AWS credits.~~ (already awarded)
 
 See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
 
