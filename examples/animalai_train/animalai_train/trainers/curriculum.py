@@ -63,7 +63,7 @@ class Curriculum(object):
             raise Curriculum(
                 'One or more configuration file(s) in curriculum {0} could not be found'.format(location)
             )
-        self.configurations = [ArenaConfig(os.path.join(folder, file)) for file in yaml_files]
+        self.configurations = [ArenaConfig(os.path.join(folder, file)) for file in configuration_files]
 
     @property
     def lesson_num(self):
@@ -92,9 +92,10 @@ class Curriculum(object):
                 # parameters = self.data['parameters']
                 # for key in parameters:
                 #     config[key] = parameters[key][self.lesson_num]
-                logger.info('{0} lesson changed. Now in lesson {1}'
+                logger.info('{0} lesson changed. Now in lesson {1}: {2}'
                             .format(self._brain_name,
-                                    self.lesson_num))
+                                    self.lesson_num,
+                                    self.data['configuration_files'][self.lesson_num]))
                 return True
         return False
 
