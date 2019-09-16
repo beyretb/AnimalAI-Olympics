@@ -172,6 +172,9 @@ features with the agent's frames in order to have frames in line with the config
 
 ## Version History
 
+- v1.1.1
+    - Hotfix curriculum loading in the wrong order
+    
 - v1.1.0
     - Add curriculum learning to `animalai-train` to use yaml configurations
 
