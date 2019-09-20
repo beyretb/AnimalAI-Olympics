@@ -131,11 +131,35 @@ mode. Here you can control the agent with the following:
 | R   | reset environment   |
 
 ## Citing
+If you use the Animal-AI environment in your work you can cite the environment paper:
 
-**Official Animal-AI Papers Coming Soon**. In the meantime please cite the [Nature: Machine Intelligence piece](https://rdcu.be/bBCQt) for any work involving the competition environment. 
+Beyret, B., Hernández-Orallo, J., Cheke, L., Halina, M., Shanahan, M., Crosby, M. [The Animal-AI Environment: Training and Testing Animal-Like Artificial Cognition](https://arxiv.org/abs/1909.07483), arXiv preprint
+
+```
+@inproceedings{Beyret2019TheAE,
+  title={The Animal-AI Environment: Training and Testing Animal-Like Artificial Cognition},
+  author={Benjamin Beyret and Jos'e Hern'andez-Orallo and Lucy Cheke and Marta Halina and Murray Shanahan and Matthew Crosby},
+  year={2019}
+}
+```
+
+Should you want to reference the competition, you can use our Nature paper: 
 
 Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature 
 Machine Intelligence 1 (5) p257 2019.
+
+```
+@article{crosby2019animal,
+  title={The Animal-AI Olympics},
+  author={Crosby, Matthew and Beyret, Benjamin and Halina, Marta},
+  journal={Nature Machine Intelligence},
+  volume={1},
+  number={5},
+  pages={257},
+  year={2019},
+  publisher={Nature Publishing Group}
+}
+```
 
 ## Unity ML-Agents
 
