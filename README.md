@@ -1,8 +1,5 @@
 # Animal-AI Olympics
 
-## IMPORTANT NOTICE ABOUT PRIZES
-Please remember **to submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. You must do so before the end of November 1st!
-
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
@@ -143,23 +140,7 @@ Beyret, B., Hernández-Orallo, J., Cheke, L., Halina, M., Shanahan, M., Crosby, 
 }
 ```
 
-Should you want to reference the competition, you can use our Nature paper: 
-
-Crosby, M., Beyret, B., Halina M. [The Animal-AI Olympics](https://www.nature.com/articles/s42256-019-0050-3) Nature 
-Machine Intelligence 1 (5) p257 2019.
-
-```
-@article{crosby2019animal,
-  title={The Animal-AI Olympics},
-  author={Crosby, Matthew and Beyret, Benjamin and Halina, Marta},
-  journal={Nature Machine Intelligence},
-  volume={1},
-  number={5},
-  pages={257},
-  year={2019},
-  publisher={Nature Publishing Group}
-}
-```
+Paper with all the details of the test battery will be released after the competition has finished.
 
 ## Unity ML-Agents
 
