@@ -1,5 +1,9 @@
 # Animal-AI Olympics
 
+# Note for WBA Prize Submissions
+
+  -> WBA Submission deatils are available [here](https://www.easychair.org/cfp/AAI2019WBA). Deadline November 1st.
+
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
