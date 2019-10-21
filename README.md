@@ -1,5 +1,8 @@
 # Animal-AI Olympics
 
+## Final Submission Guidelines 
+[Find the details here](https://github.com/beyretb/AnimalAI-Olympics/blob/master/documentation/final_submission.md)
+
 ## Note for WBA Prize Submissions
 
   -> WBA Submission deatils are available [here](https://www.easychair.org/cfp/AAI2019WBA). Deadline November 1st.
