@@ -1,11 +1,15 @@
 # Animal-AI Olympics
 
-## Final Submission Guidelines 
-[Find the details here](https://github.com/beyretb/AnimalAI-Olympics/blob/master/documentation/final_submission.md)
+## The competition is now over
+Final ranking will be computed on a larger test set, the final results will be communicated soon!
+We will also reopen submissions in the coming days in order to allow you to keep working on the Animal-AI Olympics until we disclose the test sets, these new submissions will not count as part of the competition.
 
-## Note for WBA Prize Submissions
+## ~~Final Submission Guidelines~~
+~~[Find the details here](https://github.com/beyretb/AnimalAI-Olympics/blob/master/documentation/final_submission.md)~~
 
-  -> WBA Submission deatils are available [here](https://www.easychair.org/cfp/AAI2019WBA). Deadline November 1st.
+## ~~Note for WBA Prize Submissions~~
+
+  ~~-> WBA Submission deatils are available [here](https://www.easychair.org/cfp/AAI2019WBA). Deadline November 1st.~~
 
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
