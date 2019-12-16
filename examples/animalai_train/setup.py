@@ -22,7 +22,7 @@ setup(
     install_requires=[
         'animalai>=1.0.5',
         'dopamine-rl',
-        'tensorflow==1.14',
+        'tensorflow==1.15.0',
         'matplotlib',
         'Pillow>=4.2.1,<=5.4.1',
         'numpy>=1.13.3,<=1.14.5',
