@@ -1,0 +1,38 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Cardbox1
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 2.5}
+      - !Vector3 {x: 20, y: 0, z: 7.5}
+      - !Vector3 {x: 20, y: 0, z: 12.5}
+      - !Vector3 {x: 20, y: 0, z: 17.5}
+      - !Vector3 {x: 20, y: 0, z: 22.5}
+      - !Vector3 {x: 20, y: 0, z: 27.5}
+      - !Vector3 {x: 20, y: 0, z: 32.5}
+      - !Vector3 {x: 20, y: 0, z: 37.5}
+      rotations: [0,0,0,0,0,0,0,0]
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 5}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 35, y: 0, z: 35}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions: 
+      - !Vector3 {x: 5, y: 0, z: 20}
+      rotations: [90]

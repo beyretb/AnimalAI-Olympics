@@ -1,0 +1,63 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 5
+    t: 500
+    items:
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 1, y: 0, z: 1}
+      rotations: [45]
+    - !Item
+      name: DeathZone
+      positions:
+      # - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 15, y: 0, z: 5}
+      - !Vector3 {x: 25, y: 0, z: 5}
+      - !Vector3 {x: 35, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 15}
+      - !Vector3 {x: 15, y: 0, z: 15}
+      - !Vector3 {x: 25, y: 0, z: 15}
+      - !Vector3 {x: 35, y: 0, z: 15}
+      - !Vector3 {x: 5, y: 0, z: 25}
+      - !Vector3 {x: 15, y: 0, z: 25}
+      - !Vector3 {x: 25, y: 0, z: 25}
+      - !Vector3 {x: 35, y: 0, z: 25}
+      - !Vector3 {x: 5, y: 0, z: 35}
+      - !Vector3 {x: 15, y: 0, z: 35}
+      - !Vector3 {x: 25, y: 0, z: 35}
+      - !Vector3 {x: 35, y: 0, z: 35}
+      sizes:
+      # - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+      - !Vector3 {x: 5, y: 0, z: 5}
+    - !Item
+      name: GoodGoalMulti
+      positions:
+      - !Vector3 {x: -1, y: 0, z: 10}
+      - !Vector3 {x: -1, y: 0, z: 10}
+      - !Vector3 {x: -1, y: 0, z: 20}
+      - !Vector3 {x: -1, y: 0, z: 20}
+      - !Vector3 {x: -1, y: 0, z: 30}
+      - !Vector3 {x: -1, y: 0, z: 30}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}

@@ -1,0 +1,25 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: -0.5
+    t: 250
+    items:
+    - !Item
+      name: Cardbox1
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}
+      - !Vector3 {x: 20, y: 1, z: 20}
+      - !Vector3 {x: 20, y: 2, z: 20}
+      - !Vector3 {x: 20, y: 3, z: 20}
+      rotations: [0,0,0,0]
+      sizes:
+      - !Vector3 {x: .2, y: 1, z: .2}
+      - !Vector3 {x: .2, y: 1, z: .2}
+      - !Vector3 {x: .2, y: 1, z: .2}
+      - !Vector3 {x: .2, y: 1, z: .2}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 20, y: 4, z: 20}      
+      sizes:
+      - !Vector3 {x: 0.5, y: 0.5, z: 0.5}

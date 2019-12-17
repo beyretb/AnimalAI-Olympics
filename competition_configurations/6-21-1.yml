@@ -1,0 +1,103 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 5
+    t: 1000
+    items:
+    - !Item
+      name: Wall #Non-diag arms
+      positions:
+      - !Vector3 {x: 18, y: 0, z: 7.5}
+      - !Vector3 {x: 22, y: 0, z: 7.5}
+      - !Vector3 {x: 18, y: 0, z: 32.5}
+      - !Vector3 {x: 22, y: 0, z: 32.5}
+      - !Vector3 {x: 7.5, y: 0, z: 18}
+      - !Vector3 {x: 7.5, y: 0, z: 22}
+      - !Vector3 {x: 32.5, y: 0, z: 18}
+      - !Vector3 {x: 32.5, y: 0, z: 22}
+      rotations: [0,0,0,0,0,0,0,0]
+      sizes:
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 15, y: 3, z: 0.1}
+      - !Vector3 {x: 15, y: 3, z: 0.1}
+      - !Vector3 {x: 15, y: 3, z: 0.1}
+      - !Vector3 {x: 15, y: 3, z: 0.1}
+    - !Item
+      name: Wall #Non-diag backplates
+      positions:
+      - !Vector3 {x: 0.5, y: 0, z: 20}
+      - !Vector3 {x: 20, y: 0, z: 0.5}
+      - !Vector3 {x: 20, y: 0, z: 39.5}
+      - !Vector3 {x: 39.5, y: 0, z: 20}
+      rotations: [90,0,0,90]
+      sizes:
+      - !Vector3 {x: 3.9, y: 3, z: 1}
+      - !Vector3 {x: 3.9, y: 3, z: 1}
+      - !Vector3 {x: 3.9, y: 3, z: 1}
+      - !Vector3 {x: 3.9, y: 3, z: 1}
+    - !Item
+      name: Wall #Diag arms
+      positions:
+      - !Vector3 {x: 12.61, y: 0, z: 30.4}
+      - !Vector3 {x: 9.7, y: 0, z: 27.39}
+      - !Vector3 {x: 30.3, y: 0, z: 12.61}
+      - !Vector3 {x: 27.39, y: 0, z: 9.6}
+      - !Vector3 {x: 12.61, y: 0, z: 9.6}
+      - !Vector3 {x: 9.7, y: 0, z: 12.61}
+      - !Vector3 {x: 27.39, y: 0, z: 30.4}
+      - !Vector3 {x: 30.3, y: 0, z: 27.39}
+      rotations: [135,135,135,135,45,45,45,45]
+      sizes:
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+      - !Vector3 {x: 0.1, y: 3, z: 15}
+    - !Item
+      name: Wall #Diag Blocks
+      positions:
+      - !Vector3 {x: 16.045, y: 0, z: 24.005}
+      - !Vector3 {x: 23.955, y: 0, z: 15.995}
+      rotations: [135,315]
+      sizes:
+      - !Vector3 {x: 4, y: 3, z: 1}
+      - !Vector3 {x: 4, y: 3, z: 1}
+    - !Item
+      name: Wall #Diag backplates
+      positions:
+      - !Vector3 {x: 6, y: 0, z: 6}
+      - !Vector3 {x: 34, y: 0, z: 6}
+      - !Vector3 {x: 6, y: 0, z: 34}
+      - !Vector3 {x: 34, y: 0, z: 34}
+      rotations: [45,135,134,45]
+      sizes:
+      - !Vector3 {x: 4, y: 3, z: 1}
+      - !Vector3 {x: 4, y: 3, z: 1}
+      - !Vector3 {x: 4, y: 3, z: 1}
+      - !Vector3 {x: 4, y: 3, z: 1}
+    - !Item
+      name: GoodGoalMulti
+      positions:
+      - !Vector3 {x: 2, y: 0, z: 20}
+      - !Vector3 {x: 38, y: 0, z: 20}
+      - !Vector3 {x: 20, y: 0, z: 2}
+      - !Vector3 {x: 20, y: 0, z: 38}
+      - !Vector3 {x: 7.5, y: 0, z: 7.5}
+      - !Vector3 {x: 32.5, y: 0, z: 32.5}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}

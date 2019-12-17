@@ -1,0 +1,26 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: WallTransparent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 37}
+      - !Vector3 {x: 20, y: 0, z: 38.75}
+      rotations: [0,0]
+      sizes:
+      - !Vector3 {x: 35, y: 3, z: 1}
+      - !Vector3 {x: 1, y: .5, z: 2.5}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 35, y: 0, z: 38}      
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 2}
+      rotations: [0]

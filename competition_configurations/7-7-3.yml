@@ -1,0 +1,18 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    blackouts: [20, 25, 35, 40, 50, 55, 60]
+    items:
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 5}
+      rotations: [355]
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 35}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}  

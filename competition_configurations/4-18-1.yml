@@ -1,0 +1,26 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 1
+    t: 250
+    items:
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 1, y: 1, z: 39}
+      rotations: [133]
+    - !Item
+      name: HotZone
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}
+      sizes:
+      - !Vector3 {x: 20, y: 0, z: 40}
+      rotations: [0]
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 35, y: 0, z: 22}      
+      - !Vector3 {x: 9, y: 0, z: 23}      
+      sizes:
+      - !Vector3 {x: 5, y: 5, z: 5}
+      - !Vector3 {x: 1, y: 1, z: 1}      

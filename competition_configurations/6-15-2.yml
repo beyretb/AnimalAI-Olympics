@@ -1,0 +1,79 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 9
+    t: 1000
+    items:
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}
+      rotations: [0]
+      sizes:
+      - !Vector3 {x: 40, y: 0.1, z: 40}
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 0.1, y: .1, z: 20}
+      - !Vector3 {x: 39.9, y: .1, z: 20}
+      - !Vector3 {x: 20, y: .1, z: 0.1}
+      - !Vector3 {x: 20, y: .1, z: 39.9}
+      rotations: [0,0,0,0]
+      sizes:
+      - !Vector3 {x: 0.1, y: 10, z: 39.9}
+      - !Vector3 {x: 0.1, y: 10, z: 39.9}
+      - !Vector3 {x: 39.7, y: 10, z: 0.1}
+      - !Vector3 {x: 39.7, y: 10, z: 0.1}
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0.1, z: 1}
+      rotations: [0]
+    - !Item
+      name: GoodGoalMulti
+      positions:
+      - !Vector3 {x: -1, y: 0.1, z: 11}
+      - !Vector3 {x: -1, y: 0.1, z: 14}
+      - !Vector3 {x: -1, y: 0.1, z: 17}
+      - !Vector3 {x: -1, y: 0.1, z: 20}
+      - !Vector3 {x: -1, y: 0.1, z: 23}
+      - !Vector3 {x: -1, y: 0.1, z: 26}
+      - !Vector3 {x: -1, y: 0.1, z: 29}
+      - !Vector3 {x: -1, y: 0.1, z: 32}
+      - !Vector3 {x: -1, y: 0.1, z: 35}
+      - !Vector3 {x: -1, y: 0.1, z: 38}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: BadGoal
+      positions:
+      - !Vector3 {x: -1, y: 0.1, z: 12}
+      - !Vector3 {x: -1, y: 0.1, z: 15}
+      - !Vector3 {x: -1, y: 0.1, z: 18}
+      - !Vector3 {x: -1, y: 0.1, z: 21}
+      - !Vector3 {x: -1, y: 0.1, z: 24}
+      - !Vector3 {x: -1, y: 0.1, z: 27}
+      - !Vector3 {x: -1, y: 0.1, z: 30}
+      - !Vector3 {x: -1, y: 0.1, z: 33}
+      - !Vector3 {x: -1, y: 0.1, z: 36}
+      - !Vector3 {x: -1, y: 0.1, z: 39}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}

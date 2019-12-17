@@ -1,0 +1,26 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: CylinderTunnel
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}
+      rotations: [135]
+      sizes:
+      - !Vector3 {x: 20, y: 3, z: 3}
+      colors:
+      - !Vector3 {x: 153, y: 153, z: 153}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}      
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions: 
+      - !Vector3 {x: 1, y: 0, z: 1}
+      rotations: [45]

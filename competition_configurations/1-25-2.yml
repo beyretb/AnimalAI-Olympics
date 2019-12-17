@@ -1,0 +1,43 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 1}
+      rotations: [0]
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 35}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: BadGoal
+      positions:
+      - !Vector3 {x: 3.33, y: 0, z: 15}
+      - !Vector3 {x: 6.66, y: 0, z: 15}
+      - !Vector3 {x: 10, y: 0, z: 15}
+      - !Vector3 {x: 13.33, y: 0, z: 15}
+      - !Vector3 {x: 16.66, y: 0, z: 15}
+      - !Vector3 {x: 20, y: 0, z: 15}
+      - !Vector3 {x: 23.33, y: 0, z: 15}
+      - !Vector3 {x: 26.66, y: 0, z: 15}
+      - !Vector3 {x: 30, y: 0, z: 15}
+      - !Vector3 {x: 33.33, y: 0, z: 15}
+      - !Vector3 {x: 36.66, y: 0, z: 15}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}

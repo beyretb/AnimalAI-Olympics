@@ -1,0 +1,56 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 4
+    t: 1000
+    items:
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 1, z: 1}
+      rotations: [0]
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 1}
+      rotations: [0]
+      sizes:
+      - !Vector3 {x: 2, y: 1, z: 2}
+      colors:
+      - !RGB {r: 0, g: 0, b: 255}
+    - !Item
+      name: GoodGoalBounce
+      positions:
+      - !Vector3 {x: -1, y: 0, z: 19}
+      - !Vector3 {x: -1, y: 0, z: 25}
+      - !Vector3 {x: -1, y: 0, z: 31}
+      - !Vector3 {x: -1, y: 0, z: 37}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: GoodGoalMultiBounce
+      positions:
+      - !Vector3 {x: -1, y: 0, z: 20}
+      - !Vector3 {x: -1, y: 0, z: 26}
+      - !Vector3 {x: -1, y: 0, z: 32}
+      - !Vector3 {x: -1, y: 0, z: 38}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: BadGoalBounce
+      positions:
+      - !Vector3 {x: -1, y: 0, z: 21}
+      - !Vector3 {x: -1, y: 0, z: 27}
+      - !Vector3 {x: -1, y: 0, z: 33}
+      - !Vector3 {x: -1, y: 0, z: 39}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}

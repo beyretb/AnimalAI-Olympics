@@ -1,0 +1,36 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 9.5}
+      - !Vector3 {x: 20, y: 0, z: 30.5}
+      rotations: [0,0]
+      sizes:
+      - !Vector3 {x: 10, y: 3, z: 19}
+      - !Vector3 {x: 10, y: 3, z: 19}
+      colors:
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+    - !Item
+      name: Cardbox2
+      positions:
+      - !Vector3 {x: 14, y: 0, z: 20}
+      rotations: [0]
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 5}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 35, y: 0, z: 20}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions: 
+      - !Vector3 {x: 1, y: 0, z: 15}
+      rotations: [90]

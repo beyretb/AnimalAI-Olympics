@@ -1,0 +1,78 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 5
+    t: 500
+    items:
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 9, y: 0, z: 20}
+      rotations: [0]
+      sizes:
+      - !Vector3 {x: 18, y: .5, z: 40}
+      colors:
+      - !RGB {r: 0, g: 0, b: 255}
+    - !Item
+      name: Ramp
+      positions:
+      - !Vector3 {x: 9, y: .5, z: 20}
+      rotations: [90]
+      sizes:
+      - !Vector3 {x: 40, y: .3, z: 18}
+      colors:
+      - !RGB {r: 255, g: 0, b: 255}
+    - !Item
+      name: Wall
+      positions:
+      - !Vector3 {x: 31, y: 0, z: 20}
+      - !Vector3 {x: 26, y: .5, z: 29.5}
+      - !Vector3 {x: 26, y: .5, z: 30.5}
+      - !Vector3 {x: 35, y: .5, z: 29.5}
+      - !Vector3 {x: 35, y: .5, z: 30.5}
+      - !Vector3 {x: 30, y: 3, z: 29.5}
+      - !Vector3 {x: 30, y: 3, z: 30.5}
+      rotations: [0,0,0,0,0,0,0] 
+      sizes:
+      - !Vector3 {x: 18, y: .5, z: 40}
+      - !Vector3 {x: .3, y: 2, z: .3}
+      - !Vector3 {x: .3, y: 2, z: .3}
+      - !Vector3 {x: .3, y: 2.5, z: .3}
+      - !Vector3 {x: .3, y: 2.5, z: .3}
+      - !Vector3 {x: 10, y: .1, z: .3}
+      - !Vector3 {x: 10, y: .1, z: .3}
+      colors:
+      - !RGB {r: 0, g: 0, b: 255}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 20}
+      sizes:
+      - !Vector3 {x: 2, y: 2, z: 2}
+    - !Item
+      name: GoodGoalMulti
+      positions:
+      - !Vector3 {x: 10, y: 2, z: 30}
+      - !Vector3 {x: 10, y: 2, z: 35}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: GoodGoalMulti
+      positions:
+      - !Vector3 {x: 30, y: 3.1, z: 30}
+      - !Vector3 {x: 34, y: 3.1, z: 30}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 1}
+      rotations: [0]

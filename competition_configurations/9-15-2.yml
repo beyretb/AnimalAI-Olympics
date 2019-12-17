@@ -1,0 +1,77 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 2.9
+    t: 250
+    items:
+    - !Item #FLOOR
+      name: Wall
+      positions:
+      - !Vector3 {x: 20, y: 0, z: 15}
+      - !Vector3 {x: 20, y: 0, z: 32.5}
+      - !Vector3 {x: 20, y: 0, z: 37.5}
+      rotations: [0,0,0]
+      colors: 
+      - !RGB {r: 0, g: 0, b: 255}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      sizes:
+      - !Vector3 {x: 30, y: 2, z: 30}
+      - !Vector3 {x: 20, y: 2, z: 5}
+      - !Vector3 {x: 40, y: 2, z: 5}
+    - !Item #CORNERS
+      name: Wall
+      positions:
+      - !Vector3 {x: 6.5, y: 2, z: 37.5}
+      - !Vector3 {x: 33.5, y: 2, z: 37.5}
+      rotations: [135,45]
+      colors: 
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      sizes:
+      - !Vector3 {x: 5, y: 3, z: .1}
+      - !Vector3 {x: 5, y: 3, z: .1}
+    - !Item #HidingWalls
+      name: Wall
+      positions:
+      - !Vector3 {x: 5, y: 2, z: 29.5}
+      - !Vector3 {x: 35, y: 2, z: 29.5}
+      - !Vector3 {x: 10.5, y: 2, z: 32.5}
+      - !Vector3 {x: 29.5, y: 2, z: 32.5}
+      rotations: [0,0,0,0]
+      colors: 
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      - !RGB {r: 153, g: 153, b: 153}
+      sizes:
+      - !Vector3 {x: 10, y: 3, z: 1}
+      - !Vector3 {x: 10, y: 3, z: 1}
+      - !Vector3 {x: 1, y: 3, z: 5}
+      - !Vector3 {x: 1, y: 3, z: 5}
+    - !Item #Middle Transparent Block
+      name: WallTransparent
+      positions:
+      - !Vector3 {x: 20, y: 2, z: 32.5}
+      rotations: [0]
+      sizes:
+      - !Vector3 {x: 18, y: 2, z: 5}  
+    - !Item
+      name: GoodGoalMultiBounce
+      positions:
+      - !Vector3 {x: 10, y: 2, z: 38.1}
+      - !Vector3 {x: 14, y: 2, z: 38.1}
+      # - !Vector3 {x: 18, y: 2, z: 38.1}
+      - !Vector3 {x: 22, y: 2, z: 36}
+      # - !Vector3 {x: 26, y: 2, z: 36}
+      # - !Vector3 {x: 30, y: 2, z: 36}
+      rotations: [90, 90, 270]     
+      sizes:
+      - !Vector3 {x: 2, y: 2, z: 2}
+      - !Vector3 {x: 2, y: 2, z: 2}
+      - !Vector3 {x: 2, y: 2, z: 2}
+    - !Item
+      name: Agent
+      positions:
+      - !Vector3 {x: 20, y: 2, z: 10}
+      rotations: [0]
