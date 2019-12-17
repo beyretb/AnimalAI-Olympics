@@ -1,7 +1,6 @@
 !ArenaConfig
 arenas:
   0: !Arena
-    pass_mark: 7
     t: 1000
     blackouts: [-20]
     items:
