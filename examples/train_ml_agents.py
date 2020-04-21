@@ -5,7 +5,7 @@ from animalai_train.run_options_aai import RunOptionsAAI
 from animalai_train.run_training_aai import run_training_aai
 
 trainer_config_path = "configurations/training_configurations/train_ml_agents_config.yaml"
-environment_path = "/home/ben/AnimalAI/builds-ml-agents-aaio/aaio"
+environment_path = "env/aaio"
 arena_config_path = "configurations/arena_configurations/train_ml_agents_arenas.yml"
 run_id = "train_ml_agents"
 base_port = 5005

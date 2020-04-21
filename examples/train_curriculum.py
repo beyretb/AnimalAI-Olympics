@@ -4,11 +4,11 @@ from animalai_train.run_options_aai import RunOptionsAAI
 from animalai_train.run_training_aai import run_training_aai
 
 trainer_config_path = "configurations/training_configurations/train_ml_agents_config.yaml"
-environment_path = "/home/ben/AnimalAI/builds-ml-agents-aaio/aaio"
+environment_path = "env/aaio"
 curriculum_path = "configurations/curriculum"
 run_id = "train_curriculum"
-base_port = 5025
-number_of_environments = 16
+base_port = 5005
+number_of_environments = 8
 number_of_arenas_per_environment = 1
 
 args = RunOptionsAAI(
