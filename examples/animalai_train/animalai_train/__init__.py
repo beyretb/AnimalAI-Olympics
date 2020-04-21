@@ -1,1 +1,0 @@
-name = "animalai_train"

@@ -1,44 +1,14 @@
 # Animal-AI Olympics
 
-## The competition is now over
-
-Congratulations to our winners!
-
-1st: Trrrrr
-2nd: ironbar
-3rd: sirius
-
-Results [here](http://animalaiolympics.com)
-
-Full paper, release of testing configurations, results analsysis and write-up and WBA prize announcment to come.
-
-We will also reopen submissions in the coming days in order to allow you to keep working on the Animal-AI Olympics until we disclose the test sets, these new submissions will not count as part of the competition.
-
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
-**July 1st - November 1st**
-
-The Animal-AI Olympics is an AI competition with tests inspired by animal cognition. Participants are given a small environment with just seven different classes of objects that can be placed inside. In each test, the agent needs to retrieve the food in the environment, but to do so there are obstacles to overcome, ramps to climb, boxes to push, and areas that must be avoided. The real challenge is that we don't provide the tests in advance. It's up to you to explore the possibilities with the environment and build interesting configurations that can help create an agent that understands how the environment's physics work and the affordances that it has. The final submission should be an agent capable of robust food retrieval behaviour similar to that of many kinds of animals. We know the animals can pass these tests, it's time to see if AI can too.
-
-## Prizes $32,000 (equivalent value)
-
-* Overall Prizes
-  * 1st place overall: **$7,500 total value** - $6,500 with up to $1,000 travel to speak at NeurIPS 2019.
-  * 2nd place overall: **$6,000 total value** - $5,000 with up to $1,000 travel to speak at NeurIPS 2019.
-  * 3rd place overall: **$1,500**.
-* WBA-Prize: **$5,000 total value** - $4,000 with up to $1,000 travel to speak at NeurIPS 2019
-* Category Prizes: **$200** For best performance in each category (cannot combine with other prizes - max 1 per team).
-* ~~**Mid-way AWS Research Credits**: The top 20 entries as of **September 1st** will be awarded **$500** of AWS credits.~~ (already awarded)
-
 See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
-
-**Important** Please check the competition rules [here](http://animalaiolympics.com/rules.html). **To submit to the competition and be considered for prizes you must also fill in [this form](https://forms.gle/PKCgp2JAWvjf4c9i6)**. Entry to the competition ([via EvalAI](https://evalai.cloudcv.org/web/challenges/challenge-page/396/overview)) constitutes agreement with all competition rules. 
 
 ## Overview
 
-Here you will find all the code needed to compete in this new challenge. This repo contains **the training environment** (v1.0) that will be used for the competition. Information for entering can be found in the [submission documentation](documentation/submission.md). Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place.
+This repo contains **the training environment** (v1.0) that will be used for the competition. Information for entering can be found in the [submission documentation](documentation/submission.md). Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place.
 
 For more information on the competition itself and to stay updated with any developments, head to the 
 [Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.

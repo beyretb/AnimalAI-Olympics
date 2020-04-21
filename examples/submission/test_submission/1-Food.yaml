@@ -1,7 +1,0 @@
-!ArenaConfig
-arenas:
-  0: !Arena
-    t: 250
-    items:
-    - !Item
-      name: GoodGoal

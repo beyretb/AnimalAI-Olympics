@@ -1,16 +1,52 @@
-env/*
-!env/README.md
-examples/submission/test_submission/env/*
-!examples/submission/test_submission/env/README.md
+examples/env/*
+!examples/env/README.md
+
+# Tensorflow Model Info
 models/
 summaries/
-/.idea
-__pycache__/
-UnitySDK.log
-venv/
-*/venv
-/dev
-build/
-dist/
+logs/
+
+# Environemnt logfile
+*Project.log
+
+# Builds
+*.apk
+*.unitypackage
+*.app
+*.exe
+*.x86_64
+*.x86
+
+# Mac hidden files
+*.DS_Store
+*/.ipynb_checkpoints
+*/.idea
+*.pyc
+*.idea/misc.xml
+*.idea/modules.xml
+*.idea/
+*.iml
+*.cache
+*/build/
+*/dist/
 *.egg-info*
 *.eggs*
+*.gitignore.swp
+
+# VSCode hidden files
+*.vscode/
+
+.DS_Store
+.ipynb_checkpoints
+
+# pytest cache
+*.pytest_cache/
+
+# Ignore PyPi build files.
+dist/
+build/
+
+# Python virtual environment
+venv/
+.mypy_cache/
+

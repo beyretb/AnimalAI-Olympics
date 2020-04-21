@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="animalai",
+    name="animalai_train",
     version="2.0.0b0",
-    description="Animal AI competition interface",
+    description="Animal AI competition training library",
     url="https://github.com/beyretb/AnimalAI-Olympics",
     author="Benjamin Beyret",
     author_email="bb1010@ic.ac.uk",
@@ -14,15 +14,12 @@ setup(
         "Programming Language :: Python :: 3.6",
     ],
     packages=[
-        "animalai.envs",
-        "animalai.envs.gym",
-        "animalai.communicator_objects",
+        "animalai_train"
     ],  # Required
     zip_safe=False,
     install_requires=[
-        'mlagents-envs==0.15.0',
-        'jsonpickle',
-        'pyyaml'
+        "animalai==2.0.0b0",
+        "mlagents==0.15.0"
     ],
-    python_requires=">=3.5",  # ,<3.8",
+    python_requires=">=3.5,<3.8",
 )
