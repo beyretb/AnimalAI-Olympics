@@ -3,7 +3,11 @@ import math
 import os
 from typing import Dict, Any, TextIO
 
-from mlagents.trainers.exception import CurriculumConfigError, CurriculumLoadingError, CurriculumError
+from mlagents.trainers.exception import (
+    CurriculumConfigError,
+    CurriculumLoadingError,
+    CurriculumError,
+)
 from mlagents.trainers.curriculum import Curriculum
 import logging
 
@@ -28,7 +32,9 @@ class CurriculumAAI(Curriculum):
             with open(curriculum_file) as data_file:
                 self.config = json.load(data_file)
         except IOError:
-            raise CurriculumError("The file {0} could not be found.".format(curriculum_file))
+            raise CurriculumError(
+                "The file {0} could not be found.".format(curriculum_file)
+            )
 
         self.smoothing_value = 0.0
         for key in [

@@ -3,8 +3,12 @@ import jsonpickle
 import yaml
 import copy
 
-from animalai.communicator_objects import ArenasConfigurationsProto, ArenaConfigurationProto, ItemToSpawnProto, \
-    VectorProto
+from animalai.communicator_objects import (
+    ArenasConfigurationsProto,
+    ArenaConfigurationProto,
+    ItemToSpawnProto,
+    VectorProto,
+)
 
 yaml.Dumper.ignore_aliases = lambda *args: True
 
@@ -47,7 +51,7 @@ class Item(yaml.YAMLObject):
     yaml_tag = u"!Item"
 
     def __init__(
-            self, name="", positions=None, rotations=None, sizes=None, colors=None
+        self, name="", positions=None, rotations=None, sizes=None, colors=None
     ):
         self.name = name
         self.positions = positions if positions is not None else []
@@ -106,13 +110,6 @@ class ArenaConfig(yaml.YAMLObject):
 
         for k in self.arenas:
             arenas_configurations_proto.arenas[k].CopyFrom(self.arenas[k].to_proto())
-
-            #     .CopyFrom(ArenaParametersProto())
-            # arenas_configurations_proto.arenas[k].t = self.arenas[k].t
-            # arenas_configurations_proto.arenas[k].blackouts.extend(self.arenas[k].blackouts)
-            # for item in self.arenas[k].items:
-            #     to_spawn = arenas_configurations_proto.arenas[k].items.add()
-            #     to_spawn.name = item.name
 
         return arenas_configurations_proto
 

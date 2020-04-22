@@ -9,7 +9,7 @@ from gym_unity.envs import (
     AgentIdIndexMapper,
     BatchedStepResult,
     ActionFlattener,
-    logger
+    logger,
 )
 
 from animalai.envs.environment import AnimalAIEnvironment
@@ -17,18 +17,17 @@ from animalai.envs.arena_config import ArenaConfig
 
 
 class AnimalAIGym(UnityEnv):
-
     def __init__(
-            self,
-            environment_filename: str,
-            worker_id: int = 0,
-            uint8_visual: bool = False,
-            flatten_branched: bool = False,
-            n_arenas: int = 1,
-            seed: int = 0,
-            inference: bool = False,
-            grayscale: bool = False,
-            arenas_configurations: ArenaConfig = None,
+        self,
+        environment_filename: str,
+        worker_id: int = 0,
+        uint8_visual: bool = False,
+        flatten_branched: bool = False,
+        n_arenas: int = 1,
+        seed: int = 0,
+        inference: bool = False,
+        grayscale: bool = False,
+        arenas_configurations: ArenaConfig = None,
     ):
         """
         Environment initialization
@@ -54,7 +53,7 @@ class AnimalAIGym(UnityEnv):
             n_arenas=n_arenas,
             inference=inference,
             arenas_configurations=arenas_configurations,
-            grayscale=grayscale
+            grayscale=grayscale,
         )
 
         # Take a single step so that the brain information will be sent over
@@ -135,7 +134,9 @@ class AnimalAIGym(UnityEnv):
         else:
             self._observation_space = spaces.Box(-high, high, dtype=np.float32)
 
-    def reset(self, arenas_configurations: ArenaConfig = None) -> Union[List[np.ndarray], np.ndarray]:
+    def reset(
+        self, arenas_configurations: ArenaConfig = None
+    ) -> Union[List[np.ndarray], np.ndarray]:
         """Resets the state of the environment and returns an initial observation.
         In the case of multi-agent environments, this is a list.
         Returns: observation (object/list): the initial observation of the
@@ -152,7 +153,9 @@ class AnimalAIGym(UnityEnv):
             res = self._multi_step(step_result)
         return res[0]
 
-    def _step(self, needs_reset: bool = False, arenas_configurations: ArenaConfig = None) -> BatchedStepResult:
+    def _step(
+        self, needs_reset: bool = False, arenas_configurations: ArenaConfig = None
+    ) -> BatchedStepResult:
         if needs_reset:
             self._env.reset(arenas_configurations=arenas_configurations)
         else:

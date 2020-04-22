@@ -19,10 +19,6 @@ setup(
         "animalai.communicator_objects",
     ],  # Required
     zip_safe=False,
-    install_requires=[
-        'mlagents-envs==0.15.0',
-        'jsonpickle',
-        'pyyaml'
-    ],
+    install_requires=["mlagents-envs==0.15.0", "jsonpickle", "pyyaml"],
     python_requires=">=3.5",  # ,<3.8",
 )

@@ -21,17 +21,17 @@ from mlagents.trainers.subprocess_env_manager import (
     EnvironmentCommand,
     EnvironmentResponse,
     StepResponse,
-    UnityEnvWorker
+    UnityEnvWorker,
 )
 from animalai.envs.environment import AnimalAIEnvironment
 
 
 def worker_aai(
-        parent_conn: Connection,
-        step_queue: Queue,
-        pickled_env_factory: str,
-        worker_id: int,
-        engine_configuration: EngineConfig,
+    parent_conn: Connection,
+    step_queue: Queue,
+    pickled_env_factory: str,
+    worker_id: int,
+    engine_configuration: EngineConfig,
 ) -> None:
     env_factory: Callable[
         [int, List[SideChannel]], AnimalAIEnvironment
@@ -105,13 +105,12 @@ def worker_aai(
 
 
 class SubprocessEnvManagerAAI(SubprocessEnvManager):
-
     @staticmethod
     def create_worker(
-            worker_id: int,
-            step_queue: Queue,
-            env_factory: Callable[[int, List[SideChannel]], BaseEnv],
-            engine_configuration: EngineConfig,
+        worker_id: int,
+        step_queue: Queue,
+        env_factory: Callable[[int, List[SideChannel]], BaseEnv],
+        engine_configuration: EngineConfig,
     ) -> UnityEnvWorker:
         parent_conn, child_conn = Pipe()
 

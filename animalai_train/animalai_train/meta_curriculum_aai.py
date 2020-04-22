@@ -38,10 +38,9 @@ class MetaCurriculumAAI(MetaCurriculum):
         except NotADirectoryError:
             raise MetaCurriculumError(
                 curriculum_folder + " is not a "
-                                    "directory. Refer to the ML-Agents "
-                                    "curriculum learning docs."
+                "directory. Refer to the ML-Agents "
+                "curriculum learning docs."
             )
-
 
     def get_config(self):
         """Get the combined configuration of all curricula in this

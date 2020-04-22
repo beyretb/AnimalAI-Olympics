@@ -13,13 +13,8 @@ setup(
         "License :: OSI Approved :: Apache Software License",
         "Programming Language :: Python :: 3.6",
     ],
-    packages=[
-        "animalai_train"
-    ],  # Required
+    packages=["animalai_train"],  # Required
     zip_safe=False,
-    install_requires=[
-        "animalai==2.0.0b0",
-        "mlagents==0.15.0"
-    ],
+    install_requires=["animalai==2.0.0b0", "mlagents==0.15.0"],
     python_requires=">=3.5,<3.8",
 )

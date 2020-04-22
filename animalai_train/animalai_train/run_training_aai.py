@@ -61,7 +61,7 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
             options.n_arenas_per_env,
             options.arena_config,
             options.camera_width,
-            options.camera_height
+            options.camera_height,
         )
         engine_config = EngineConfig(
             options.width,
@@ -70,7 +70,9 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
             AnimalAIEnvironment.TIMESCALE.train,
             AnimalAIEnvironment.TARGET_FRAME_RATE.train,
         )
-        env_manager = SubprocessEnvManagerAAI(env_factory, engine_config, options.num_envs)
+        env_manager = SubprocessEnvManagerAAI(
+            env_factory, engine_config, options.num_envs
+        )
         maybe_meta_curriculum = try_create_meta_curriculum(
             options.curriculum_config, env_manager, options.lesson
         )
@@ -107,7 +109,7 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
 
 
 def try_create_meta_curriculum(
-        curriculum_config: str, env: SubprocessEnvManagerAAI, lesson: int
+    curriculum_config: str, env: SubprocessEnvManagerAAI, lesson: int
 ) -> Optional[MetaCurriculumAAI]:
     # TODO: may need rewrite for arena configuration curricula
     if curriculum_config is None:
