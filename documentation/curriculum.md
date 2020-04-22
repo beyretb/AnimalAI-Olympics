@@ -20,7 +20,7 @@ a meta-curriculum.
 
 ## Example
 
-An example is provided in [the example folder](../examples/configs/curriculum). The idea of this curriculum is to train 
+An example is provided in [the example folder](../examples/configurations/curriculum). The idea of this curriculum is to train 
 an agent to navigate a maze by creating maze like structures of perpendicular walls, starting with a single wall and food, 
 adding one more wall at each level. Below are samples from the 6 different levels.
 
@@ -74,7 +74,7 @@ except for the `configuration_files`. From the ml-agents documentation:
   cumulative reward of the last `100` episodes exceeds the current threshold.
   The mean reward logged to the console is dictated by the `summary_freq`
   parameter in the
-  [trainer configuration file](../examples/configs/trainer_config.yaml).
+  [trainer configuration file](../examples/configurations/training_configurations/trainer_ml_agents_config.yaml).
 * `signal_smoothing` (true/false) - Whether to weight the current progress
   measure by previous values.
   * If `true`, weighting will be 0.75 (new) 0.25 (old).
@@ -88,7 +88,7 @@ except for the `configuration_files`. From the ml-agents documentation:
  Once the folder created, training is done in the same way as before but now we pass a `MetaCurriculum` object to the 
  `meta_curriculum` argument of a `TrainerController`.
  
- We provide an example using the above curriculum in [examples/trainCurriculum.py](../examples/trainCurriculum.py).
+ We provide an example using the above curriculum in [examples/train_curriculum.py](../examples/train_curriculum.py).
  Training this agent, you can see the lessons switch using tensorboard:
  
  ![](Curriculum/learning.png)

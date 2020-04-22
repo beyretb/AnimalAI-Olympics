@@ -3,96 +3,115 @@ import jsonpickle
 import yaml
 import copy
 
-from animalai.communicator_objects import UnityRLResetInput, ArenaParametersProto
+from animalai.communicator_objects import (
+    ArenasConfigurationsProto,
+    ArenaConfigurationProto,
+    ItemToSpawnProto,
+    VectorProto,
+)
 
 yaml.Dumper.ignore_aliases = lambda *args: True
 
 
 class Vector3(yaml.YAMLObject):
-    yaml_tag = u'!Vector3'
+    yaml_tag = u"!Vector3"
 
     def __init__(self, x=0, y=0, z=0):
         self.x = x
         self.y = y
         self.z = z
 
-    def to_proto(self):
-        res = ArenaParametersProto.ItemsToSpawn.Vector3()
-        res.x = self.x
-        res.y = self.y
-        res.z = self.z
+    def to_proto(self) -> VectorProto:
+        vector_proto = VectorProto()
+        vector_proto.x = self.x
+        vector_proto.y = self.y
+        vector_proto.z = self.z
 
-        return res
+        return vector_proto
 
 
 class RGB(yaml.YAMLObject):
-    yaml_tag = u'!RGB'
+    yaml_tag = u"!RGB"
 
     def __init__(self, r=0, g=0, b=0):
         self.r = r
         self.g = g
         self.b = b
 
-    def to_proto(self):
-        res = ArenaParametersProto.ItemsToSpawn.Vector3()
-        res.x = self.r
-        res.y = self.g
-        res.z = self.b
+    def to_proto(self) -> VectorProto:
+        rgb_proto = VectorProto()
+        rgb_proto.x = self.r
+        rgb_proto.y = self.g
+        rgb_proto.z = self.b
 
-        return res
+        return rgb_proto
 
 
 class Item(yaml.YAMLObject):
-    yaml_tag = u'!Item'
+    yaml_tag = u"!Item"
 
-    def __init__(self, name='', positions=None, rotations=None, sizes=None, colors=None):
+    def __init__(
+        self, name="", positions=None, rotations=None, sizes=None, colors=None
+    ):
         self.name = name
         self.positions = positions if positions is not None else []
         self.rotations = rotations if rotations is not None else []
         self.sizes = sizes if sizes is not None else []
         self.colors = colors if colors is not None else []
 
+    def to_proto(self) -> ItemToSpawnProto:
+        item_to_spawn_proto = ItemToSpawnProto()
+        item_to_spawn_proto.name = self.name
+        item_to_spawn_proto.positions.extend([v.to_proto() for v in self.positions])
+        item_to_spawn_proto.rotations.extend(self.rotations)
+        item_to_spawn_proto.sizes.extend([v.to_proto() for v in self.sizes])
+        item_to_spawn_proto.colors.extend([v.to_proto() for v in self.colors])
+
+        return item_to_spawn_proto
+
 
 class Arena(yaml.YAMLObject):
-    yaml_tag = u'!Arena'
+    yaml_tag = u"!Arena"
 
-    def __init__(self, t=1000, items=None, blackouts=None):
+    def __init__(self, t=1000, items=None, pass_mark=0, blackouts=None):
         self.t = t
         self.items = items if items is not None else {}
+        self.pass_mark = pass_mark
         self.blackouts = blackouts if blackouts is not None else []
+
+    def to_proto(self) -> ArenaConfigurationProto:
+        arena_configuration_proto = ArenaConfigurationProto()
+        arena_configuration_proto.t = self.t
+        arena_configuration_proto.pass_mark = self.pass_mark
+        arena_configuration_proto.blackouts.extend(self.blackouts)
+        arena_configuration_proto.items.extend([item.to_proto() for item in self.items])
+
+        return arena_configuration_proto
 
 
 class ArenaConfig(yaml.YAMLObject):
-    yaml_tag = u'!ArenaConfig'
+    yaml_tag = u"!ArenaConfig"
 
     def __init__(self, yaml_path=None):
 
         if yaml_path is not None:
-            self.arenas = yaml.load(open(yaml_path, 'r'), Loader=yaml.Loader).arenas
+            self.arenas = yaml.load(open(yaml_path, "r"), Loader=yaml.Loader).arenas
         else:
             self.arenas = {}
 
     def save_config(self, json_path):
         out = jsonpickle.encode(self.arenas)
         out = json.loads(out)
-        json.dump(out, open(json_path, 'w'), indent=4)
+        json.dump(out, open(json_path, "w"), indent=4)
 
-    def dict_to_arena_config(self) -> UnityRLResetInput:
-        config_out = UnityRLResetInput()
+    def to_proto(self, seed=-1) -> ArenasConfigurationsProto:
+        arenas_configurations_proto = ArenasConfigurationsProto()
+        arenas_configurations_proto.seed = seed
 
         for k in self.arenas:
-            config_out.arenas[k].CopyFrom(ArenaParametersProto())
-            config_out.arenas[k].t = self.arenas[k].t
-            config_out.arenas[k].blackouts.extend(self.arenas[k].blackouts)
-            for item in self.arenas[k].items:
-                to_spawn = config_out.arenas[k].items.add()
-                to_spawn.name = item.name
-                to_spawn.positions.extend([v.to_proto() for v in item.positions])
-                to_spawn.rotations.extend(item.rotations)
-                to_spawn.sizes.extend([v.to_proto() for v in item.sizes])
-                to_spawn.colors.extend([v.to_proto() for v in item.colors])
+            arenas_configurations_proto.arenas[k].CopyFrom(self.arenas[k].to_proto())
 
-        return config_out
+        return arenas_configurations_proto
 
     def update(self, arenas_configurations):
 
@@ -111,5 +130,5 @@ def constructor_item(loader, node):
     return Item(**fields)
 
 
-yaml.add_constructor(u'!Arena', constructor_arena)
-yaml.add_constructor(u'!Item', constructor_item)
+yaml.add_constructor(u"!Arena", constructor_arena)
+yaml.add_constructor(u"!Item", constructor_item)
