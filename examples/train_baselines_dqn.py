@@ -7,7 +7,7 @@ from animalai.envs.arena_config import ArenaConfig
 def main():
     arenas_configurations = ArenaConfig("configurations/arena_configurations/train_ml_agents_arenas.yml")
     env = AnimalAIGym(
-        environment_filename="env/aaio",
+        environment_filename="env/AnimalAI",
         worker_id=0,
         flatten_branched=True,
         uint8_visual=True,

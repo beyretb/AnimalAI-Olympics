@@ -1,4 +1,4 @@
-# Animal-AI Olympics
+# Animal-AI 2.0.0 (beta)
 
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
@@ -8,24 +8,20 @@ See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and
 
 ## Overview
 
-This repo contains **the training environment** (v1.0) that will be used for the competition. Information for entering can be found in the [submission documentation](documentation/submission.md). Please check back during the competition for minor bug-fixes and updates, but as of v1.0 the major features and contents are set in place.
+The [Animal-AI](http://animalaiolympics.com/AAI) is a project which introduces the study of animal cognition to the world of AI. 
+The aim is to provide an environment for testing agents on tasks taken from or inspired by the animal cognition literature.
+Decades of research in this field allow us to train and test for cognitive skills in Artificial Intelligence agents.
 
-For more information on the competition itself and to stay updated with any developments, head to the 
-[Competition Website](http://www.animalaiolympics.com/) and follow [@MacroPhilosophy](https://twitter.com/MacroPhilosophy) and [@BenBeyret](https://twitter.com/BenBeyret) on twitter.
+This repo contains the [training environment](animalai), a [training library](animalai_train) as well as [900 tasks](competition_configurations) for testing and/or training agents.
+The experiments are divided into categories meant to reflect various cognitive skills, the details can be found on the [website](http://animalaiolympics.com/AAI/testbed).
 
-The environment contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
-and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. We have provided some sample environment configurations that should be useful for training (see examples/configs), but part of the challenge is to experiment and design new configurations.
+We ran a competition using this environment and the associated tests, more details about the results can be found [here](http://animalaiolympics.com/AAI/2019)
+
+The environment is built using [Unity ml-agents](https://github.com/Unity-Technologies/ml-agents/tree/master/docs) and contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
+and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. 
 
 To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
 More in depth documentation can be found on the [Documentation Page](documentation/README.md).
-
-## Evaluation
-
-The competition has 300 tests, split over ten categories. The categories range from the very simple (e.g. **food retrieval**, **preferences**, and **basic obstacles**) to the more complex (e.g. **spatial reasoning**, **internal models**, **object permanence**, and **causal reasoning**). We have included example config files for the first seven categories. Note that the example config files are just simple examples to be used as a guide. An agent that solves even all of these perfectly may still not be able to solve all the tests in the category, but it would be off to a good start.
-
-The submission website allows you to submit an agent that will be run on all 300 tests and it returns the overall score (number of tests passed) and score per category. We cannot offer infinite compute, so instances will be timed out after ~90 minutes and only tests performed up to that point counted (all others will be considered failed). See the [submission documentation](documentation/submission.md) for more information. 
-
-For the mid-way and final evaluation we will (resources permitting) run more extensive testing with 3 variations per test (so 900 tests total). The variations will include minor perturbations to the configurations. The agent will have to pass all 3 variations to pass each individual test, giving a total score out of 300. This means that **your final test score might be lower than the score achieved during the competition** and that **the competition leaderboard on EvalAI may not exactly match the final results**. 
 
 ## Development Blog
 
@@ -48,12 +44,9 @@ well as part of the development process.
 
 ## Requirements
 
-The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers. Note that for submission to the competition we only support linux-based Docker files.  
-<!--, for cloud engines check out [this cloud documentation](documentation/cloud.md).-->
+The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers, and requires python 3.
 
-We recommend using a virtual environment specifically for the competition. You will need `python3.6` installed (we currently only support **python3.6**). Clone this repository to run the examples we provide.
-
-We offer two packages for this competition:
+We offer two packages:
 
 - The main package is an API for interfacing with the Unity environment. It contains both a 
 [gym environment](https://github.com/openai/gym) as well as an extension of Unity's 
@@ -62,7 +55,7 @@ We offer two packages for this competition:
     ```
     pip install animalai
     ```
-    Or you can install it from the source, head to `animalai/` folder and run `pip install -e .`
+    Or you can install it from the source by running `pip install -e animalai` from the repo folder
 
     In case you wish to create a conda environment you can do so by running the below command from the `animalai` folder:
     ```
@@ -70,32 +63,27 @@ We offer two packages for this competition:
     ```
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
-example scripts found in the `examples/` folder. At the moment **we only support Linux and Max** for the training examples. It contains an extension of 
+example scripts found in the `examples/` folder. It contains an extension of 
 [ml-agents' training environment](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents) that relies on 
-[OpenAI's PPO](https://openai.com/blog/openai-baselines-ppo/), as well as 
-[Google's dopamine](https://github.com/google/dopamine) which implements 
-[Rainbow](https://www.aaai.org/ocs/index.php/AAAI/AAAI18/paper/download/17204/16680) (among others). You can also install 
-this package using pip:
+[OpenAI's PPO](https://openai.com/blog/openai-baselines-ppo/) and [BAIR's SAC](https://bair.berkeley.edu/blog/2018/12/14/sac/). You can also install this package using pip:
     ```
     pip install animalai-train
     ```
-    Or you can install it from source, head to `examples/animalai_train` and run `pip install -e .`
+    Or you can install it from source by running `pip install -e animalai_train` from the repo folder
 
-Finally download the environment for your system:
+Finally **download the environment** for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v1.0.0.zip) |
-| MacOS |  [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v1.0.0.zip) |
-| Windows | [download v1.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v1.0.0.zip)  |
+| Linux |  [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v2.0.0b0.zip) |
+| MacOS |  [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v2.0.0b0.zip) |
+| Windows | [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v2.0.0b0.zip)  |
 
 You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
 `AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
 Head over to [Quick Start Guide](documentation/quickstart.md) for a quick overview of how the environment works.
 
-The Unity source files for the environment can be find on the [AnimalAI-Environment repository](https://github.com/beyretb/AnimalAI-Environment). 
-Due to a lack of resources we cannot provide support on this part of the project at the moment. We recommend reading the documentation on the 
-[ML-Agents repo](https://github.com/Unity-Technologies/ml-agents) too.
+The Unity source files for the environment can be found on our [ml-agents fork](https://github.com/beyretb/ml-agents). 
 
 ## Manual Control
 
@@ -130,36 +118,32 @@ Paper with all the details of the test battery will be released after the compet
 
 The Animal-AI Olympics was built using [Unity's ML-Agents Toolkit.](https://github.com/Unity-Technologies/ml-agents)
 
-The Python library located in [animalai](animalai) is almost identical to 
-[ml-agents v0.7](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). We only added the 
-possibility to change the configuration of arenas between episodes. The documentation for ML-Agents can be found 
-[here](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Python-API.md).
+The Python library located in [animalai](animalai) extends [ml-agents v0.15.0](https://github.com/Unity-Technologies/ml-agents/tree/0.15.0). Mainly, we add the 
+possibility to change the configuration of arenas between episodes. 
 
 Juliani, A., Berges, V., Vckay, E., Gao, Y., Henry, H., Mattar, M., Lange, D. (2018). [Unity: A General Platform for 
 Intelligent Agents.](https://arxiv.org/abs/1809.02627) *arXiv preprint arXiv:1809.02627*
 
 ## EvalAI
 
-The competition is kindly hosted on [EvalAI](https://github.com/Cloud-CV/EvalAI), an open source web application for AI competitions. Special thanks to [Rishabh Jain](https://rishabhjain.xyz/) for his help in settting this up.
+The competition was kindly hosted on [EvalAI](https://github.com/Cloud-CV/EvalAI), an open source web application for AI competitions. Special thanks to [Rishabh Jain](https://rishabhjain.xyz/) for his help in setting this up.
+We will aim to reopen submissions with new hidden files in order to keep some form of competition going.
 
 Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet Singh, Akash Jain, Shiv Baran Singh, Stefan Lee and Dhruv Batra (2019) [EvalAI: Towards Better Evaluation Systems for AI Agents](https://arxiv.org/abs/1902.03570)
 
-## Known Issues
-
-In play mode pressing `R` or `C` does nothing sometimes. This is due to the fact that we have synchronized these 
-features with the agent's frames in order to have frames in line with the configuration files for elements such as blackouts. **Solution**: press the key again, several times if needed.
-
-## TODO
-
-- [x] Add custom resolutions
-- [x] Add inference viewer to the environment
-- [x] Offer a gym wrapper for training
-- [x] Improve the way the agent spawns
-- [x] Add lights out configurations.
-- [x] Improve environment framerates
-- [x] Add moving food
 
 ## Version History
+
+- v2.0.0b0 (beta)
+    - Bump ml-agents from 0.7 to 0.15 which:
+        - allows multiple parallel environments for training
+        - adds Soft actor critic (SAC) trainer
+        - has a new kind of actions/observations loop (on demand decisions)
+        - removes brains and some protobufs
+        - adds side-channels to replace some protobufs
+        - refactoring of the codebase
+    - GoodGoalMulti are now yellow with the same texture (light emitting) as GoodGoal and BadGoal
+    - The whole project including the Unity source is now available on [our ml-agents fork](https://github.com/beyretb/ml-agents)
 
 - v1.1.1
     - Hotfix curriculum loading in the wrong order

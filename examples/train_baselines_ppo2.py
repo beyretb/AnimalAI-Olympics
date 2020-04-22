@@ -36,7 +36,7 @@ def make_aai_env(env_directory, num_env, arenas_configurations, start_index=0):
 
 def main():
     arenas_configurations = ArenaConfig("configurations/arena_configurations/train_ml_agents_arenas.yml")
-    env = make_aai_env('/home/ben/AnimalAI/builds-ml-agents-aaio/aaio',2, arenas_configurations)
+    env = make_aai_env("env/AnimalAI", 2, arenas_configurations)
     ppo2.learn(
         network="cnn",
         env=env,
