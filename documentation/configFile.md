@@ -2,24 +2,20 @@
 
 ## TL;DR
 
-Run `python visualizeArena.py configs/configExample.yaml` to get an understanding of how the `YAML` files configure the 
+From the `examples` folder, run `python load_config_and_play.py configs/configExample.yaml` to get an understanding of how the `YAML` files configure the 
 arenas for training. You will find a list of all objects you can add to an arena as well as the values for their 
 parameters in [the definitions](definitionsOfObjects.md). You will find below all the technical details to create 
 more complex training configurations.
 
 ## Intro
 To configure training arenas you can use a simple **YAML file** and/or the **ArenaConfig structure** provided in 
-`animalai/envs/ArenaConfig`. This makes training quite flexible and allows for the following:
+`animalai.envs.arena_config`. This makes training quite flexible and allows for the following:
 - load and save configurations for reusability
 - on the fly changes of configuration of one or more arenas between episodes, allowing for easy curriculum learning for example
 - share configurations between participants
 
-We provide a few custom configurations, but we expect designing good environments will be an important component of doing
- well in the competition.
-
-We describe below the structure of the configuration file for an instance of the training environment, as well as all the 
-parameters and the values they can take. For how to change the configuration during training see `animalai/envs/ArenaConfig.py`.
-
+We describe below the structure of the configuration files for an instance of the training environment, as well as all the 
+parameters and the values they can take. 
 ## The Arenas
 
 <p align="center">
@@ -30,6 +26,8 @@ A single arena is as shown above, it comes with a single agent (blue sphere, bla
 four walls. It is a square of size 40x40, the origin of the arena is `(0,0)`. You can provide coordinates for 
 objects in the range `[0,40]x[0,40]` as floats.
 
+Note that in Unity the **y** axis is the vertical axis. In the above picture with the agent on the ground in the center of the environment its coordinates are (20, 0, 20).
+
 For visualization you can only configure a single arena, however during training you can configure as many as you want, 
 each will have its local set of coordinates as described above.
 
@@ -37,9 +35,7 @@ For a single arena you can provide the following parameters:
 - `t` an `int`, the length of an episode which can change from one episode to the other. A value of `0` means that the episode will 
 not terminate until a reward has been collected (setting `t=0` and having no reward will lead to an infinite episode)
 - `blackouts` [see below](#blackouts)
-
-Note that in Unity the **y** axis is the vertical axis. In the above picture with the agent on the ground in the center of the environment its coordinates are (20, 0, 20).
-<!-- TODO: show (x,y,z) referential -->
+- `pass_mark` the score the agent needs to reach to pass the level
 
 ## Objects
 
