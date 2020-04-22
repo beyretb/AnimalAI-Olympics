@@ -16,5 +16,5 @@ setup(
     packages=["animalai_train"],  # Required
     zip_safe=False,
     install_requires=["animalai==2.0.0b0", "mlagents==0.15.0"],
-    python_requires=">=3.5,<3.8",
+    python_requires=">=3.6.1",
 )
