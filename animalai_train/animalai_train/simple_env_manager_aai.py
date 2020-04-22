@@ -1,4 +1,4 @@
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from mlagents.trainers.env_manager import EnvironmentStep
 from mlagents.trainers.simple_env_manager import SimpleEnvManager

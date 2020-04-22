@@ -1,6 +1,6 @@
 """Contains the MetaCurriculum class."""
 import os
-from typing import Dict, Set
+from typing import Dict
 from mlagents.trainers.meta_curriculum import MetaCurriculum
 from mlagents.trainers.exception import MetaCurriculumError
 from animalai_train.curriculum_aai import CurriculumAAI

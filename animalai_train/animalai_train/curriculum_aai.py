@@ -1,11 +1,9 @@
 import json
 import math
 import os
-from typing import Dict, Any, TextIO
 
 from mlagents.trainers.exception import (
     CurriculumConfigError,
-    CurriculumLoadingError,
     CurriculumError,
 )
 from mlagents.trainers.curriculum import Curriculum

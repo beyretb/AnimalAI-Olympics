@@ -1,4 +1,4 @@
-from typing import NamedTuple, Dict, Optional, List
+from typing import NamedTuple, Dict, Optional
 from animalai.envs.arena_config import ArenaConfig
 
 
@@ -38,7 +38,7 @@ class RunOptionsAAI(NamedTuple):
     keep_checkpoints:   How many model checkpoints to keep
     base_port:          Base port for environment communication
     num_envs:           Number of parallel environments to use for training
-    curriculum_config:  Path to curriculum training folder 
+    curriculum_config:  Path to curriculum training folder
     lesson:             Start learning from this lesson if using curriculum
     multi_gpu:          Whether or not to use multiple GPU (not in current version)
     cpu:                Run with CPU only
