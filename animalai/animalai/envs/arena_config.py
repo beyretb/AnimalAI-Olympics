@@ -111,10 +111,10 @@ class ArenaConfig(yaml.YAMLObject):
         else:
             self.arenas = {}
 
-    def save_config(self, json_path: str) -> None:
-        out = jsonpickle.encode(self.arenas)
-        out = json.loads(out)
-        json.dump(out, open(json_path, "w"), indent=4)
+    # def save_config(self, json_path: str) -> None:
+    #     out = jsonpickle.encode(self.arenas)
+    #     out = json.loads(out)
+    #     json.dump(out, open(json_path, "w"), indent=4)
 
     def to_proto(self, seed: int = -1) -> ArenasConfigurationsProto:
         arenas_configurations_proto = ArenasConfigurationsProto()
