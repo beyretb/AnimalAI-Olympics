@@ -109,8 +109,8 @@ class AnimalAIEnvironment(UnityEnvironment):
     def reset(self, arenas_configurations: ArenaConfig = None) -> None:
         if arenas_configurations:
             arenas_configurations_proto = arenas_configurations.to_proto()
-            arenas_configurations_proto_string = (
-                arenas_configurations_proto.SerializeToString()
+            arenas_configurations_proto_string = arenas_configurations_proto.SerializeToString(
+                deterministic=True
             )
             self.arenas_parameters_side_channel.send_raw_data(
                 bytearray(arenas_configurations_proto_string)

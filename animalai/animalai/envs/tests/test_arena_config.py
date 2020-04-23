@@ -15,10 +15,10 @@ from animalai.envs.arena_config import (
 item_yaml = """
 !Item
   name: Wall
-  positions: 
+  positions:
   - !Vector3 {x: 13.3, y: 0, z: 33}
   - !Vector3 {x: 26.6, y: 0, z: 33}
-  sizes: 
+  sizes:
   - !Vector3 {x: 14, y: 3, z: 1}
   - !Vector3 {x: 14, y: 3, z: 1}
   - !Vector3 {x: 14, y: 3, z: 1}
@@ -112,7 +112,7 @@ def test_rgb():
 
 
 def test_item():
-    item: Item = yaml.load(item_yaml,Loader=yaml.Loader)
+    item: Item = yaml.load(item_yaml, Loader=yaml.Loader)
 
     assert item.name == "Wall"
     assert len(item.positions) == 2
@@ -129,7 +129,7 @@ def test_item():
 
 
 def test_arena():
-    arena: Arena = yaml.load(arena_yaml,Loader=yaml.Loader)
+    arena: Arena = yaml.load(arena_yaml, Loader=yaml.Loader)
     assert arena.pass_mark == 0
     assert arena.t == 250
     assert len(arena.blackouts) == 9
