@@ -123,6 +123,13 @@ class AnimalAIEnvironment(UnityEnvironment):
             else:
                 raise timeoutException
 
+    def close(self):
+        if self.play:
+            self.communicator.close()
+            self.proc1.kill()
+        else:
+            super().close()
+
     @staticmethod
     def executable_args(
         n_arenas: int = 1,
