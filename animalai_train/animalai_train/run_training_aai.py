@@ -60,8 +60,7 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
             port,
             options.n_arenas_per_env,
             options.arena_config,
-            options.camera_width,
-            options.camera_height,
+            options.resolution,
         )
         engine_config = EngineConfig(
             options.width,

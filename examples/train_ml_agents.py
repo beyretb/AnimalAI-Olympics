@@ -5,8 +5,12 @@ from animalai_train.run_options_aai import RunOptionsAAI
 from animalai_train.run_training_aai import run_training_aai
 
 trainer_config_path = (
-    "configurations/training_configurations/train_ml_agents_config.yaml"
+    "configurations/training_configurations/train_ml_agents_config_ppo.yaml"
 )
+# If you wish to use SAC rather than PPO, uncomment these lines below
+# trainer_config_path = (
+#     "configurations/training_configurations/train_ml_agents_config_sac.yaml"
+# )
 environment_path = "env/AnimalAI"
 arena_config_path = "configurations/arena_configurations/train_ml_agents_arenas.yml"
 run_id = "train_ml_agents"

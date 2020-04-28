@@ -60,7 +60,7 @@ We offer two packages:
     <!--In case you wish to create a conda environment you can do so by running the below command from the `animalai` folder:
     ```
     conda env create -f conda_isntall.yaml
-    ```-->
+    ```-->ni    
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
 example scripts found in the `examples/` folder. It contains an extension of 

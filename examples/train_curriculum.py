@@ -4,7 +4,7 @@ from animalai_train.run_options_aai import RunOptionsAAI
 from animalai_train.run_training_aai import run_training_aai
 
 trainer_config_path = (
-    "configurations/training_configurations/train_ml_agents_config.yaml"
+    "configurations/training_configurations/train_ml_agents_config_ppo.yaml"
 )
 environment_path = "env/AnimalAI"
 curriculum_path = "configurations/curriculum"

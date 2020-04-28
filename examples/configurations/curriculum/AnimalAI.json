@@ -1,20 +1,20 @@
 {
   "measure": "reward",
   "thresholds": [
-    1.5,
-    1.4,
-    1.3,
-    1.2,
-    1.1
+    0.8,
+    0.8,
+    0.8,
+    0.8,
+    0.8
   ],
   "min_lesson_length": 100,
   "signal_smoothing": true,
   "configuration_files": [
-    "0.yaml",
-    "1.yaml",
-    "2.yaml",
-    "3.yaml",
-    "4.yaml",
-    "5.yaml"
+    "0.yml",
+    "1.yml",
+    "2.yml",
+    "3.yml",
+    "4.yml",
+    "5.yml"
   ]
 }
