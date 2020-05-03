@@ -1,4 +1,4 @@
-# Animal-AI 2.0.0 (beta)
+# Animal-AI 2.0.0
 
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
@@ -133,6 +133,10 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
 
 
 ## Version History
+
+-v2.0.0:
+    - fix small bugs
+    - adds tutorial notebooks
 
 - v2.0.0b0 (beta)
     - Bump ml-agents from 0.7 to 0.15 which:
