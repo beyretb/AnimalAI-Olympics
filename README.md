@@ -53,7 +53,7 @@ We offer two packages:
 [ml-agents environments](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). You can install it
  via pip:
     ```
-    pip install animalai==2.0.0b0
+    pip install animalai
     ```
     Or you can install it from the source by running `pip install -e animalai` from the repo folder
 
@@ -67,7 +67,7 @@ example scripts found in the `examples/` folder. It contains an extension of
 [ml-agents' training environment](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents) that relies on 
 [OpenAI's PPO](https://openai.com/blog/openai-baselines-ppo/) and [BAIR's SAC](https://bair.berkeley.edu/blog/2018/12/14/sac/). You can also install this package using pip:
     ```
-    pip install animalai-train==2.0.0b0
+    pip install animalai-train
     ```
     Or you can install it from source by running `pip install -e animalai_train` from the repo folder
 

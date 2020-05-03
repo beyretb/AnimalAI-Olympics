@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="animalai_train",
-    version="2.0.0b4",
+    version="2.0.0",
     description="Animal AI training library",
     url="https://github.com/beyretb/AnimalAI-Olympics",
     author="Benjamin Beyret",
@@ -16,6 +16,6 @@ setup(
     ],
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
     zip_safe=False,
-    install_requires=["animalai==2.0.0b3", "mlagents==0.15.0"],
+    install_requires=["animalai==2.0.0", "mlagents==0.15.0"],
     python_requires=">=3.6.1",
 )
