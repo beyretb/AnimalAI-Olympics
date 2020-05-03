@@ -4,8 +4,6 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
-See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
-
 ## Overview
 
 The [Animal-AI](http://animalaiolympics.com/AAI) is a project which introduces the study of animal cognition to the world of AI. 
