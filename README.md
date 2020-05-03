@@ -20,7 +20,7 @@ We ran a competition using this environment and the associated tests, more detai
 The environment is built using [Unity ml-agents](https://github.com/Unity-Technologies/ml-agents/tree/master/docs) and contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
 and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. 
 
-To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
+To get started install the requirements below, and then follow the jupyter notebook tutorials in the [examples folder](examples). 
 More in depth documentation can be found on the [Documentation Page](documentation/README.md).
 
 ## Development Blog

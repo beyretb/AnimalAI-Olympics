@@ -11,11 +11,15 @@ Then you can start a jupyter notebook by running `jupyter notebook` from your te
 
 ## Designing arenas
 
+For a tutorial on how to design experiments and training configurations we provide a [jupyter notebook](environment_tutorial.ipynb)
+
 You can use `load_config_and_play.py` to visualize a `yml` configuration for an environment arena. Make sure `animalai` 
 is [installed](../README.md#requirements) and run `python load_config_and_play.py your_configuration_file.yml` which will open the environment in 
 play mode (control with W,A,S,D or the arrows), close the environment by pressing CTRL+C in the terminal.
 
 ## Animalai-train examples
+
+You will find a training tutorial in this [jupyter notebook](training_tutorial.ipynb)
 
 We provide two scripts which show how to use `animalai_train` to train agents:
 - `train_ml_agents.py` uses ml-agents' PPO implementation (or SAC) and can run multiple environments in parralel to speed up 
