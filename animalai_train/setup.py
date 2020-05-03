@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="animalai_train",
-    version="2.0.0b3",
+    version="2.0.0b4",
     description="Animal AI training library",
     url="https://github.com/beyretb/AnimalAI-Olympics",
     author="Benjamin Beyret",
