@@ -5,6 +5,8 @@ examples/env/*
 models/
 summaries/
 logs/
+examples/models/*
+!examples/models/self_control_curriculum_pre_trained
 
 # Environemnt logfile
 *Project.log

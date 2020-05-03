@@ -4,8 +4,8 @@
     0.8,
     0.8,
     0.8,
-    0.8,
-    0.8
+    0.6,
+    0.2
   ],
   "min_lesson_length": 100,
   "signal_smoothing": true,
