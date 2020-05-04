@@ -7,7 +7,7 @@
 
 | ![](examples/notebook_data/animal-cyl-fail.gif) | ![](examples/notebook_data/agent-cyl-fail.gif) |
 |---|---|
-| ![](examples/notebook_data/animal-cyl-pass.gif) | ![](examples/notebook_data/animal-cyl-pass.gif) |
+| ![](examples/notebook_data/animal-cyl-pass.gif) | ![](examples/notebook_data/agent-cyl-pass.gif) |
 
 ## Overview
 
