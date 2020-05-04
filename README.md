@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <img width="24%" src="examples/notebook_data/animal-cyl-fail.mp4">
+  <img width="24%" src="examples/notebook_data/animal-cyl-fail.gif">
 </p>
 
 <div>
