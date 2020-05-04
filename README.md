@@ -32,26 +32,6 @@ Just want to get started? Then:
 - In the `examples` folder, start `jupyter notebook` and go through the [environment](examples/environment_tutorial.ipynb) 
 and the [training](examples/training_tutorial.ipynb) notebooks!
 
-
-## Development Blog
-
-You can read the launch posts - with information about prizes and the categories in the competition here:
-
-[Animal-AI: AWS Prizes and Evaluation: Aug 12th](https://www.mdcrosby.com/blog/animalaiprizes1.html) - with updated submission and test information.
-
-[Animal-AI Evaluation: July 8th](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
-
-[Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
-
-You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
-well as part of the development process.
-
-1. [Why Animal-AI?](https://mdcrosby.com/blog/animalai1.html)
-
-2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
-
-3. [The Syllabus (Part 2): Lights Out](https://mdcrosby.com/blog/animalai3.html)
-
 ## Requirements
 
 First **download the environment** for your system:
@@ -114,6 +94,25 @@ Beyret, B., Hernández-Orallo, J., Cheke, L., Halina, M., Shanahan, M., Crosby, 
 ```
 
 Paper with all the details of the test battery will be released after the competition has finished.
+
+## Development Blog
+
+You can read the launch posts - with information about prizes and the categories in the competition here:
+
+[Animal-AI: AWS Prizes and Evaluation: Aug 12th](https://www.mdcrosby.com/blog/animalaiprizes1.html) - with updated submission and test information.
+
+[Animal-AI Evaluation: July 8th](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
+
+[Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
+
+You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
+well as part of the development process.
+
+1. [Why Animal-AI?](https://mdcrosby.com/blog/animalai1.html)
+
+2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
+
+3. [The Syllabus (Part 2): Lights Out](https://mdcrosby.com/blog/animalai3.html)
 
 ## Unity ML-Agents
 
