@@ -4,6 +4,11 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
+
+| ![](examples/notebook_data/animal-cyl-fail.gif) | ![](examples/notebook_data/agent-cyl-fail.gif) |
+|---|---|
+| ![](examples/notebook_data/animal-cyl-pass.gif) | ![](examples/notebook_data/agent-cyl-pass.gif) |
+
 ## Overview
 
 The [Animal-AI](http://animalaiolympics.com/AAI) is a project which introduces the study of animal cognition to the world of AI. 
