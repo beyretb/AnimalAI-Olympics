@@ -32,6 +32,8 @@ Just want to get started? Then:
 - In the `examples` folder, start `jupyter notebook` and go through the [environment](examples/environment_tutorial.ipynb) 
 and the [training](examples/training_tutorial.ipynb) notebooks!
 
+For more examples to run see [the examples folder](examples).
+
 ## Requirements
 
 First **download the environment** for your system:
