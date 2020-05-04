@@ -4,28 +4,10 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
-<p align="center">
-  <img width="24%" src="examples/notebook_data/animal-cyl-fail.gif">
-</p>
 
-![](examples/notebook_data/animal-cyl-fail.gif)
-
-<div>
-    <div>
-      <video width="24%" playsinline="" autoplay="" muted="" loop="">
-          <source src="examples/notebook_data/animal-cyl-pass.mp4" type="video/mp4">
-      </video>
-      <video width="24%" " playsinline="" autoplay="" muted="" loop="">
-          <source src="examples/notebook_data/agent-cyl-pass.mp4" type="video/mp4">
-      </video>
-      <video width="24%" playsinline="" autoplay="" muted="" loop="">
-          <source src="examples/notebook_data/animal-cyl-fail.mp4" type="video/mp4">
-      </video>
-      <video width="24%" playsinline="" autoplay="" muted="" loop="">
-          <source src="examples/notebook_data/agent-cyl-fail.mp4" type="video/mp4">
-      </video>
-  </div>
-</div>
+| ![](examples/notebook_data/animal-cyl-fail.gif) | ![](examples/notebook_data/agent-cyl-fail.gif) |
+|---|---|
+| ![](examples/notebook_data/animal-cyl-pass.gif) | ![](examples/notebook_data/animal-cyl-pass.gif) |
 
 ## Overview
 
