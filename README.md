@@ -4,6 +4,10 @@
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
+<p align="center">
+  <img width="24%" src="examples/notebook_data/animal-cyl-fail.mp4">
+</p>
+
 <div>
     <div>
       <video width="24%" playsinline="" autoplay="" muted="" loop="">
