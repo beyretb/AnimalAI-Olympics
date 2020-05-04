@@ -139,8 +139,6 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
 -v2.0.0:
     - fix small bugs
     - adds tutorial notebooks
-
-- v2.0.0b0 (beta)
     - Bump ml-agents from 0.7 to 0.15 which:
         - allows multiple parallel environments for training
         - adds Soft actor critic (SAC) trainer
