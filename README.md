@@ -8,6 +8,8 @@
   <img width="24%" src="examples/notebook_data/animal-cyl-fail.gif">
 </p>
 
+![](examples/notebook_data/animal-cyl-fail.gif)
+
 <div>
     <div>
       <video width="24%" playsinline="" autoplay="" muted="" loop="">
