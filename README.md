@@ -11,17 +11,17 @@
 
 ## Overview
 
-The [Animal-AI](http://animalaiolympics.com/AAI) introduces the study of animal cognition to the world of AI. 
-It provides an environment for testing agents on tasks taken from or inspired by the animal cognition literature.
+The [Animal-AI Testbed](http://animalaiolympics.com/AAI) introduces the study of animal cognition to the world of AI. 
+It provides an environment for testing agents on tasks taken from, or inspired by, the animal cognition literature.
 Decades of research in this field allow us to train and test for cognitive skills in Artificial Intelligence agents.
 
 This repo contains the [training environment](animalai), a [training library](animalai_train) as well as [900 tasks](competition_configurations) for testing and/or training agents.
-The experiments are divided into categories meant to reflect various cognitive skills, the details can be found on the [website](http://animalaiolympics.com/AAI/testbed).
+The experiments are divided into categories meant to reflect various cognitive skills. Details can be found on the [website](http://animalaiolympics.com/AAI/testbed).
 
-We ran a competition using this environment and the associated tests, more details about the results can be found [here](http://animalaiolympics.com/AAI/2019)
+We ran a competition using this environment and the associated tests, more details about the results can be found [here](http://animalaiolympics.com)
 
 The environment is built using [Unity ml-agents](https://github.com/Unity-Technologies/ml-agents/tree/master/docs) and contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
-and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. 
+and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the tests are made from combinations of objects in the training environment. 
 
 ## TL;DR
 
@@ -96,25 +96,6 @@ Beyret, B., Hernández-Orallo, J., Cheke, L., Halina, M., Shanahan, M., Crosby, 
 ```
 
 Paper with all the details of the test battery will be released after the competition has finished.
-
-## Development Blog
-
-You can read the launch posts - with information about prizes and the categories in the competition here:
-
-[Animal-AI: AWS Prizes and Evaluation: Aug 12th](https://www.mdcrosby.com/blog/animalaiprizes1.html) - with updated submission and test information.
-
-[Animal-AI Evaluation: July 8th](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
-
-[Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
-
-You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
-well as part of the development process.
-
-1. [Why Animal-AI?](https://mdcrosby.com/blog/animalai1.html)
-
-2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
-
-3. [The Syllabus (Part 2): Lights Out](https://mdcrosby.com/blog/animalai3.html)
 
 ## Unity ML-Agents
 
