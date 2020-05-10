@@ -40,9 +40,9 @@ First **download the environment** for your system:
 
 | OS | Environment link |
 | --- | --- |
-| Linux |  [download v2.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v2.0.0.zip) |
-| MacOS |  [download v2.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v2.0.0.zip) |
-| Windows | [download v2.0.0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v2.0.0.zip)  |
+| Linux |  [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v2.0.1.zip) |
+| MacOS |  [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v2.0.1.zip) |
+| Windows | [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v2.0.1.zip)  |
 
 Unzip the **entire content** of the archive to the `examples/env` folder. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`.
 
@@ -116,6 +116,9 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
 
 
 ## Version History
+
+- v2.0.1 (env only):
+  - movable objects are lighter and easier to move
 
 - v2.0.0:
     - fix small bugs
