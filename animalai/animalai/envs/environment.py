@@ -58,7 +58,7 @@ class AnimalAIEnvironment(UnityEnvironment):
         self.side_channels = side_channels if side_channels else []
         self.arenas_parameters_side_channel = None
         self.use_xvfb = True
-        
+
         self.configure_side_channels(self.side_channels)
 
         super().__init__(
@@ -144,13 +144,12 @@ class AnimalAIEnvironment(UnityEnvironment):
                     ) from perm
 
             else:
-                docker_ls = (
-                    f"exec xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'"
-                    f" {launch_string} {UnityEnvironment.PORT_COMMAND_LINE_ARG} {self.port}"
-                )
+                launch_string = f"exec xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'"
+                launch_string += f" {launch_string} {UnityEnvironment.PORT_COMMAND_LINE_ARG} {self.port}"
+                launch_string += " ".join(args)
 
                 self.proc1 = subprocess.Popen(
-                    docker_ls,
+                    launch_string,
                     stdout=subprocess.PIPE,
                     stderr=subprocess.PIPE,
                     shell=True,
