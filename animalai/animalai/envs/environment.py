@@ -1,13 +1,20 @@
 import uuid
+import subprocess
 from typing import NamedTuple
 from typing import Optional, List
-from mlagents_envs.environment import UnityEnvironment
-from mlagents_envs.rpc_communicator import UnityTimeOutException
+from mlagents_envs.environment import (
+    UnityEnvironment,
+    logger,
+)
 from mlagents_envs.side_channel.raw_bytes_channel import RawBytesChannel
 from mlagents_envs.side_channel.side_channel import SideChannel
 from mlagents_envs.side_channel.engine_configuration_channel import (
     EngineConfig,
     EngineConfigurationChannel,
+)
+from mlagents_envs.exception import (
+    UnityEnvironmentException,
+    UnityTimeOutException,
 )
 from animalai.envs.arena_config import ArenaConfig
 
@@ -50,7 +57,8 @@ class AnimalAIEnvironment(UnityEnvironment):
         self.timeout = 10 if play else 60
         self.side_channels = side_channels if side_channels else []
         self.arenas_parameters_side_channel = None
-
+        self.use_xvfb = True
+        
         self.configure_side_channels(self.side_channels)
 
         super().__init__(
@@ -102,6 +110,51 @@ class AnimalAIEnvironment(UnityEnvironment):
         engine_configuration_channel = EngineConfigurationChannel()
         engine_configuration_channel.set_configuration(engine_configuration)
         return engine_configuration_channel
+
+    def executable_launcher(self, file_name, docker_training, no_graphics, args):
+        launch_string = self.validate_environment_path(file_name)
+        if launch_string is None:
+            self._close()
+            raise UnityEnvironmentException(
+                f"Couldn't launch the {file_name} environment. Provided filename does not match any environments."
+            )
+        else:
+            logger.debug("This is the launch string {}".format(launch_string))
+            # Launch Unity environment
+            if not self.use_xvfb:
+                subprocess_args = [launch_string]
+                if no_graphics:
+                    subprocess_args += ["-nographics", "-batchmode"]
+                subprocess_args += [
+                    UnityEnvironment.PORT_COMMAND_LINE_ARG,
+                    str(self.port),
+                ]
+                subprocess_args += args
+                try:
+                    self.proc1 = subprocess.Popen(
+                        subprocess_args,
+                        start_new_session=True,
+                    )
+                except PermissionError as perm:
+                    # This is likely due to missing read or execute permissions on file.
+                    raise UnityEnvironmentException(
+                        f"Error when trying to launch environment - make sure "
+                        f"permissions are set correctly. For example "
+                        f'"chmod -R 755 {launch_string}"'
+                    ) from perm
+
+            else:
+                docker_ls = (
+                    f"exec xvfb-run --auto-servernum --server-args='-screen 0 640x480x24'"
+                    f" {launch_string} {UnityEnvironment.PORT_COMMAND_LINE_ARG} {self.port}"
+                )
+
+                self.proc1 = subprocess.Popen(
+                    docker_ls,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    shell=True,
+                )
 
     def reset(self, arenas_configurations: ArenaConfig = None) -> None:
         if arenas_configurations:
