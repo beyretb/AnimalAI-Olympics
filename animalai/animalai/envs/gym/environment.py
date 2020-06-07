@@ -12,7 +12,7 @@ from gym_unity.envs import (
     logger,
 )
 
-from animalai.envs.environment import AnimalAIEnvironment
+from ..environment import AnimalAIEnvironment
 from animalai.envs.arena_config import ArenaConfig
 
 
@@ -41,7 +41,7 @@ class AnimalAIGym(UnityEnv):
         :param no_graphics: Whether to run the Unity simulator in no-graphics mode
         :param allow_multiple_visual_obs: If True, return a list of visual observations instead of only one.
         """
-        base_port = 5005
+        base_port = 5004
         if environment_filename is None:
             base_port = AnimalAIEnvironment.DEFAULT_EDITOR_PORT
 

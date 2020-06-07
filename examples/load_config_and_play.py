@@ -15,7 +15,7 @@ def load_config_and_play(configuration_file: str) -> None:
     :param configuration_file: str path to the yaml configuration
     :return: None
     """
-    env_path = "env/AnimalAI"
+    env_path = "../env/AnimalAI"
     port = 5005 + random.randint(
         0, 100
     )  # use a random port to allow relaunching the script rapidly
