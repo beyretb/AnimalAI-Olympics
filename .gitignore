@@ -2,9 +2,10 @@ examples/env/*
 !examples/env/README.md
 
 # Tensorflow Model Info
-models/
+examples/models/*
 summaries/
 logs/
+!examples/models/self_control_curriculum_pre_trained/
 
 # Environemnt logfile
 *Project.log

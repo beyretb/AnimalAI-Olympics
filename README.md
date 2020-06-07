@@ -1,94 +1,77 @@
-# Animal-AI 2.0.0 (beta)
+# Animal-AI 2.0.0
 
 <p align="center">
   <img height="300" src="documentation/PrefabsPictures/steampunkFOURcrop.png">
 </p>
 
-See [competition launch page](https://mdcrosby.com/blog/animalailaunch.html) and official rules for further details.
+
+| ![](examples/notebook_data/animal-cyl-fail.gif) | ![](examples/notebook_data/agent-cyl-fail.gif) |
+|---|---|
+| ![](examples/notebook_data/animal-cyl-pass.gif) | ![](examples/notebook_data/agent-cyl-pass.gif) |
 
 ## Overview
 
-The [Animal-AI](http://animalaiolympics.com/AAI) is a project which introduces the study of animal cognition to the world of AI. 
-The aim is to provide an environment for testing agents on tasks taken from or inspired by the animal cognition literature.
+The [Animal-AI Testbed](http://animalaiolympics.com/AAI) introduces the study of animal cognition to the world of AI. 
+It provides an environment for testing agents on tasks taken from, or inspired by, the animal cognition literature.
 Decades of research in this field allow us to train and test for cognitive skills in Artificial Intelligence agents.
 
 This repo contains the [training environment](animalai), a [training library](animalai_train) as well as [900 tasks](competition_configurations) for testing and/or training agents.
-The experiments are divided into categories meant to reflect various cognitive skills, the details can be found on the [website](http://animalaiolympics.com/AAI/testbed).
+The experiments are divided into categories meant to reflect various cognitive skills. Details can be found on the [website](http://animalaiolympics.com/AAI/testbed).
 
-We ran a competition using this environment and the associated tests, more details about the results can be found [here](http://animalaiolympics.com/AAI/2019)
+We ran a competition using this environment and the associated tests, more details about the results can be found [here](http://animalaiolympics.com)
 
 The environment is built using [Unity ml-agents](https://github.com/Unity-Technologies/ml-agents/tree/master/docs) and contains an agent enclosed in a fixed sized arena. Objects can spawn in this arena, including positive 
-and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the hidden tests that will appear in the competition are made using the objects in the training environment. 
+and negative rewards (green, yellow and red spheres) that the agent must obtain (or avoid). All of the tests are made from combinations of objects in the training environment. 
 
-To get started install the requirements below, and then follow the [Quick Start Guide](documentation/quickstart.md). 
-More in depth documentation can be found on the [Documentation Page](documentation/README.md).
+## TL;DR
 
-## Development Blog
+Just want to get started? Then:
+- Clone this repo
+- In the `examples` folder run `pip install -r requirements.txt`
+- Get the [environment executable](#requirements) for your platform
+- In the `examples` folder, start `jupyter notebook` and go through the [environment](examples/environment_tutorial.ipynb) 
+and the [training](examples/training_tutorial.ipynb) notebooks!
 
-You can read the launch posts - with information about prizes and the categories in the competition here:
-
-[Animal-AI: AWS Prizes and Evaluation: Aug 12th](https://www.mdcrosby.com/blog/animalaiprizes1.html) - with updated submission and test information.
-
-[Animal-AI Evaluation: July 8th](https://mdcrosby.com/blog/animalaieval.html) - with collated information about the evaluation.
-
-[Animal-AI Launch: July 1st](https://mdcrosby.com/blog/animalailaunch.html) - with information about the prizes and  introduction to all 10 categories.
-
-You can read the development blog [here](https://mdcrosby.com/blog). It covers further details about the competition as 
-well as part of the development process.
-
-1. [Why Animal-AI?](https://mdcrosby.com/blog/animalai1.html)
-
-2. [The Syllabus (Part 1)](https://mdcrosby.com/blog/animalai2.html)
-
-3. [The Syllabus (Part 2): Lights Out](https://mdcrosby.com/blog/animalai3.html)
+For more examples to run see [the examples folder](examples).
 
 ## Requirements
 
-The Animal-AI package works on Linux, Mac and Windows, as well as most Cloud providers, and requires python 3.
+First **download the environment** for your system:
 
-We offer two packages:
+| OS | Environment link |
+| --- | --- |
+| Linux |  [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v2.0.1.zip) |
+| MacOS |  [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v2.0.1.zip) |
+| Windows | [download v2.0.1](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v2.0.1.zip)  |
+
+Unzip the **entire content** of the archive to the `examples/env` folder. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`.
+
+The Animal-AI packages works on Linux, Mac and Windows and requires python 3.
 
 - The main package is an API for interfacing with the Unity environment. It contains both a 
 [gym environment](https://github.com/openai/gym) as well as an extension of Unity's 
 [ml-agents environments](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents-envs). You can install it
  via pip:
     ```
-    pip install animalai==2.0.0b0
+    pip install animalai
     ```
     Or you can install it from the source by running `pip install -e animalai` from the repo folder
-
-    <!--In case you wish to create a conda environment you can do so by running the below command from the `animalai` folder:
-    ```
-    conda env create -f conda_isntall.yaml
-    ```-->
 
 - We also provide a package that can be used as a starting point for training, and which is required to run most of the 
 example scripts found in the `examples/` folder. It contains an extension of 
 [ml-agents' training environment](https://github.com/Unity-Technologies/ml-agents/tree/master/ml-agents) that relies on 
 [OpenAI's PPO](https://openai.com/blog/openai-baselines-ppo/) and [BAIR's SAC](https://bair.berkeley.edu/blog/2018/12/14/sac/). You can also install this package using pip:
     ```
-    pip install animalai-train==2.0.0b0
+    pip install animalai-train
     ```
     Or you can install it from source by running `pip install -e animalai_train` from the repo folder
 
-Finally **download the environment** for your system:
-
-| OS | Environment link |
-| --- | --- |
-| Linux |  [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_linux_v2.0.0b0.zip) |
-| MacOS |  [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_mac_v2.0.0b0.zip) |
-| Windows | [download v2.0.0b0](https://www.doc.ic.ac.uk/~bb1010/animalAI/env_windows_v2.0.0b0.zip)  |
-
-You can now unzip the content of the archive to the `env` folder and you're ready to go! Make sure the executable 
-`AnimalAI.*` is in `env/`. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`. 
-Head over to [Quick Start Guide](documentation/quickstart.md) for a quick overview of how the environment works.
-
-The Unity source files for the environment can be found on our [ml-agents fork](https://github.com/beyretb/ml-agents). 
+**The Unity source files** for the environment can be found on our [ml-agents fork](https://github.com/beyretb/ml-agents). 
 
 ## Manual Control
 
-If you launch the environment directly from the executable or through the VisualizeArena script it will launch in player 
-mode. Here you can control the agent with the following:
+If you launch the environment directly from the executable or through the `load_config_and_play,py` script it will launch
+ in player mode. Here you can control the agent with the following:
 
 | Keyboard Key  | Action    |
 | --- | --- |
@@ -134,7 +117,12 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
 
 ## Version History
 
-- v2.0.0b0 (beta)
+- v2.0.1 (env only):
+  - movable objects are lighter and easier to move
+
+- v2.0.0:
+    - fix small bugs
+    - adds tutorial notebooks
     - Bump ml-agents from 0.7 to 0.15 which:
         - allows multiple parallel environments for training
         - adds Soft actor critic (SAC) trainer

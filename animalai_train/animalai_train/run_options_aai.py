@@ -23,8 +23,7 @@ class RunOptionsAAI(NamedTuple):
     height: int = 84
     n_arenas_per_env: int = 1
     arena_config: ArenaConfig = None
-    camera_width: int = 84
-    camera_height: int = 84
+    resolution: int = 84
 
     """
     trainer_config:     Hyperparameters for your training model
@@ -46,6 +45,5 @@ class RunOptionsAAI(NamedTuple):
     height:             The height of the executable window of the environment(s)
     n_arenas_per_env:   Number of arenas (number of agents) per env environment instance
     arena_config:       Configuration file for the training arenas
-    camera_width:       Width for the visual observation camera of the agent
-    camera_height:      Height for the visual observation camera of the agent
+    resolution:         Resolution for the visual observation camera of the agent (NxN if resolution=N)
     """

@@ -18,8 +18,7 @@ def create_environment_factory_aai(
     start_port: int,
     n_arenas_per_env: int,
     arenas_configurations: ArenaConfig,
-    camera_width: Optional[int],
-    camera_height: Optional[int],
+    resolution: Optional[int],
 ) -> Callable[[int, List[SideChannel]], BaseEnv]:
     if env_path is not None:
         launch_string = AnimalAIEnvironment.validate_environment_path(env_path)
@@ -53,8 +52,7 @@ def create_environment_factory_aai(
             # docker_training=docker_training,
             n_arenas=n_arenas_per_env,
             arenas_configurations=arenas_configurations,
-            camera_width=camera_width,
-            camera_height=camera_height,
+            resolution=resolution,
             side_channels=side_channels,
         )
 

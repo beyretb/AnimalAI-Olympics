@@ -1,6 +1,5 @@
 tensorflow>=1.7,<2.0    # if you wish to run examples using tf>=2.0 change the baselines requirement accordingly
-animalai==2.0.0b0
-animalai_train==2.0.0b0
-baselines               # replace with git+https://github.com/openai/baselines.git@tf2 to use tf2
+animalai
+animalai_train
 jupyter
 matplotlib

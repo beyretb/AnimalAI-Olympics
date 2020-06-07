@@ -32,9 +32,7 @@ def test_basic_initialization(mock_communicator, mock_launcher, mock_reset):
         discrete_action=True, visual_inputs=1, num_agents=32, vec_obs_size=2
     )
 
-    env = AnimalAIEnvironment(
-        file_name=" ", n_arenas=32, camera_height=126, camera_width=512
-    )
+    env = AnimalAIEnvironment(file_name=" ", n_arenas=32, resolution=126,)
     assert env.get_agent_groups() == ["RealFakeBrain"]
     mock_launcher.assert_called_once()
     launcher_args, _ = mock_launcher.call_args
@@ -44,9 +42,7 @@ def test_basic_initialization(mock_communicator, mock_launcher, mock_reset):
         "0",
         "--numberOfArenas",
         "32",
-        "--cameraWidth",
-        "512",
-        "--cameraHeight",
+        "--resolution",
         "126",
     ]
     env.close()

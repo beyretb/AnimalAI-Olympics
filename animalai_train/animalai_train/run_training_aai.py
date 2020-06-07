@@ -60,16 +60,24 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
             port,
             options.n_arenas_per_env,
             options.arena_config,
-            options.camera_width,
-            options.camera_height,
+            options.resolution,
         )
-        engine_config = EngineConfig(
-            options.width,
-            options.height,
-            AnimalAIEnvironment.QUALITY_LEVEL.train,
-            AnimalAIEnvironment.TIMESCALE.train,
-            AnimalAIEnvironment.TARGET_FRAME_RATE.train,
-        )
+        if options.train_model:
+            engine_config = EngineConfig(
+                options.width,
+                options.height,
+                AnimalAIEnvironment.QUALITY_LEVEL.train,
+                AnimalAIEnvironment.TIMESCALE.train,
+                AnimalAIEnvironment.TARGET_FRAME_RATE.train,
+            )
+        else:
+            engine_config = EngineConfig(
+                AnimalAIEnvironment.WINDOW_WIDTH.play,
+                AnimalAIEnvironment.WINDOW_HEIGHT.play,
+                AnimalAIEnvironment.QUALITY_LEVEL.play,
+                AnimalAIEnvironment.TIMESCALE.play,
+                AnimalAIEnvironment.TARGET_FRAME_RATE.play,
+            )
         env_manager = SubprocessEnvManagerAAI(
             env_factory, engine_config, options.num_envs
         )
