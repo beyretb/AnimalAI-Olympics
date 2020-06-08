@@ -137,3 +137,4 @@ For earlier versions see [here](documentation/versions.md)
 
 ## USEFUL COMMANDS
 screen -S jupyter-ludo -m jupyter notebook --no-browser --port=8889
+pkill -9 -u `id -u ludovico`
