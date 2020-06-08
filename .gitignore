@@ -15,9 +15,9 @@ logs/
 *.apk
 *.unitypackage
 *.app
-*.exe
-*.x86_64
-*.x86
+# *.exe
+# *.x86_64
+# *.x86
 
 # Mac hidden files
 *.DS_Store
