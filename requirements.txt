@@ -1,0 +1,6 @@
+tensorflow>=1.7,<2.0    # if you wish to run examples using tf>=2.0 change the baselines requirement accordingly
+animalai
+animalai_train
+jupyter
+matplotlib
+pandas

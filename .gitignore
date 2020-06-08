@@ -1,5 +1,6 @@
 examples/env/*
 !examples/env/README.md
+envs/*
 
 # Tensorflow Model Info
 examples/models/*

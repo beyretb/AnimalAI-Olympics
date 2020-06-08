@@ -134,3 +134,6 @@ Deshraj Yadav, Rishabh Jain, Harsh Agrawal, Prithvijit Chattopadhyay, Taranjeet 
     - The whole project including the Unity source is now available on [our ml-agents fork](https://github.com/beyretb/ml-agents)
 
 For earlier versions see [here](documentation/versions.md)
+
+## USEFUL COMMANDS
+screen -S jupyter-ludo -m jupyter notebook --no-browser --port=8889
