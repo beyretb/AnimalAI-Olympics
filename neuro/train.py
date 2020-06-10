@@ -27,7 +27,7 @@ def train(opt):
     with open(trainer_config_path) as f:
         print(f.read())
     environment_path = f"linux_builds/{opt.env_name}.x86_64"
-    curriculum_path = f"examples/configurations/{opt.curric_config}"
+    curriculum_path = f"configurations/{opt.curric_config}"
 
     run_id = opt.run_id
     base_port = 5005

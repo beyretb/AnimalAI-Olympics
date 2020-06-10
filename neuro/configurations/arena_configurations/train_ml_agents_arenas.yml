@@ -1,0 +1,82 @@
+!ArenaConfig
+arenas:
+  0: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  1: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  2: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  3: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  4: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  5: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  6: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+  7: !Arena
+    pass_mark: 0
+    t: 250
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      name: GoodGoal
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
