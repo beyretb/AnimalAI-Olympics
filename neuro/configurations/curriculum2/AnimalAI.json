@@ -20,8 +20,7 @@
     0.2,
     0.2,
     0.2,
-    0.2,
-    0.2,
+    0.2
   ],
   "min_lesson_length": 100,
   "signal_smoothing": true,
