@@ -1,0 +1,9 @@
+--platform=Linux
+--backend=burst-llvm
+--target=X64_SSE4
+--noalias
+--dump=Function
+--float-precision=Standard
+--output=/Users/ludo/Desktop/animalai/ml-agents/Project/Temp/StagingArea/Data/Plugins/lib_burst_generated
+--assembly-folder=/Users/ludo/Desktop/animalai/ml-agents/Project/Temp/StagingArea/Data/Managed/
+--method=Unity.Jobs.IJobParallelForExtensions+ParallelForJobStruct`1[[UnsafeMatrixBlockMultiplyUnrolled8xhJob, BurstBLAS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnsafeMatrixBlockMultiplyUnrolled8xhJob&, BurstBLAS, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--1a17ae6a16a8ef3b2e844a6f83834f74
