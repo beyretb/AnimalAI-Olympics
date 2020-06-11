@@ -23,7 +23,7 @@ def get_args():
 
 def train(opt):
     # Display training config
-    trainer_config_path = f"examples/configurations/training_configurations/{opt.train_config}.yaml"
+    trainer_config_path = f"configurations/training_configurations/{opt.train_config}.yaml"
     with open(trainer_config_path) as f:
         print(f.read())
     environment_path = f"linux_builds/{opt.env_name}.x86_64"
