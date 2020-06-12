@@ -16,7 +16,7 @@ AnimalAI:
     hidden_units: 128
     num_layers: 1
     beta: 1.0e-2
-    max_steps: 2.0e7
+    max_steps: 1.0e7
     num_epoch: 3
     reward_signals:
         extrinsic:
