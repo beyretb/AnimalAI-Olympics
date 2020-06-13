@@ -8,5 +8,7 @@ arenas:
       name: Agent
     - !Item
       name: GoodGoal
+      positions:
+      - !Vector3 {x: 23, y: 0, z: 17}
       sizes:
       - !Vector3 {x: 1, y: 1, z: 1}
