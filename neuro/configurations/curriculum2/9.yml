@@ -13,3 +13,5 @@ arenas:
       name: GoodGoal
       positions:
       - !Vector3 {x: 20, y: 0, z: 22}
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}

@@ -14,4 +14,4 @@ arenas:
       positions:
       - !Vector3 {x: 20, y: 0, z: 22}
       sizes:
-      - !Vector3 {x: 2, y: 2, z: 2}
+      - !Vector3 {x: 1, y: 1, z: 1}
