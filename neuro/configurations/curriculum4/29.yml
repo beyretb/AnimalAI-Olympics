@@ -1,0 +1,13 @@
+!ArenaConfig
+arenas:
+  -1: !Arena
+    items:
+    - !Item
+      name: Agent
+      positions:
+    - !Item
+      name: Wall
+    - !Item
+      name: DeathZone
+    pass_mark: 0
+    t: 250
