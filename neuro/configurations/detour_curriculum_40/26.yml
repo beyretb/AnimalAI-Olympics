@@ -1,0 +1,47 @@
+!ArenaConfig
+arenas:
+  -1: !Arena
+    blackouts: []
+    items:
+    - !Item
+      colors: []
+      name: Agent
+      positions:
+      - !Vector3
+        x: 35
+        y: 0
+        z: 17
+      rotations:
+      - -4
+      sizes: []
+    - !Item
+      colors: []
+      name: GoodGoal
+      positions:
+      - !Vector3
+        x: 32
+        y: 0
+        z: 15
+      rotations: []
+      sizes:
+      - !Vector3
+        x: 1
+        y: 1
+        z: 1
+    - !Item
+      colors: []
+      name: WallTransparent
+      positions:
+      - !Vector3
+        x: 21
+        y: 0
+        z: 19
+      rotations:
+      - 0
+      sizes:
+      - !Vector3
+        x: 2
+        y: 5
+        z: 7
+    pass_mark: 0
+    t: 250
