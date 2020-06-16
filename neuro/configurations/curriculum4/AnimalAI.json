@@ -26,8 +26,8 @@
     0.7,
     0.7,
     0.7,
-    0.7,
-    0.7
+    0.6,
+    0.5
   ],
   "min_lesson_length": 100,
   "signal_smoothing": false,
