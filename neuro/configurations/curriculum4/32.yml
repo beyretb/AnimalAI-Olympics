@@ -9,12 +9,6 @@ arenas:
     - !Item
       name: Wall
     - !Item
-      name: Wall
-    - !Item
-      name: Wall
-    - !Item
-      name: DeathZone
-    - !Item
       name: DeathZone
     - !Item
       name: DeathZone

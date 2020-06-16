@@ -5,13 +5,13 @@ arenas:
     - !Item
       name: Agent
       positions:
-      - !Vector3 {x: 20, y: 0, z: 13}
+      - !Vector3 {x: 20, y: 0, z: 17}
       rotations: [0]
 
     - !Item
       name: GoodGoal
       positions:
-      - !Vector3 {x: 20, y: 0, z: 25}
+      - !Vector3 {x: 20, y: 0, z: 23}
       sizes:
       - !Vector3 {x: 1, y: 1, z: 1}
     - !Item
@@ -19,6 +19,6 @@ arenas:
       positions:
       - !Vector3 {x: 20, y: 0, z: 20}
       sizes:
-      - !Vector3 {x: 4, y: 1, z: 4}
+      - !Vector3 {x: 1, y: 1, z: 1}
     pass_mark: 0
     t: 250
