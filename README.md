@@ -138,4 +138,5 @@ For earlier versions see [here](documentation/versions.md)
 ## USEFUL COMMANDS
 screen -S jupyter-ludo -m jupyter notebook --no-browser --port=8889
 pkill -9 -u `id -u ludovico`
-tensorboard --logdir=/ --port 6606 --bind_all &
+tensorboard --port 6606
+ssh - L 6606:localhost:6606 ludovico@neuroanimal.doc.ic.ac.uk

@@ -22,6 +22,7 @@ class AnimalAIGym(UnityEnv):
         environment_filename: str,
         worker_id: int = 0,
         uint8_visual: bool = False,
+        use_visual: bool = False,
         flatten_branched: bool = False,
         n_arenas: int = 1,
         seed: int = 0,
@@ -64,7 +65,7 @@ class AnimalAIGym(UnityEnv):
         self._n_agents = -1
 
         self.agent_mapper = AgentIdIndexMapper()
-
+        self.use_visual = use_visual
         # Save the step result from the last time all Agents requested decisions.
         self._previous_step_result: BatchedStepResult = None
         self._multiagent = n_arenas > 1
@@ -84,11 +85,11 @@ class AnimalAIGym(UnityEnv):
         self.name = self.brain_name
         self.group_spec = self._env.get_agent_group_spec(self.brain_name)
 
-        if self._get_n_vis_obs() == 0:
-            raise UnityGymException(
-                "`use_visual` was set to True, however there are no"
-                " visual observations as part of this environment."
-            )
+        # if self._get_n_vis_obs() == 0:
+        #     raise UnityGymException(
+        #         "`use_visual` was set to True, however there are no"
+        #         " visual observations as part of this environment."
+        #     )
         self.use_visual = self._get_n_vis_obs() >= 1
         self.uint8_visual = uint8_visual
 
