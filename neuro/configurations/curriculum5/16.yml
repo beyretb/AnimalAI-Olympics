@@ -1,0 +1,16 @@
+!ArenaConfig
+arenas:
+  -1: !Arena
+    items:
+    - !Item
+      name: Agent
+    - !Item
+      colors: []
+      name: GoodGoal
+      sizes:
+      - !Vector3
+        x: 1
+        y: 1
+        z: 1
+    pass_mark: 0
+    t: 250
