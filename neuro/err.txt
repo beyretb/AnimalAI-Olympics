@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/media/home/ludovico/aai/neuro/ctrack_wall.py", line 142, in <module>
+    pipeline.run()
+  File "/media/home/ludovico/aai/neuro/ctrack_wall.py", line 116, in run
+    features = ef.run(img)
+  File "/media/home/ludovico/aai/neuro/ctrack_wall.py", line 85, in run
+    setattr(self, 'hsv_img', cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV))
+cv2.error: OpenCV(4.3.0) /io/opencv/modules/imgproc/src/color.cpp:182: error: (-215:Assertion failed) !_src.empty() in function 'cvtColor'
+
