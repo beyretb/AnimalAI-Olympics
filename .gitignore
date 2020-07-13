@@ -4,6 +4,7 @@ envs/*
 
 # Tensorflow Model Info
 # examples/models/*
+neuro/tmp/
 summaries/
 logs/
 !examples/models/self_control_curriculum_pre_trained/
