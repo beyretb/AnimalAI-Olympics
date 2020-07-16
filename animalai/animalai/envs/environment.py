@@ -336,17 +336,11 @@ class UnityEnvironment(BaseEnv):
         for brain_param in init_output.brain_parameters:
             # Each BrainParameter in the rl_initialization_output should have at least one AgentInfo
             # Get that agent, because we need some of its observations.
-            # if self.alter_obs:
-            #     self._alter_observations(rl_output, brain_param.brain_name)
             agent_infos = output.rl_output.agentInfos[brain_param.brain_name]
             if agent_infos.value:
                 agent = agent_infos.value[0]
                 new_spec = agent_group_spec_from_proto(brain_param, agent)
                 self.new_spec = new_spec
-                # if self.alter_obs:
-                #     del new_spec.observation_shapes[0]
-                #     del new_spec.observation_shapes[1]
-                #     new_spec.observation_shapes.extend([(6,)])
                 self._env_specs[brain_param.brain_name] = new_spec
                 logger.info(f"Connected new brain:\n{brain_param.brain_name}")
 
@@ -403,9 +397,6 @@ class UnityEnvironment(BaseEnv):
 
         self._update_group_specs(outputs)
         rl_output = outputs.rl_output
-        # if self.alter_obs:
-        #     self._alter_observations(rl_output)
-        self.rl_output = rl_output
         self._update_state(rl_output)
         self._env_actions.clear()
 

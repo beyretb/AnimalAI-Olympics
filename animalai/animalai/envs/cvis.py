@@ -33,21 +33,20 @@ objects = {
 
 class ExtractFeatures:
 	
-	def __init__(self):
+	def __init__(self, display=False, training=True):
 		self.img = None
 		self.hsv_img = None
 		self.img_dim = None
+		self.display = display
+		self.training = training
 
 	def get_contour(self, hsv):
 		# Config
-		kernel_open=np.ones((5,5))
-		kernel_close=np.ones((20,20))
 
 		# Apply mask to get contour
 		mask = cv2.inRange(self.hsv_img, hsv[0], hsv[1])
-		mask_open = cv2.morphologyEx(mask,cv2.MORPH_OPEN,kernel_open)
-		mask_close = cv2.morphologyEx(mask_open,cv2.MORPH_CLOSE,kernel_close)
-		ctr,hier = cv2.findContours(mask_close.copy(),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
+		res = cv2.bitwise_and(self.hsv_img, self.hsv_img, mask=mask)[:,:,2]
+		ctr,hier = cv2.findContours(res,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
 		if not ctr:
 			return None, hier
 		return ctr, hier
@@ -58,7 +57,8 @@ class ExtractFeatures:
 		res = []
 		for c in ctr:
 			x,y,w,h = cv2.boundingRect(c)
-			# cv2.rectangle(self.img,(x,y),(x+w,y+h),(0,255,0),2)
+			if self.display:
+				cv2.rectangle(self.img,(x,y),(x+w,y+h),(0,255,0),2)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
@@ -68,8 +68,9 @@ class ExtractFeatures:
 		return res
 
 	def run(self, img):
-		img = np.ascontiguousarray(
-			cv2.imdecode(np.frombuffer(img, np.uint8), -1))
+		if self.training:
+			img = np.ascontiguousarray(
+				cv2.imdecode(np.frombuffer(img, np.uint8), -1))
 		# plt.imshow(img)
 		setattr(self, 'img', img)
 		setattr(self, 'hsv_img', cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV))
