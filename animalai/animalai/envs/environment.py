@@ -63,7 +63,6 @@ from mlagents_envs.side_channel.raw_bytes_channel import RawBytesChannel
 
 logger = logging.getLogger("mlagents_envs")
 
-
 class UnityEnvironment(BaseEnv):
     SCALAR_ACTION_TYPES = (int, np.int32, np.int64, float, np.float32, np.float64)
     SINGLE_BRAIN_ACTION_TYPES = SCALAR_ACTION_TYPES + (list, np.ndarray)
@@ -109,6 +108,7 @@ class UnityEnvironment(BaseEnv):
         :list args: Addition Unity command line arguments
         :list side_channels: Additional side channel for no-rl communication with Unity
         """
+        print("USING LOCAL LIBRARY")
         args = args or []
         atexit.register(self._close)
         self.port = base_port + worker_id
@@ -179,9 +179,9 @@ class UnityEnvironment(BaseEnv):
         self._env_specs: Dict[str, AgentGroupSpec] = {}
         self._env_actions: Dict[str, np.ndarray] = {}
         self._is_first_message = True
+        self.alter_obs = alter_obs
         self._update_group_specs(aca_output)
         self.ef = ExtractFeatures()
-        self.alter_obs = alter_obs
 
     @staticmethod
     def get_communicator(worker_id, base_port, timeout_wait):
@@ -331,7 +331,8 @@ class UnityEnvironment(BaseEnv):
     def _update_group_specs(self, output: UnityOutputProto) -> None:
         init_output = output.rl_initialization_output
         rl_output = output.rl_output
-        self._alter_observations(rl_output)
+        if self.alter_obs:
+            self._alter_observations(rl_output)
         for brain_param in init_output.brain_parameters:
             # Each BrainParameter in the rl_initialization_output should have at least one AgentInfo
             # Get that agent, because we need some of its observations.
@@ -344,7 +345,8 @@ class UnityEnvironment(BaseEnv):
                 self.new_spec = new_spec
                 # if self.alter_obs:
                 #     del new_spec.observation_shapes[0]
-                #     new_spec.observation_shapes.extend([(7,)])
+                #     del new_spec.observation_shapes[1]
+                #     new_spec.observation_shapes.extend([(6,)])
                 self._env_specs[brain_param.brain_name] = new_spec
                 logger.info(f"Connected new brain:\n{brain_param.brain_name}")
 

@@ -58,7 +58,7 @@ class ExtractFeatures:
 		res = []
 		for c in ctr:
 			x,y,w,h = cv2.boundingRect(c)
-			cv2.rectangle(self.img,(x,y),(x+w,y+h),(0,255,0),2)
+			# cv2.rectangle(self.img,(x,y),(x+w,y+h),(0,255,0),2)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
