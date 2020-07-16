@@ -327,7 +327,7 @@ class UnityEnvironment(BaseEnv):
                 raise Exception(f"Mode {mode} not supported")
             # 2) Extract image in bytes and then remove visual observations
             img = agent_obs[0].compressed_data
-            self.img = img
+            # self.img = img
             del agent_obs[0]
 
             #3) Run CV and retrieve bounding boxes as a list

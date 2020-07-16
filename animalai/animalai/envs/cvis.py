@@ -85,11 +85,12 @@ class ExtractFeatures:
 			coords = self.process_contour(ctr, obj)
 			for i in coords:
 				features.append(i)
-		min_feats = 2
-		if len(features)<min_feats:
-			for i in range(min_feats-len(features)):
-				features.append([0,0,0,0])
+		# min_feats = 2
+		# if len(features)<min_feats:
+		# 	for i in range(min_feats-len(features)):
+		# 		features.append([0,0,0,0])
 		# Flatten list
+		features = features[:2]
 		features = [item for sublist in features for item in sublist]
 		return features
 
