@@ -308,7 +308,7 @@ class UnityEnvironment(BaseEnv):
                     stderr=subprocess.PIPE,
                     shell=True,
                 )
-    def _alter_observations(self, rl_output, agent_name='AnimalAI?team=0'):
+    def _alter_observations(self, rl_output, agent_name='AnimalAI?team=0',mode='octx'):
         # agent_name ='AnimalAI?team=0'
         # Reformat observations for each agent
         agent_infos = rl_output.agentInfos
@@ -319,14 +319,20 @@ class UnityEnvironment(BaseEnv):
             # 1) Change vector observations to desired size
             vector_obs = agent_obs[1]
             vector_obs.shape.remove(2)
-            vector_obs.shape.extend([6])
+            if mode == 'gtg':
+                vector_obs.shape.extend([6])
+            elif mode == 'octx':
+                vector_obs.shape.extend([10])
+            else:
+                raise Exception(f"Mode {mode} not supported")
             # 2) Extract image in bytes and then remove visual observations
             img = agent_obs[0].compressed_data
+            self.img = img
             del agent_obs[0]
 
             #3) Run CV and retrieve bounding boxes as a list
             res = self.ef.run(img)
-            vector_obs.float_data.data.extend(res[0])
+            vector_obs.float_data.data.extend(res)
 
     def _update_group_specs(self, output: UnityOutputProto) -> None:
         init_output = output.rl_initialization_output

@@ -20,5 +20,7 @@ arenas:
       - !Vector3 {x: 20, y: 0, z: 20}
       sizes:
       - !Vector3 {x: 1, y: 1, z: 1}
+      colors: 
+      - !RGB {r: 153, g: 153, b: 153}
     pass_mark: 0
     t: 250

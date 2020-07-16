@@ -28,7 +28,7 @@ hsv_cls = HSV()
 objects = {
 	'goal': hsv_cls.green,
 	# 'danger_zone': hsv_cls.red,
-	# 'wall': hsv_cls.grey,
+	'wall': hsv_cls.grey,
 }
 
 class ExtractFeatures:
@@ -80,14 +80,17 @@ class ExtractFeatures:
 		for obj, hsv_clr in objects.items():
 			ctr, hier = self.get_contour(hsv_clr)
 			if ctr is None:
+				features.append([0,0,0,0])
 				continue
 			coords = self.process_contour(ctr, obj)
 			for i in coords:
 				features.append(i)
-		min_feats = 1
+		min_feats = 2
 		if len(features)<min_feats:
 			for i in range(min_feats-len(features)):
 				features.append([0,0,0,0])
+		# Flatten list
+		features = [item for sublist in features for item in sublist]
 		return features
 
 
