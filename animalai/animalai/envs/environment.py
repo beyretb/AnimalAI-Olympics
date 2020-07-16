@@ -318,8 +318,8 @@ class UnityEnvironment(BaseEnv):
                 agent_name].value[agent].observations
             # 1) Change vector observations to desired size
             vector_obs = agent_obs[1]
-            vector_obs.shape.remove(3)
-            vector_obs.shape.extend([7])
+            vector_obs.shape.remove(2)
+            vector_obs.shape.extend([6])
             # 2) Extract image in bytes and then remove visual observations
             img = agent_obs[0].compressed_data
             del agent_obs[0]
