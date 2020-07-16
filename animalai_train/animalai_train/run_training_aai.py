@@ -61,6 +61,7 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
             options.n_arenas_per_env,
             options.arena_config,
             options.resolution,
+            options.alter_obs
         )
         if options.train_model:
             engine_config = EngineConfig(

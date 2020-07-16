@@ -19,6 +19,7 @@ def create_environment_factory_aai(
     n_arenas_per_env: int,
     arenas_configurations: ArenaConfig,
     resolution: Optional[int],
+    alter_obs: Optional[bool]
 ) -> Callable[[int, List[SideChannel]], BaseEnv]:
     if env_path is not None:
         launch_string = AnimalAIEnvironment.validate_environment_path(env_path)
@@ -54,6 +55,7 @@ def create_environment_factory_aai(
             arenas_configurations=arenas_configurations,
             resolution=resolution,
             side_channels=side_channels,
+            alter_obs=alter_obs
         )
 
     return create_unity_environment

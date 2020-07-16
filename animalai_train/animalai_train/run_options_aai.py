@@ -24,6 +24,7 @@ class RunOptionsAAI(NamedTuple):
     n_arenas_per_env: int = 1
     arena_config: ArenaConfig = None
     resolution: int = 84
+    alter_obs: bool = False
 
     """
     trainer_config:     Hyperparameters for your training model

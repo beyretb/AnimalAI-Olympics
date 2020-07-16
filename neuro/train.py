@@ -1,3 +1,7 @@
+import sys
+sys.path.insert(0, "/media/home/ludovico/aai/animalai")
+sys.path.insert(1, "/media/home/ludovico/aai/animalai_train")
+
 import argparse
 import tensorflow as tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
@@ -17,7 +21,8 @@ def get_args():
     parser.add_argument('-r', '--run_id', type=str, default='run1', help='Curriculum prefix name')
     parser.add_argument('-ne', '--num_envs', type=int, default=1, help='Number of simultaneous envs open')
     parser.add_argument('-na', '--num_arenas', type=int, default=1, help='Number of simultaneous arenas on each env')
-    
+    parser.add_argument('-ao', '--alter_obs', type=bool, default=True, help='Whether to alter observations or not with CV')
+
     args = parser.parse_args()
     return args
 
@@ -42,6 +47,7 @@ def train(opt):
         num_envs=number_of_environments,
         curriculum_config=curriculum_path,
         n_arenas_per_env=number_of_arenas_per_environment,
+        alter_obs=opt.alter_obs
     )
 
     print(
