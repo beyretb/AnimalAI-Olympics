@@ -38,7 +38,7 @@ def train(opt):
     base_port = 5005
     number_of_environments = opt.num_envs
     number_of_arenas_per_environment = opt.num_arenas
-
+    print("ALTER OBS IS",opt.alter_obs)
     args = RunOptionsAAI(
         trainer_config=load_config(trainer_config_path),
         env_path=environment_path,
