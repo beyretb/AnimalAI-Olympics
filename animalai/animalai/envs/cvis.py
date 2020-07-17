@@ -1,4 +1,5 @@
 from collections import namedtuple as nt
+from collections import OrderedDict as OD
 import argparse
 import matplotlib.pyplot as plt
 
@@ -30,6 +31,10 @@ objects = {
 	# 'danger_zone': hsv_cls.red,
 	'wall': hsv_cls.grey,
 }
+objects = OD()
+objects['goal'] =  hsv_cls.green
+# objects['danger_zone'] = hsv_cls.red
+objects['wall'] = hsv_cls.grey
 
 class ExtractFeatures:
 	

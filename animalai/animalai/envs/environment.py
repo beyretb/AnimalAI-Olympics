@@ -182,6 +182,7 @@ class UnityEnvironment(BaseEnv):
         self.alter_obs = alter_obs
         self._update_group_specs(aca_output)
         self.ef = ExtractFeatures()
+        self.debug=False
 
     @staticmethod
     def get_communicator(worker_id, base_port, timeout_wait):
@@ -327,6 +328,8 @@ class UnityEnvironment(BaseEnv):
                 raise Exception(f"Mode {mode} not supported")
             # 2) Extract image in bytes and then remove visual observations
             img = agent_obs[0].compressed_data
+            if self.debug:
+                self.img = img
             # self.img = img
             del agent_obs[0]
 
