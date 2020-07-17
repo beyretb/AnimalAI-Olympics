@@ -3,4 +3,5 @@ animalai
 animalai_train
 jupyter
 matplotlib
+opencv-python
 pandas
