@@ -334,7 +334,7 @@ class UnityEnvironment(BaseEnv):
             del agent_obs[0]
 
             #3) Run CV and retrieve bounding boxes as a list
-            res = self.ef.run(img)
+            res = self.ef.run(img, mode)
             vector_obs.float_data.data.extend(res)
 
     def _update_group_specs(self, output: UnityOutputProto) -> None:

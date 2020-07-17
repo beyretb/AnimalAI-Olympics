@@ -26,11 +26,11 @@ class HSV:
 	brown = [[7,53,40], [18,87,121]]
 
 hsv_cls = HSV()
-objects = {
-	'goal': hsv_cls.green,
-	# 'danger_zone': hsv_cls.red,
-	'wall': hsv_cls.grey,
-}
+# objects = {
+# 	'goal': hsv_cls.green,
+# 	# 'danger_zone': hsv_cls.red,
+# 	'wall': hsv_cls.grey,
+# }
 objects = OD()
 objects['goal'] =  hsv_cls.green
 # objects['danger_zone'] = hsv_cls.red
@@ -72,7 +72,7 @@ class ExtractFeatures:
 				])
 		return res
 
-	def run(self, img):
+	def run(self, img, mode='octx'):
 		if self.training:
 			img = np.ascontiguousarray(
 				cv2.imdecode(np.frombuffer(img, np.uint8), -1))
@@ -95,7 +95,13 @@ class ExtractFeatures:
 		# 	for i in range(min_feats-len(features)):
 		# 		features.append([0,0,0,0])
 		# Flatten list
-		features = features[:2]
+		if mode=='gtg':
+			idx = 1
+		elif mode == 'octx':
+			idx = 2
+		else:
+			idx = 5
+		features = features[:idx]
 		features = [item for sublist in features for item in sublist]
 		return features
 
