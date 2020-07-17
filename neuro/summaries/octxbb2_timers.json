@@ -1,0 +1,30 @@
+{
+    "name": "root",
+    "total": 30.374687711999286,
+    "count": 1,
+    "self": 0.23349651400167204,
+    "children": {
+        "run_training.setup": {
+            "total": 0.17107566799859342,
+            "count": 1,
+            "self": 0.17107566799859342
+        },
+        "TrainerController.start_learning": {
+            "total": 29.97011552999902,
+            "count": 1,
+            "self": 0.000261858998783282,
+            "children": {
+                "TrainerControllerAAI._reset_env": {
+                    "total": 29.96983973100032,
+                    "count": 1,
+                    "self": 29.96983973100032
+                },
+                "TrainerController._save_model": {
+                    "total": 1.3939999917056412e-05,
+                    "count": 1,
+                    "self": 1.3939999917056412e-05
+                }
+            }
+        }
+    }
+}
