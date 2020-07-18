@@ -11,9 +11,27 @@ arenas:
     - !Item
       name: GoodGoal
       positions:
-      - !Vector3 {x: 16, y: 0, z: 33 }
+      - !Vector3 {x: 28, y: 0, z: 20 }
       sizes:
       - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 12, y: 0, z: 20 }
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 11, y: 0, z: 20 }
+      sizes:
+      - !Vector3 {x: 1, y: 1, z: 1}
+    - !Item
+      name: GoodGoal
+      positions:
+      - !Vector3 {x: 10, y: 0, z: 5 }
+      sizes:
+      - !Vector3 {x: 10, y: 1, z: 1}
     - !Item
       name: Wall
       positions:

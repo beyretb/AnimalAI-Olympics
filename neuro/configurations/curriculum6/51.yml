@@ -5,21 +5,21 @@
         - !Item
           name: Agent
           positions:
-          - !Vector3 {x: 16, y: 0, z: 4}
-          rotations: [355]
+          - !Vector3 {x: 10, y: 0, z: 6}
+          rotations: [10]
 
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 13, y: 0, z: 18}
+          - !Vector3 {x: 17, y: 0, z: 20}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         - !Item
           name: Wall
           positions:
-          - !Vector3 {x: 13, y: 0, z: 12}
+          - !Vector3 {x: 17, y: 0, z: 12}
           sizes:
-          - !Vector3 {x: 10, y: 5, z: 2}
+          - !Vector3 {x: 12, y: 5, z: 2}
           rotations: [0]
           colors: 
           - !RGB {r: 153, g: 153, b: 153}

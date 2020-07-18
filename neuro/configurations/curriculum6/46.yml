@@ -5,19 +5,19 @@
         - !Item
           name: Agent
           positions:
-          - !Vector3 {x: 23, y: 0, z: 6}
-          rotations: [6]
+          - !Vector3 {x: 32, y: 0, z: 2}
+          rotations: [348]
 
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 27, y: 0, z: 22}
+          - !Vector3 {x: 24, y: 0, z: 18}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         - !Item
           name: Wall
           positions:
-          - !Vector3 {x: 27, y: 0, z: 14}
+          - !Vector3 {x: 24, y: 0, z: 11}
           sizes:
           - !Vector3 {x: 8, y: 5, z: 2}
           rotations: [0]
