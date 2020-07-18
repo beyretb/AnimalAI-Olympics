@@ -5,34 +5,34 @@
         - !Item
           name: Agent
           positions:
-          - !Vector3 {x: 18, y: 0, z: 9}
+          - !Vector3 {x: 32, y: 0, z: 9}
           rotations: [360]
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 16.5, y: 0, z: 15}
+          - !Vector3 {x: 30.5, y: 0, z: 15}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 15.5, y: 0, z: 15}
+          - !Vector3 {x: 29.5, y: 0, z: 15}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 14.5, y: 0, z: 15}
+          - !Vector3 {x: 28.5, y: 0, z: 15}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         - !Item
           name: Wall
           positions:
-          - !Vector3 {x: 18, y: 0, z: 15}
+          - !Vector3 {x: 32, y: 0, z: 15}
           sizes:
-          - !Vector3 {x: 2, y: 2, z: 2}
+          - !Vector3 {x: 2, y: 4, z: 2}
           rotations: [0]
           colors: 
           - !RGB {r: 153, g: 153, b: 153}
         pass_mark: 0
-        t: 10
+        t: 250
