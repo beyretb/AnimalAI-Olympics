@@ -32,7 +32,7 @@ hsv_cls = HSV()
 # 	'wall': hsv_cls.grey,
 # }
 objects = OD()
-objects['goal'] =  hsv_cls.green
+# objects['goal'] =  hsv_cls.green
 # objects['danger_zone'] = hsv_cls.red
 objects['wall'] = hsv_cls.grey
 
@@ -46,8 +46,6 @@ class ExtractFeatures:
 		self.training = training
 
 	def get_contour(self, hsv):
-		# Config
-
 		# Apply mask to get contour
 		mask = cv2.inRange(self.hsv_img, hsv[0], hsv[1])
 		res = cv2.bitwise_and(self.hsv_img, self.hsv_img, mask=mask)[:,:,2]

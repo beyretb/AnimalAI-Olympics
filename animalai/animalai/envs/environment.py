@@ -309,7 +309,8 @@ class UnityEnvironment(BaseEnv):
                     stderr=subprocess.PIPE,
                     shell=True,
                 )
-    def _alter_observations(self, rl_output, agent_name='AnimalAI?team=0',mode='octx'):
+
+    def _alter_observations(self, rl_output, agent_name='AnimalAI?team=0',mode='gtg'):
         # agent_name ='AnimalAI?team=0'
         # Reformat observations for each agent
         agent_infos = rl_output.agentInfos
