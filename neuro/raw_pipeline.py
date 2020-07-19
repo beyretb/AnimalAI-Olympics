@@ -1,41 +1,18 @@
 import numpy as np
-import pandas as pd
-import math
 from clyngor import ASP
 
-# import sys
+import sys
+sys.path.insert(0, "/Users/ludo/Desktop/animalai/animalai/animalai_train")
+sys.path.insert(1, "/Users/ludo/Desktop/animalai/animalai/animalai")
+
+from animalai.envs.cvis import ExtractFeatures
 from animalai.envs.gym.environment import AnimalAIGym
 from animalai.envs.arena_config import ArenaConfig
 from mlagents.tf_utils import tf
+from centroidtracker import CentroidTracker
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-
-obs_dim_mapper = {"explore": 20, "interact": 10}
-obj_mapper = [
-    "Cardbox1",
-    "Cardbox2",
-    "CylinderTunnelTransparent",
-    "CylinderTunnel",
-    "DeathZone",
-    "GoodGoalMulti",
-    "GoodGoal",
-    "LObject",
-    "LObject2",
-    "Ramp",
-    "UObject",
-    "WallTransparent",
-    "Wall",
-    "BadGoal",
-    "HotZone",
-]
-
-
-def transform(matrix, obj):
-    """Transform world position of vector to local position relative to agent"""
-    # obj = np.matrix(obj/40 - agent)
-    obj.resize(4, refcheck=False)  # adds
-    res = matrix * obj.reshape(4, 1)
-    return res
+ef = ExtractFeatures(display=False, training=False)
 
 
 def load_pb(path_to_pb):
@@ -46,74 +23,31 @@ def load_pb(path_to_pb):
         tf.import_graph_def(graph_def, name="")
         return graph
 
-
-def obs2state(vector_obs):
-    obj_df = pd.DataFrame(vector_obs[6:146].reshape(-1, 14))
-    obj_df.rename(
-        inplace=True,
-        columns={
-            0: "id",
-            1: "class",
-            2: "visible",
-            3: "abs_pos_x",
-            4: "abs_pos_y",
-            5: "abs_pos_z",
-            6: "rel_pos_x",
-            7: "rel_pos_y",
-            8: "rel_pos_z",
-            9: "abs_rot",
-            10: "rel_rot",
-            11: "size_x",
-            12: "size_y",
-            13: "size_z",
-        },
-    )
-    obj_df["class"] = obj_df["class"].apply(
-        lambda x: obj_mapper[int(x)] if x != -1.0 else "null"
-    )
-    obj_df = obj_df[obj_df["id"] != -1]
-    obj_df["id"] = (obj_df["id"] * -1).astype(int)
-    obj_df = obj_df.set_index("id")
-
-    # columns={0: 'vel_x', 1:'vel_z', 2:'rot_y', 3:'abs_pos_x', 4:'abs_pos_y', 5:'abs_pos_z'})
-
-    rays = vector_obs[146:151].flatten()
-    wtlm = np.matrix(vector_obs[151:167].flatten()).reshape(4, 4)
-
+def preprocess(ct, step_results):
+    visual_obs = step_results[3]["batched_step_result"].obs[0][0] # last 0 idx bc batched
+    vector_obs = step_results[3]["batched_step_result"].obs[1][0]
+    bboxes = ef.run(visual_obs)
+    ids = ct.update([i[0] for i in bboxes])
+    obj = [(i[0], i[1], j) for i,j in zip(bboxes, ids)]
     res = {
-        "agent": vector_obs[0:6],  # df
-        "objects": obj_df,  # df
-        "rays": rays,  # np
-        "transform": wtlm,  # np
-    }
-    return res
-
-
-def preprocess(step_results):
-    vector_obs = step_results[3]["batched_step_result"].obs[1].flatten()
-    tmin1 = obs2state(vector_obs[:167])
-    t = obs2state(vector_obs[167:])
-
-    res = {
-        "t-1": tmin1,  # df
-        "t": t,  # df
+        "obj": obj, # list of tuples
+        "velocity": vector_obs,  # array
         "reward": step_results[1],  # float
         "done": step_results[2],  # bool
-        "step": step_results[-1],
+        # "step": step_results[-1],
     }
     return res
-
 
 class RollingChecks:
     @staticmethod
     def visible(state, obj_id):
-        if state["t"]["objects"].loc[int(obj_id), "visible"] != -1.0:
+        if any(i[1]=='goal' for i in state['obj']):
             return True, f"Success: Object {obj_id} now visible"
         return False, f"Object {obj_id} still not visible"
 
     @staticmethod
     def time(state, limit=220):
-        t = state["step"]
+        t = state["micro_step"]
         if t >= limit:
             return True, f"Failure: Time out, timestep {t}/{limit}"
         return False, f"Timestep {t}/{limit}"
@@ -121,67 +55,49 @@ class RollingChecks:
 
 class MacroConfig:
     @staticmethod
-    def go_behind(step_results, x):
+    def explore(state, x):
         """Go behind object x. x is an id. x comes in as "x,y"""
         x = int(x.split(",")[0])
-        res = np.zeros(20)
-        mstate = preprocess(step_results)
-        for c, timestep in enumerate(["t-1", "t"]):
-            state = mstate[timestep]
-            ooi_pos = np.array(
-                state["objects"].loc[x, ["abs_pos_x", "abs_pos_y", "abs_pos_z"]]
-            )
-            agent_pos = state["agent"][3:6]
-            rel_pos = ooi_pos - agent_pos
-            magn = np.linalg.norm(rel_pos)
-            behind_pos = rel_pos * (magn + 0.3) / magn  # 0.125 => 5units in world
-            local_behind_pos = transform(state["transform"], behind_pos)
-            # rel_rot = math.atan2(local_behind_pos[0], local_behind_pos[1])
-            res[0 + (10 * c) : 2 + (10 * c)] = state["agent"][:2]
-            res[2 + (10 * c)] = state["objects"].loc[x, "rel_rot"]
-            res[3 + (10 * c) : 5 + (10 * c)] = [
-                local_behind_pos[0],
-                local_behind_pos[2],
-            ]  # only want x,z
-            res[5 + (10 * c) : 10 + (10 * c)] = state["rays"]
+        res = np.zeros(6)
+        res[:2] = state['velocity']
+        try:
+            res[2:] = next(i[0] for i in state['obj'] if i[2]==x)
+        except StopIteration:
+            res[2:] = [0,0,0,0]
         return res
 
     @staticmethod
-    def interact(step_results, x):
+    def interact(state, x):
         """Go to object x. x is an id."""
-        res = np.zeros(10)
         x = int(x)
-        mstate = preprocess(step_results)
-        for c, timestep in enumerate(["t-1", "t"]):
-            state = mstate[timestep]
-            obj = state["objects"].loc[
-                x, ["rel_pos_x", "rel_pos_y", "rel_pos_z", "rel_rot"]
-            ]
-            res[0 + (5 * c) : 2 + (5 * c)] = state["agent"][:2]
-            res[2 + (5 * c)] = obj["rel_rot"]
-            res[3 + (5 * c) : 5 + (5 * c)] = [obj["rel_pos_x"], obj["rel_pos_z"]]
+        res = np.zeros(6)
+        res[:2] = state['velocity']
+        try:
+            res[2:] = next(i[0] for i in state['obj'] if i[2]==x)
+        except StopIteration:
+            res[2:] = [0,0,0,0]
         return res
 
 
 class MacroAction:
-    def __init__(self, env, step_results, action):
+    def __init__(self, env, ct, state, step_results, action):
         self.env = env
+        self.ct = ct
+        self.state = state
         self.step_results = step_results
         self.action = action["initiate"][0][0]
         self.action_args = action["initiate"][0][1]
         self.checks = action["check"]
-        model_path = f"macro_actions/{self.action}.pb"
-        self.graph = load_pb(model_path)
+        self.graph = None
         self.reward = 0
         self.micro_step = 0
 
     def macro_stats(self, checks=None):
-        success = self.step_results[1] > self.reward
-        self.reward = self.step_results[1]
+        success = self.state['reward'] > self.reward
         res = {
             "success": success,
             "micro_step": self.micro_step,
-            "reward": self.reward,
+            "reward": self.state['reward'],
             "checks": checks,
         }
         return res
@@ -201,16 +117,15 @@ class MacroAction:
         return action
 
     def checks_clean(self):
-        if self.step_results[2]:
+        if self.state['done']:
             return False, self.macro_stats(None)
-        state = preprocess(self.step_results)
         for check in self.checks:
             if check[1] != "-":
                 check_bool, check_stats = getattr(RollingChecks, check[0])(
-                    state, check[1]
+                    self.state, check[1]
                 )
             else:
-                check_bool, check_stats = getattr(RollingChecks, check[0])(state)
+                check_bool, check_stats = getattr(RollingChecks, check[0])(self.state)
 
             if check_bool:
                 return False, self.macro_stats(check_stats)
@@ -218,26 +133,46 @@ class MacroAction:
 
     def run(self):
         state_parser = getattr(MacroConfig(), self.action)
+
+        # Get model path
+        if self.action == 'explore':
+            bbox = state_parser(self.state, self.action_args)
+            model_path = f"macro_actions/raw/{self.action}"
+            print(bbox)
+            if (bbox[0]+bbox[2]/2)>0.5: # If obj is on right, go around left side
+                model_path+= "_left.pb"
+                print('left')
+            else:
+                model_path+= "_right.pb"
+                print('right')
+        else:
+            model_path = f"macro_actions/raw/{self.action}.pb"
+
+        # Load graph
+        self.graph = load_pb(model_path)
+
         go = True
         while go:
-            state = state_parser(self.step_results, self.action_args)
-            action = self.get_action(state)
+            vector_obs = state_parser(self.state, self.action_args)
+            action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
-            self.step_results += tuple([self.micro_step])
+            self.state = preprocess(self.ct, self.step_results)
+            self.state['micro_step'] = self.micro_step
             self.micro_step += 1
             go, stats = self.checks_clean()
             self.reward = self.step_results[1]
-        return self.step_results, stats, self.micro_step
+        return self.step_results, self.state, stats, self.micro_step
 
 
 class Pipeline:
     def __init__(self, args):
         self.args = args
+        self.ct = None
         self.bk = ""
         self.gg_id = 0
         env_path = args.env
         worker_id = 0
-        seed = 0
+        seed = 1
         arena_path = args.arena_config
         ac = ArenaConfig(arena_path)
         # Load Unity environment based on config file with Gym or ML agents wrapper
@@ -250,18 +185,25 @@ class Pipeline:
             grayscale=False,
             inference=True
         )
+
+
     @staticmethod
-    def visible(df):
-        df1 = df["visible"]
-        df1 = df1[df1 != -1].index.tolist()
-        visible = "\n"
-        for i in df1:
-            visible += f"visible({round(i)}).\n"
+    def visible(state):
+        visible = ""
+        for _, _, _id in state['obj']:
+            visible += f"visible({_id}).\n"
         return visible
 
-    def grounder(self, df):
-        visible = self.visible(df)
-        self.gg_id = int(df[df["class"] == "GoodGoal"].index[0])
+    def goal_visible(self, state):
+        try:
+            self.gg_id = next(i[2] for i in state['obj'] if i[1]=='goal')
+            return True
+        except StopIteration:
+            self.gg_id = 42
+            return False
+    def grounder(self, state):
+        visible = self.visible(state)
+        self.goal_visible(state)
         return visible
 
     def logic(self):
@@ -270,11 +212,11 @@ class Pipeline:
                 present({self.gg_id}).
                 present(X):- visible(X).
                 obstructs(X,Y) :- present(X), present(Y), visible(X), not visible(Y).
-                initiate(go_behind(X,Y)) :- visible(X), obstructs(X,Y).
+                initiate(explore(X,Y)) :- visible(X), obstructs(X,Y).
                 initiate(interact({self.gg_id})):- visible({self.gg_id}).
 
-                check(visible(Y)):- initiate(go_behind(X,Y)).
-                check(time):- initiate(go_behind(X,Y)).
+                check(visible(Y)):- initiate(explore(X,Y)).
+                check(time):- initiate(explore(X,Y)).
                 check(time):- initiate(interact({self.gg_id})).
                 """
         answers = ASP(lp)
@@ -290,22 +232,6 @@ class Pipeline:
             var = "-"
         return [predicate, var]
 
-    def macro_processing(self, answer_sets):
-        # Get out of clyngor obj type
-        answer_sets = list(list(answer_sets)[0])
-        # Fetch initiate and checks
-        kw = ["initiate", "check", "terminate"]
-        filtered_answer_sets = {
-            k: [self.split_predicate(i[1][0]) for i in answer_sets if i[0] == k]
-            for k in kw
-        }
-        assert (
-            not len(filtered_answer_sets["initiate"]) > 1
-        ), "Can only support one action at at a time"
-        if len(filtered_answer_sets["initiate"]) < 1:
-            return None
-        return filtered_answer_sets
-
     def format_macro_results(self, stats):
         res = """
         Success: {success}
@@ -317,26 +243,52 @@ class Pipeline:
         )
         return res
 
-    def take_macro_step(self, env, step_results, macro_action):
-        ma = MacroAction(env, step_results, macro_action)
+    def macro_processing(self, answer_sets):
+        # Get out of clyngor obj type
+        answer_sets = list(list(answer_sets)[0])
+        # Fetch initiate and checks
+        kw = ["initiate", "check", "terminate"]
+        filtered_answer_sets = {
+            k: [self.split_predicate(i[1][0]) for i in answer_sets if i[0] == k]
+            for k in kw
+        }
+        assert (
+            not len(filtered_answer_sets["initiate"]) > 1
+        ), f"Can only support one action at at a time: {filtered_answer_sets['initiate']}"
+        if len(filtered_answer_sets["initiate"]) < 1:
+            return None
+        return filtered_answer_sets
+
+    def take_macro_step(self, env, state, step_results, macro_action):
+        ma = MacroAction(env, self.ct, state, step_results, macro_action)
         print(f"Initiating macro_action: {macro_action['initiate']}")
-        step_results, macro_stats, micro_step = ma.run()
+        step_results, state, macro_stats, micro_step = ma.run()
         print(f"Results: {self.format_macro_results(macro_stats)}")
-        return step_results, micro_step, macro_stats["success"]
+        return step_results, state, micro_step, macro_stats["success"]
 
     def episode_over(self, done):
         if done:
             return True
         return False
 
-    def rotate(self, step_results):
+    def rotate(self):
         print("Rotating 360")
-        for _ in range(50):
-            data = preprocess(step_results)
-            ground_atoms = self.grounder(data["t"]["objects"])
-            if ground_atoms not in self.bk:
-                self.bk += ground_atoms
-            step_results = self.env.step([[0, 1]])  # Take 0,0 step
+        tracker = 0
+        for c in range(50):
+            # ground_atoms = self.grounder(state)
+            # if ground_atoms not in self.bk:
+            #     self.bk += ground_atoms
+            step_results = self.env.step([[0, 1]])
+            state = preprocess(self.ct, step_results)  # Rotate
+            if self.goal_visible(state):
+                print("Goal visible")
+                return step_results
+            if state['obj']:
+                tracker = c
+        # If no goal was visible rerotate to where something was visible
+        for i in range(50-tracker-2): # add extra 2 rotations to be looking straight at object
+            step_results = self.env.step([[0, 1]])
+            _ = preprocess(self.ct, step_results)
         return step_results
 
     def run(self):
@@ -345,19 +297,20 @@ class Pipeline:
             print(f"======Running episode {i}=====")
             step_results = self.env.step([[0, 0]])  # Take 0,0 step
             global_steps = 0
-            self.bk = ""  # Reset bk each episode
             while not self.episode_over(step_results[2]):
-                data = preprocess(step_results)
-                ground_atoms = self.grounder(data["t"]["objects"])
+                self.bk = ""  # Reset bk each new macroaction
+                self.ct = CentroidTracker() # Initialise tracker
+                state = preprocess(self.ct, step_results)
+                ground_atoms = self.grounder(state)
                 self.bk += ground_atoms
                 answer_sets = self.logic()
                 macro_action = self.macro_processing(answer_sets)
                 if macro_action is None:
-                    self.rotate(step_results)
+                    step_results = self.rotate()
                     global_steps += 50
                     continue
-                step_results, micro_step, success = self.take_macro_step(
-                    self.env, step_results, macro_action
+                step_results, state, micro_step, success = self.take_macro_step(
+                    self.env, state, step_results, macro_action
                 )
                 global_steps += micro_step
             nl_success = "Success" if success else "Failure"
