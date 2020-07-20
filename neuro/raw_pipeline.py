@@ -138,7 +138,6 @@ class MacroAction:
         if self.action == 'explore':
             bbox = state_parser(self.state, self.action_args)
             model_path = f"macro_actions/raw/{self.action}"
-            print(bbox)
             if (bbox[0]+bbox[2]/2)>0.5: # If obj is on right, go around left side
                 model_path+= "_left.pb"
                 print('left')
@@ -273,7 +272,8 @@ class Pipeline:
 
     def rotate(self):
         print("Rotating 360")
-        tracker = 0
+        tracker_onset = None
+        tracker_offset = 0
         for c in range(50):
             # ground_atoms = self.grounder(state)
             # if ground_atoms not in self.bk:
@@ -284,10 +284,20 @@ class Pipeline:
                 print("Goal visible")
                 return step_results
             if state['obj']:
-                tracker = c
+                if tracker_onset is None:
+                    tracker_onset = c
+                else:
+                    tracker_offset = c
         # If no goal was visible rerotate to where something was visible
-        for i in range(50-tracker-2): # add extra 2 rotations to be looking straight at object
-            step_results = self.env.step([[0, 1]])
+        point_to_object = tracker_onset + int((tracker_offset-tracker_onset)/2)
+        if point_to_object > 25:
+            num_rotations = 50 - point_to_object
+            direction = 2
+        else:
+            num_rotations = point_to_object
+            direction = 1
+        for i in range(num_rotations): # add extra 2 rotations to be looking straight at object
+            step_results = self.env.step([[0, direction]])
             _ = preprocess(self.ct, step_results)
         return step_results
 
