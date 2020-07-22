@@ -29,3 +29,74 @@ check(time, T):- initiate(interact(X),T).
 #modeh(1, initiate(interact(var(X)), var(T))).
 
 #pos(a@10, {initiate(explore(2,1),1), initiate(interact(1),2)}, {}, {visible(2,1). obstructs(2,1,1). visible(1,2). goal(1).}).
+
+present(goal).
+present(X):- visible(X).
+obstructs(X,Y) :- present(X), present(Y), visible(X), not visible(Y).
+initiate(explore(X,Y)) :- visible(X), obstructs(X,Y).
+initiate(interact(goal)):- visible(goal).
+
+check(visible(Y)):- initiate(explore(X,Y)).
+check(time):- initiate(explore(X,Y)).
+check(time):- initiate(interact(goal)).
+
+% BK
+goal(0).
+present(0).
+% visible(1).
+% visible(2).
+% visible(3).
+% visible(4).
+platform(1).
+on(agent, 1).
+adjacent(1, 2).
+
+% Observables rules
+present(X):- visible(X).
+visible:- visible(X).
+not_obstructing(X):-on(agent, X).
+separator(Y):-on(agent, X), adjacent(X, Y), platform(X).
+obstructs(X,Y) :- present(Y), visible(X), not visible(Y), not separator(X), not not_obstructing(X).
+
+
+% Observables - > actions
+initiate(explore(X,Y)) :- visible(X), obstructs(X,Y).
+initiate(interact(X)):- visible(X), goal(X).
+initiate(rotate):- not visible.
+
+% Completion checks checks
+check(visible(Y)):- initiate(explore(X,Y)).
+check(time):- initiate(explore(X,Y)).
+check(time):- initiate(interact(goal)).
+
+
+% BK
+goal(0).
+present(0).
+% Observables
+visible(1,1).
+visible(2,2).
+visible(3,3).
+visible(4,4).
+platform(1).
+on(agent, 1).
+adjacent(1, 2).
+
+% Observables rules
+present(X):- visible(X).
+visible:- visible(X).
+not_obstructing(X):-on(agent, X).
+separator(Y):-on(agent, X), adjacent(X, Y), platform(X).
+obstructs(X,Y) :- present(Y), visible(X), not visible(Y), not separator(X), not not_obstructing(X).
+
+% #max{}
+initiate(explore(X,Y)) :- #max{Z:initiate(possible_explore(X,Y,Z))}.
+% Observables - > actions
+initiate(possible_explore(X,Y,Z)) :- visible(X,Z), obstructs(X,Y).
+initiate(interact(X)):- visible(X), goal(X).
+initiate(rotate):- not visible.
+
+% Completion checks checks
+check(visible(Y)):- initiate(explore(X,Y)).
+check(time):- initiate(explore(X,Y)).
+check(time):- initiate(interact(goal)).

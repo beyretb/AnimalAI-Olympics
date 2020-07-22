@@ -136,8 +136,9 @@ class MacroAction:
 
         # Get model path
         if self.action == 'explore':
-            bbox = state_parser(self.state, self.action_args)
+            bbox = state_parser(self.state, self.action_args)[2:]
             model_path = f"macro_actions/raw/{self.action}"
+
             if (bbox[0]+bbox[2]/2)>0.5: # If obj is on right, go around left side
                 model_path+= "_left.pb"
                 print('left')
