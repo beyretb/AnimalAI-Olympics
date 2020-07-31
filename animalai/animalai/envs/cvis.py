@@ -19,10 +19,11 @@ class HSV:
 	grey = [[0,0,0], [0,0,224]]
 	brown = [[7,53,40], [18,87,121]]
 	blue = [[113, 255, 148], [131, 255, 255]]
-
+	orange = [[20,121,158], [23,255,255]]
 hsv_cls = HSV()
 objects = OD()
 objects['goal'] =  hsv_cls.green
+objects['goal1'] = hsv_cls.orange
 # objects['danger_zone'] = hsv_cls.red
 objects['wall'] = hsv_cls.grey
 objects['platform'] = hsv_cls.blue
@@ -45,7 +46,7 @@ class ExtractFeatures:
 		return ctr, hier
 
 
-	def process_contour(self, ctr, obj, step):
+	def process_contour(self, ctr, obj, step=None):
 		# Fixed horizontal rectangler
 		res = []
 		for c in ctr:
@@ -65,7 +66,7 @@ class ExtractFeatures:
 
 		return res
 
-	def run(self, img, step, mode='octx'):
+	def run(self, img, step=None, mode='octx'):
 		if not self.training:
 			return self.run_test(img, step)
 
@@ -97,7 +98,7 @@ class ExtractFeatures:
 		features = [item for sublist in features for item in sublist]
 		return features
 
-	def run_test(self, img, step):
+	def run_test(self, img, step=None):
 		"""Returns list of tuples"""
 		self.img = (img*255)[:,:,::-1].astype(np.uint8)
 		self.hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
