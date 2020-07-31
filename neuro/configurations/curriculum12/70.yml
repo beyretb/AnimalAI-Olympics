@@ -5,12 +5,12 @@
         - !Item
           name: Agent
           positions:
-          - !Vector3 {x: 10, y: 0, z: 5}
-          rotations: [355]
+          - !Vector3 {x: 15, y: 0, z: 6}
+          rotations: [351]
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 7, y: 0, z: 15}
+          - !Vector3 {x: 9, y: 0, z: 16}
           sizes:
           - !Vector3 {x: 1, y: 1, z: 1}
         pass_mark: 0
