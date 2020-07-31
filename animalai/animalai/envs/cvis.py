@@ -18,13 +18,14 @@ class HSV:
 	red = [[125,16,88], [179,255,255]]
 	grey = [[0,0,0], [0,0,224]]
 	brown = [[7,53,40], [18,87,121]]
+	blue = [[113, 255, 148], [131, 255, 255]]
 
 hsv_cls = HSV()
 objects = OD()
 objects['goal'] =  hsv_cls.green
 # objects['danger_zone'] = hsv_cls.red
 objects['wall'] = hsv_cls.grey
-
+objects['platform'] = hsv_cls.blue
 class ExtractFeatures:
 	
 	def __init__(self, display=True, training=True):
@@ -44,25 +45,29 @@ class ExtractFeatures:
 		return ctr, hier
 
 
-	def process_contour(self, ctr, obj):
+	def process_contour(self, ctr, obj, step):
 		# Fixed horizontal rectangler
 		res = []
 		for c in ctr:
 			x,y,w,h = cv2.boundingRect(c)
+			# print(x,y,w,h)
+			# print(x,y, x+w, y+h)
 			if self.display:
-				cv2.rectangle(self.img,(x,y),(x+w,y+h),(0,255,0),2)
-				cv2.imwrite("/Users/ludo/Desktop/bam.png", self.img)
+				color = (0,255,0) if obj=='platform' else (255,0,0)
+				cv2.rectangle(self.img,(x,y),(x+w,y+h),color,1)
+				# cv2.imwrite(f"/Users/ludo/Desktop/collect/{step}.png", self.img)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
 				w/self.img_dim[0], h/self.img_dim[1],
 				# 0 if obj=='goal' else 1
 				])
+
 		return res
 
-	def run(self, img, mode='octx'):
+	def run(self, img, step, mode='octx'):
 		if not self.training:
-			return self.run_test(img)
+			return self.run_test(img, step)
 
 		img = np.ascontiguousarray(
 			cv2.imdecode(np.frombuffer(img, np.uint8), -1))
@@ -92,18 +97,21 @@ class ExtractFeatures:
 		features = [item for sublist in features for item in sublist]
 		return features
 
-	def run_test(self, img):
+	def run_test(self, img, step):
 		"""Returns list of tuples"""
 		self.img = (img*255)[:,:,::-1].astype(np.uint8)
 		self.hsv_img = cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV)
 		self.img_dim = self.img.shape
-		features = []
+		features = {ot: [] for ot in objects}
 		for obj_type, hsv_clr in objects.items():
 			ctr, hier = self.get_contour(hsv_clr)
 			if ctr is None:
+				features[obj_type] = []
 				continue
-			coords = self.process_contour(ctr, obj_type)
+			coords = self.process_contour(ctr, obj_type, step)
 			for box in coords:
-				features.append((box, obj_type))
+				occluding_area = round(box[2]*box[3]*1000)
+				features[obj_type] += [(box, obj_type, occluding_area)]
+		# print(features)
 		return features
 
