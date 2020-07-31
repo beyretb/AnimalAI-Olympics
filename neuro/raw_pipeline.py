@@ -285,10 +285,10 @@ class MacroAction:
 
             if (bbox[0]+bbox[2]/2)>0.5: # If obj is on right, go around left side
                 model_path+= "_right.pb"
-                print('right')
+                # print('right')
             else:
                 model_path+= "_left.pb"
-                print('left')
+                # print('left')
         else:
             model_path = f"macro_actions/raw/{self.action}.pb"
 
@@ -317,17 +317,17 @@ class Pipeline:
         env_path = args.env
         worker_id = 0
         seed = 1
-        arena_path = args.arena_config
-        ac = ArenaConfig(arena_path)
+        self.arenas = args.arena_config
+        # ac = ArenaConfig(arena_path)
         # Load Unity environment based on config file with Gym or ML agents wrapper
         self.env = AnimalAIGym(
             environment_filename=env_path,
             worker_id=worker_id,
             n_arenas=1,
-            arenas_configurations=ac,
+            arenas_configurations=self.arenas[0],
             seed=seed,
             grayscale=False,
-            inference=True
+            inference=False
         )
 
 
@@ -454,9 +454,9 @@ class Pipeline:
 
     def take_macro_step(self, env, state, step_results, macro_action):
         ma = MacroAction(env, self.ct, state, step_results, macro_action)
-        print(f"Initiating macro_action: {macro_action['initiate']}")
+        # print(f"Initiating macro_action: {macro_action['initiate']}")
         step_results, state, macro_stats, micro_step = ma.run()
-        print(f"Results: {self.format_macro_results(macro_stats)}")
+        # print(f"Results: {self.format_macro_results(macro_stats)}")
         return step_results, state, micro_step, macro_stats["success"]
 
     def episode_over(self, done):
@@ -473,9 +473,9 @@ class Pipeline:
             # if ground_atoms not in self.bk:
             #     self.bk += ground_atoms
             step_results = self.env.step([[0, 1]])
-            state = preprocess(self.ct, step_results)  # Rotate
+            state = preprocess(self.ct, step_results, 0)  # Rotate
             if self.goal_visible(state):
-                print("Goal visible")
+                # print("Goal visible")
                 return step_results
             if state['obj']:
                 if tracker_onset is None:
@@ -483,6 +483,8 @@ class Pipeline:
                 else:
                     tracker_offset = c
         # If no goal was visible rerotate to where something was visible
+        if tracker_onset is None:
+            return None
         point_to_object = tracker_onset + int((tracker_offset-tracker_onset)/2)
         if point_to_object > 25:
             num_rotations = 50 - point_to_object
@@ -492,13 +494,15 @@ class Pipeline:
             direction = 1
         for i in range(num_rotations): # add extra 2 rotations to be looking straight at object
             step_results = self.env.step([[0, direction]])
-            _ = preprocess(self.ct, step_results)
+            _ = preprocess(self.ct, step_results, 0)
         return step_results
 
     def run(self):
         success_count = 0
-        for i in range(self.args.num_episodes):
-            print(f"======Running episode {i}=====")
+        # for i in range(self.args.num_episodes):
+        for idx,arena in enumerate(self.arenas):
+            self.env.reset(arena)
+            print(f"======Running episode {idx}=====")
             step_results = self.env.step([[0, 0]])  # Take 0,0 step
             global_steps = 0
             self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
@@ -508,10 +512,21 @@ class Pipeline:
                 ground_atoms = self.grounder(state)
                 self.bk += ground_atoms
                 answer_sets = self.logic()
-                macro_action = self.macro_processing(answer_sets)
+                try:
+                    macro_action = self.macro_processing(answer_sets)
+                except AssertionError:
+                    print('More than one action')
+                    success = False
+                    break
                 if macro_action['initiate'][0][0]=='rotate':
                     step_results = self.rotate()
-                    global_steps += 50
+                    if step_results is None:
+                        reward = 1
+                        step_results = [False, False, False]
+                        while not self.episode_over(step_results[2]):
+                            reward = step_results[1]
+                            step_results = self.env.step([0,0])
+                        success = step_results[1]>reward
                     continue
                 # return "ba"
                 step_results, state, micro_step, success = self.take_macro_step(
