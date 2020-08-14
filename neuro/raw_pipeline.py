@@ -5,7 +5,7 @@ import sys
 sys.path.insert(0, "/Users/ludo/Desktop/animalai/animalai/animalai_train")
 sys.path.insert(1, "/Users/ludo/Desktop/animalai/animalai/animalai")
 
-from animalai.envs.cvis import ExtractFeatures
+from animalai.envs.cvis_test import ExtractFeatures
 from animalai.envs.gym.environment import AnimalAIGym
 from animalai.envs.arena_config import ArenaConfig
 from mlagents.tf_utils import tf
@@ -17,7 +17,7 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 ef = ExtractFeatures(display=True, training=False)
 
 object_types = {
-    'goal':0, 'wall':10, 'platform':20
+    'goal':0, 'goal1':30, 'wall':10, 'platform':20
 }
 
 def convert_dimensions(func):
@@ -25,15 +25,13 @@ def convert_dimensions(func):
         """Convert from x,y,h,w to x1, x2, y1, y2"""
         # x is top left corner
         res = []
-        # print('----')
-        # print(dimensions)
+
         for dims in dimensions:
             x1, y1 = dims[0], dims[1] #x, y
             x2 = x1 + dims[2] #w
             y2 = y1 + dims[3] #h
             res.append({'x1': x1, 'y1':y1, 'x2':x2, 'y2':y2})
-        # print(res)
-        # print('----')
+
 
         return func(*res)
     return wrapper
@@ -94,16 +92,13 @@ def get_overlap(bb1, bb2):
 @convert_dimensions
 def get_distance(dims1, dims2):
     """Get shortest distance between two rectangles"""
-    # print(dims1, dims2)
-    # print(dims1)
+
     x1, y1, x1b, y1b = dims1.values()
-    # print(dims2)
     x2, y2, x2b, y2b = dims2.values()
     left = x2b < x1
     right = x1b < x2
     bottom = y2b < y1
     top = y1b < y2
-    # print(left, right, bottom, top)
     dist = lambda x,y: np.linalg.norm(np.array(x)-np.array(y))
     if top and left:
         return dist((x1, y1b), (x2b, y2))
@@ -171,14 +166,13 @@ def preprocess(ct, step_results, step):
         "done": step_results[2],  # bool
         # "step": step_results[-1],
     }
-    # print(res)
-    # print('\n')
+
     return res
 
 class RollingChecks:
     @staticmethod
     def visible(state, obj_id):
-        if any(i[1]=='goal' for i in state['obj']):
+        if any(i[1]in['goal','goal1'] for i in state['obj']):
             return True, f"Success: Object {obj_id} now visible"
         return False, f"Object {obj_id} still not visible"
 
@@ -195,18 +189,13 @@ class MacroConfig:
     def explore(state, x):
         """Go behind object x. x is an id. x comes in as "x,y"""
         x = int(x.split(",")[0])
-        # print("Exploring: ", x)
-        # print('\n')
         res = np.zeros(6)
         res[:2] = state['velocity']
-        # print([i[3] for i in state['obj']])
         try:
-            # print(state['obj'])
-            # print([i[0] for i in state['obj'] if i[3]==x])
+
             res[2:] = next(i[0] for i in state['obj'] if i[3]==x)
         except StopIteration:
             res[2:] = [0,0,0,0]
-        # print(res)
         return res
 
     @staticmethod
@@ -246,7 +235,6 @@ class MacroAction:
         return res
 
     def get_action(self, vector_obs):
-        # print(vector_obs)
         with tf.compat.v1.Session(graph=self.graph) as sess:
             output_node = self.graph.get_tensor_by_name("action:0")
             input_node = self.graph.get_tensor_by_name("vector_observation:0")
@@ -327,7 +315,7 @@ class Pipeline:
             arenas_configurations=self.arenas[0],
             seed=seed,
             grayscale=False,
-            inference=False
+            inference=args.inference
         )
 
 
@@ -337,8 +325,6 @@ class Pipeline:
         for bbox, obj_type, _, _id in state['obj']:
             for bbox1, obj_type1, _, _id1 in state['obj']:
                 dist = get_distance(bbox, bbox1)
-                # print(f'distance {obj_type}, {obj_type1}, {_id}, {_id1}', dist)
-                # print('\n')
                 if (_id1!=_id)&(dist<0.02):
                     adjacent += f"adjacent({_id},{_id1}).\n"
         return adjacent
@@ -347,7 +333,6 @@ class Pipeline:
         on = ""
         bottom_rect = [0, 0.75, 1, 0.25]
         for bbox, _, _, _id in state['obj']:
-            # print('overlap', get_overlap(bbox, bottom_rect))
             if get_overlap(bbox, bottom_rect)>0.5:
                 on += f"on(agent,{_id}).\n"
         return on
@@ -363,7 +348,7 @@ class Pipeline:
 
     def goal_visible(self, state):
         try:
-            self.gg_id = next(i[3] for i in state['obj'] if i[1]=='goal')
+            self.gg_id = next(i[3] for i in state['obj'] if i[1] in ['goal', 'goal1'])
             return True
         except StopIteration:
             self.gg_id = 42
@@ -398,7 +383,6 @@ class Pipeline:
                 check(time):- initiate(explore(X,Y,Z)).
                 check(time):- initiate(interact(goal)).
                 """
-        # print(lp)
 
         answers = ASP(lp)
 
@@ -442,9 +426,7 @@ class Pipeline:
             priorities = [int(i[1].split(',')[-1].replace(')', '')) for i in initiate]
             idx = initiate[priorities.index(max(priorities))]
             filtered_answer_sets['initiate'] = [idx]
-            # filtered_answer_sets['check'] = 
 
-        # print(filtered_answer_sets)
         assert (
             not len(filtered_answer_sets["initiate"]) > 1
         ), f"Can only support one action at at a time: {filtered_answer_sets['initiate']}"
@@ -465,7 +447,7 @@ class Pipeline:
         return False
 
     def rotate(self):
-        print("Rotating 360")
+        # print("Rotating 360")
         tracker_onset = None
         tracker_offset = 0
         for c in range(50):
@@ -518,8 +500,15 @@ class Pipeline:
                     print('More than one action')
                     success = False
                     break
-                if macro_action['initiate'][0][0]=='rotate':
+                if global_steps >= 1000:
+                    success = False
+                    print("Exceeded max global steps")
+                    break
+                if macro_action is None:
+                    macro_action = {'initiate': [['rotate']]}
+                if  macro_action['initiate'][0][0]=='rotate':
                     step_results = self.rotate()
+                    global_steps +=50
                     if step_results is None:
                         reward = 1
                         step_results = [False, False, False]
@@ -528,7 +517,6 @@ class Pipeline:
                             step_results = self.env.step([0,0])
                         success = step_results[1]>reward
                     continue
-                # return "ba"
                 step_results, state, micro_step, success = self.take_macro_step(
                     self.env, state, step_results, macro_action
                 )

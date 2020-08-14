@@ -143,3 +143,4 @@ python3 train.py -e bb2  -cc curriculum4 -r octxbb2 -ne 4 -na 8
 tensorboard --port 6606 &
 ssh -L 6606:localhost:6606 ludovico@neuroanimal.doc.ic.ac.uk
 ssh -L 6606:localhost:6606 ludovico@neurobeast.doc.ic.ac.uk
+pkill -9 -f bb2
