@@ -118,7 +118,7 @@ class MacroAction:
             self.micro_step += 1
             self.reward = self.step_results[1]
             # Rotate
-            if goal_visible(0, self.state): #0 is placeholder macro step, has no effect
+            if '42' not in goal_visible(0, self.state): #0 is placeholder macro step, has no effect
                 print("Goal visible")
                 return self.step_results, self.state, self.macro_stats(
                     "Goal visible, end rotation"), self.micro_step

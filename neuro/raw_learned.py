@@ -77,6 +77,15 @@ class Pipeline:
                     break
                 state = preprocess(self.ct, step_results, global_steps)
                 macro_action, observables = self.logic.run(macro_step, state)
+                if len(macro_action['initiate'])>1:
+                    success = False
+                    print(actions_buffer)
+                    print(macro_action['raw'])
+                    print("FAIL")
+                    actions_buffer += macro_action['raw']
+                    observables_buffer.append(observables)
+                    break
+
                 step_results, state, micro_step, success = self.take_macro_step(
                     self.env, state, step_results, macro_action
                 )

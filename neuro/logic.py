@@ -9,7 +9,7 @@ from utils import get_overlap, get_distance
 
 AnswerSet = namedtuple('AS', ['r', 'p', 'a']) # r for raw, p for parsed, a for arity
 parse_args = lambda x: list(list(ASP(x+'.').parse_args)[0])[0]
-
+sample_vars = ["X", "Y", "Z"]
 macro_actions = {
     "explore":3,
     "interact":1,
@@ -80,7 +80,7 @@ class Ilasp:
             if num_preds:
                 variables = "("
                 for i in range(num_preds):
-                    variables+=f"var(V{i}),"
+                    variables+=f"var({sample_vars[i]}),"
                 variables = variables[:-1] + ')' # get rid of last comma
             else:
                 variables = ""
@@ -94,15 +94,14 @@ class Ilasp:
         #modeb(1, visible(var(X), var(Z), var(T))).
         #modeb(1, visible(var(T))).
         #modeb(1, occludes(var(X),var(Y), var(T))).
-        #modeb(1, timestep(var(T))).
-        """
+        #modeb(1, timestep(var(T))).\n"""
     def update_examples(self, observables, actions, success):
         observables = '\n'.join(observables)
         actions = ','.join(actions)
         if success:
-            example = f"#pos(a{self.memory_len}@{self.memory_len},{{{actions}}}, {{}}, {{{observables}}})."
+            example = f"#pos(a{self.memory_len}@{self.memory_len},\n{{{actions}}},\n{{}},\n{{{observables}}}).\n"
         else:
-            example = f"#pos(a{self.memory_len}@{self.memory_len},{{}}, {{{actions}}}, {{{observables}}})."
+            example = f"#pos(a{self.memory_len}@{self.memory_len},\n{{}},\n{{{actions}}},\n{{{observables}}}).\n"
         self.examples.append([self.memory_len, example])
         for c, eg in enumerate(self.examples):
             at_index = eg[1].index(',') # first comma
@@ -127,8 +126,9 @@ class Ilasp:
         
         # Return new lp with learned rules
         if bool(output): #learned rules
-            print(output)
             output = output.decode("utf-8")
+            print(output)
+
             if output=="UNSATISFIABLE\n":
                 return False
             with open("lr.txt", "w") as text_file:
@@ -150,8 +150,7 @@ class Clingo:
             occlusion(O):-visible(_,O,_).
             initiate(explore(X,Y,O),T):-object(X), object(Y,T), occlusion(O).
             initiate(interact(X),T):-object(X,T).
-            initiate(rotate,{macro_step}).
-            """
+            initiate(rotate,{macro_step})."""
         res = self.asp(lp)
         rand_action = rnd.choice([i for i in res.r[0] if 'initiate' in i])
 
@@ -180,17 +179,25 @@ class Clingo:
                     # From initiate(action(args),ts), select action(args)
                     res['initiate'].append(parse_args(literal)[1][0])
                     res['raw'].append(literal)
-                    break # Stop at first initiate
-                # if 'check' in literal:
-                #     res['check'].append(parse_args(literal)[1])
 
-        # Add checks
+        # No action returned
+        if not res['initiate']:
+            print("NO ACTION")
+            return False
+
+        # if two actions are returned then episode is a failure
+        # and both actions together are put in exclusion.
+        if len(res['initiate'])>1:
+            return False
+
+        # Add checks for chosen action
         checks = list(ASP(f"""            
             {res['raw'][0]}.
             check(visible(Y),T):- initiate(explore(X,Y,Z),T).
             check(time, 200):- initiate(explore(X,Y,Z),T).
             check(time, 200):- initiate(interact(X),T).
-            check(time, 50):- initiate(rotate,T).""").atoms_as_string)[0]
+            check(time, 50):- initiate(rotate,T).""").atoms_as_string)
+        checks = checks[0]
         checks = [parse_args(i)[1] for i in list(checks) if 'check' in i]
         res['check'] = checks
         print(res)
@@ -202,6 +209,8 @@ class Clingo:
             res = self.random_action_grounder(macro_step, lp)
         else: # Run full lp
             res = self.asp(lp)
+            # print(lp)
+            # print(res)
                 
         return self.macro_processing(res)
 
@@ -218,11 +227,11 @@ class Logic:
         return """
             0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
             initiate(interact(X),T):- visible(X, _,T), goal(X).
-            initiate(rotate,T):- not visible(T), timestep(T).
-        """
+            initiate(rotate,T):- not visible(T), timestep(T)."""
     def main_lp(self, macro_step):
         return f"""
             timestep(0..{macro_step}).
+            present(X,T):-goal(X), timestep(T).
             % Observables rules
             present(X,T):- visible(X, _, T).
             visible(T):- visible(X, _, T).
@@ -238,8 +247,7 @@ class Logic:
             check(visible(Y),T):- initiate(explore(X,Y,Z),T).
             check(time, T):- initiate(explore(X,Y,Z),T).
             check(time, T):- initiate(interact(X),T).
-            check(time, T):- initiate(rotate,T).
-            """
+            check(time, T):- initiate(rotate,T)."""
     def e_greedy(self):
         # Don't start egreedy until there's at least one positive example with inclusion
         res = np.random.choice(['ilasp', 'random'], 1, p=[1-self.e, self.e])
@@ -257,8 +265,10 @@ class Logic:
         if choice == 'ilasp':
             learned_lp = self.ilasp.run(self.main_lp(macro_step))
             if learned_lp:
-                action = self.clingo.run(macro_step, learned_lp, random=False)
+                action = self.clingo.run(macro_step, learned_lp+observables, random=False)
             else:
+                action = self.clingo.run(macro_step, observables, random=True)
+            if not action:
                 action = self.clingo.run(macro_step, observables, random=True)
             # Need to update ilasp examples with outcome
         elif choice == 'random':
