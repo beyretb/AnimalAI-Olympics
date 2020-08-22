@@ -1,1 +1,1 @@
-UNSATISFIABLE
+initiate(interact(V0),V3) :- goal(V0), visible(V1, V2, V3).

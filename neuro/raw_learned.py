@@ -59,32 +59,32 @@ class Pipeline:
 
     def run(self):
         success_count = 0
+        choice = 'random'
         for idx in range(self.args.num_episodes):
             self.env.reset(self.arenas[0])
         # for idx,arena in enumerate(self.arenas):
         #     self.env.reset(arena)
-            print(f"======Running episode {idx}=====")
+            # print(f"======Running episode {idx}=====")
             step_results = self.env.step([[0, 0]])  # Take 0,0 step
             global_steps = 0
             macro_step = 0
             self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
             actions_buffer = []
             observables_buffer = []
+            if (idx%15==0)&(idx!=0):
+                choice = 'ilasp'
+                self.logic.update_learned_lp(macro_step)
+
             while not self.episode_over(step_results[2]):
                 if global_steps >= 1000:
                     success = False
                     print("Exceeded max global steps")
                     break
                 state = preprocess(self.ct, step_results, global_steps)
-                macro_action, observables = self.logic.run(macro_step, state)
-                if len(macro_action['initiate'])>1:
-                    success = False
-                    print(actions_buffer)
-                    print(macro_action['raw'])
-                    print("FAIL")
-                    actions_buffer += macro_action['raw']
-                    observables_buffer.append(observables)
-                    break
+                macro_action, observables = self.logic.run(
+                    macro_step,
+                    state,
+                    choice=choice)
 
                 step_results, state, micro_step, success = self.take_macro_step(
                     self.env, state, step_results, macro_action
@@ -93,9 +93,10 @@ class Pipeline:
                 macro_step +=1
                 actions_buffer.append(macro_action['raw'][0])
                 observables_buffer.append(observables)
+            # Update examples after every episode
             self.logic.update_examples(observables_buffer, actions_buffer, success)
             nl_success = "Success" if success else "Failure"
-            print(f"Episode was a {nl_success}")
+            # print(f"Episode was a {nl_success}")
             success_count += success
 
         print(

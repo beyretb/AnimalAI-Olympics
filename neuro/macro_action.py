@@ -107,7 +107,7 @@ class MacroAction:
         return True, "GREEN"
 
     def rotate_clever(self):
-        print("Rotating 360")
+        # print("Rotating 360")
         tracker_onset = None
         tracker_offset = 0
         for c in range(50):
@@ -147,7 +147,7 @@ class MacroAction:
             "Object visible, rotating to it"), self.micro_step
     def rotate(self):
         """Rotate to first visible object"""
-        print("Rotating 360")
+        # print("Rotating 360")
         tracker_onset = None
         tracker_offset = 0
         for c in range(50):
@@ -159,7 +159,7 @@ class MacroAction:
             self.reward = self.step_results[1]
             # Rotate
             if self.state['obj']: #0 is placeholder macro step, has no effect
-                print("Object visible")
+                # print("Object visible")
                 break # and run a few more rotations to point to it
         for _ in range(3): # add extra 3 rotations to be looking straight at object
             self.step_results = self.env.step([[0, 1]])
@@ -173,7 +173,7 @@ class MacroAction:
     def run(self):
         if self.action=='rotate':
             return self.rotate()
-        print(self.action)
+        # print(self.action)
         state_parser = getattr(MacroConfig(), self.action)
 
         # Get model path
