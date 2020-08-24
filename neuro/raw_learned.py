@@ -9,7 +9,7 @@ from centroidtracker import CentroidTracker
 from macro_action import MacroAction
 from logic import Logic
 from utils import preprocess, object_types
-
+from config import COMPETITION_CONFIGS as comp
 
 class Pipeline:
     def __init__(self, args):
@@ -32,6 +32,9 @@ class Pipeline:
             inference=args.inference
         )
         self.logic = Logic()
+
+    def comp_stats(self):
+        pass
 
     def format_macro_results(self, stats):
         res = """
@@ -56,8 +59,7 @@ class Pipeline:
             return True
         return False
 
-
-    def run(self):
+    def test_run(self):
         success_count = 0
         choice = 'random'
         for idx in range(self.args.num_episodes):
@@ -71,7 +73,7 @@ class Pipeline:
             self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
             actions_buffer = []
             observables_buffer = []
-            if (idx%15==0)&(idx!=0):
+            if (idx%30==0)&(idx!=0):
                 choice = 'ilasp'
                 self.logic.update_learned_lp(macro_step)
 
@@ -85,7 +87,7 @@ class Pipeline:
                     macro_step,
                     state,
                     choice=choice)
-
+                # print(macro_action)
                 step_results, state, micro_step, success = self.take_macro_step(
                     self.env, state, step_results, macro_action
                 )
@@ -94,7 +96,60 @@ class Pipeline:
                 actions_buffer.append(macro_action['raw'][0])
                 observables_buffer.append(observables)
             # Update examples after every episode
-            self.logic.update_examples(observables_buffer, actions_buffer, success)
+            if success:
+                self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
+            else:
+                self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
+
+            nl_success = "Success" if success else "Failure"
+            # print(f"Episode was a {nl_success}")
+            success_count += success
+
+        print(
+            f"Final results: {success_count}/{self.args.num_episodes} episodes were completed successfully"
+        )
+    def learn_run(self):
+        success_count = 0
+        choice = 'random'
+        for idx in range(self.args.num_episodes):
+            self.env.reset(self.arenas[0])
+        # for idx,arena in enumerate(self.arenas):
+        #     self.env.reset(arena)
+            # print(f"======Running episode {idx}=====")
+            step_results = self.env.step([[0, 0]])  # Take 0,0 step
+            global_steps = 0
+            macro_step = 0
+            self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
+            actions_buffer = []
+            observables_buffer = []
+            if (idx%30==0)&(idx!=0):
+                choice = 'ilasp'
+                self.logic.update_learned_lp(macro_step)
+
+            while not self.episode_over(step_results[2]):
+                if global_steps >= 1000:
+                    success = False
+                    print("Exceeded max global steps")
+                    break
+                state = preprocess(self.ct, step_results, global_steps)
+                macro_action, observables = self.logic.run(
+                    macro_step,
+                    state,
+                    choice=choice)
+                # print(macro_action)
+                step_results, state, micro_step, success = self.take_macro_step(
+                    self.env, state, step_results, macro_action
+                )
+                global_steps += micro_step
+                macro_step +=1
+                actions_buffer.append(macro_action['raw'][0])
+                observables_buffer.append(observables)
+            # Update examples after every episode
+            if success:
+                self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
+            else:
+                self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
+
             nl_success = "Success" if success else "Failure"
             # print(f"Episode was a {nl_success}")
             success_count += success

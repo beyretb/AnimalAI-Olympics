@@ -76,7 +76,7 @@ class Grounder:
 class Ilasp:
     def __init__(self):
         # Examples are [int:weight, string:example]
-        self.memory_len = 15
+        self.memory_len = 30
         self.examples = deque(maxlen=self.memory_len)
     def create_modeh(self):
         res = ""
@@ -112,7 +112,7 @@ class Ilasp:
         self.examples.append([success, example])
 
         success_num = sum([i[0] for i in self.examples])
-        print(success_num)
+        # print(success_num)
         if success_num==self.memory_len:
             ratio = self.memory_len-1
             mult = 1
@@ -125,7 +125,7 @@ class Ilasp:
             ratio = int(ratio*mult)
         if len(self.examples) == self.memory_len:
             for c, (suc, eg) in enumerate(self.examples):
-                weight = mult if suc else ratio
+                weight = 1 #mult if suc else ratio
                 a_idx = eg.index('a')+1
                 c_idx = eg.index(",")
                 updated_eg = eg[:a_idx] + str(c) + "@" + str(weight) +  eg[c_idx:]
@@ -176,9 +176,8 @@ class Clingo:
             {ground_observables}
             present(X,T):-goal(X), timestep(T).
             present(X,T):- visible(X, _, T).
-            object(X,T):-present(X,T).
             initiate(explore(X,Y,O),T):- visible(X, O, T), present(Y,T), X!=Y.
-            initiate(interact(X),T):-object(X,T).
+            initiate(interact(X),T):-visible(X,_,T).
             initiate(rotate,{macro_step})."""
         res = self.asp(lp)
         rand_action = rnd.choice([i for i in res.r[0] if 'initiate' in i])
@@ -232,8 +231,8 @@ class Clingo:
         checks = list(ASP(f"""            
             {res['raw'][0]}.
             check(visible, Y):- initiate(explore(X,Y,Z),T).
-            check(time, 200):- initiate(explore(X,Y,Z),T).
-            check(time, 200):- initiate(interact(X),T).
+            check(time, 250):- initiate(explore(X,Y,Z),T).
+            check(time, 250):- initiate(interact(X),T).
             check(time, 50):- initiate(rotate,T).""").atoms_as_string)
         checks = checks[0]
         checks = [parse_args(i)[1] for i in list(checks) if 'check' in i]
@@ -267,22 +266,41 @@ class Logic:
         """This is what we want to learn."""
         return """
             0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
-            initiate(interact(X),T):- visible(X, _,T), goal(X)."""
+            initiate(interact(X),T):- visible(X, _,T), goal(X).
+            initiate(rotate,T):- not visible(T), timestep(T)."""
     def main_lp(self, macro_step):
         return f"""
-%timestep(0..{macro_step}).
-present(X,T):-goal(X), timestep(T).
-% Observables rules
-present(X,T):- visible(X, _, T).
-visible(T):- visible(X, _, T).
-not_occluding(X, T):-on(agent, X, T).
-separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
-occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
+        %timestep(0..{macro_step}).
+        present(X,T):-goal(X), timestep(T).
+        % Observables rules
+        present(X,T):- visible(X, _, T).
+        visible(T):- visible(X, _, T).
+        not_occluding(X, T):-on(agent, X, T).
+        separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
+        occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
 
-% Observables - > actions: this is what we need to learn
-%:- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
-%:~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
-initiate(rotate,T):- not visible(T), timestep(T)."""
+        % Observables - > actions: this is what we need to learn
+        %:- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
+        %:~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
+        initiate(rotate,T):- not visible(T), timestep(T)."""
+
+    def test_lp(self, macro_step):
+        return """
+        present(X,T):- visible(X, _, T).
+        visible(T):- visible(X, _, T).
+        not_occluding(X, T):-on(agent, X, T).
+        separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
+        occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
+        :- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
+        :~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
+        0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
+        initiate(interact(X),T):- visible(X, _,T), goal(X).
+        initiate(rotate,T):- not visible(T), timestep(T).
+        check(visible(Y),T):- initiate(explore(X,Y,Z),T).
+        check(time, T):- initiate(explore(X,Y,Z),T).
+        check(time, T):- initiate(interact(X),T).
+        check(time, T):- initiate(rotate,T)."""
+
     def e_greedy(self):
         # Don't start egreedy until there's at least one positive example with inclusion
         res = np.random.choice(['ilasp', 'random'], 1, p=[1-self.e, self.e])
