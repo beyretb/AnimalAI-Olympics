@@ -5,6 +5,7 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 from utils import load_pb, preprocess
 from logic import Grounder
+from collections import deque
 
 goal_visible = Grounder().goal_visible # Func
 
@@ -119,7 +120,7 @@ class MacroAction:
             self.reward = self.step_results[1]
             # Rotate
             if '42' not in goal_visible(0, self.state): #0 is placeholder macro step, has no effect
-                print("Goal visible")
+                # print("Goal visible")
                 return self.step_results, self.state, self.macro_stats(
                     "Goal visible, end rotation"), self.micro_step
             if self.state['obj']:
@@ -145,6 +146,7 @@ class MacroAction:
             self.micro_step += 1
         return self.step_results, self.state, self.macro_stats(
             "Object visible, rotating to it"), self.micro_step
+
     def rotate(self):
         """Rotate to first visible object"""
         # print("Rotating 360")
@@ -172,7 +174,7 @@ class MacroAction:
 
     def run(self):
         if self.action=='rotate':
-            return self.rotate()
+            return self.rotate_clever()
         # print(self.action)
         state_parser = getattr(MacroConfig(), self.action)
 
@@ -194,8 +196,10 @@ class MacroAction:
         self.graph = load_pb(model_path)
 
         go = True
+        monitor_speed = deque(maxlen=5)
         while go:
             vector_obs = state_parser(self.state, self.action_args)
+            monitor_speed.append(vector_obs[:2])
             action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
@@ -203,4 +207,13 @@ class MacroAction:
             self.micro_step += 1
             go, stats = self.checks_clean()
             self.reward = self.step_results[1]
+            if np.mean(monitor_speed)<1: #i.e. we're stuck
+                if "explore" in model_path:
+                    if "right" in model_path:
+                        self.graph = load_pb("macro_actions/raw/explore_left.pb")
+                    else:
+                        self.graph = load_pb("macro_actions/raw/explore_right.pb")
+
+
         return self.step_results, self.state, stats, self.micro_step
+

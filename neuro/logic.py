@@ -295,15 +295,17 @@ class Logic:
         not_occluding(X, T):-on(agent, X, T).
         separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
         occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
+
         :- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
         :~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
         0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
         initiate(interact(X),T):- visible(X, _,T), goal(X).
         initiate(rotate,T):- not visible(T), timestep(T).
+
         check(visible(Y),T):- initiate(explore(X,Y,Z),T).
-        check(time, T):- initiate(explore(X,Y,Z),T).
-        check(time, T):- initiate(interact(X),T).
-        check(time, T):- initiate(rotate,T)."""
+        check(time, 150):- initiate(explore(X,Y,Z),T).
+        check(time, 150):- initiate(interact(X),T).
+        check(time, 50):- initiate(rotate,T)."""
 
     def e_greedy(self):
         # Don't start egreedy until there's at least one positive example with inclusion
@@ -323,25 +325,30 @@ class Logic:
     def update_examples(self, observables, actions, success):
         self.ilasp.update_examples(observables, actions, success)
 
-    def run(self, macro_step, state, choice='random'):        
-        if not self.learned_lp:
-            self.learned_lp = self.main_lp()
-
+    def run(self, macro_step, state, choice='random'):
         # Ground state into high level observable predicates
         observables = self.grounder.run(macro_step, state)
 
-        if choice == 'ilasp':
-            if self.learned_lp:
-                action = self.clingo.run(macro_step, self.learned_lp +observables, random=False)
-            else:
-                action = self.clingo.run(macro_step, observables, random=True)
+        if choice!="test":      
+            if not self.learned_lp:
+                self.learned_lp = self.main_lp()
 
-        elif choice == 'random':
-            action = self.clingo.run(macro_step, observables, random=True)
-        else:
-            raise Exception("Modality not recognised")
-        
-        if not action:
-            # print("No action choosing randomly")
-            action = self.clingo.run(macro_step, observables, random=True)
-        return action, observables
+
+            if choice == 'ilasp':
+                if self.learned_lp:
+                    action = self.clingo.run(macro_step, self.learned_lp +observables, random=False)
+                else:
+                    action = self.clingo.run(macro_step, observables, random=True)
+
+            elif choice == 'random':
+                action = self.clingo.run(macro_step, observables, random=True)
+            else:
+                raise Exception("Modality not recognised")
+            
+            if not action:
+                # print("No action choosing randomly")
+                action = self.clingo.run(macro_step, observables, random=True)
+            return action, observables
+        action = self.clingo.run(
+            macro_step, self.test_lp() + observables, random=False)
+        return action

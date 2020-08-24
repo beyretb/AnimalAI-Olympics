@@ -61,7 +61,7 @@ class Pipeline:
             return True
         return False
 
-    def test_run(self):
+    def learn_run(self):
         success_count = 0
         choice = 'random'
         for idx in range(self.args.num_episodes):
@@ -120,57 +120,51 @@ class Pipeline:
         )
     def test_run(self, comp_fpath:str):
 
+        try:
+            test_results = {
+                k: {ar:{
+                "success":0,
+                "ma": []} for ar in v} for k,v in comp.items()
+            }
+            success_count = 0
+            for cogn_trait, test_set in comp.items():
+                for arena in test_set:
+                    ac = ArenaConfig(comp_fpath + arena + '.yml')
+                    self.env.reset(ac)
+                    step_results = self.env.step([[0, 0]])  # Take 0,0 step
+                    global_steps = 0
+                    macro_step = 0
+                    self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
+                    actions_buffer = []
+                    while not self.episode_over(step_results[2]):
+                        if global_steps >= 1000:
+                            success = False
+                            print("Exceeded max global steps")
+                            break
+                        state = preprocess(self.ct, step_results, global_steps)
+                        macro_action = self.logic.run(
+                            macro_step,
+                            state,
+                            choice="test")
+                        step_results, state, micro_step, success = self.take_macro_step(
+                            self.env, state, step_results, macro_action
+                        )
+                        global_steps += micro_step
+                        macro_step +=1
+                        actions_buffer.append(macro_action['raw'][0])
 
-        test_results = {
-            k: [{
-            "success":0,
-            "ma": []}] for k,v in comp.items()
-        }
-        success_count = 0
-        for cogn_trait, test_set in comp.items():
-            for arena in test_set:
-                ac = ArenaConfig(arena)
-                self.env.reset(ac)
-                step_results = self.env.step([[0, 0]])  # Take 0,0 step
-                global_steps = 0
-                macro_step = 0
-                self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
-                actions_buffer = []
-                observables_buffer = []
-                if (idx%30==0)&(idx!=0):
-                    choice = 'ilasp'
-                    self.logic.update_learned_lp(macro_step)
+                    success_count += success
+                    test_results[cogn_trait][arena]['success'] = 1 if success else 0
+                    test_results[cogn_trait][arena]['ma'] = actions_buffer
 
-                while not self.episode_over(step_results[2]):
-                    if global_steps >= 1000:
-                        success = False
-                        print("Exceeded max global steps")
-                        break
-                    state = preprocess(self.ct, step_results, global_steps)
-                    macro_action, observables = self.logic.run(
-                        macro_step,
-                        state,
-                        choice=choice)
-                    # print(macro_action)
-                    step_results, state, micro_step, success = self.take_macro_step(
-                        self.env, state, step_results, macro_action
-                    )
-                    global_steps += micro_step
-                    macro_step +=1
-                    actions_buffer.append(macro_action['raw'][0])
-                    observables_buffer.append(observables)
-                # Update examples after every episode
-                if success:
-                    self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
-                else:
-                    self.logic.update_examples(observables_buffer[-1:], actions_buffer[-1:], success)
+            print(
+                f"Final results: {success_count} episodes were completed successfully"
+            )
 
-                nl_success = "Success" if success else "Failure"
-                # print(f"Episode was a {nl_success}")
-                success_count += success
+        except KeyboardInterrupt:
+            print(test_results)
+            json_dump = json.dumps(test_results)
+            with open("results.json", "w") as text_file:
+                text_file.write(json_dump)            
 
-        print(
-            f"Final results: {success_count} episodes were completed successfully"
-        )
-        json_dump = json.dumps(test_results)
         return test_results
