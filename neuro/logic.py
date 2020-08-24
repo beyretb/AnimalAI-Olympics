@@ -26,6 +26,7 @@ valid_observables = {
     'platform'
 }
 
+
 class Grounder:
     def __init__(self):
         pass
@@ -78,9 +79,13 @@ class Ilasp:
         # Examples are [int:weight, string:example]
         self.memory_len = 30
         self.examples = deque(maxlen=self.memory_len)
+        self.macro_actions_learned = []
+
     def create_modeh(self):
         res = ""
         for name, num_preds in macro_actions.items():
+            if name in self.macro_actions_learned:
+                continue
             if num_preds:
                 variables = "("
                 for i in range(num_preds):
@@ -159,17 +164,17 @@ class Ilasp:
                 print(f"NEW RULES LEARNED: {output}")
             if output=="UNSATISFIABLE\n":
                 return False
-            with open("lr.txt", "w") as text_file:
-                text_file.write(output)
-            lp+= '\n' + output
-            return lp
+            for ma in macro_actions:
+                if ma in output:
+                    self.macro_actions_learned.append(ma)
+            return output
         print("NO RULES LEARNED")
         return False # No learned rules, will choose random macro
         
         
 class Clingo:
     def __init__(self):
-        pass
+        self.macro_actions_learned = []
 
     def random_action_grounder(self, macro_step, ground_observables):
         lp = f"""
@@ -180,7 +185,9 @@ class Clingo:
             initiate(interact(X),T):-visible(X,_,T).
             initiate(rotate,{macro_step})."""
         res = self.asp(lp)
-        rand_action = rnd.choice([i for i in res.r[0] if 'initiate' in i])
+        filtered_mas = [i for i in res.r[0] if (
+            'initiate' in i)&(not any(j in i for j in self.macro_actions_learned))]
+        rand_action = rnd.choice(filtered_mas)
         # print([i for i in res.r[0] if 'initiate' in i])
         return [[rand_action]]
 
@@ -268,9 +275,8 @@ class Logic:
             0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
             initiate(interact(X),T):- visible(X, _,T), goal(X).
             initiate(rotate,T):- not visible(T), timestep(T)."""
-    def main_lp(self, macro_step):
+    def main_lp(self):
         return f"""
-        %timestep(0..{macro_step}).
         present(X,T):-goal(X), timestep(T).
         % Observables rules
         present(X,T):- visible(X, _, T).
@@ -278,13 +284,11 @@ class Logic:
         not_occluding(X, T):-on(agent, X, T).
         separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
         occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
-
         % Observables - > actions: this is what we need to learn
-        %:- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
-        %:~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
-        initiate(rotate,T):- not visible(T), timestep(T)."""
+        initiate(rotate,T):- not visible(T), timestep(T).
+"""
 
-    def test_lp(self, macro_step):
+    def test_lp(self):
         return """
         present(X,T):- visible(X, _, T).
         visible(T):- visible(X, _, T).
@@ -310,12 +314,19 @@ class Logic:
 
 
     def update_learned_lp(self, macro_step):
-        self.learned_lp = self.ilasp.run(self.main_lp(macro_step))
+        rules_learned = self.ilasp.run(self.learned_lp)
+        if rules_learned:
+            self.learned_lp += rules_learned
+            # Sync two lists
+            self.clingo.macro_actions_learned = self.ilasp.macro_actions_learned
 
     def update_examples(self, observables, actions, success):
         self.ilasp.update_examples(observables, actions, success)
 
     def run(self, macro_step, state, choice='random'):        
+        if not self.learned_lp:
+            self.learned_lp = self.main_lp()
+
         # Ground state into high level observable predicates
         observables = self.grounder.run(macro_step, state)
 
