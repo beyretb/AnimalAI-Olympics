@@ -1,5 +1,6 @@
-import raw_learned as rl
-
+import sys
+sys.path.insert(0, "/media/home/ludovico/aai/animalai")
+sys.path.insert(1, "/media/home/ludovico/aai/animalai_train")
 
 from raw_learned import Pipeline
 from collections import namedtuple

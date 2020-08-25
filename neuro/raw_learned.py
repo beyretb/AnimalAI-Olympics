@@ -1,8 +1,4 @@
-import sys
 import json
-
-sys.path.insert(0, "/Users/ludo/Desktop/animalai/animalai/animalai_train")
-sys.path.insert(1, "/Users/ludo/Desktop/animalai/animalai/animalai")
 
 from animalai.envs.gym.environment import AnimalAIGym
 from animalai.envs.arena_config import ArenaConfig
