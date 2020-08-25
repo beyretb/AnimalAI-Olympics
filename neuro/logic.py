@@ -30,6 +30,15 @@ valid_observables = {
 class Grounder:
     def __init__(self):
         pass
+    # @staticmethod
+    # def in_front(macro_step,state):
+    #     in_front = ""
+    #     for bbox, _, _, _id in state['obj']:
+    #         for bbox1, _, _, _id1 in state['obj']:
+    #             dist = get_distance(bbox, bbox1)
+    #             if (_id1!=_id)&(dist<0.02):
+    #                 in_front += f"adjacent({_id},{_id1}, {macro_step}).\n"
+    #     return in_front
     @staticmethod
     def adjacent(macro_step,state):
         adjacent = ""
@@ -227,19 +236,23 @@ class Clingo:
 
         # No action returned
         if not res['initiate']:
-            # print("NO ACTION")
+            print("NO ACTION")
             return False
 
         # if two actions are returned from program then use random action.
         if len(res['initiate'])>1:
-            return False
+            print("More than one action")
+            # print(res['initiate'])
+            res['raw'] = "–".join(res['initiate'])
+            res['initiate'] = random.choice(res['initiate'])
+            # return False
 
         # Add checks for chosen action
         checks = list(ASP(f"""            
             {res['raw'][0]}.
             check(visible, Y):- initiate(explore(X,Y,Z),T).
             check(time, 250):- initiate(explore(X,Y,Z),T).
-            check(time, 250):- initiate(interact(X),T).
+            check(time, 100):- initiate(interact(X),T).
             check(time, 50):- initiate(rotate,T).""").atoms_as_string)
         checks = checks[0]
         checks = [parse_args(i)[1] for i in list(checks) if 'check' in i]
@@ -292,12 +305,13 @@ class Logic:
         return """
         present(X,T):- visible(X, _, T).
         visible(T):- visible(X, _, T).
+        present(X,T):-goal(X), timestep(T).
         not_occluding(X, T):-on(agent, X, T).
         separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
         occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
 
         :- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
-        :~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
+        :~initiate(explore(X,Y,Z),T).[-Z@1,Z]
         0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
         initiate(interact(X),T):- visible(X, _,T), goal(X).
         initiate(rotate,T):- not visible(T), timestep(T).
@@ -349,6 +363,9 @@ class Logic:
                 # print("No action choosing randomly")
                 action = self.clingo.run(macro_step, observables, random=True)
             return action, observables
+        # print(self.test_lp()+observables)
         action = self.clingo.run(
             macro_step, self.test_lp() + observables, random=False)
+        if not action:
+            action = self.clingo.run(macro_step, observables, random=True)
         return action

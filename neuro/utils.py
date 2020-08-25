@@ -9,7 +9,7 @@ object_types = {
     'goal':0, 'goal1':30, 'wall':10, 'platform':20
 }
 
-ef = ExtractFeatures(display=True, training=False)
+ef = ExtractFeatures(display=False, training=False)
 
 def load_pb(path_to_pb):
     with tf.gfile.GFile(path_to_pb, "rb") as f:

@@ -32,7 +32,6 @@ class MacroConfig:
         res = np.zeros(6)
         res[:2] = state['velocity']
         try:
-
             res[2:] = next(i[0] for i in state['obj'] if i[3]==x)
         except StopIteration:
             res[2:] = [0,0,0,0]
@@ -44,10 +43,17 @@ class MacroConfig:
         x = x[0]
         res = np.zeros(6)
         res[:2] = state['velocity']
+        # print([i[0] for i in state['obj'] if i[3]==x])
+        # print(state['obj'])
         try:
             res[2:] = next(i[0] for i in state['obj'] if i[3]==x)
         except StopIteration:
-            res[2:] = [0,0,0,0]
+
+            if any(i[1]=="goal1" for i in state['obj']):
+                    res[2:] = state['obj'][0][0]
+            else:
+                res[2:] = [0,0,0,0]
+
         return res
 
 class MacroAction:
@@ -124,13 +130,15 @@ class MacroAction:
                 return self.step_results, self.state, self.macro_stats(
                     "Goal visible, end rotation"), self.micro_step
             if self.state['obj']:
+                # print(self.state['obj'])
                 if tracker_onset is None:
                     tracker_onset = c
                 else:
                     tracker_offset = c
         # If no goal was visible rerotate to where something was visible
         if tracker_onset is None:
-            return None
+            return self.step_results, self.state, self.macro_stats(
+            "No object was visible"), self.micro_step
         point_to_object = tracker_onset + int((tracker_offset-tracker_onset)/2)
         if point_to_object > 25:
             num_rotations = 50 - point_to_object
@@ -144,6 +152,7 @@ class MacroAction:
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
+        print("Going out of here")
         return self.step_results, self.state, self.macro_stats(
             "Object visible, rotating to it"), self.micro_step
 
@@ -191,24 +200,45 @@ class MacroAction:
                 # print('left')
         else:
             model_path = f"macro_actions/raw/{self.action}.pb"
-
+        # print(model_path)
 
         self.graph = load_pb(model_path)
 
         go = True
-        monitor_speed = deque(maxlen=5)
+        monitor_speed = deque(maxlen=20)
+        monitor_sight = deque(maxlen=10)
+        for i in range(20):
+            monitor_sight.append(1)
+            monitor_speed.append([1,1])
         while go:
             vector_obs = state_parser(self.state, self.action_args)
             monitor_speed.append(vector_obs[:2])
+            monitor_sight.append(any(vector_obs[2:]))
             action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
             go, stats = self.checks_clean()
+
+            # If got a reward then interact was successful
+            if self.action=='interact':
+                if self.reward<self.step_results[1]:
+                    return self.step_results, self.state, self.macro_stats(
+                        "interact failed"), self.micro_step
+                if not any(monitor_sight):
+                    return self.step_results, self.state, self.macro_stats(
+                        "interact failed"), self.micro_step
             self.reward = self.step_results[1]
-            if np.mean(monitor_speed)<1: #i.e. we're stuck
+
+            # When we are stuck
+            # print(np.mean(monitor_speed))
+            if np.mean(monitor_speed)<0.01:
                 if "explore" in model_path:
+                    print("We are stuck, changing explore")
+                    monitor_speed.clear() # clear deque
+                    for i in range(20):
+                        monitor_speed.append([1,1])
                     if "right" in model_path:
                         self.graph = load_pb("macro_actions/raw/explore_left.pb")
                     else:

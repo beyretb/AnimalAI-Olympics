@@ -22,13 +22,15 @@ class Pipeline:
         worker_id = 1
         seed = 2
         self.arenas = args.arena_config
+        first_arena = self.arenas[0] if self.arenas is not None else None
+
         # ac = ArenaConfig(arena_path)
         # Load Unity environment based on config file with Gym or ML agents wrapper
         self.env = AnimalAIGym(
             environment_filename=env_path,
             worker_id=worker_id,
             n_arenas=1,
-            arenas_configurations=self.arenas[0],
+            arenas_configurations=first_arena,
             seed=seed,
             grayscale=False,
             inference=args.inference
@@ -128,6 +130,7 @@ class Pipeline:
             }
             success_count = 0
             for cogn_trait, test_set in comp.items():
+                print(f"Running {cogn_trait}")
                 for arena in test_set:
                     ac = ArenaConfig(comp_fpath + arena + '.yml')
                     self.env.reset(ac)
@@ -137,15 +140,16 @@ class Pipeline:
                     self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
                     actions_buffer = []
                     while not self.episode_over(step_results[2]):
-                        if global_steps >= 1000:
-                            success = False
-                            print("Exceeded max global steps")
-                            break
+                        # if global_steps >= 1000:
+                        #     success = False
+                        #     print("Exceeded max global steps")
+                        #     break
                         state = preprocess(self.ct, step_results, global_steps)
                         macro_action = self.logic.run(
                             macro_step,
                             state,
                             choice="test")
+
                         step_results, state, micro_step, success = self.take_macro_step(
                             self.env, state, step_results, macro_action
                         )
@@ -156,15 +160,18 @@ class Pipeline:
                     success_count += success
                     test_results[cogn_trait][arena]['success'] = 1 if success else 0
                     test_results[cogn_trait][arena]['ma'] = actions_buffer
-
             print(
                 f"Final results: {success_count} episodes were completed successfully"
             )
 
         except KeyboardInterrupt:
             print(test_results)
+            print(f"FAILING ON ARENA: {arena}")
             json_dump = json.dumps(test_results)
             with open("results.json", "w") as text_file:
                 text_file.write(json_dump)            
-
+        print(test_results)
+        json_dump = json.dumps(test_results)
+        with open("results.json", "w") as text_file:
+            text_file.write(json_dump)        
         return test_results
