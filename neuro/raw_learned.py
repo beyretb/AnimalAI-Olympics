@@ -18,6 +18,7 @@ class Pipeline:
         worker_id = 1
         seed = 2
         self.arenas = args.arena_config
+        self.buffer_size = 10
         first_arena = self.arenas[0] if self.arenas is not None else None
 
         # ac = ArenaConfig(arena_path)
@@ -31,7 +32,7 @@ class Pipeline:
             grayscale=False,
             inference=args.inference
         )
-        self.logic = Logic()
+        self.logic = Logic(self.buffer_size)
 
     def comp_stats(self):
         pass
@@ -73,7 +74,7 @@ class Pipeline:
             self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
             actions_buffer = []
             observables_buffer = []
-            if (idx%30==0)&(idx!=0):
+            if (idx%self.buffer_size==0)&(idx!=0):
                 choice = 'ilasp'
                 self.logic.update_learned_lp(macro_step)
 
@@ -124,9 +125,10 @@ class Pipeline:
                 "success":0,
                 "ma": []} for ar in v} for k,v in comp.items()
             }
-            success_count = 0
+            total_success_count = 0
             for cogn_trait, test_set in comp.items():
                 print(f"Running {cogn_trait}")
+                cogn_success_count = 0
                 for arena in test_set:
                     ac = ArenaConfig(comp_fpath + arena + '.yml')
                     self.env.reset(ac)
@@ -136,16 +138,16 @@ class Pipeline:
                     self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
                     actions_buffer = []
                     while not self.episode_over(step_results[2]):
-                        # if global_steps >= 1000:
-                        #     success = False
-                        #     print("Exceeded max global steps")
-                        #     break
+                        if global_steps >= 1000:
+                            success = False
+                            # print("Exceeded max global steps")
+                            break
                         state = preprocess(self.ct, step_results, global_steps)
                         macro_action = self.logic.run(
                             macro_step,
                             state,
                             choice="test")
-
+                        # print(macro_action)
                         step_results, state, micro_step, success = self.take_macro_step(
                             self.env, state, step_results, macro_action
                         )
@@ -153,11 +155,14 @@ class Pipeline:
                         macro_step +=1
                         actions_buffer.append(macro_action['raw'][0])
 
-                    success_count += success
+                    total_success_count += success
+                    cogn_success_count += success
                     test_results[cogn_trait][arena]['success'] = 1 if success else 0
                     test_results[cogn_trait][arena]['ma'] = actions_buffer
+                    test_results[cogn_trait]["success_rate"] = cogn_success_count/len(test_set)
+                print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
             print(
-                f"Final results: {success_count} episodes were completed successfully"
+                f"Final results: {total_success_count} episodes were completed successfully"
             )
 
         except KeyboardInterrupt:

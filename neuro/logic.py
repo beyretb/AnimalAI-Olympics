@@ -84,9 +84,9 @@ class Grounder:
         return res
 
 class Ilasp:
-    def __init__(self):
+    def __init__(self, memory_len=40):
         # Examples are [int:weight, string:example]
-        self.memory_len = 30
+        self.memory_len = memory_len
         self.examples = deque(maxlen=self.memory_len)
         self.macro_actions_learned = []
 
@@ -218,12 +218,12 @@ class Clingo:
         if not isinstance(answer_set, list):
             answer_set = answer_set.r
         if len(answer_set)>1:
-            print("More than 1 answer set so stopping at first initiate")
-            print(answer_set)
+            # print("More than 1 answer set so stopping at first initiate")
+            # print(answer_set)
             _break = True
         else:
             _break = False
-
+        # print(answer_set)
         for ans_set in answer_set:
             for literal in ans_set:
                 if 'initiate' in literal:
@@ -236,15 +236,15 @@ class Clingo:
 
         # No action returned
         if not res['initiate']:
-            print("NO ACTION")
+            # print("NO ACTION")
             return False
 
         # if two actions are returned from program then use random action.
         if len(res['initiate'])>1:
-            print("More than one action")
+            # print("More than one action")
             # print(res['initiate'])
-            res['raw'] = "–".join(res['initiate'])
-            res['initiate'] = random.choice(res['initiate'])
+            res['raw'] = "multi:"+str(res['initiate'])
+            res['initiate'] = [rnd.choice(res['initiate'])]
             # return False
 
         # Add checks for chosen action
@@ -274,9 +274,9 @@ class Clingo:
         return self.macro_processing(res)
 
 class Logic:
-    def __init__(self):
+    def __init__(self, buffer_size = 40):
         self.grounder = Grounder()
-        self.ilasp = Ilasp()
+        self.ilasp = Ilasp(buffer_size)
         self.clingo = Clingo()
         self.e = 1
         self.e_discount = 8e-3
@@ -314,12 +314,7 @@ class Logic:
         :~initiate(explore(X,Y,Z),T).[-Z@1,Z]
         0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
         initiate(interact(X),T):- visible(X, _,T), goal(X).
-        initiate(rotate,T):- not visible(T), timestep(T).
-
-        check(visible(Y),T):- initiate(explore(X,Y,Z),T).
-        check(time, 150):- initiate(explore(X,Y,Z),T).
-        check(time, 150):- initiate(interact(X),T).
-        check(time, 50):- initiate(rotate,T)."""
+        initiate(rotate,T):- not visible(T), timestep(T)."""
 
     def e_greedy(self):
         # Don't start egreedy until there's at least one positive example with inclusion

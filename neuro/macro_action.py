@@ -6,7 +6,7 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 from utils import load_pb, preprocess
 from logic import Grounder
 from collections import deque
-
+import time
 goal_visible = Grounder().goal_visible # Func
 
 class RollingChecks:
@@ -17,7 +17,7 @@ class RollingChecks:
         return False, f"Object {obj_id} still not visible"
 
     @staticmethod
-    def time(state, limit=220):
+    def time(state, limit=250):
         t = state["micro_step"]
         if t >= limit:
             return True, f"Failure: Time out, timestep {t}/{limit}"
@@ -43,8 +43,7 @@ class MacroConfig:
         x = x[0]
         res = np.zeros(6)
         res[:2] = state['velocity']
-        # print([i[0] for i in state['obj'] if i[3]==x])
-        # print(state['obj'])
+
         try:
             res[2:] = next(i[0] for i in state['obj'] if i[3]==x)
         except StopIteration:
@@ -129,6 +128,8 @@ class MacroAction:
                 # print("Goal visible")
                 return self.step_results, self.state, self.macro_stats(
                     "Goal visible, end rotation"), self.micro_step
+            if tracker_offset and not self.state['obj']:
+                continue
             if self.state['obj']:
                 # print(self.state['obj'])
                 if tracker_onset is None:
@@ -139,20 +140,30 @@ class MacroAction:
         if tracker_onset is None:
             return self.step_results, self.state, self.macro_stats(
             "No object was visible"), self.micro_step
+        # print(tracker_onset, tracker_offset)
         point_to_object = tracker_onset + int((tracker_offset-tracker_onset)/2)
+        # print('pt', point_to_object)
         if point_to_object > 25:
             num_rotations = 50 - point_to_object
             direction = 2
         else:
             num_rotations = point_to_object
             direction = 1
-        for _ in range(num_rotations): # add extra 2 rotations to be looking straight at object
+        # print("numrot", num_rotations)
+        time.sleep(1)
+        go = True
+        more_step = 0
+        while go: # add extra 2 rotations to be looking straight at object
             self.step_results = self.env.step([[0, direction]])
             self.reward = self.step_results[1]
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
-        print("Going out of here")
+            more_step+=1
+            if (more_step>=num_rotations)&bool(self.state['obj']):
+                go = False
+        # print("Going out of here")
+        time.sleep(1)
         return self.step_results, self.state, self.macro_stats(
             "Object visible, rotating to it"), self.micro_step
 
@@ -209,10 +220,10 @@ class MacroAction:
         monitor_sight = deque(maxlen=10)
         for i in range(20):
             monitor_sight.append(1)
-            monitor_speed.append([1,1])
+            monitor_speed.append(np.array(1))
         while go:
             vector_obs = state_parser(self.state, self.action_args)
-            monitor_speed.append(vector_obs[:2])
+            monitor_speed.append(abs(vector_obs[0]))
             monitor_sight.append(any(vector_obs[2:]))
             action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
@@ -235,10 +246,10 @@ class MacroAction:
             # print(np.mean(monitor_speed))
             if np.mean(monitor_speed)<0.01:
                 if "explore" in model_path:
-                    print("We are stuck, changing explore")
+                    # print("We are stuck, changing explore")
                     monitor_speed.clear() # clear deque
                     for i in range(20):
-                        monitor_speed.append([1,1])
+                        monitor_speed.append(1)
                     if "right" in model_path:
                         self.graph = load_pb("macro_actions/raw/explore_left.pb")
                     else:

@@ -56,7 +56,6 @@ class ExtractFeatures:
 			if self.display:
 				color = (0,255,0) if obj=='platform' else (255,0,0)
 				cv2.rectangle(self.img,(x,y),(x+w,y+h),color,1)
-				# cv2.imwrite(f"/Users/ludo/Desktop/collect/{step}.png", self.img)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
@@ -110,11 +109,15 @@ class ExtractFeatures:
 				features[obj_type] = []
 				continue
 			coords = self.process_contour(ctr, obj_type, step)
+			# 	# print('len',len(coords)
+			# 	print(box[2], box[3])
 			for box in coords:
 				occluding_area = round(box[2]*box[3]*1000)
-				if (obj_type=='wall')&(occluding_area<3.1):
+				if (obj_type=='wall')&(occluding_area<3.5):#|(box[2]<0.05):
+					# print('skipping')
 					continue
+				# if obj_type=='wall':
 				features[obj_type] += [(box, obj_type, occluding_area)]
-		# print(features)
+		# cv2.imwrite(f"/Users/ludo/Desktop/ba.png", self.img)
 		return features
 
