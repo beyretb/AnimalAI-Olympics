@@ -20,10 +20,9 @@ occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not se
 % Observables - > actions: this is what we need to learn
 :- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
 :~initiate(explore(X,Y,Z),T).[Z@1,X,Z]
-
-% 0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
-% initiate(interact(X),T):- visible(X, _,T), goal(X).
-% initiate(rotate,T):- not visible(T), timestep(T).
+0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
+initiate(interact(X),T):- visible(X, _,T), goal(X).
+initiate(rotate,T):- not visible(T), timestep(T).
 
 % Completion checks checks
 check(visible(Y),T):- initiate(explore(X,Y,Z),T).
