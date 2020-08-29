@@ -246,7 +246,7 @@ class MacroAction:
             # print(np.mean(monitor_speed))
             if np.mean(monitor_speed)<0.01:
                 if "explore" in model_path:
-                    # print("We are stuck, changing explore")
+                    print("We are stuck, changing explore")
                     monitor_speed.clear() # clear deque
                     for i in range(20):
                         monitor_speed.append(1)
