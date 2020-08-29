@@ -16,9 +16,9 @@ class Pipeline:
         self.gg_id = 0
         env_path = args.env
         worker_id = 1
-        seed = args.seed
+        seed = 2
         self.arenas = args.arena_config
-        self.buffer_size = 30
+        self.buffer_size = 10
         first_arena = self.arenas[0] if self.arenas is not None else None
 
         # ac = ArenaConfig(arena_path)
@@ -117,7 +117,6 @@ class Pipeline:
         print(
             f"Final results: {success_count}/{self.args.num_episodes} episodes were completed successfully"
         )
-        self.env.close()
     def test_run(self, comp_fpath:str):
 
         try:
