@@ -28,7 +28,7 @@ objects['goal'] =  hsv_cls.green
 
 class ExtractFeatures:
 	
-	def __init__(self, display=True, training=True):
+	def __init__(self, display=False, training=True):
 		self.img = None
 		self.hsv_img = None
 		self.img_dim = None

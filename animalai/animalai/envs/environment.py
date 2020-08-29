@@ -181,7 +181,7 @@ class UnityEnvironment(BaseEnv):
         self._is_first_message = True
         self.alter_obs = alter_obs
         self._update_group_specs(aca_output)
-        self.ef = ExtractFeatures()
+        self.ef = ExtractFeatures(display=False)
         self.debug=False
 
     @staticmethod
@@ -320,7 +320,7 @@ class UnityEnvironment(BaseEnv):
                 agent_name].value[agent].observations
             # 1) Change vector observations to desired size
             vector_obs = agent_obs[1]
-            vector_obs.shape.remove(2)
+            vector_obs.shape.remove(3)
             if mode == 'gtg':
                 vector_obs.shape.extend([6])
             elif mode == 'octx':
@@ -336,7 +336,12 @@ class UnityEnvironment(BaseEnv):
 
             #3) Run CV and retrieve bounding boxes as a list
             res = self.ef.run(img, mode)
-            vector_obs.float_data.data.extend(res)
+            vel_vector = list(vector_obs.float_data.data)
+            vel_vector = [vel_vector[0]/5.81, vel_vector[2]/11.6]
+            del vector_obs.float_data.data[0]
+            del vector_obs.float_data.data[0]
+            del vector_obs.float_data.data[0]
+            vector_obs.float_data.data.extend(vel_vector + res)
 
     def _update_group_specs(self, output: UnityOutputProto) -> None:
         init_output = output.rl_initialization_output
