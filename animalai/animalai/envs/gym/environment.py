@@ -29,6 +29,7 @@ class AnimalAIGym(UnityEnv):
         inference: bool = False,
         grayscale: bool = False,
         arenas_configurations: ArenaConfig = None,
+        resolution: int = 84
     ):
         """
         Environment initialization
@@ -55,6 +56,7 @@ class AnimalAIGym(UnityEnv):
             inference=inference,
             arenas_configurations=arenas_configurations,
             grayscale=grayscale,
+            resolution=resolution
         )
 
         # Take a single step so that the brain information will be sent over
