@@ -9,6 +9,7 @@ from collections import deque
 import time
 goal_visible = Grounder().goal_visible # Func
 
+hacks = False
 class RollingChecks:
     @staticmethod
     def visible(state, obj_id):
@@ -194,7 +195,9 @@ class MacroAction:
 
     def run(self):
         if self.action=='rotate':
-            return self.rotate_clever()
+            if hacks:
+                return self.rotate_clever()
+            return self.rotate()
         # print(self.action)
         state_parser = getattr(MacroConfig(), self.action)
 
@@ -232,28 +235,29 @@ class MacroAction:
             self.micro_step += 1
             go, stats = self.checks_clean()
 
-            # If got a reward then interact was successful
-            if self.action=='interact':
-                if self.reward<self.step_results[1]:
-                    return self.step_results, self.state, self.macro_stats(
-                        "interact failed"), self.micro_step
-                if not any(monitor_sight):
-                    return self.step_results, self.state, self.macro_stats(
-                        "interact failed"), self.micro_step
-            self.reward = self.step_results[1]
+            if hacks:
+                # If got a reward then interact was successful
+                if self.action=='interact':
+                    if self.reward<self.step_results[1]:
+                        return self.step_results, self.state, self.macro_stats(
+                            "interact failed"), self.micro_step
+                    if not any(monitor_sight):
+                        return self.step_results, self.state, self.macro_stats(
+                            "interact failed"), self.micro_step
+                self.reward = self.step_results[1]
 
-            # When we are stuck
-            # print(np.mean(monitor_speed))
-            if np.mean(monitor_speed)<0.01:
-                if "explore" in model_path:
-                    print("We are stuck, changing explore")
-                    monitor_speed.clear() # clear deque
-                    for i in range(20):
-                        monitor_speed.append(1)
-                    if "right" in model_path:
-                        self.graph = load_pb("macro_actions/raw/explore_left.pb")
-                    else:
-                        self.graph = load_pb("macro_actions/raw/explore_right.pb")
+                # When we are stuck
+                # print(np.mean(monitor_speed))
+                if np.mean(monitor_speed)<0.01:
+                    if "explore" in model_path:
+                        print("We are stuck, changing explore")
+                        monitor_speed.clear() # clear deque
+                        for i in range(20):
+                            monitor_speed.append(1)
+                        if "right" in model_path:
+                            self.graph = load_pb("macro_actions/raw/explore_left.pb")
+                        else:
+                            self.graph = load_pb("macro_actions/raw/explore_right.pb")
 
 
         return self.step_results, self.state, stats, self.micro_step

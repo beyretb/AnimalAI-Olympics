@@ -135,11 +135,11 @@ class Ilasp:
             ratio = 1
         else:
             ratio = success_num/(self.memory_len-success_num)
-            mult = 10 if ratio>1 else 100
+            mult = 1 if ratio>1 else 10
             ratio = int(ratio*mult)
         if len(self.examples) == self.memory_len:
             for c, (suc, eg) in enumerate(self.examples):
-                weight = 1 #mult if suc else ratio
+                weight = 1#mult if suc else ratio
                 a_idx = eg.index('a')+1
                 c_idx = eg.index(",")
                 updated_eg = eg[:a_idx] + str(c) + "@" + str(weight) +  eg[c_idx:]
