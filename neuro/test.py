@@ -13,6 +13,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
+scp -r ludovico@neurobeast.doc.ic.ac.uk:/media/home/ludovico/aai/aai/bam.png /Users/ludo/Desktop/bam.png
 
 # CONFIG
 if __name__=="__main__":
