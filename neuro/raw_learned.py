@@ -30,6 +30,7 @@ class Pipeline:
             arenas_configurations=first_arena,
             seed=seed,
             grayscale=False,
+            resolution=84,
             inference=args.inference
         )
         self.logic = Logic(self.buffer_size)
@@ -130,6 +131,7 @@ class Pipeline:
                 print(f"Running {cogn_trait}")
                 cogn_success_count = 0
                 for arena in test_set:
+                    print(f"ARENA:{arena}")
                     ac = ArenaConfig(comp_fpath + arena + '.yml')
                     self.env.reset(ac)
                     step_results = self.env.step([[0, 0]])  # Take 0,0 step
@@ -147,7 +149,7 @@ class Pipeline:
                             macro_step,
                             state,
                             choice="test")
-                        # print(macro_action)
+                        print(macro_action)
                         step_results, state, micro_step, success = self.take_macro_step(
                             self.env, state, step_results, macro_action
                         )
@@ -155,6 +157,7 @@ class Pipeline:
                         macro_step +=1
                         actions_buffer.append(macro_action['raw'][0])
 
+                    print(f"Success: {success}")
                     total_success_count += success
                     cogn_success_count += success
                     test_results[cogn_trait][arena]['success'] = 1 if success else 0

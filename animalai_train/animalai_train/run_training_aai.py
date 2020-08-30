@@ -29,7 +29,7 @@ def run_training_aai(run_seed: int, options: RunOptionsAAI) -> None:
     with hierarchical_timer("run_training.setup"):
         # Recognize and use docker volume if one is passed as an argument
         # if not options.docker_target_name:
-        model_path = f"./models/{options.run_id}"
+        model_path = f"../models/{options.run_id}"
         summaries_dir = "./summaries"
         # else:
         #     model_path = f"/{options.docker_target_name}/models/{options.run_id}"

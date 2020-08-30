@@ -24,6 +24,7 @@ convert = lambda x: [x[0]*84, x[1]*84, (x[0]+x[2])*84, (x[1]+x[3])*84]
 def preprocess(ct, step_results, step):
     visual_obs = step_results[3]["batched_step_result"].obs[0][0] # last 0 idx bc batched
     vector_obs = step_results[3]["batched_step_result"].obs[1][0]
+    vector_obs = [vector_obs[0]/5.81, vector_obs[2]/11.6]
     bboxes = ef.run(visual_obs, step)
     ids = {k:[] for k in object_types}
     for ot,  ct_i in ct.items():

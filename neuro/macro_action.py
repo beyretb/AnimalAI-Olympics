@@ -226,7 +226,7 @@ class MacroAction:
         # Get model path
         if self.action == 'explore':
             bbox = state_parser(self.state, self.action_args)[2:]
-            model_path = f"macro_actions/raw/{self.action}"
+            model_path = f"macro_actions/v2/{self.action}"
 
             if (bbox[0]+bbox[2]/2)>0.5: # If obj is on right, go around left side
                 model_path+= "_right.pb"
@@ -237,7 +237,7 @@ class MacroAction:
         else:
             model_path = f"macro_actions/v2/{self.action}.pb"
         # print(model_path)
-
+        # print(model_path)
         self.graph = load_pb(model_path)
 
         go = True
@@ -270,16 +270,16 @@ class MacroAction:
 
                 # When we are stuck
                 # print(np.mean(monitor_speed))
-                # if np.mean(monitor_speed)<0.01:
-                #     if "explore" in model_path:
-                #         print("We are stuck, changing explore")
-                #         monitor_speed.clear() # clear deque
-                #         for i in range(20):
-                #             monitor_speed.append(1)
-                #         if "right" in model_path:
-                #             self.graph = load_pb("macro_actions/raw/explore_left.pb")
-                #         else:
-                #             self.graph = load_pb("macro_actions/raw/explore_right.pb")
+                if np.mean(monitor_speed)<0.01:
+                    if "explore" in model_path:
+                        print("We are stuck, changing explore")
+                        monitor_speed.clear() # clear deque
+                        for i in range(20):
+                            monitor_speed.append(1)
+                        if "right" in model_path:
+                            self.graph = load_pb("macro_actions/v2/explore_left.pb")
+                        else:
+                            self.graph = load_pb("macro_actions/v2/explore_right.pb")
 
 
         return self.step_results, self.state, stats, self.micro_step
