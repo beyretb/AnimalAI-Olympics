@@ -9,7 +9,7 @@ from collections import deque
 import time
 goal_visible = Grounder().goal_visible # Func
 
-hacks = False
+hacks = True
 class RollingChecks:
     @staticmethod
     def visible(state, obj_id):
@@ -55,7 +55,8 @@ class MacroConfig:
                 res[2:] = [0,0,0,0]
 
         return res
-
+def choose_action_probability(predictions_exp):
+    return np.random.choice(list(range(3)), 1, p=predictions_exp)[0]
 class MacroAction:
     def __init__(self, env, ct, state, step_results, action):
         self.env = env
@@ -83,20 +84,41 @@ class MacroAction:
         }
         return res
 
+    # def get_action(self, vector_obs):
+    #     with tf.compat.v1.Session(graph=self.graph) as sess:
+    #         output_node = self.graph.get_tensor_by_name("action:0")
+    #         input_node = self.graph.get_tensor_by_name("vector_observation:0")
+    #         vector_obs = vector_obs.reshape(1, -1)
+    #         mask_constant = np.array([1, 1, 1, 1, 1, 1]).reshape(1, -1)
+    #         action_masks = self.graph.get_tensor_by_name("action_masks:0")
+    #         model_result = sess.run(
+    #             output_node,
+    #             feed_dict={input_node: vector_obs, action_masks: mask_constant},
+    #         )
+    #         action = [model_result[0, :3].argmax(), model_result[0, 3:].argmax()]
+
+    #     return action
+
     def get_action(self, vector_obs):
         with tf.compat.v1.Session(graph=self.graph) as sess:
+
             output_node = self.graph.get_tensor_by_name("action:0")
             input_node = self.graph.get_tensor_by_name("vector_observation:0")
+            action_masks = self.graph.get_tensor_by_name("action_masks:0")
+
             vector_obs = vector_obs.reshape(1, -1)
             mask_constant = np.array([1, 1, 1, 1, 1, 1]).reshape(1, -1)
-            action_masks = self.graph.get_tensor_by_name("action_masks:0")
-            model_result = sess.run(
+
+            prediction = sess.run(
                 output_node,
                 feed_dict={input_node: vector_obs, action_masks: mask_constant},
-            )
-            action = [model_result[0, :3].argmax(), model_result[0, 3:].argmax()]
+            )[0]
 
-        return action
+            prediction = np.exp(prediction)
+
+            action = [choose_action_probability(prediction[:3]), choose_action_probability(prediction[3:])]
+
+        return np.array(action).reshape((1, 2))
 
     def checks_clean(self):
         if self.state['done']:
@@ -213,7 +235,7 @@ class MacroAction:
                 model_path+= "_left.pb"
                 # print('left')
         else:
-            model_path = f"macro_actions/raw/{self.action}.pb"
+            model_path = f"macro_actions/v2/{self.action}.pb"
         # print(model_path)
 
         self.graph = load_pb(model_path)
@@ -248,16 +270,16 @@ class MacroAction:
 
                 # When we are stuck
                 # print(np.mean(monitor_speed))
-                if np.mean(monitor_speed)<0.01:
-                    if "explore" in model_path:
-                        print("We are stuck, changing explore")
-                        monitor_speed.clear() # clear deque
-                        for i in range(20):
-                            monitor_speed.append(1)
-                        if "right" in model_path:
-                            self.graph = load_pb("macro_actions/raw/explore_left.pb")
-                        else:
-                            self.graph = load_pb("macro_actions/raw/explore_right.pb")
+                # if np.mean(monitor_speed)<0.01:
+                #     if "explore" in model_path:
+                #         print("We are stuck, changing explore")
+                #         monitor_speed.clear() # clear deque
+                #         for i in range(20):
+                #             monitor_speed.append(1)
+                #         if "right" in model_path:
+                #             self.graph = load_pb("macro_actions/raw/explore_left.pb")
+                #         else:
+                #             self.graph = load_pb("macro_actions/raw/explore_right.pb")
 
 
         return self.step_results, self.state, stats, self.micro_step
