@@ -15,7 +15,7 @@ class HSV:
 		return [np.array(i) for i in getattr(cls, attr)]
 
 	green = [[33,80,40], [102,255,255]]
-	red = [[125,16,88], [179,255,255]]
+	red = [[0,162,142], [179,203,188]]
 	grey = [[0,0,0], [0,0,224]]
 	brown = [[7,53,40], [18,87,121]]
 	blue = [[113, 255, 148], [131, 255, 255]]
@@ -24,7 +24,7 @@ hsv_cls = HSV()
 objects = OD()
 objects['goal'] =  hsv_cls.green
 objects['goal1'] = hsv_cls.orange
-# objects['danger_zone'] = hsv_cls.red
+objects['red'] = hsv_cls.red
 objects['wall'] = hsv_cls.grey
 objects['platform'] = hsv_cls.blue
 class ExtractFeatures:
@@ -35,6 +35,12 @@ class ExtractFeatures:
 		self.img_dim = None
 		self.display = display
 		self.training = training
+
+	def mask_img(self, hsv):
+		mask = cv2.inRange(self.hsv_img, hsv[0], hsv[1])
+		res = cv2.bitwise_and(self.hsv_img, self.hsv_img, mask=mask)[:,:,2]
+		res[res > 0] = 1
+		return res
 
 	def get_contour(self, hsv):
 		# Apply mask to get contour
@@ -55,7 +61,7 @@ class ExtractFeatures:
 			# print(x,y, x+w, y+h)
 			if self.display:
 				color = (0,255,0) if obj=='platform' else (255,0,0)
-				cv2.rectangle(self.img,(x,y),(x+w,y+h),color,1)
+				cv2.rectangle(self.img,(x,y),(x+w-2,y+h-2),color,2)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
@@ -65,7 +71,36 @@ class ExtractFeatures:
 
 		return res
 
-	def run(self, img, step=None, mode='octx'):
+	def run_dual(self, img, mode='dual'):
+		"""Returns bbox of goal and mask for another colour."""
+		# print(np.frombuffer(img))
+		# print(np.frombuffer(img).dtype)
+		if self.training:
+			img = np.ascontiguousarray(
+				cv2.imdecode(np.frombuffer(img, np.uint8), -1))
+		# plt.imshow(img)
+		else:
+			img = (img*255)[:,:,::-1].astype(np.uint8)
+		setattr(self, 'img', img)
+		setattr(self, 'hsv_img', cv2.cvtColor(self.img, cv2.COLOR_BGR2HSV))
+		setattr(self, 'img_dim', img.shape)
+
+		masked_img = self.mask_img(objects["red"]).astype(np.float64)
+		ctr, hier = self.get_contour(objects['goal'])
+		features = []
+		if ctr is None:
+			features.append([0,0,0,0])
+		else:
+			coords = self.process_contour(ctr, 'goal')
+			for i in coords:
+				features.append(i)
+
+		# Only fetch first bounding box which is goal
+		features = features[:1]
+		features = [item for sublist in features for item in sublist]
+		return masked_img, features
+
+	def run(self, img, step=None, mode='dual'):
 		if not self.training:
 			return self.run_test(img, step)
 

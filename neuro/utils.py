@@ -6,7 +6,7 @@ from mlagents.tf_utils import tf
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 object_types = {
-    'goal':0, 'goal1':30, 'wall':10, 'platform':20
+    'goal':0, 'goal1':30, 'wall':10, 'platform':20, 'red':40
 }
 
 ef = ExtractFeatures(display=False, training=False)
@@ -20,6 +20,11 @@ def load_pb(path_to_pb):
         return graph
 
 convert = lambda x: [x[0]*84, x[1]*84, (x[0]+x[2])*84, (x[1]+x[3])*84]
+
+
+def dual_process(visual_obs):
+    res = ef.run_dual(visual_obs)
+    return res
 
 def preprocess(ct, step_results, step):
     visual_obs = step_results[3]["batched_step_result"].obs[0][0] # last 0 idx bc batched
@@ -47,6 +52,7 @@ def preprocess(ct, step_results, step):
         "velocity": vector_obs,  # array
         "reward": step_results[1],  # float
         "done": step_results[2],  # bool
+        "visual_obs": visual_obs
         # "step": step_results[-1],
     }
 

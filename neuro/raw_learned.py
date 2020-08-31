@@ -16,7 +16,7 @@ class Pipeline:
         self.gg_id = 0
         env_path = args.env
         worker_id = 1
-        seed = 2
+        seed = args.seed
         self.arenas = args.arena_config
         self.buffer_size = 10
         first_arena = self.arenas[0] if self.arenas is not None else None
@@ -131,7 +131,7 @@ class Pipeline:
                 print(f"Running {cogn_trait}")
                 cogn_success_count = 0
                 for arena in test_set:
-                    print(f"ARENA:{arena}")
+                    # print(f"ARENA:{arena}")
                     ac = ArenaConfig(comp_fpath + arena + '.yml')
                     self.env.reset(ac)
                     step_results = self.env.step([[0, 0]])  # Take 0,0 step
@@ -149,19 +149,23 @@ class Pipeline:
                             macro_step,
                             state,
                             choice="test")
-                        print(macro_action)
+                        # print(macro_action)
                         step_results, state, micro_step, success = self.take_macro_step(
                             self.env, state, step_results, macro_action
                         )
                         global_steps += micro_step
                         macro_step +=1
                         actions_buffer.append(macro_action['raw'][0])
-
-                    print(f"Success: {success}")
+                    if state['reward']>ac.arenas[0].pass_mark:
+                        success = True
+                    else:
+                        success = False
+                    # print(f"Success: {success}")
                     total_success_count += success
                     cogn_success_count += success
                     test_results[cogn_trait][arena]['success'] = 1 if success else 0
                     test_results[cogn_trait][arena]['ma'] = actions_buffer
+                    test_results[cogn_trait][arena]['steps'] = global_steps
                     test_results[cogn_trait]["success_rate"] = cogn_success_count/len(test_set)
                 print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
             print(
@@ -174,8 +178,9 @@ class Pipeline:
             json_dump = json.dumps(test_results)
             with open("results.json", "w") as text_file:
                 text_file.write(json_dump)            
-        print(test_results)
+        # print(test_results)
         json_dump = json.dumps(test_results)
         with open("results.json", "w") as text_file:
-            text_file.write(json_dump)        
+            text_file.write(json_dump)
+        self.env.close()  
         return test_results

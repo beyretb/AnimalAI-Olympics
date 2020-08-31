@@ -3,7 +3,7 @@ from mlagents.tf_utils import tf
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-from utils import load_pb, preprocess
+from utils import load_pb, preprocess, dual_process
 from logic import Grounder
 from collections import deque
 import time
@@ -45,8 +45,27 @@ class MacroConfig:
         res = np.zeros(6)
         res[:2] = state['velocity']
 
+        # obj = [i for i in state['obj'] if abs((i[0][-1]/i[0][-2])-1)<0.3]
+        obj = state['obj']
         try:
-            res[2:] = next(i[0] for i in state['obj'] if i[3]==x)
+            res[2:] = next(i[0] for i in obj if i[3]==x)
+        except StopIteration:
+
+            if any('goal' in i[1] for i in obj):
+                    res[2:] = [i[0] for i in obj if 'goal' in i[1]][0]
+            else:
+                res[2:] = [0,0,0,0]
+
+        return res
+    @staticmethod
+    def avoid_red(state, x):
+        """Go to object x while avoiding red. x is an id."""
+        res = np.zeros(6)
+        res[:2] = state['velocity']
+        img, _ = dual_process(state['visual_obs'])
+
+        try:
+            res[2:] = next(i[0] for i in state['obj'] if i[1]=='goal')
         except StopIteration:
 
             if any(i[1]=="goal1" for i in state['obj']):
@@ -54,7 +73,8 @@ class MacroConfig:
             else:
                 res[2:] = [0,0,0,0]
 
-        return res
+        return img, res
+
 def choose_action_probability(predictions_exp):
     return np.random.choice(list(range(3)), 1, p=predictions_exp)[0]
 class MacroAction:
@@ -106,12 +126,25 @@ class MacroAction:
             input_node = self.graph.get_tensor_by_name("vector_observation:0")
             action_masks = self.graph.get_tensor_by_name("action_masks:0")
 
-            vector_obs = vector_obs.reshape(1, -1)
             mask_constant = np.array([1, 1, 1, 1, 1, 1]).reshape(1, -1)
+
+            if isinstance(vector_obs, tuple):
+                visual_node = self.graph.get_tensor_by_name("visual_observation_0:0")
+                visual_obs, vector_obs = vector_obs 
+                vector_obs = vector_obs.reshape(1, -1)
+                visual_obs = visual_obs.reshape(1, 84, 84, 1)
+
+                feed_dict = {input_node: vector_obs,
+                            action_masks: mask_constant,
+                            visual_node: visual_obs}
+
+            else:
+                vector_obs = vector_obs.reshape(1, -1)
+                feed_dict = {input_node: vector_obs, action_masks: mask_constant}
 
             prediction = sess.run(
                 output_node,
-                feed_dict={input_node: vector_obs, action_masks: mask_constant},
+                feed_dict=feed_dict,
             )[0]
 
             prediction = np.exp(prediction)
@@ -220,6 +253,7 @@ class MacroAction:
             if hacks:
                 return self.rotate_clever()
             return self.rotate()
+
         # print(self.action)
         state_parser = getattr(MacroConfig(), self.action)
 
@@ -240,6 +274,18 @@ class MacroAction:
         # print(model_path)
         self.graph = load_pb(model_path)
 
+        if self.action == 'interact':
+            count = [i for i in self.state['obj'] if 'goal' in i[1]]
+            if len(count)>1:
+                left = [i for i in count if i[0][0]<0.5]
+                right = [i for i in count if i[0][0]>0.5]
+                if len(left) > len(right):
+                    for i in range(5):
+                        self.step_results = self.env.step([1,2])
+                else:
+                    for i in range(5):
+                        self.step_results = self.env.step([1,1])
+                self.state = preprocess(self.ct, self.step_results, self.micro_step)
         go = True
         monitor_speed = deque(maxlen=20)
         monitor_sight = deque(maxlen=10)
@@ -248,8 +294,9 @@ class MacroAction:
             monitor_speed.append(np.array(1))
         while go:
             vector_obs = state_parser(self.state, self.action_args)
-            monitor_speed.append(abs(vector_obs[0]))
-            monitor_sight.append(any(vector_obs[2:]))
+            if self.action != 'avoid_red':
+                monitor_speed.append(abs(vector_obs[0]))
+                monitor_sight.append(any(vector_obs[2:]))
             action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
@@ -266,13 +313,12 @@ class MacroAction:
                     if not any(monitor_sight):
                         return self.step_results, self.state, self.macro_stats(
                             "interact failed"), self.micro_step
-                self.reward = self.step_results[1]
 
                 # When we are stuck
                 # print(np.mean(monitor_speed))
                 if np.mean(monitor_speed)<0.01:
                     if "explore" in model_path:
-                        print("We are stuck, changing explore")
+                        # print("We are stuck, changing explore")
                         monitor_speed.clear() # clear deque
                         for i in range(20):
                             monitor_speed.append(1)
@@ -280,6 +326,7 @@ class MacroAction:
                             self.graph = load_pb("macro_actions/v2/explore_left.pb")
                         else:
                             self.graph = load_pb("macro_actions/v2/explore_right.pb")
+            self.reward = self.step_results[1]
 
 
         return self.step_results, self.state, stats, self.micro_step
