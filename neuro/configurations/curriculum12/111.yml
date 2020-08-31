@@ -10,8 +10,8 @@
         - !Item
           name: GoodGoal
           positions:
-          - !Vector3 {x: 25, y: 0, z: 14}
+          - !Vector3 {x: 25, y: 0, z: 35}
           sizes:
-          - !Vector3 {x: 4, y: 4, z: 4}
+          - !Vector3 {x: 1, y: 1, z: 1}
         pass_mark: 0
         t: 250
