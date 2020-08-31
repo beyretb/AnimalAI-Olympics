@@ -12,6 +12,6 @@
           positions:
           - !Vector3 {x: 22, y: 0, z: 12}
           sizes:
-          - !Vector3 {x: 1, y: 1, z: 1}
+          - !Vector3 {x: 2, y: 2, z: 2}
         pass_mark: 0
         t: 250
