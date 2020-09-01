@@ -46,7 +46,7 @@ class Grounder:
         for bbox, _, _, _id in state['obj']:
             for bbox1, _, _, _id1 in state['obj']:
                 dist = get_distance(bbox, bbox1)
-                if (_id1!=_id)&(dist<0.02):
+                if (_id1!=_id)&(dist<0.01):
                     adjacent += f"adjacent({_id},{_id1}, {macro_step}).\n"
         return adjacent
     @staticmethod
@@ -65,8 +65,8 @@ class Grounder:
     @staticmethod
     def visible(macro_step,state):
         visible = ""
-        for _, obj_type, _occ_area, _id in state['obj']:
-            visible += f"visible({_id},{_occ_area},{macro_step}).\n"
+        for box, obj_type, _occ_area, _id in state['obj']:
+            visible += f"visible({_id},{int(box[3]*1000)},{macro_step}).\n"
             if obj_type!="goal":
                 visible +=f"{obj_type}({_id}).\n"
         return visible
@@ -253,7 +253,7 @@ class Clingo:
             {res['raw'][0]}.
             check(visible, Y):- initiate(explore(X,Y,Z),T).
             check(time, 250):- initiate(explore(X,Y,Z),T).
-            check(time, 100):- initiate(interact(X),T).
+            check(time, 150):- initiate(interact(X),T).
             check(time, 250):- initiate(avoid_red,T).
             check(time, 50):- initiate(rotate,T).""").atoms_as_string)
         checks = checks[0]
@@ -271,7 +271,6 @@ class Clingo:
             res = self.asp(lp)
             # print(res)
             # print(lp)
-            # print(res)
                 
         return self.macro_processing(res)
 
@@ -311,13 +310,13 @@ class Logic:
         not_occluding(X, T):-on(agent, X, T).
         separator(Y, T):-on(agent, X, T), adjacent(X, Y, T), platform(X).
         occludes(X,Y,T) :- present(Y, T), visible(X, _, T), not visible(Y, _, T), not separator(X, T), not not_occluding(X, T).
-        not_red_free:-red(X).
+        near_red(X):-adjacent(X,Y), red(Y).
         :- initiate(explore(X1,Y,_), T), initiate(explore(X2,Y,_), T), X1 != X2.
         :~initiate(explore(X,Y,Z),T).[-Z@1,Z]
         0{initiate(explore(X,Y,Z),T)}1:- visible(X,Z,T), occludes(X,Y,T).
-        initiate(interact(X),T):- visible(X, _,T), goal(X), not not_red_free.
+        initiate(interact(X),T):- visible(X, _,T), goal(X), not near_red(X).
         initiate(rotate,T):- not visible(T), timestep(T).
-        initiate(avoid_red,T):- red(X),timestep(T).
+        initiate(avoid_red,T):- near_red(X),timestep(T).
         """
 
     def e_greedy(self):

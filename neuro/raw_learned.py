@@ -49,10 +49,10 @@ class Pipeline:
         )
         return res
 
-    def take_macro_step(self, env, state, step_results, macro_action):
+    def take_macro_step(self, env, state, step_results, macro_action, pass_mark):
         ma = MacroAction(env, self.ct, state, step_results, macro_action)
         # print(f"Initiating macro_action: {macro_action['initiate']}")
-        step_results, state, macro_stats, micro_step = ma.run()
+        step_results, state, macro_stats, micro_step = ma.run(pass_mark)
         # print(f"Results: {self.format_macro_results(macro_stats)}")
         return step_results, state, micro_step, macro_stats["success"]
 
@@ -131,53 +131,63 @@ class Pipeline:
                 print(f"Running {cogn_trait}")
                 cogn_success_count = 0
                 for arena in test_set:
-                    # print(f"ARENA:{arena}")
+                    print(f"ARENA:{arena}")
+                    track_rotates = 0
+                    broken = False
                     ac = ArenaConfig(comp_fpath + arena + '.yml')
+                    # ac.arenas[0].t = 1000
                     self.env.reset(ac)
                     step_results = self.env.step([[0, 0]])  # Take 0,0 step
                     global_steps = 0
                     macro_step = 0
+                    reward = 0
                     self.ct = {ot: CentroidTracker() for ot in object_types} # Initialise tracker
                     actions_buffer = []
                     while not self.episode_over(step_results[2]):
-                        if global_steps >= 1000:
-                            success = False
-                            # print("Exceeded max global steps")
-                            break
-                        state = preprocess(self.ct, step_results, global_steps)
+                        state = preprocess(self.ct, step_results, global_steps, reward)
                         macro_action = self.logic.run(
                             macro_step,
                             state,
                             choice="test")
-                        # print(macro_action)
+
+                        if macro_action['initiate'][0]=='rotate':
+                            track_rotates+=1
+                            if track_rotates>3:
+                                success=False
+                                broken = True
+                                break
                         step_results, state, micro_step, success = self.take_macro_step(
-                            self.env, state, step_results, macro_action
+                            self.env, state, step_results, macro_action, ac.arenas[0].pass_mark
                         )
                         global_steps += micro_step
                         macro_step +=1
                         actions_buffer.append(macro_action['raw'][0])
-                    if state['reward']>ac.arenas[0].pass_mark:
+                        if (state['reward']>ac.arenas[0].pass_mark):
+                            break
+                    if (state['reward']>ac.arenas[0].pass_mark) and (not broken):
                         success = True
                     else:
                         success = False
-                    # print(f"Success: {success}")
+                    print(f"{arena}: {success}")
                     total_success_count += success
                     cogn_success_count += success
                     test_results[cogn_trait][arena]['success'] = 1 if success else 0
                     test_results[cogn_trait][arena]['ma'] = actions_buffer
                     test_results[cogn_trait][arena]['steps'] = global_steps
+                    test_results[cogn_trait][arena]['broken'] = broken
                     test_results[cogn_trait]["success_rate"] = cogn_success_count/len(test_set)
-                print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
-            print(
-                f"Final results: {total_success_count} episodes were completed successfully"
-            )
+            #     print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
+            # print(
+            #     f"Final results: {total_success_count} episodes were completed successfully"
+            # )
 
         except KeyboardInterrupt:
             print(test_results)
             print(f"FAILING ON ARENA: {arena}")
             json_dump = json.dumps(test_results)
             with open("results.json", "w") as text_file:
-                text_file.write(json_dump)            
+                text_file.write(json_dump)
+            self.env.close()            
         # print(test_results)
         json_dump = json.dumps(test_results)
         with open("results.json", "w") as text_file:

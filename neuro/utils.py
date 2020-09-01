@@ -26,7 +26,7 @@ def dual_process(visual_obs):
     res = ef.run_dual(visual_obs)
     return res
 
-def preprocess(ct, step_results, step):
+def preprocess(ct, step_results, step, reward):
     visual_obs = step_results[3]["batched_step_result"].obs[0][0] # last 0 idx bc batched
     vector_obs = step_results[3]["batched_step_result"].obs[1][0]
     vector_obs = [vector_obs[0]/5.81, vector_obs[2]/11.6]
@@ -50,7 +50,7 @@ def preprocess(ct, step_results, step):
     res = {
         "obj": obj, # list of tuples
         "velocity": vector_obs,  # array
-        "reward": step_results[1],  # float
+        "reward": step_results[1]+reward,  # float
         "done": step_results[2],  # bool
         "visual_obs": visual_obs
         # "step": step_results[-1],

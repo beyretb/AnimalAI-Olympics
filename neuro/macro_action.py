@@ -3,10 +3,11 @@ from mlagents.tf_utils import tf
 
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-from utils import load_pb, preprocess, dual_process
+from utils import load_pb, preprocess, dual_process, get_distance
 from logic import Grounder
 from collections import deque
 import time
+import cv2
 goal_visible = Grounder().goal_visible # Func
 
 hacks = True
@@ -24,6 +25,16 @@ class RollingChecks:
             return True, f"Failure: Time out, timestep {t}/{limit}"
         return False, f"Timestep {t}/{limit}"
 
+
+# def goal_over(bb1, bb2):
+#     if 'goal' in bb2[1]:
+#         return False
+#     if get_distance(bb1[0], bb2[0])<0.02:
+#         # print('ye')
+#         if bb1[0][1]<bb2[0][1]:
+#             # print('naa')
+#             return True
+#     return False
 
 class MacroConfig:
     @staticmethod
@@ -46,13 +57,23 @@ class MacroConfig:
         res[:2] = state['velocity']
 
         # obj = [i for i in state['obj'] if abs((i[0][-1]/i[0][-2])-1)<0.3]
+        # obj = []
+        # for i in state['obj']:
+        #     if not 'goal' in i[1]:
+        #         continue
+        #     if any(goal_over(i, i2) for i2 in state['obj']):
+        #         print("Not valid")
+        #         continue
+        #     else:
+        #         obj.append(i)
         obj = state['obj']
+        # print([i[1] for i in state['obj']])
         try:
             res[2:] = next(i[0] for i in obj if i[3]==x)
         except StopIteration:
 
-            if any('goal' in i[1] for i in obj):
-                    res[2:] = [i[0] for i in obj if 'goal' in i[1]][0]
+            if any('goal1' in i[1] for i in obj):
+                    res[2:] = [i[0] for i in obj if 'goal1' in i[1]][0]
             else:
                 res[2:] = [0,0,0,0]
 
@@ -77,6 +98,7 @@ class MacroConfig:
 
 def choose_action_probability(predictions_exp):
     return np.random.choice(list(range(3)), 1, p=predictions_exp)[0]
+
 class MacroAction:
     def __init__(self, env, ct, state, step_results, action):
         self.env = env
@@ -131,6 +153,8 @@ class MacroAction:
             if isinstance(vector_obs, tuple):
                 visual_node = self.graph.get_tensor_by_name("visual_observation_0:0")
                 visual_obs, vector_obs = vector_obs 
+                if visual_obs.shape[0]!=84:
+                    visual_obs = cv2.cv2.resize(visual_obs, dsize=(84, 84), interpolation=cv2.INTER_CUBIC)
                 vector_obs = vector_obs.reshape(1, -1)
                 visual_obs = visual_obs.reshape(1, 84, 84, 1)
 
@@ -166,7 +190,7 @@ class MacroAction:
 
             if check_bool:
                 return False, self.macro_stats(check_stats)
-        return True, "GREEN"
+        return True, self.macro_stats("GREEN")
 
     def rotate_clever(self):
         # print("Rotating 360")
@@ -174,11 +198,9 @@ class MacroAction:
         tracker_offset = 0
         for c in range(50):
             self.step_results = self.env.step([[0, 1]])
-            self.reward = self.step_results[1]
-            self.state = preprocess(self.ct, self.step_results, self.micro_step)
+            self.state = preprocess(self.ct, self.step_results, self.micro_step, self.state['reward'])
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
-            self.reward = self.step_results[1]
             # Rotate
             if '42' not in goal_visible(0, self.state): #0 is placeholder macro step, has no effect
                 # print("Goal visible")
@@ -194,6 +216,12 @@ class MacroAction:
                     tracker_offset = c
         # If no goal was visible rerotate to where something was visible
         if tracker_onset is None:
+
+            # for c in range(15):
+            #     self.step_results = self.env.step([[1, 0]])
+            #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
+            #     self.state['micro_step'] = self.micro_step
+            #     self.micro_step += 1
             return self.step_results, self.state, self.macro_stats(
             "No object was visible"), self.micro_step
         # print(tracker_onset, tracker_offset)
@@ -211,8 +239,7 @@ class MacroAction:
         more_step = 0
         while go: # add extra 2 rotations to be looking straight at object
             self.step_results = self.env.step([[0, direction]])
-            self.reward = self.step_results[1]
-            self.state = preprocess(self.ct, self.step_results, self.micro_step)
+            self.state = preprocess(self.ct, self.step_results, self.micro_step, self.state['reward'])
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
             more_step+=1
@@ -230,7 +257,6 @@ class MacroAction:
         tracker_offset = 0
         for c in range(50):
             self.step_results = self.env.step([[0, 1]])
-            self.reward = self.step_results[1]
             self.state = preprocess(self.ct, self.step_results, self.micro_step)
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
@@ -248,7 +274,7 @@ class MacroAction:
         return self.step_results, self.state, self.macro_stats(
             "Object visible, rotating to it"), self.micro_step
 
-    def run(self):
+    def run(self, pass_mark):
         if self.action=='rotate':
             if hacks:
                 return self.rotate_clever()
@@ -270,8 +296,8 @@ class MacroAction:
                 # print('left')
         else:
             model_path = f"macro_actions/v2/{self.action}.pb"
-        # print(model_path)
-        # print(model_path)
+
+        print(model_path)
         self.graph = load_pb(model_path)
 
         if self.action == 'interact':
@@ -280,12 +306,44 @@ class MacroAction:
                 left = [i for i in count if i[0][0]<0.5]
                 right = [i for i in count if i[0][0]>0.5]
                 if len(left) > len(right):
-                    for i in range(5):
-                        self.step_results = self.env.step([1,2])
+                    print("More on left")
+                    self.action_args = [left[0][3]]
+                    # for i in range(5):
+                    #     self.step_results = self.env.step([1,2])
+                    #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
+                    #     self.state['micro_step'] = self.micro_step
+                    #     self.micro_step += 1
+                elif len(left)==len(right):
+                    size_left = sum([i[2] for i in left])
+                    size_right  = sum([i[2] for i in right])
+                    if size_left > size_right:
+                        print('bigger left')
+                        self.action_args = [left[0][3]]
+
+                        # for i in range(5):
+                        #     self.step_results = self.env.step([1,2])
+                        #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
+                        #     self.state['micro_step'] = self.micro_step
+                        #     self.micro_step += 1
+                    else:
+                        print('bigger right')
+                        self.action_args = [right[0][3]]
+
+                        # for i in range(5):
+                        #     self.step_results = self.env.step([1,1])                        
+                        #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
+                        #     self.state['micro_step'] = self.micro_step
+                        #     self.micro_step += 1
                 else:
-                    for i in range(5):
-                        self.step_results = self.env.step([1,1])
-                self.state = preprocess(self.ct, self.step_results, self.micro_step)
+                    print("more on right")
+                    self.action_args = [right[0][3]]
+
+                    # for i in range(5):
+                    #     self.step_results = self.env.step([1,1])
+                    #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
+                    #     self.state['micro_step'] = self.micro_step
+                    #     self.micro_step += 1
+
         go = True
         monitor_speed = deque(maxlen=20)
         monitor_sight = deque(maxlen=10)
@@ -299,23 +357,22 @@ class MacroAction:
                 monitor_sight.append(any(vector_obs[2:]))
             action = self.get_action(vector_obs)
             self.step_results = self.env.step(action)
-            self.state = preprocess(self.ct, self.step_results, self.micro_step)
+            self.state = preprocess(self.ct, self.step_results, self.micro_step, self.state['reward'])
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
             go, stats = self.checks_clean()
-
             if hacks:
                 # If got a reward then interact was successful
                 if self.action=='interact':
                     if self.reward<self.step_results[1]:
                         return self.step_results, self.state, self.macro_stats(
-                            "interact failed"), self.micro_step
+                            "interact succeded"), self.micro_step
                     if not any(monitor_sight):
                         return self.step_results, self.state, self.macro_stats(
                             "interact failed"), self.micro_step
 
-                # When we are stuck
-                # print(np.mean(monitor_speed))
+            #     # When we are stuck
+            #     # print(np.mean(monitor_speed))
                 if np.mean(monitor_speed)<0.01:
                     if "explore" in model_path:
                         # print("We are stuck, changing explore")
@@ -326,8 +383,19 @@ class MacroAction:
                             self.graph = load_pb("macro_actions/v2/explore_left.pb")
                         else:
                             self.graph = load_pb("macro_actions/v2/explore_right.pb")
-            self.reward = self.step_results[1]
+                    if 'interact' in model_path:
+                        for i in range(4):
+                            self.step_results = self.env.step([2,0])
+                            self.state = preprocess(self.ct, self.step_results, self.micro_step, self.state['reward'])
+                            self.state['micro_step'] = self.micro_step
+                            self.micro_step += 1
+                        monitor_speed.clear() # clear deque
 
+
+            self.reward = self.step_results[1]
+            # print(self.state['reward'])
+            if self.state['reward'] > pass_mark:
+                break
 
         return self.step_results, self.state, stats, self.micro_step
 

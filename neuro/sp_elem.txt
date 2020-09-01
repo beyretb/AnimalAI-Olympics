@@ -1,0 +1,184 @@
+Running Spatial Elimination
+5-4-1: Success: False
+5-4-2: Success: False
+5-4-3: Success: False
+5-5-1: Success: True
+5-5-2: Success: False
+5-6-1: Success: False
+5-6-2: Success: False
+5-6-3: Success: False
+5-7-1: Success: True
+5-7-2: Success: False
+5-7-3: Success: False
+5-8-1: Success: True
+5-8-2: Success: True
+5-8-3: Success: False
+5-9-1: Success: True
+5-9-2: Success: True
+5-9-3: Success: True
+5-10-1: Success: True
+5-10-2: Success: True
+5-10-3: Success: False
+5-11-1: Success: True
+5-11-3: Success: True
+5-12-1: Success: True
+5-12-2: Success: True
+5-12-3: Success: True
+5-5-3: Success: False
+5-11-2: Success: True
+Success_rate on Spatial Elimination: 0.5555555555555556
+Final results: 15 episodes were completed successfully
+INFO:mlagents_envs:Environment shut down with return code 0.
+Total time taken: 121.32354211807251
+USING LOCAL LIBRARY
+INFO:mlagents_envs:Connected to Unity environment with package version 0.15.0-preview and communication version 0.15.0
+INFO:mlagents_envs:Connected new brain:
+AnimalAI?team=0
+INFO:gym_unity:1 agents within environment.
+Running Spatial Elimination
+5-4-1: Success: False
+5-4-2: Success: False
+5-4-3: Success: False
+5-5-1: Success: True
+5-5-2: Success: True
+5-6-1: Success: False
+5-6-2: Success: False
+5-6-3: Success: False
+5-7-1: Success: True
+5-7-2: Success: False
+5-7-3: Success: False
+5-8-1: Success: True
+5-8-2: Success: True
+5-8-3: Success: False
+5-9-1: Success: True
+5-9-2: Success: True
+5-9-3: Success: False
+5-10-1: Success: True
+5-10-2: Success: True
+5-10-3: Success: False
+5-11-1: Success: True
+5-11-3: Success: True
+5-12-1: Success: True
+5-12-2: Success: True
+5-12-3: Success: True
+5-5-3: Success: False
+5-11-2: Success: False
+Success_rate on Spatial Elimination: 0.5185185185185185
+Final results: 14 episodes were completed successfully
+INFO:mlagents_envs:Environment shut down with return code 0.
+Total time taken: 127.86393594741821
+USING LOCAL LIBRARY
+INFO:mlagents_envs:Connected to Unity environment with package version 0.15.0-preview and communication version 0.15.0
+INFO:mlagents_envs:Connected new brain:
+AnimalAI?team=0
+INFO:gym_unity:1 agents within environment.
+Running Spatial Elimination
+5-4-1: Success: False
+5-4-2: Success: False
+5-4-3: Success: False
+5-5-1: Success: True
+5-5-2: Success: False
+5-6-1: Success: False
+5-6-2: Success: False
+5-6-3: Success: False
+5-7-1: Success: True
+5-7-2: Success: True
+5-7-3: Success: False
+5-8-1: Success: True
+5-8-2: Success: True
+5-8-3: Success: False
+5-9-1: Success: True
+5-9-2: Success: True
+5-9-3: Success: False
+5-10-1: Success: True
+5-10-2: Success: True
+5-10-3: Success: True
+5-11-1: Success: True
+5-11-3: Success: True
+5-12-1: Success: True
+5-12-2: Success: True
+5-12-3: Success: True
+5-5-3: Success: False
+5-11-2: Success: True
+Success_rate on Spatial Elimination: 0.5925925925925926
+Final results: 16 episodes were completed successfully
+INFO:mlagents_envs:Environment shut down with return code 0.
+Total time taken: 120.01242089271545
+USING LOCAL LIBRARY
+INFO:mlagents_envs:Connected to Unity environment with package version 0.15.0-preview and communication version 0.15.0
+INFO:mlagents_envs:Connected new brain:
+AnimalAI?team=0
+INFO:gym_unity:1 agents within environment.
+Running Spatial Elimination
+5-4-1: Success: False
+5-4-2: Success: False
+5-4-3: Success: False
+5-5-1: Success: True
+5-5-2: Success: True
+5-6-1: Success: False
+5-6-2: Success: False
+5-6-3: Success: False
+5-7-1: Success: True
+5-7-2: Success: True
+5-7-3: Success: False
+5-8-1: Success: True
+5-8-2: Success: True
+5-8-3: Success: False
+5-9-1: Success: True
+5-9-2: Success: True
+5-9-3: Success: False
+5-10-1: Success: True
+5-10-2: Success: True
+5-10-3: Success: False
+5-11-1: Success: True
+5-11-3: Success: True
+5-12-1: Success: True
+5-12-2: Success: True
+5-12-3: Success: True
+5-5-3: Success: False
+5-11-2: Success: False
+Success_rate on Spatial Elimination: 0.5555555555555556
+Final results: 15 episodes were completed successfully
+INFO:mlagents_envs:Environment shut down with return code 0.
+Total time taken: 142.50083804130554
+USING LOCAL LIBRARY
+INFO:mlagents_envs:Connected to Unity environment with package version 0.15.0-preview and communication version 0.15.0
+INFO:mlagents_envs:Connected new brain:
+AnimalAI?team=0
+INFO:gym_unity:1 agents within environment.
+Running Spatial Elimination
+5-4-1: Success: False
+5-4-2: Success: False
+5-4-3: Success: False
+5-5-1: Success: False
+5-5-2: Success: False
+5-6-1: Success: False
+5-6-2: Success: False
+5-6-3: Success: False
+5-7-1: Success: True
+5-7-2: Success: False
+5-7-3: Success: False
+5-8-1: Success: True
+5-8-2: Success: True
+5-8-3: Success: True
+5-9-1: Success: True
+5-9-2: Success: True
+5-9-3: Success: False
+5-10-1: Success: True
+5-10-2: Success: True
+5-10-3: Success: False
+5-11-1: Success: True
+5-11-3: Success: False
+5-12-1: Success: True
+5-12-2: Success: True
+5-12-3: Success: True
+5-5-3: Success: False
+5-11-2: Success: True
+Success_rate on Spatial Elimination: 0.48148148148148145
+Final results: 13 episodes were completed successfully
+INFO:mlagents_envs:Environment shut down with return code 0.
+Total time taken: 126.30763268470764
+# {cogn: results['success_rate'] for cogn, results in x.items()}
+315/900
+# for cogn, results in x.items():
+# #   

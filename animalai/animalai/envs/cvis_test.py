@@ -18,7 +18,7 @@ class HSV:
 	red = [[0,162,142], [179,203,188]]
 	grey = [[0,0,0], [0,0,224]]
 	brown = [[7,53,40], [18,87,121]]
-	blue = [[113, 255, 148], [131, 255, 255]]
+	blue = [[119, 255, 106], [120, 255, 255]]
 	orange = [[20,121,158], [23,255,255]]
 hsv_cls = HSV()
 objects = OD()
@@ -61,7 +61,7 @@ class ExtractFeatures:
 			# print(x,y, x+w, y+h)
 			if self.display:
 				color = (0,255,0) if obj=='platform' else (255,0,0)
-				cv2.rectangle(self.img,(x,y),(x+w-2,y+h-2),color,2)
+				cv2.rectangle(self.img,(x,y),(x+w-2,y+h-2),color,1)
 			# Normalize bbox to be between 0 and 1
 			res.append([
 				x/self.img_dim[0], y/self.img_dim[1],
@@ -148,11 +148,12 @@ class ExtractFeatures:
 			# 	print(box[2], box[3])
 			for box in coords:
 				occluding_area = round(box[2]*box[3]*1000)
-				if (obj_type=='wall')&(occluding_area<3.5):#|(box[2]<0.05):
+				if (obj_type=='wall')&(occluding_area<0.5):#|(box[2]<0.05):
 					# print('skipping')
 					continue
 				# if obj_type=='wall':
 				features[obj_type] += [(box, obj_type, occluding_area)]
-		# cv2.imwrite(f"/Users/ludo/Desktop/ba.png", self.img)
+		if self.display:
+			cv2.imwrite(f"/Users/ludo/Desktop/ba.png", self.img)
 		return features
 
