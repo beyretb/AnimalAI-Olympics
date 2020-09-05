@@ -1,3 +1,11 @@
+# Detect, Understand, Act: Neuro-Symbolic Hierarchical Reinforcement Learning
+
+This is the main repository for the novel DUA system. It is a fork of the main AnimalAI branch and contains the modifications necessary for DUA to function. Modifications to the original AnimalAI code are found in `/animalai`, `/animalai_train` and `ml-agents-envs`.
+
+For all DUA specific code please refer to the `/neuro` directory which contains the implementation of the whole system. It also contains its own Readme.md describing the various modules.
+
+
+
 # Animal-AI 2.0.0
 
 <p align="center">

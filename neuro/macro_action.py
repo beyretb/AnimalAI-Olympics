@@ -10,7 +10,7 @@ import time
 import cv2
 goal_visible = Grounder().goal_visible # Func
 
-hacks = True
+test=True
 class RollingChecks:
     @staticmethod
     def visible(state, obj_id):
@@ -125,21 +125,6 @@ class MacroAction:
             "checks": checks,
         }
         return res
-
-    # def get_action(self, vector_obs):
-    #     with tf.compat.v1.Session(graph=self.graph) as sess:
-    #         output_node = self.graph.get_tensor_by_name("action:0")
-    #         input_node = self.graph.get_tensor_by_name("vector_observation:0")
-    #         vector_obs = vector_obs.reshape(1, -1)
-    #         mask_constant = np.array([1, 1, 1, 1, 1, 1]).reshape(1, -1)
-    #         action_masks = self.graph.get_tensor_by_name("action_masks:0")
-    #         model_result = sess.run(
-    #             output_node,
-    #             feed_dict={input_node: vector_obs, action_masks: mask_constant},
-    #         )
-    #         action = [model_result[0, :3].argmax(), model_result[0, 3:].argmax()]
-
-    #     return action
 
     def get_action(self, vector_obs):
         with tf.compat.v1.Session(graph=self.graph) as sess:
@@ -276,11 +261,10 @@ class MacroAction:
 
     def run(self, pass_mark):
         if self.action=='rotate':
-            if hacks:
+            if test:
                 return self.rotate_clever()
             return self.rotate()
 
-        # print(self.action)
         state_parser = getattr(MacroConfig(), self.action)
 
         # Get model path
@@ -297,7 +281,7 @@ class MacroAction:
         else:
             model_path = f"macro_actions/v2/{self.action}.pb"
 
-        print(model_path)
+        # print(model_path)
         self.graph = load_pb(model_path)
 
         if self.action == 'interact':
@@ -306,43 +290,21 @@ class MacroAction:
                 left = [i for i in count if i[0][0]<0.5]
                 right = [i for i in count if i[0][0]>0.5]
                 if len(left) > len(right):
-                    print("More on left")
+                    # print("More on left")
                     self.action_args = [left[0][3]]
-                    # for i in range(5):
-                    #     self.step_results = self.env.step([1,2])
-                    #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
-                    #     self.state['micro_step'] = self.micro_step
-                    #     self.micro_step += 1
                 elif len(left)==len(right):
                     size_left = sum([i[2] for i in left])
                     size_right  = sum([i[2] for i in right])
                     if size_left > size_right:
-                        print('bigger left')
+                        # print('bigger left')
                         self.action_args = [left[0][3]]
-
-                        # for i in range(5):
-                        #     self.step_results = self.env.step([1,2])
-                        #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
-                        #     self.state['micro_step'] = self.micro_step
-                        #     self.micro_step += 1
                     else:
-                        print('bigger right')
+                        # print('bigger right')
                         self.action_args = [right[0][3]]
-
-                        # for i in range(5):
-                        #     self.step_results = self.env.step([1,1])                        
-                        #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
-                        #     self.state['micro_step'] = self.micro_step
-                        #     self.micro_step += 1
                 else:
-                    print("more on right")
+                    # print("more on right")
                     self.action_args = [right[0][3]]
 
-                    # for i in range(5):
-                    #     self.step_results = self.env.step([1,1])
-                    #     self.state = preprocess(self.ct, self.step_results, self.micro_step)
-                    #     self.state['micro_step'] = self.micro_step
-                    #     self.micro_step += 1
 
         go = True
         monitor_speed = deque(maxlen=20)
@@ -361,7 +323,8 @@ class MacroAction:
             self.state['micro_step'] = self.micro_step
             self.micro_step += 1
             go, stats = self.checks_clean()
-            if hacks:
+
+            if test:
                 # If got a reward then interact was successful
                 if self.action=='interact':
                     if self.reward<self.step_results[1]:
@@ -371,11 +334,9 @@ class MacroAction:
                         return self.step_results, self.state, self.macro_stats(
                             "interact failed"), self.micro_step
 
-            #     # When we are stuck
-            #     # print(np.mean(monitor_speed))
+                # When we are stuck
                 if np.mean(monitor_speed)<0.01:
                     if "explore" in model_path:
-                        # print("We are stuck, changing explore")
                         monitor_speed.clear() # clear deque
                         for i in range(20):
                             monitor_speed.append(1)
@@ -393,7 +354,6 @@ class MacroAction:
 
 
             self.reward = self.step_results[1]
-            # print(self.state['reward'])
             if self.state['reward'] > pass_mark:
                 break
 

@@ -66,9 +66,7 @@ class Pipeline:
         choice = 'random'
         for idx in range(self.args.num_episodes):
             self.env.reset(self.arenas[0])
-        # for idx,arena in enumerate(self.arenas):
-        #     self.env.reset(arena)
-            # print(f"======Running episode {idx}=====")
+            print(f"======Running episode {idx}=====")
             step_results = self.env.step([[0, 0]])  # Take 0,0 step
             global_steps = 0
             macro_step = 0
@@ -112,7 +110,7 @@ class Pipeline:
             self.logic.update_examples(filtered_observables_buffer[-1:], filtered_action_buffer[-1:], success)
 
             nl_success = "Success" if success else "Failure"
-            # print(f"Episode was a {nl_success}")
+            print(f"Episode was a {nl_success}")
             success_count += success
 
         print(
@@ -168,6 +166,7 @@ class Pipeline:
                         success = True
                     else:
                         success = False
+                    print(state['reward'])
                     print(f"{arena}: {success}")
                     total_success_count += success
                     cogn_success_count += success
@@ -176,10 +175,10 @@ class Pipeline:
                     test_results[cogn_trait][arena]['steps'] = global_steps
                     test_results[cogn_trait][arena]['broken'] = broken
                     test_results[cogn_trait]["success_rate"] = cogn_success_count/len(test_set)
-            #     print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
-            # print(
-            #     f"Final results: {total_success_count} episodes were completed successfully"
-            # )
+                print(f"Success_rate on {cogn_trait}: {cogn_success_count/len(test_set)}")
+            print(
+                f"Final results: {total_success_count} episodes were completed successfully"
+            )
 
         except KeyboardInterrupt:
             print(test_results)
@@ -188,7 +187,6 @@ class Pipeline:
             with open("results.json", "w") as text_file:
                 text_file.write(json_dump)
             self.env.close()            
-        # print(test_results)
         json_dump = json.dumps(test_results)
         with open("results.json", "w") as text_file:
             text_file.write(json_dump)
