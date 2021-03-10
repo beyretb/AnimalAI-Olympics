@@ -40,9 +40,12 @@ First **download the environment** for your system:
 
 | OS | Environment link |
 | --- | --- |
+| Windows | [download v2.0.1](https://drive.google.com/file/d/1BVFAO3pV9DxoPrc6PiDajp2SwCaWZNvJ/view?usp=sharing) |
+| Mac | [download v2.0.1](https://drive.google.com/file/d/1dzC3JoDiDhlpVKHXsYi_g-oe9mlIMu6t/view?usp=sharing) |
+| Linux |  [download v2.0.1](https://drive.google.com/file/d/18DUEff51hvED5ityNktTpVSaAfZgeKDr/view?usp=sharing) |
 | Linux |  [download v2.0.2](https://drive.google.com/file/d/1MqVpLU3amisN8I_-4XWIE96gYIfWDzIX/view?usp=sharing) |
 
-V2.0.2 is only available for linux and fixes an issue with agent speed that made a few environments impossible in the 2.0.1 version. Please note that the 2.0.1 version hosting went down and they are currently not accessible. They be relinked at a later date.
+V2.0.2 is only available for linux and fixes an issue with agent speed that makes a few environments impossible in the 2.0.1 version. There are no plans to maintain or update other versions. Current development is towards v3 to release mid 2021.
 
 Unzip the **entire content** of the archive to the `examples/env` folder. On linux you may have to make the file executable by running `chmod +x env/AnimalAI.x86_64`.
 
