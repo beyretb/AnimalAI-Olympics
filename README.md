@@ -1,3 +1,6 @@
+
+**UPDATE: Animal-AI v3 is now up [on a separate repo](https://github.com/mdcrosby/animal-ai.git).** The below repository contains the codebase for the competition that was ran in 2019. It is not under active maintenance but issues are still monitored to some extent. 
+
 # Animal-AI 2.0.0
 
 <p align="center">
